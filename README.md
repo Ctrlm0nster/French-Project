@@ -5,12 +5,14 @@ This repository contains a **dynamic website** built from Stitch MCP screens, de
 ## Dynamic Data Integrations
 
 ### Supabase API
+
 The site connects to a [Supabase](https://supabase.com/) backend to fetch and display dynamic content across the site. Movie and series metadata, user data, and other structured content are served in real time from the Supabase database via its REST API.
 
 - **Used for:** Fetching movies, series, and related metadata dynamically at runtime.
 - **Configuration:** Set your Supabase project URL and public anon key as Vercel environment variables (see [Vercel Deployment](#vercel-deployment) below).
 
 ### Google Maps API — `/theater` Page
+
 The **Theater page** (`/theater`) uses the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript) to display an interactive map with cinema and theater locations.
 
 - **Used for:** Rendering a live map with markers for cinemas/theaters.
@@ -49,7 +51,7 @@ This site is deployed on [Vercel](https://vercel.com/). Every push to `main` tri
 | `SUPABASE_ANON_KEY` | Your Supabase public anon key |
 | `GOOGLE_MAPS_API_KEY` | Your Google Maps API key |
 
-4. Click **Deploy**.
+1. Click **Deploy**.
 
 ### Preview deployments
 
@@ -62,17 +64,23 @@ Every pull request automatically gets a unique preview URL from Vercel, making i
 ### With Vercel CLI (recommended)
 
 1. Install the [Vercel CLI](https://vercel.com/docs/cli):
+
    ```bash
    npm i -g vercel
    ```
+
 2. Pull environment variables locally:
+
    ```bash
    vercel env pull .env.local
    ```
+
 3. Start the local dev server:
+
    ```bash
    vercel dev
    ```
+
 4. Open `http://localhost:3000`
 
 ### Without CLI
