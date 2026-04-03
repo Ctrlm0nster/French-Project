@@ -1,1 +1,4 @@
 .vscode/
+.env.local
+website/assets/js/config.local.js
+docs/assets/js/config.local.js
