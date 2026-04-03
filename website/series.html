@@ -163,18 +163,35 @@
         <div id="series-react-root"></div>
     </main>
     <script type="text/babel">
-        const { useMemo, useState } = React;
+        const { useEffect, useMemo, useState } = React;
         const SERIES = [
             { title: "Le Bureau des Légendes", genre: "Drame", year: 2024, episodes: 8, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCeah_M8qii9LF4blFI3KovBrK-s7oOLws1uZBeG9JOtq4DAQ2ZggWRzQlV2Y9BQBqlmf4ZIIl02o7EeonTfCyxcMUudkThfsNe1gAMuNsUS0PVw7t6tWFdVrfJ3zT421WqZGUEcc0vN2Dy9IMHB2WR3ZekPPsKqyULfUVUy1_K136ctGsYp-0XhocWuQ_EJvOUuBCWiHXDaaXfDydh7gTpU3RPWYj-VEO-d1pG2YwtbUmPzrq4HPR0JzqQSTNQGcYheGSBoVgeZCI" },
             { title: "Versailles", genre: "Histoire", year: 2015, episodes: 30, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBEW4w8tggSbnTkWkn0wdgHD41_0eAF3qXvkI05dLLcncRqwUO56NUlY9NshajCI2lLfuI_9ps8W3reTIRBGpgitx2imF_meZgJjwZJfB7_MxmfjBqWFr8hKkwjtBE2CTDF0LV6PQna-lOBsPZ6sG1uucSLFl5uwuA9IAOY2DPh26_yy75xHGPMQMYo9BIa0xwfTVAHPj75mq_0YZZ32WM53Z6iyhQ2DpbtFo7u6es_XLlFAkHSc4P3rc0zL6989HWKImF9lS4VYqg" },
             { title: "Lupin", genre: "Polar", year: 2021, episodes: 17, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCYXS5MmgN6T-GjLWKyHi955_J_jrorq9AMc6fsMH-6X_RQxVKHMndb1bXAG3bw4nmcfpr_WsRIOuCPaQlYvS-XFqTkUfComgmH3I9KiDmNSl56Ygqlrlyd8wg8W4_oocw6BvlUIyrcp0jmsYZDO4hIhtJmupW2BdYrPN3eELXKACn4tnqfboNuQcHdkukkR_4zJ6QZr3GLme5Swyd6IxpXbvGbTcFO2EgyX62S7FPbzvaa8WfUHKJvlIs7_lbczPOoE1WZqfKPyP8" },
-            { title: "Dix Pour Cent", genre: "Comédie", year: 2015, episodes: 24, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCN8rf5bTgMEhFPpQehuchaBwJ6dWqwDafP4DCjmoXAHJbpEqd9xSv0zyLJksQXI1QzY8FQ1h-aC_t2bN6kEQIVtFbuIea1GtymMD_pySls4kDfA3Ix2BqdpGNox3asjlVv9htRhgPInJBzVxdlibNXHWdsZqNXQ_poYi_63Ir3Y11Wan9OTJI_5bxFFy8jlYDuzO4qItYjnuTKOrsuq8pkP4cCj5VRuveD9zh30fSlkJQYE582GKSN5eOVSjagO7RXsEYvXvgabkc" }
+            { title: "Dix Pour Cent", genre: "Comédie", year: 2015, episodes: 24, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCN8rf5bTgMEhFPpQehuchaBwJ6dWqwDafP4DCjmoXAHJbpEqd9xSv0zyLJksQXI1QzY8FQ1h-aC_t2bN6kEQIVtFbuIea1GtymMD_pySls4kDfA3Ix2BqdpGNox3asjlVv9htRhgPInJBzVxdlibNXHWdsZqNXQ_poYi_63Ir3Y11Wan9OTJI_5bxFFy8jlYDuzO4qItYjnuTKOrsuq8pkP4cCj5VRuveD9zh30fSlkJQYE582GKSN5eOVSjagO7RXsEYvXvgabkc" },
+            { title: "Zone Blanche", genre: "Drame", year: 2017, episodes: 16, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuABdoag3-v4czxdmp3y8alcWGMSz32oxZlT8BWVl_41VQiaMUE01et1bnMzMNMADvd1ksQIBQJh0zSXHoVxmcU7bFKusRU_qxmhU_t0uZd7VATzLIpjsZNvHyfBOMeEe-4X0ZvsD7GMzP3a96uTAeEQOPJf3T2HOjnAd1Sp2SucNW3I6ck1u9qAGCLveeUIxZX-trDN2FGNC_cC4U8Ll2MnVcmaD5ZQW-PRyIfmoIVhsz3yVwwcuHN7FaH8yLHy2F9cz2YcBfOCUpo" },
+            { title: "Ad Vitam", genre: "Polar", year: 2018, episodes: 6, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAwRxufTuVxWayczMclhCNVjpSVnotdBPpSyRX7s8vL_hjprk0nAuMvP86wbvXRYVIYBBzf30w-O_fHIUafeoK58V2IlTuBNY1CDYjueD5MPPdz4K4d5-xSg_H-z-Jl3yFXu5tpMcQpTVSeZ5-02o34w_5aXSLiXye6p-dAlThq9DKJhCN3jGEyEwrt5ACKXF890RbeXq6b_NJvQw4rL-ktF2Fq9-2AKrrDiTnef3_iiNzRVLaiPeQUohsWp3fXnt49rptgl3aJgCc" },
+            { title: "Fin Ar Bed", genre: "Histoire", year: 2023, episodes: 8, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB0ILjWQsU1jGi9oqSrxcS7DcU-MkP3keSbCU3geFcg5PvIeyrjZMkN7ULXBI1oSAQRGxHbA9Ik_rFjFHYMnW5_XIgxoDZ3IsX2sexw0JVmEpdJEqTsiyrZImwfZAI7tWG0aI_Yb9EInVKeXm3fUQSRFKws3gNccUWl76Wzne6Z0OBjR4jH6dn61UuC3SbS_QKnmY8HFjJ6KNpXdb_Im8ZcbnGuLEm7j0XpS-t9xuKXV9B7JsG9EmaLy5FkYzaeBZqv-i8-FN-LcG4" },
+            { title: "Les Revenants", genre: "Drame", year: 2012, episodes: 16, image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDVsyp9fZ1rxIKEzI-yG0O1kRm18Mw8-WqRlrJKIG7sXxo75mvtqx9pqAIfKKIoA0P6OzExEtECvemtamBk4wFpfDQSwv6rlVR0e8g4JovX1tNA5O0Ez8q4_HFOnKaxEAHKkX1H6guTFhDHjceGZRtakw5rjx-JF9av_1hErCHd0fszbB5Hrx1-oKU9ap69T8xs2nL_CpP8nHy27XlhH2dXfk0Dvrxv_lxJn9RQFqkG2nWHzp2jei9t8ipokVmmeh_lXm1SNXD6dLA" }
         ];
         function SeriesExplorer() {
             const genres = ["Tous", "Drame", "Polar", "Histoire", "Comédie"];
             const [genre, setGenre] = useState("Tous");
             const [year, setYear] = useState("Tous");
+            const [page, setPage] = useState(1);
+            const itemsPerPage = 4;
             const filtered = useMemo(() => SERIES.filter((s) => (genre === "Tous" || s.genre === genre) && (year === "Tous" || String(s.year) === year)), [genre, year]);
+            const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+            const pagedItems = useMemo(() => {
+                const start = (page - 1) * itemsPerPage;
+                return filtered.slice(start, start + itemsPerPage);
+            }, [filtered, page]);
+            useEffect(() => {
+                setPage(1);
+            }, [genre, year]);
+            useEffect(() => {
+                if (page > totalPages) setPage(totalPages);
+            }, [page, totalPages]);
             return (
                 <>
                     <section className="mb-16 border-b border-outline-variant/10 pb-8">
@@ -190,7 +207,7 @@
                         </div>
                     </section>
                     <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        {filtered.map((item) => (
+                        {pagedItems.map((item) => (
                             <div key={item.title} className="group bg-surface-container relative overflow-hidden flex">
                                 <div className="w-1/3 overflow-hidden">
                                     <img alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src={item.image} />
@@ -203,6 +220,15 @@
                             </div>
                         ))}
                     </section>
+                    <div className="mt-16 flex justify-center items-center space-x-4">
+                        <button disabled={page === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
+                            <span className="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <span className="label-md text-on-surface mx-4">PAGE {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span>
+                        <button disabled={page === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
+                            <span className="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
                 </>
             );
         }

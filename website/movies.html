@@ -150,7 +150,7 @@
     <div id="movies-react-root"></div>
   </main>
   <script type="text/babel">
-    const { useMemo, useState } = React;
+    const { useEffect, useMemo, useState } = React;
 
     const MOVIES = [
       { title: "À bout de souffle", year: 1960, director: "Jean-Luc Godard", genre: "Nouvelle Vague", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCO2k2LN3aylrLZWACadXeEwq4ecxnyOkW1jrrYI-ApKX_bMWU-W8kSM1j6N4bxDTC2WVXKz_hvku0d_taH3sCe88_BAl_Xuf2A3EFKNFoFqyBMm8IdVFE0yNCOosMb97jGXwAH3FvClN9SD51CEH1JzyxU4KFlc9tOX2ESFA5L6k5dnd1mEW02s-JhD7NNy5nOLXq6WFM8zTwHG9HUfKOKNaCLzy_6RIaGYciNW2lpzDuq-8y92HGLt3xWGZ1RJWow8gwz9y3Oc3k" },
@@ -158,13 +158,20 @@
       { title: "Portrait de la jeune fille en feu", year: 2019, director: "Céline Sciamma", genre: "Drame Psychologique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCTDICqjC3gpwmAquX9S0j7e0Hg5SXTht5ZmpaPZEZrpGWAGk_0MI60upK3SeJ7d5RrarLlzcACU__kwEbri0Oic6m1JSuTsUUXPobNjk3kZlZlguxhlBXorZcqMSFC94_Gtx4JAG_0zuBFb9EqzUUcOAZoeNgCvBaePXSkyOxpASV-kSwmzuGC_2OYB0VFymev3Vq4yMeyyKzE3hfa5QU7hLY-wvLXyVQ4rjrIle7bbf9TzyvrxBHIaj9DE6fvDLUIId0s74vrNms" },
       { title: "La Haine", year: 1995, director: "Mathieu Kassovitz", genre: "Polar Français", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCMchufuIsWFDWPVEPGWRJ2wmauv0MMNJumHep1-MHBqewwUX49fnxuum-Lc4xi1YGyswBiPnyPV0duVZKN9Jxd_b2q_3rfGwfI3OrqXKI7lKoAa-CXvnqT1W1D_LjQyXtPNQOxObJljhnH_LFyJbuofnFiqRa8r8BFYmNK3E506A0CFTe8xRACDAm8w5XaJX838wW2WLhGRxOgQVCZ-3GulWzQPW7gv-ODCpJ9Amy-SJdPlLMtrs1i5ucfdeYM1gfYDjxq04vvPIA" },
       { title: "Cléo de 5 à 7", year: 1962, director: "Agnès Varda", genre: "Comédie Dramatique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDZomzSpjdob207xc0HTITz8sm2e2Hpd0B61tsBWZPejS-oxb4dy6_u8ZiJn78D2eFn2UoLHLGqY_cQAFm0l1WSGnxpIY3N5lVq9ASaY_P5NGfUZPGZoDhd0H3MsMR_KtBXTK3UIuf5eNm-PeZaJYH3wd9DcwewUWhX9nFymaJRaB-tNqNi0bZuwHRfoY_xToiUtQSqHkVJCC0nADUDGoEFtPALjR73RLqy9PYup4-bZifWd9fHqnx2cGEF9eLLrSZHho51DygSgGE" },
-      { title: "Le Samouraï", year: 1967, director: "Jean-Pierre Melville", genre: "Polar Français", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U" }
+      { title: "Le Samouraï", year: 1967, director: "Jean-Pierre Melville", genre: "Polar Français", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U" },
+      { title: "Jules et Jim", year: 1962, director: "François Truffaut", genre: "Nouvelle Vague", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB95ZujzPJ12q2Wmxa7ODiaDbwU6VLw2NdPCS-dRqANwmTT4WdblautJVr9in7WJX_aiW-HJTx6K68U6_YcB_QYqC9vXAswvjUaXf1eVuZdLErdxdjKUUgkdvrTb31fEvrkJKuXVE6uVdIDR-2JILZuFAhBlJlxZS73v3mOryIzEn4PHSYPzV5zIMzmHTiNJ0IPdGgOFcKpEtGHMXKfqX417f63o9CAzVd7XZS8lCjkL_iXz5kBY8SIz-GtSizyUDQbgK-ffTeaoBQ" },
+      { title: "Playtime", year: 1967, director: "Jacques Tati", genre: "Comédie Dramatique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDXq0VinMsxaRb3-VrQMAjqHtU8UKb_YosauN69Vwevh_U04epUaEO30YbRlSOHhF40zH5-m1wLEYlmKWzQIShZrpbT1pd75USovGKfLuTkRMbm0IeE_VQtKk6_cr_SMU-mzybdVwoKbupngS7V7m3nkRflvKnRDZXhuYLzYpF2OT3zQPRgvu7LpegD0MKKIRQ1Q5IGMYspjCgBDoivyKRhQ0F3AGAD66dhfoe3qk6anaTrJFuiJRIU3ppxsEQNAVUHkz_r-iX5mdo" },
+      { title: "Anatomie d'une chute", year: 2023, director: "Justine Triet", genre: "Drame Psychologique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCbkOo4NwJFSW9LNBiWRWyPELltG_Zuqm2y6EdyjgO-2BIIniCd9R8KDGh9RYbT2a8msZgAyix8172pFrmmh1emUKf13XImsujhBqB8PXijuu_wlF2YP9Nbaa50Uw4PPThHH9sCA-gHdcj2WB23ng9-2ideJTQ4VoijXv99wmCp9__uxtNbA3q8nQdcDxcoUIFZdX-iVozGxtI_DK67dcowmQHNfj9W6BUuH3GJjr0brQGMNQYD-SX9hATr_8P7IEzltTh282EixCw" },
+      { title: "L'Origine du Mal", year: 2022, director: "Sébastien Marnier", genre: "Drame Psychologique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuACvyKj2xIc2RbEPhCckW0crzuXCtmuQ4gOFjVs2E-Ia6b1yhoxzumk1yfznrOvlRZ9UB9a21iToQHsP9aWT03xDv6ZA6DxPIs8eBsfo2KFyYPVNHVD2Yf-PeGxr84r9PWZWLsl-XN6NyjccuxXs23eTScZKa8ohkSLuy8kl09Qj--o_WOYbJJEAW03qAMiotxK3MdDiGykXuXzF1HrHLBplCJNJUFpGrXvrv8i9QQDlZnU7MvPasEVuY1HGowLF-Sow2TYuHkciWQ" },
+      { title: "Pacifiction", year: 2022, director: "Albert Serra", genre: "Drame Psychologique", image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCXtOxxKer5NWhcZOv76W5TdA-ADIFrYBEdSx8977ckrRgsJ_x94sHcFO7hkHnB9EJIPqpuISmkbV96xHp2clb1JP_VmQ1o-Om-AvrTPw8OO-DASPr4KSrXKKBbjxR7YksJvIw3YxN7UuZ8QbPuY6uhWfdKidQSEIhxYOxm4HEB42e-I75KimNwnwbK6DgehgzwTs0vOGAVWPUiUxEN2mW4v1rVuhBfmR5KiweIqz1lYcoT5tRlxN-lP4x9iDvia9aCfj6fv7ASTLk" }
     ];
 
     function MoviesExplorer() {
       const [genre, setGenre] = useState("Tous les films");
       const [director, setDirector] = useState("Tous les réalisateurs");
       const [query, setQuery] = useState("");
+      const [page, setPage] = useState(1);
+      const itemsPerPage = 6;
       const directors = useMemo(() => ["Tous les réalisateurs", ...new Set(MOVIES.map((m) => m.director))], []);
       const genres = ["Tous les films", "Nouvelle Vague", "Drame Psychologique", "Polar Français", "Comédie Dramatique"];
 
@@ -174,6 +181,17 @@
         const queryOk = !query || m.title.toLowerCase().includes(query.toLowerCase()) || m.director.toLowerCase().includes(query.toLowerCase());
         return genreOk && directorOk && queryOk;
       }), [genre, director, query]);
+      const totalPages = Math.max(1, Math.ceil(filtered.length / itemsPerPage));
+      const pagedItems = useMemo(() => {
+        const start = (page - 1) * itemsPerPage;
+        return filtered.slice(start, start + itemsPerPage);
+      }, [filtered, page]);
+      useEffect(() => {
+        setPage(1);
+      }, [genre, director, query]);
+      useEffect(() => {
+        if (page > totalPages) setPage(totalPages);
+      }, [page, totalPages]);
 
       return (
         <div className="flex flex-col lg:flex-row gap-12">
@@ -199,7 +217,7 @@
           </aside>
           <div className="flex-grow">
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
-              {filtered.map((movie) => (
+              {pagedItems.map((movie) => (
                 <div key={movie.title} className="group cursor-pointer">
                   <div className="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
                     <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src={movie.image} alt={movie.title} />
@@ -216,6 +234,15 @@
                   </div>
                 </div>
               ))}
+            </div>
+            <div className="mt-16 flex justify-center items-center space-x-4">
+              <button disabled={page === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
+                <span className="material-symbols-outlined">chevron_left</span>
+              </button>
+              <span className="label-md text-on-surface mx-4">PAGE {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span>
+              <button disabled={page === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
+                <span className="material-symbols-outlined">chevron_right</span>
+              </button>
             </div>
           </div>
         </div>
