@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#2a4776",
+                        "primary-fixed-dim": "#abc7fe",
+                        "primary": "#abc7fe",
+                        "on-surface": "#e2e2e5",
+                        "inverse-primary": "#435e8f",
+                        "secondary": "#ffb3af",
+                        "on-primary": "#0e305e",
+                        "on-primary-container": "#738ec2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3f",
+                        "tertiary": "#c6c6c7",
+                        "on-secondary": "#68000e",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#930018",
+                        "secondary-fixed": "#ffdad7",
+                        "surface-container-low": "#1a1c1e",
+                        "surface-container-high": "#282a2c",
+                        "surface-container-highest": "#333537",
+                        "secondary-container": "#cd0326",
+                        "outline": "#8e909a",
+                        "primary-container": "#002654",
+                        "on-background": "#e2e2e5",
+                        "background": "#121416",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-bright": "#37393b",
+                        "secondary-fixed-dim": "#ffb3af",
+                        "on-surface-variant": "#c4c6d0",
+                        "on-tertiary": "#2f3131",
+                        "on-tertiary-container": "#8d8e8e",
+                        "outline-variant": "#43474f",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-lowest": "#0c0e10",
+                        "tertiary-container": "#252727",
+                        "primary-fixed": "#d7e3ff",
+                        "on-secondary-container": "#ffdcda",
+                        "on-secondary-fixed": "#410005",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#abc7fe",
+                        "surface-container": "#1e2022",
+                        "surface-variant": "#333537",
+                        "inverse-on-surface": "#2f3133",
+                        "on-error": "#690005",
+                        "surface": "#121416",
+                        "surface-dim": "#121416",
+                        "inverse-surface": "#e2e2e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            background-color: #121416;
+            color: #e2e2e5;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .cinematic-shadow {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+    <!-- TopNavBar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50 flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+        <div class="flex items-center gap-12">
+            <span class="text-2xl font-serif italic text-blue-100">Cinémathèque</span>
+            <div class="hidden md:flex gap-8">
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="index.html">Home</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="movies.html">Movies</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="series.html">Series</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="chatbot.html">Chatbot</a>
+                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Theaters</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-6">
+            <div class="relative flex items-center bg-slate-900/50 px-4 py-2">
+                <span class="material-symbols-outlined text-blue-200 mr-2 text-sm">search</span>
+                <input
+                    class="bg-transparent border-none focus:ring-0 text-sm text-blue-100 placeholder:text-slate-500 font-body"
+                    placeholder="Find a location..." type="text" />
+            </div>
+            <button class="text-blue-200 hover:text-red-300 transition-all duration-500 ease-in-out">
+                <span class="material-symbols-outlined" data-icon="language">language</span>
+            </button>
+        </div>
+    </nav>
+    <main class="flex-grow pt-24 pb-12 flex flex-col">
+        <!-- Header Section -->
+        <header class="px-12 mb-12">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
+                <div>
+                    <span class="label-md font-label uppercase tracking-[0.3em] text-secondary mb-4 block">Le Répertoire
+                        National</span>
+                    <h1 class="text-6xl font-headline font-bold text-on-background leading-tight">Find Your <span
+                            class="italic font-normal">Sanctuary</span></h1>
+                </div>
+                <div class="flex gap-4 pb-2 overflow-x-auto no-scrollbar">
+                    <button
+                        class="bg-primary text-on-primary px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-colors duration-300">
+                        Cinema
+                    </button>
+                    <button
+                        class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
+                        Acting Theater
+                    </button>
+                    <button
+                        class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
+                        Large Drama Fest
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Main Map & List Grid -->
+        <div
+            class="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
+            <!-- Map Interface (Asymmetric Left) -->
+            <div class="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
+                <div class="absolute inset-0 z-0">
+                    <img class="w-full h-full object-cover opacity-60 grayscale hover:grayscale-0 transition-all duration-1000"
+                        data-alt="Stylized map of France with delicate architectural pins, dark moody aesthetic with glowing blue and red location highlights"
+                        data-location="France"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCecDTP4XiSsrDLP4GnFHr2Dr44UOhhUNXKnmH0I4Na1bHAOPVdnZ6V2sql3mHKqGcmLrdltinADh1quuKTULYrA5jaDAOVRSyZG00xeuu2vtD6wQavjDT4DFsLz6p4kDts9kw9y_pBZ9cHb4bFo4lQnXP8C-Qr2bbfmruL4GrXrBtaDFToxPheE08bbxOBNv3jbayuin2AFVHs7tE7AVYUau-EdsDiONRJW901-h69Czz1-i3uI3rQFfJX3gM0d9mCqStRbWcDuSs" />
+                </div>
+                <!-- Overlay Legend -->
+                <div
+                    class="absolute bottom-8 left-8 z-10 bg-slate-950/80 backdrop-blur-md p-6 border-l-4 border-secondary">
+                    <h3 class="font-headline text-lg mb-4">Regional Distribution</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="w-2 h-2 bg-primary"></span>
+                            <span
+                                class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Île-de-France
+                                (142)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-2 h-2 bg-secondary"></span>
+                            <span
+                                class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Auvergne-Rhône-Alpes
+                                (86)</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="w-2 h-2 bg-white"></span>
+                            <span
+                                class="font-label text-[10px] uppercase tracking-widest text-on-surface-variant">Occitanie
+                                (64)</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Floating Interactive Elements -->
+                <div class="absolute top-8 right-8 z-10 flex flex-col gap-2">
+                    <button
+                        class="w-12 h-12 bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                    <button
+                        class="w-12 h-12 bg-surface-bright flex items-center justify-center hover:bg-primary hover:text-on-primary transition-colors">
+                        <span class="material-symbols-outlined">remove</span>
+                    </button>
+                    <button
+                        class="w-12 h-12 bg-surface-bright flex items-center justify-center mt-4 hover:bg-secondary hover:text-on-secondary transition-colors">
+                        <span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Side List (Editorial Panel) -->
+            <div class="lg:col-span-4 bg-surface-container overflow-y-auto no-scrollbar max-h-[700px]">
+                <div class="p-8 border-b border-outline-variant/20">
+                    <h2 class="font-headline text-xl mb-2">Featured Destinations</h2>
+                    <p class="font-body text-sm text-on-surface-variant">Hand-picked venues for the discerning cinephile
+                        and dramatic arts lover.</p>
+                </div>
+                <!-- Venue Card 1 -->
+                <div
+                    class="p-8 group hover:bg-surface-container-highest transition-colors cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary">Paris, 5ème</span>
+                        <span
+                            class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                            data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </div>
+                    <h3 class="font-headline text-2xl mb-2">Le Champo</h3>
+                    <p class="font-body text-sm text-on-surface-variant italic mb-6">"Espace Jacques Tati - An iconic
+                        heritage cinema in the heart of the Latin Quarter."</p>
+                    <div class="flex gap-4">
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1">
+                            Cinema</div>
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest border border-outline-variant/40 px-3 py-1">
+                            Historical Landmark</div>
+                    </div>
+                </div>
+                <!-- Venue Card 2 -->
+                <div
+                    class="p-8 group hover:bg-surface-container-highest transition-colors cursor-pointer relative overflow-hidden border-t border-outline-variant/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary">Avignon</span>
+                        <span
+                            class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                            data-icon="theater_comedy">theater_comedy</span>
+                    </div>
+                    <h3 class="font-headline text-2xl mb-2">Palais des Papes</h3>
+                    <p class="font-body text-sm text-on-surface-variant italic mb-6">"The ultimate stage for the
+                        Festival d’Avignon, where history meets modern drama."</p>
+                    <div class="flex gap-4">
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest bg-secondary-container/30 text-secondary px-3 py-1">
+                            Drama Fest</div>
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest border border-outline-variant/40 px-3 py-1">
+                            Open Air</div>
+                    </div>
+                </div>
+                <!-- Venue Card 3 -->
+                <div
+                    class="p-8 group hover:bg-surface-container-highest transition-colors cursor-pointer relative overflow-hidden border-t border-outline-variant/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary">Lyon</span>
+                        <span
+                            class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                            data-icon="camera_roll">camera_roll</span>
+                    </div>
+                    <h3 class="font-headline text-2xl mb-2">Institut Lumière</h3>
+                    <p class="font-body text-sm text-on-surface-variant italic mb-6">"The birthplace of the
+                        Cinématographe. A pilgrimage site for any film lover."</p>
+                    <div class="flex gap-4">
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1">
+                            Museum</div>
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest border border-outline-variant/40 px-3 py-1">
+                            Cinema</div>
+                    </div>
+                </div>
+                <!-- Venue Card 4 -->
+                <div
+                    class="p-8 group hover:bg-surface-container-highest transition-colors cursor-pointer relative overflow-hidden border-t border-outline-variant/10">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary">Marseille</span>
+                        <span
+                            class="material-symbols-outlined text-secondary opacity-0 group-hover:opacity-100 transition-opacity"
+                            data-icon="mask">masks</span>
+                    </div>
+                    <h3 class="font-headline text-2xl mb-2">Théâtre de la Criée</h3>
+                    <p class="font-body text-sm text-on-surface-variant italic mb-6">"National Drama Center located in
+                        the historic fish market of the Old Port."</p>
+                    <div class="flex gap-4">
+                        <div
+                            class="text-[10px] font-label uppercase tracking-widest bg-surface-container-highest text-on-surface px-3 py-1">
+                            Acting Theater</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Call to Action / Info Section -->
+        <section class="mt-24 px-12">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                <div class="relative group">
+                    <div
+                        class="absolute -top-12 -left-12 w-64 h-64 border-l border-t border-primary/20 -z-10 group-hover:top-[-40px] group-hover:left-[-40px] transition-all duration-700">
+                    </div>
+                    <img alt="Cinema Hall"
+                        class="w-full grayscale brightness-75 hover:grayscale-0 transition-all duration-1000"
+                        data-alt="Dramatic interior of a classical French theater with red velvet seats and gold ornate detailing, dimly lit with a single spotlight on stage"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5A1WcjH1JEPcoYgtMbRMQNH-5_SmRUmnzxi65W6pcRxeNZJO5ICgqXL5RwjrC5n6Z0eYE1aBVd10Vlmw3_ozdOH_JeHqLaHyoF-jERG_O3g7Hf-cOxD1PhHV4W41XQr0mTppSncU91uBSLZE_cdwt4ic5YPvnZTZj6S-Trk16L1jellbsdKIP20yuiRZWBvqLW0PbwPrVoUOv3k80YGN9gYBrqYSZ-cJFwZSQ4rNcusCtwZH0-4JKmrJ8MrW3h2i8fYCkU5wMjKE" />
+                </div>
+                <div>
+                    <h2 class="text-4xl font-headline mb-8 leading-tight">Preserving the <span
+                            class="text-secondary italic">Art</span> of Experience</h2>
+                    <div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
+                        <p>The Cinémathèque locator is more than a map; it is a curated archive of France's cultural
+                            architecture. Each pin represents a legacy of storytelling, from the smallest independent
+                            arthouse to the grandest national stages.</p>
+                        <p>We support the French tradition of "L'exception culturelle" by highlighting venues that
+                            prioritize artistic merit over commercial noise.</p>
+                    </div>
+                    <div class="mt-12">
+                        <button
+                            class="bg-transparent border border-primary text-primary px-10 py-4 font-label text-[10px] uppercase tracking-[0.3em] hover:bg-primary hover:text-on-primary transition-all duration-500">
+                            Download the Full Directory
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-slate-950 w-full border-t border-slate-800/50">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
+            <div class="flex flex-col items-center md:items-start gap-2 mb-8 md:mb-0">
+                <span class="text-lg font-serif text-white">Cin\u00e9math\u00e8que</span>
+                <span class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">© 2024 Digital
+                    Cinémathèque. All rights reserved.</span>
+            </div>
+            <div class="flex gap-10">
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="#">Terms of Service</a>
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="#">Privacy Policy</a>
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;700&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-primary-fixed-variant": "#2a4776",
+            "primary-fixed-dim": "#abc7fe",
+            "primary": "#abc7fe",
+            "on-surface": "#e2e2e5",
+            "inverse-primary": "#435e8f",
+            "secondary": "#ffb3af",
+            "on-primary": "#0e305e",
+            "on-primary-container": "#738ec2",
+            "on-tertiary-fixed": "#1a1c1c",
+            "error-container": "#93000a",
+            "on-error-container": "#ffdad6",
+            "on-primary-fixed": "#001b3f",
+            "tertiary": "#c6c6c7",
+            "on-secondary": "#68000e",
+            "tertiary-fixed": "#e2e2e2",
+            "on-secondary-fixed-variant": "#930018",
+            "secondary-fixed": "#ffdad7",
+            "surface-container-low": "#1a1c1e",
+            "surface-container-high": "#282a2c",
+            "surface-container-highest": "#333537",
+            "secondary-container": "#cd0326",
+            "outline": "#8e909a",
+            "primary-container": "#002654",
+            "on-background": "#e2e2e5",
+            "background": "#121416",
+            "tertiary-fixed-dim": "#c6c6c7",
+            "surface-bright": "#37393b",
+            "secondary-fixed-dim": "#ffb3af",
+            "on-surface-variant": "#c4c6d0",
+            "on-tertiary": "#2f3131",
+            "on-tertiary-container": "#8d8e8e",
+            "outline-variant": "#43474f",
+            "on-tertiary-fixed-variant": "#454747",
+            "surface-container-lowest": "#0c0e10",
+            "tertiary-container": "#252727",
+            "primary-fixed": "#d7e3ff",
+            "on-secondary-container": "#ffdcda",
+            "on-secondary-fixed": "#410005",
+            "error": "#ffb4ab",
+            "surface-tint": "#abc7fe",
+            "surface-container": "#1e2022",
+            "surface-variant": "#333537",
+            "inverse-on-surface": "#2f3133",
+            "on-error": "#690005",
+            "surface": "#121416",
+            "surface-dim": "#121416",
+            "inverse-surface": "#e2e2e5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Noto Serif"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #121416;
+    }
+
+    .font-serif {
+      font-family: 'Noto Serif', serif;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+  </style>
+</head>
+
+<body class="text-on-surface selection:bg-primary selection:text-on-primary">
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
+    <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+      <div class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</div>
+      <div class="hidden md:flex items-center space-x-10">
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="index.html">Home</a>
+        <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Movies</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="series.html">Series</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="chatbot.html">Chatbot</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="theaters.html">Theaters</a>
+      </div>
+      <div class="flex items-center space-x-6">
+        <div class="relative group hidden lg:block">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+          <input
+            class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
+            placeholder="Rechercher..." type="text" />
+        </div>
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+          <span class="material-symbols-outlined" data-icon="language">language</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <main class="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+    <!-- Header Section -->
+    <header class="mb-16">
+      <h1 class="text-5xl md:text-7xl font-serif mb-6 tracking-tight leading-none overflow-hidden">
+        <span class="block">La Collection</span>
+        <span class="block text-primary italic">Permanente.</span>
+      </h1>
+      <p class="max-w-2xl text-on-surface-variant body-lg leading-relaxed">
+        Une sélection rigoureuse des chefs-d'œuvre du cinéma français, de la Nouvelle Vague aux visions contemporaines.
+        Explorez l'héritage visuel d'une nation de conteurs.
+      </p>
+    </header>
+    <!-- Filter Sidebar and Grid Layout (Asymmetric) -->
+    <div class="flex flex-col lg:flex-row gap-12">
+      <!-- Filter Sidebar -->
+      <aside class="w-full lg:w-64 flex-shrink-0 space-y-10">
+        <div class="space-y-6">
+          <h3 class="label-md uppercase tracking-[0.2em] text-secondary font-bold">Genre</h3>
+          <div class="flex flex-wrap lg:flex-col gap-3">
+            <button
+              class="text-left py-1 text-on-surface hover:text-primary transition-colors border-l-2 border-primary pl-4">Tous
+              les films</button>
+            <button
+              class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors pl-4 border-l-2 border-transparent">Nouvelle
+              Vague</button>
+            <button
+              class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors pl-4 border-l-2 border-transparent">Drame
+              Psychologique</button>
+            <button
+              class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors pl-4 border-l-2 border-transparent">Polar
+              Français</button>
+            <button
+              class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors pl-4 border-l-2 border-transparent">Comédie
+              Dramatique</button>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <h3 class="label-md uppercase tracking-[0.2em] text-secondary font-bold">Année de Sortie</h3>
+          <div class="grid grid-cols-2 lg:grid-cols-1 gap-3">
+            <label class="flex items-center space-x-3 cursor-pointer group">
+              <div class="w-4 h-4 border border-outline group-hover:border-primary transition-colors"></div>
+              <span class="text-sm text-on-surface-variant group-hover:text-on-surface">1950 - 1969</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer group">
+              <div class="w-4 h-4 border border-outline group-hover:border-primary transition-colors"></div>
+              <span class="text-sm text-on-surface-variant group-hover:text-on-surface">1970 - 1989</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer group">
+              <div class="w-4 h-4 border border-outline group-hover:border-primary transition-colors"></div>
+              <span class="text-sm text-on-surface-variant group-hover:text-on-surface">1990 - 2009</span>
+            </label>
+            <label class="flex items-center space-x-3 cursor-pointer group">
+              <div class="w-4 h-4 border border-outline group-hover:border-primary transition-colors"></div>
+              <span class="text-sm text-on-surface-variant group-hover:text-on-surface">2010 - Présent</span>
+            </label>
+          </div>
+        </div>
+        <div class="space-y-6">
+          <h3 class="label-md uppercase tracking-[0.2em] text-secondary font-bold">Réalisateur</h3>
+          <select
+            class="w-full bg-surface-container-low border-none border-b border-outline-variant text-on-surface py-3 px-0 focus:ring-0 focus:border-primary">
+            <option>Tous les réalisateurs</option>
+            <option>Jean-Luc Godard</option>
+            <option>François Truffaut</option>
+            <option>Agnès Varda</option>
+            <option>Céline Sciamma</option>
+          </select>
+        </div>
+      </aside>
+      <!-- Movie Grid -->
+      <div class="flex-grow">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
+          <!-- Movie Card 1 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="dramatic cinematic still of a black and white film scene, grainy texture, moody high contrast lighting on a lonely parisian street"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO2k2LN3aylrLZWACadXeEwq4ecxnyOkW1jrrYI-ApKX_bMWU-W8kSM1j6N4bxDTC2WVXKz_hvku0d_taH3sCe88_BAl_Xuf2A3EFKNFoFqyBMm8IdVFE0yNCOosMb97jGXwAH3FvClN9SD51CEH1JzyxU4KFlc9tOX2ESFA5L6k5dnd1mEW02s-JhD7NNy5nOLXq6WFM8zTwHG9HUfKOKNaCLzy_6RIaGYciNW2lpzDuq-8y92HGLt3xWGZ1RJWow8gwz9y3Oc3k" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">À bout de
+                  souffle</h2>
+                <span class="label-md text-secondary">1960</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">Jean-Luc Godard</p>
+            </div>
+          </div>
+          <!-- Movie Card 2 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="vintage cinema camera on a tripod, golden hour sunlight hitting the lens, elegant film set atmosphere, soft focus background"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZvI6IA6qmY43ghCsiw2nTWXeVEMA7mCOipsQKTkh1-9oJO9GFge94O8QRqAGt6qxuFwbaHpD0IbsEoEckjjN3e9yoxftje4tQ61W1O5Ml5xcC9yu2RhGvWXejpeOUdxrJKWXZWhYoFBKBaL1oYKTf4TlE1ycTmClETdNxSQFwq4bKUIV0f195K9RbL9_tKDBWf1GlupmfoJUgAVM2RIOwpnnQPeU1i0LsV-FlDVzNLD2H4ct9Yw8bbffQwGp5vC4XJlMV06h5mGA" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">Les Quatre
+                  Cents Coups</h2>
+                <span class="label-md text-secondary">1959</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">François Truffaut</p>
+            </div>
+          </div>
+          <!-- Movie Card 3 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="vibrant blue and red neon lighting reflecting on a window in a night scene, cinematic atmosphere, moody aesthetics"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTDICqjC3gpwmAquX9S0j7e0Hg5SXTht5ZmpaPZEZrpGWAGk_0MI60upK3SeJ7d5RrarLlzcACU__kwEbri0Oic6m1JSuTsUUXPobNjk3kZlZlguxhlBXorZcqMSFC94_Gtx4JAG_0zuBFb9EqzUUcOAZoeNgCvBaePXSkyOxpASV-kSwmzuGC_2OYB0VFymev3Vq4yMeyyKzE3hfa5QU7hLY-wvLXyVQ4rjrIle7bbf9TzyvrxBHIaj9DE6fvDLUIId0s74vrNms" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">Portrait de la
+                  jeune fille en feu</h2>
+                <span class="label-md text-secondary">2019</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">Céline Sciamma</p>
+            </div>
+          </div>
+          <!-- Movie Card 4 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="wide shot of a grand theater with red velvet seats and ornate architecture, dramatic shadows and light beam"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMchufuIsWFDWPVEPGWRJ2wmauv0MMNJumHep1-MHBqewwUX49fnxuum-Lc4xi1YGyswBiPnyPV0duVZKN9Jxd_b2q_3rfGwfI3OrqXKI7lKoAa-CXvnqT1W1D_LjQyXtPNQOxObJljhnH_LFyJbuofnFiqRa8r8BFYmNK3E506A0CFTe8xRACDAm8w5XaJX838wW2WLhGRxOgQVCZ-3GulWzQPW7gv-ODCpJ9Amy-SJdPlLMtrs1i5ucfdeYM1gfYDjxq04vvPIA" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">La Haine</h2>
+                <span class="label-md text-secondary">1995</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">Mathieu Kassovitz</p>
+            </div>
+          </div>
+          <!-- Movie Card 5 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="soft focus close up of a hand holding a glass of red wine in a dim lit classic french bistro"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZomzSpjdob207xc0HTITz8sm2e2Hpd0B61tsBWZPejS-oxb4dy6_u8ZiJn78D2eFn2UoLHLGqY_cQAFm0l1WSGnxpIY3N5lVq9ASaY_P5NGfUZPGZoDhd0H3MsMR_KtBXTK3UIuf5eNm-PeZaJYH3wd9DcwewUWhX9nFymaJRaB-tNqNi0bZuwHRfoY_xToiUtQSqHkVJCC0nADUDGoEFtPALjR73RLqy9PYup4-bZifWd9fHqnx2cGEF9eLLrSZHho51DygSgGE" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">Cléo de 5 à 7
+                </h2>
+                <span class="label-md text-secondary">1962</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">Agnès Varda</p>
+            </div>
+          </div>
+          <!-- Movie Card 6 -->
+          <div class="group cursor-pointer">
+            <div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+              <img
+                class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                data-alt="abstract architectural shot of a modern cinema with sharp lines and blue lighting reflections"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                <button class="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir
+                  les détails</button>
+              </div>
+            </div>
+            <div class="space-y-1">
+              <div class="flex justify-between items-baseline">
+                <h2 class="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">Le Samouraï
+                </h2>
+                <span class="label-md text-secondary">1967</span>
+              </div>
+              <p class="label-md uppercase tracking-widest text-on-surface-variant">Jean-Pierre Melville</p>
+            </div>
+          </div>
+        </div>
+        <!-- Pagination -->
+        <div class="mt-20 flex justify-center items-center space-x-4">
+          <button
+            class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+            <span class="material-symbols-outlined">chevron_left</span>
+          </button>
+          <span class="label-md text-on-surface mx-4">PAGE 01 / 12</span>
+          <button
+            class="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors">
+            <span class="material-symbols-outlined">chevron_right</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Footer -->
+  <footer class="w-full border-t border-slate-800/50 bg-slate-950">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
+      <div class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</div>
+      <div class="flex space-x-8 mb-6 md:mb-0">
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="#">Terms of Service</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="#">Privacy Policy</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="#">Contact</a>
+      </div>
+      <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
+        © 2024 Digital Cinémathèque. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#2a4776",
+                        "primary-fixed-dim": "#abc7fe",
+                        "primary": "#abc7fe",
+                        "on-surface": "#e2e2e5",
+                        "inverse-primary": "#435e8f",
+                        "secondary": "#ffb3af",
+                        "on-primary": "#0e305e",
+                        "on-primary-container": "#738ec2",
+                        "on-tertiary-fixed": "#1a1c1c",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001b3f",
+                        "tertiary": "#c6c6c7",
+                        "on-secondary": "#68000e",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-fixed-variant": "#930018",
+                        "secondary-fixed": "#ffdad7",
+                        "surface-container-low": "#1a1c1e",
+                        "surface-container-high": "#282a2c",
+                        "surface-container-highest": "#333537",
+                        "secondary-container": "#cd0326",
+                        "outline": "#8e909a",
+                        "primary-container": "#002654",
+                        "on-background": "#e2e2e5",
+                        "background": "#121416",
+                        "tertiary-fixed-dim": "#c6c6c7",
+                        "surface-bright": "#37393b",
+                        "secondary-fixed-dim": "#ffb3af",
+                        "on-surface-variant": "#c4c6d0",
+                        "on-tertiary": "#2f3131",
+                        "on-tertiary-container": "#8d8e8e",
+                        "outline-variant": "#43474f",
+                        "on-tertiary-fixed-variant": "#454747",
+                        "surface-container-lowest": "#0c0e10",
+                        "tertiary-container": "#252727",
+                        "primary-fixed": "#d7e3ff",
+                        "on-secondary-container": "#ffdcda",
+                        "on-secondary-fixed": "#410005",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#abc7fe",
+                        "surface-container": "#1e2022",
+                        "surface-variant": "#333537",
+                        "inverse-on-surface": "#2f3133",
+                        "on-error": "#690005",
+                        "surface": "#121416",
+                        "surface-dim": "#121416",
+                        "inverse-surface": "#e2e2e5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-panel {
+            background: rgba(18, 20, 22, 0.7);
+            backdrop-filter: blur(24px);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #43474f;
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body selection:bg-secondary selection:text-on-secondary">
+    <!-- Top Navigation Bar -->
+    <nav
+        class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50 flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+        <div class="text-2xl font-serif italic text-blue-100">Cinémathèque</div>
+        <div class="hidden md:flex items-center space-x-12">
+            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                href="index.html">Home</a>
+            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                href="movies.html">Movies</a>
+            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                href="series.html">Series</a>
+            <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Chatbot</a>
+            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                href="theaters.html">Theaters</a>
+        </div>
+        <div class="flex items-center space-x-6">
+            <span
+                class="material-symbols-outlined text-blue-200 cursor-pointer hover:text-red-300 transition-all duration-500"
+                data-icon="language">language</span>
+            <span
+                class="material-symbols-outlined text-blue-200 cursor-pointer hover:text-red-300 transition-all duration-500"
+                data-icon="search">search</span>
+        </div>
+    </nav>
+    <main class="min-h-screen pt-32 pb-20 px-6 md:px-12 flex flex-col items-center relative overflow-hidden">
+        <!-- Aesthetic Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container opacity-20 blur-[120px]"></div>
+            <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-container opacity-10 blur-[120px]"></div>
+        </div>
+        <!-- Editorial Header -->
+        <div class="w-full max-w-6xl z-10 mb-16 text-center md:text-left">
+            <span class="label-md uppercase tracking-[0.3em] text-secondary font-label mb-4 block">Intelligence
+                Artificielle</span>
+            <h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface leading-tight">
+                Votre <span class="italic text-primary">Conservateur</span> <br /> Numérique.
+            </h1>
+            <p class="mt-8 text-on-surface-variant max-w-xl text-lg font-light leading-relaxed">
+                Explorez l'histoire du cinéma à travers un dialogue raffiné. Demandez des recommandations basées sur
+                l'humeur, le mouvement ou le réalisateur.
+            </p>
+        </div>
+        <!-- Chat Container: Bento Style Layout -->
+        <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-12 gap-8 z-10 items-start">
+            <!-- Sidebar: Recommendations History / Suggested Prompts -->
+            <div class="md:col-span-4 space-y-6">
+                <div class="bg-surface-container-low p-8 border-l-2 border-primary shadow-2xl">
+                    <h3 class="font-headline text-xl mb-6">Thèmes du moment</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <button
+                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">La
+                            Nouvelle Vague</button>
+                        <button
+                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Noir
+                            &amp; Blanc</button>
+                        <button
+                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Cannes
+                            Classics</button>
+                        <button
+                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Surréalisme</button>
+                    </div>
+                </div>
+                <!-- Featured Suggestion Card -->
+                <div class="relative group aspect-[4/5] overflow-hidden">
+                    <img class="object-cover w-full h-full grayscale transition-transform duration-700 group-hover:scale-105"
+                        data-alt="dramatic cinematic black and white close up of a film reel and projector light in a dark french theater"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVsyp9fZ1rxIKEzI-yG0O1kRm18Mw8-WqRlrJKIG7sXxo75mvtqx9pqAIfKKIoA0P6OzExEtECvemtamBk4wFpfDQSwv6rlVR0e8g4JovX1tNA5O0Ez8q4_HFOnKaxEAHKkX1H6guTFhDHjceGZRtakw5rjx-JF9av_1hErCHd0fszbB5Hrx1-oKU9ap69T8xs2nL_CpP8nHy27XlhH2dXfk0Dvrxv_lxJn9RQFqkG2nWHzp2jei9t8ipokVmmeh_lXm1SNXD6dLA" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6">
+                        <span class="label-md text-secondary tracking-widest mb-2 block">SÉLECTION DU JOUR</span>
+                        <h4 class="font-headline text-2xl text-white italic">"À bout de souffle"</h4>
+                        <p class="text-on-surface-variant text-sm mt-2 font-light">Redécouvrez le chef-d'œuvre de
+                            Godard.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Chat Interface -->
+            <div class="md:col-span-8 flex flex-col h-[700px] bg-surface-container-lowest shadow-2xl relative">
+                <!-- Chat Messages Area -->
+                <div class="flex-grow overflow-y-auto p-10 space-y-10">
+                    <!-- AI Message (Initial) -->
+                    <div class="flex flex-col space-y-4 max-w-2xl">
+                        <div class="flex items-center space-x-3 text-primary">
+                            <span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+                            <span class="label-md uppercase tracking-[0.2em] font-bold">Ciné-AI</span>
+                        </div>
+                        <div class="bg-surface-container p-6 border-l border-outline-variant/30">
+                            <p class="text-on-surface leading-relaxed italic font-headline">
+                                "Bonjour. Je suis votre guide pour cette exploration cinématographique. Quel genre
+                                d'émotion cherchez-vous à ressentir ce soir ?"
+                            </p>
+                        </div>
+                    </div>
+                    <!-- User Message -->
+                    <div class="flex flex-col space-y-4 max-w-2xl ml-auto items-end">
+                        <div class="flex items-center space-x-3 text-secondary">
+                            <span class="label-md uppercase tracking-[0.2em] font-bold">Visiteur</span>
+                            <span class="material-symbols-outlined" data-icon="person">person</span>
+                        </div>
+                        <div class="bg-surface-container-high p-6 border-r border-secondary/30">
+                            <p class="text-on-surface leading-relaxed text-right">
+                                Je cherche quelque chose de mélancolique, peut-être dans le style de la rive gauche des
+                                années 60.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- AI Recommendation with Media -->
+                    <div class="flex flex-col space-y-6 max-w-2xl">
+                        <div class="flex items-center space-x-3 text-primary">
+                            <span class="material-symbols-outlined" data-icon="smart_toy">smart_toy</span>
+                            <span class="label-md uppercase tracking-[0.2em] font-bold">Ciné-AI</span>
+                        </div>
+                        <div class="bg-surface-container p-8 border-l border-primary">
+                            <p class="text-on-surface leading-relaxed mb-6">
+                                Un choix exquis. La Rive Gauche offre une profondeur intellectuelle sans pareille. Je
+                                vous suggère d'explorer le travail d'Alain Resnais.
+                            </p>
+                            <!-- Movie Recommendation Card -->
+                            <div
+                                class="flex gap-6 bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group">
+                                <div class="w-24 h-36 bg-slate-800 flex-shrink-0">
+                                    <img class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                                        data-alt="vintage film poster aesthetic, monochrome blue tones, silhouette of a woman in a classic trench coat in Paris"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-LqhQoo-KNHr60Uiij3J2UyHMQyyrOeW2JMZ3LT6_9IAz0PN1jpXPPoiH3VIJaoK6i4XGyIjLh2wgq04p-1dUg9_DzIeNYMljGLJ86mRjjIDgcC9ZIPzpKCdU1naQKfIWhHR69J3jJezfKxE_H2A40-e-7-cj5QP5MB0U42VUIe7XhdJvtmTPPYfnSxD4fMqFQDVu_9ba6EWgN_VUgl9CUqRTy9W0VnZ2nGWGdIM_ko3O43KDqKf6HZmAsbOrPWXTmdpRuf0pMtc" />
+                                </div>
+                                <div class="flex flex-col justify-center">
+                                    <h5 class="font-headline text-lg text-white">Hiroshima mon amour</h5>
+                                    <p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1">1959 •
+                                        Alain Resnais</p>
+                                    <div class="mt-4 flex space-x-4">
+                                        <button
+                                            class="text-secondary text-[10px] uppercase font-bold tracking-widest border-b border-secondary/0 hover:border-secondary transition-all">En
+                                            savoir plus</button>
+                                        <button
+                                            class="text-primary text-[10px] uppercase font-bold tracking-widest border-b border-primary/0 hover:border-primary transition-all">Visionner</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Input Area -->
+                <div class="p-8 bg-surface-container-lowest border-t border-outline-variant/10">
+                    <div class="relative flex items-center">
+                        <input
+                            class="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:ring-0 focus:border-primary py-4 pr-12 text-sm tracking-widest uppercase placeholder:text-outline/50 transition-all font-label"
+                            placeholder="DÉCRIVEZ VOTRE ENVIE CINÉMATOGRAPHIQUE..." type="text" />
+                        <button class="absolute right-0 text-primary hover:text-secondary transition-colors">
+                            <span class="material-symbols-outlined" data-icon="send"
+                                style="font-variation-settings: 'FILL' 1;">send</span>
+                        </button>
+                    </div>
+                    <div
+                        class="mt-4 flex justify-between items-center text-[9px] uppercase tracking-[0.2em] text-outline">
+                        <span>IA entraînée sur les archives de la Cinémathèque</span>
+                        <div class="flex space-x-4">
+                            <span class="text-blue-400">Bleu</span>
+                            <span class="text-white">Blanc</span>
+                            <span class="text-red-400">Rouge</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer
+        class="w-full border-t border-slate-800/50 bg-slate-950 flex flex-col md:flex-row justify-between items-center px-12 py-10">
+        <div class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</div>
+        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-12">
+            <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                href="#">Terms of Service</a>
+            <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                href="#">Privacy Policy</a>
+            <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                href="#">Contact</a>
+        </div>
+        <div class="mt-8 md:mt-0 font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
+            © 2024 Digital Cinémathèque. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
