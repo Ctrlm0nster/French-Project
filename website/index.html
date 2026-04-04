@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link id="cinematheque-translate-css" rel="stylesheet" href="assets/css/google-translate.css" />
   <script src="assets/js/site-common.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -108,6 +109,12 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    .translate-widget-root {
+      min-height: 40px;
+      display: flex;
+      align-items: center;
+    }
   </style>
 </head>
 
@@ -130,7 +137,15 @@
           href="theaters.html">Theaters</a>
       </div>
       <div class="flex items-center gap-4 md:gap-6 flex-wrap justify-end">
-        <div id="google_translate_element" class="min-h-[40px] text-xs [&_select]:bg-slate-900 [&_select]:text-slate-200"></div>
+        <div
+          class="flex items-center gap-2 md:gap-3 rounded-xl border border-outline-variant/40 bg-surface-container/60 px-3 py-2 shadow-lg shadow-black/30 backdrop-blur-sm">
+          <span class="material-symbols-outlined text-primary text-2xl shrink-0" aria-hidden="true">translate</span>
+          <div class="hidden sm:flex flex-col leading-tight pr-2 border-r border-outline-variant/50">
+            <span class="text-[9px] uppercase tracking-[0.25em] text-secondary font-bold">Langue</span>
+            <span class="text-[10px] text-on-surface-variant">FR ↔ EN</span>
+          </div>
+          <div id="google_translate_element" class="translate-widget-root min-w-0"></div>
+        </div>
         <form action="search.html" method="get" class="relative flex items-center gap-2">
           <span class="material-symbols-outlined text-slate-400 text-xl hidden sm:inline">search</span>
           <input name="q" type="search" placeholder="Rechercher…"
@@ -368,11 +383,18 @@
             screening.innerHTML = slice
               .map(function (m) {
                 var href = SiteCommon.detailHref("movie", m.title);
+                var trailer =
+                  m.trailerUrl
+                    ? '<a href="' +
+                      String(m.trailerUrl).replace(/"/g, "%22") +
+                      '" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 rounded border border-primary/40 bg-primary-container/20 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/20 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[16px] leading-none">play_circle</span><span>Watch trailer</span></a>'
+                    : "";
                 return (
+                  '<div class="flex-none w-44 snap-start shrink-0 flex flex-col">' +
                   '<a href="' +
                   href +
-                  '" class="flex-none w-44 snap-start group shrink-0">' +
-                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-3">' +
+                  '" class="group block">' +
+                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-2">' +
                   '<img src="' +
                   esc(m.image) +
                   '" alt="' +
@@ -384,7 +406,9 @@
                   "</p>" +
                   '<p class="text-[10px] text-outline">' +
                   m.year +
-                  "</p></a>"
+                  "</p></a>" +
+                  trailer +
+                  "</div>"
                 );
               })
               .join("");
@@ -437,24 +461,36 @@
                   ? row.director
                   : row.genre +
                     (row.year ? " · " + row.year : "");
+                var trailerRow = row.trailerUrl
+                  ? '<a href="' +
+                    String(row.trailerUrl).replace(/"/g, "%22") +
+                    '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex w-fit items-center gap-2 rounded-lg border border-primary/50 bg-black/40 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[18px]">play_circle</span><span>Watch trailer</span></a>'
+                  : "";
                 return (
+                  '<div class="relative flex min-h-[300px] flex-col overflow-hidden bg-surface-container shadow-lg">' +
                   '<a href="' +
                   href +
-                  '" class="relative group overflow-hidden bg-surface-container min-h-[280px] block">' +
+                  '" class="relative block min-h-[200px] flex-1 overflow-hidden">' +
                   '<img src="' +
                   esc(row.image) +
-                  '" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />' +
-                  '<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>' +
-                  '<div class="absolute bottom-0 left-0 right-0 p-6">' +
+                  '" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105" />' +
+                  '<div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent"></div>' +
+                  "</a>" +
+                  '<div class="relative z-10 -mt-16 flex flex-1 flex-col bg-gradient-to-t from-[#121416] via-[#121416]/98 to-transparent px-6 pb-6 pt-2">' +
                   '<span class="text-[10px] uppercase tracking-widest text-secondary">' +
                   label +
                   "</span>" +
-                  '<h3 class="text-xl font-headline mt-2 text-white">' +
+                  '<a href="' +
+                  href +
+                  '" class="mt-2 block text-left">' +
+                  '<h3 class="font-headline text-xl text-white transition-colors hover:text-primary">' +
                   esc(row.title) +
-                  "</h3>" +
-                  '<p class="text-xs text-slate-400 mt-1">' +
+                  "</h3></a>" +
+                  '<p class="mt-1 text-xs text-slate-400">' +
                   esc(sub) +
-                  "</p></div></a>"
+                  "</p>" +
+                  trailerRow +
+                  "</div></div>"
                 );
               })
               .join("");

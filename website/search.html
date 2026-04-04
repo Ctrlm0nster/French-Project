@@ -28,13 +28,25 @@
       },
     };
   </script>
-  <style>body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }</style>
+  <style>
+    body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }
+    .translate-widget-root { min-height: 40px; display: flex; align-items: center; }
+  </style>
+  <link id="cinematheque-translate-css" rel="stylesheet" href="assets/css/google-translate.css" />
 </head>
 <body class="min-h-screen">
   <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl">
     <div class="flex flex-wrap justify-between items-center gap-4 px-6 md:px-12 py-6 max-w-6xl mx-auto">
       <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
-      <div id="google_translate_element" class="min-h-[36px] text-xs order-3 md:order-none w-full md:w-auto"></div>
+      <div
+        class="order-3 flex w-full flex-wrap items-center gap-2 rounded-xl border border-outline-variant/40 bg-surface-container/70 px-3 py-2 shadow-lg shadow-black/25 backdrop-blur-sm md:order-none md:w-auto">
+        <span class="material-symbols-outlined text-primary text-2xl shrink-0" aria-hidden="true">translate</span>
+        <div class="hidden flex-col leading-tight border-r border-outline-variant/50 pr-3 sm:flex">
+          <span class="text-[9px] uppercase tracking-[0.25em] text-secondary font-bold">Langue</span>
+          <span class="text-[10px] text-on-surface-variant">FR ↔ EN</span>
+        </div>
+        <div id="google_translate_element" class="translate-widget-root min-w-0"></div>
+      </div>
       <form action="search.html" method="get" class="flex gap-2">
         <input name="q" id="search-input" type="search" placeholder="Rechercher…"
           class="bg-surface-container border border-white/10 px-4 py-2 text-sm w-48 md:w-72 focus:ring-1 focus:ring-primary" />
