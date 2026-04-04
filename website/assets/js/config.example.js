@@ -10,7 +10,7 @@ window.APP_CONFIG = {
   POSTGRES_USER: "postgres",
 
   // Google Maps API
-  GOOGLE_MAPS_API_KEY: "YOUR_GOOGLE_MAPS_API_KEY"
+  GOOGLE_MAPS_API_KEY: "YOUR_GOOGLE_MAPS_API_KEY",
 
   // NOTE: Server-side secrets (SERVICE_ROLE_KEY, JWT_SECRET, POSTGRES_PASSWORD, etc.)
   // should NEVER be included in frontend code.

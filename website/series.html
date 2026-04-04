@@ -11,6 +11,7 @@
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="assets/js/config.local.js"></script>
+    <script src="assets/js/supabase-client.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;display=swap"
         rel="stylesheet" />
@@ -174,8 +175,7 @@
             const genres = useMemo(() => ["Tous", ...new Set(series.map((s) => s.genre))], [series]);
 
             useEffect(() => {
-                fetch("assets/data/series.json")
-                    .then((response) => response.json())
+                SupabaseClient.fetchSeries()
                     .then((data) => {
                         setSeries(Array.isArray(data) ? data : []);
                         setIsLoading(false);
