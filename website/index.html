@@ -754,9 +754,25 @@
           .then(function(data) {
             heroSelection = data;
             if (heroSelection && heroSelection.length > 0) {
+              // Immediately show the first item without delay
+              var firstItem = heroSelection[0];
+              heroImg.src = firstItem.img;
+              heroBadge.innerHTML = firstItem.badge;
+              heroTitle.innerHTML = firstItem.title;
+              heroDesc.innerHTML = firstItem.desc;
+              if (heroTrailer) heroTrailer.href = firstItem.trailerUrl;
+              if (heroLink) heroLink.href = firstItem.href;
+              
+              // Fade in immediately
+              setTimeout(function() {
+                heroImg.style.opacity = 1;
+                var hc = document.getElementById('hero-content');
+                if (hc) hc.style.opacity = 1;
+              }, 50);
+              
               setTimeout(function() {
                 rotateHero();
-              }, 50);
+              }, 100);
             }
           })
           .catch(function(err) {
