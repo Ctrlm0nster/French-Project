@@ -34,6 +34,8 @@ const SupabaseClient = (() => {
       director: row.director ?? row.director_name ?? '',
       genre: row.genre ?? row.category ?? '',
       image: row.image ?? row.poster_url ?? row.poster ?? '',
+      description: row.description ?? row.synopsis ?? '',
+      trailerUrl: row.trailerUrl ?? row.trailer_url ?? row.trailer ?? '',
     };
   }
 
@@ -45,6 +47,8 @@ const SupabaseClient = (() => {
       year: Number(row.year ?? row.release_year ?? 0),
       episodes: Number(row.episodes ?? row.episode_count ?? 0),
       image: row.image ?? row.poster_url ?? row.poster ?? '',
+      description: row.description ?? row.synopsis ?? '',
+      trailerUrl: row.trailerUrl ?? row.trailer_url ?? row.trailer ?? '',
     };
   }
 

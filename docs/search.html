@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinémathèque | Recherche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/site-common.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#abc7fe",
+            secondary: "#ffb3af",
+            "on-surface": "#e2e2e5",
+            "on-surface-variant": "#c4c6d0",
+            background: "#121416",
+            "surface-container": "#1e2022",
+            "outline-variant": "#43474f",
+            "on-primary": "#0e305e",
+          },
+          fontFamily: { headline: ["Noto Serif"], body: ["Manrope"] },
+        },
+      },
+    };
+  </script>
+  <style>body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }</style>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl">
+    <div class="flex flex-wrap justify-between items-center gap-4 px-6 md:px-12 py-6 max-w-6xl mx-auto">
+      <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
+      <div id="google_translate_element" class="min-h-[36px] text-xs order-3 md:order-none w-full md:w-auto"></div>
+      <form action="search.html" method="get" class="flex gap-2">
+        <input name="q" id="search-input" type="search" placeholder="Rechercher…"
+          class="bg-surface-container border border-white/10 px-4 py-2 text-sm w-48 md:w-72 focus:ring-1 focus:ring-primary" />
+        <button type="submit" class="bg-primary text-on-primary px-4 py-2 text-xs uppercase tracking-wider font-bold">OK</button>
+      </form>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-6 md:px-12 max-w-5xl mx-auto">
+    <h1 class="text-3xl font-serif mb-2">Résultats</h1>
+    <p id="search-query-label" class="text-on-surface-variant text-sm mb-10"></p>
+    <div id="search-empty" class="text-on-surface-variant hidden">Aucun résultat. Essayez un autre mot-clé.</div>
+    <div id="search-sections" class="space-y-12"></div>
+  </main>
+
+  <footer class="border-t border-slate-800/50 bg-slate-950 py-10 px-12 text-center text-[10px] uppercase tracking-widest text-slate-500">
+    <a href="terms.html" class="hover:text-red-400 mr-6">Conditions</a>
+    <a href="privacy.html" class="hover:text-red-400">Confidentialité</a>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.SiteCommon) SiteCommon.initGoogleTranslate();
+      var q = (new URLSearchParams(window.location.search).get("q") || "").trim();
+      document.getElementById("search-input").value = q;
+      document.getElementById("search-query-label").textContent = q
+        ? "Pour : « " + q + " »"
+        : "Entrez un terme depuis la page d’accueil.";
+
+      if (!q) {
+        document.getElementById("search-empty").classList.remove("hidden");
+        return;
+      }
+
+      var needle = q.toLowerCase();
+
+      function match(row) {
+        var blob = JSON.stringify(row).toLowerCase();
+        return blob.indexOf(needle) !== -1;
+      }
+
+      function card(row, type, label) {
+        var href = SiteCommon.detailHref(
+          type === "movie" ? "movie" : type === "series" ? "series" : "documentary",
+          row.title
+        );
+        return (
+          '<a href="' +
+          href +
+          '" class="flex gap-4 p-4 bg-slate-900/50 border border-white/5 hover:border-primary/40 transition-colors">' +
+          '<img src="' +
+          row.image +
+          '" alt="" class="w-20 h-28 object-cover flex-shrink-0 bg-slate-800" />' +
+          '<div><span class="text-[10px] uppercase tracking-widest text-secondary">' +
+          label +
+          "</span>" +
+          '<h2 class="font-serif text-lg mt-1">' +
+          row.title +
+          "</h2>" +
+          '<p class="text-xs text-on-surface-variant mt-1">' +
+          (row.director || row.genre || "") +
+          "</p></div></a>"
+        );
+      }
+
+      Promise.all([
+        fetch("assets/data/movies.json").then(function (r) {
+          return r.json();
+        }),
+        fetch("assets/data/series.json").then(function (r) {
+          return r.json();
+        }),
+        fetch("assets/data/documentaries.json").then(function (r) {
+          return r.json();
+        }),
+      ])
+        .then(function (all) {
+          var movies = all[0].filter(match);
+          var series = all[1].filter(match);
+          var docs = all[2].filter(match);
+          var el = document.getElementById("search-sections");
+          if (!movies.length && !series.length && !docs.length) {
+            document.getElementById("search-empty").classList.remove("hidden");
+            return;
+          }
+          function section(title, items, type, label) {
+            if (!items.length) return "";
+            var inner = items.map(function (row) {
+              return card(row, type, label);
+            }).join("");
+            return (
+              '<section><h2 class="text-sm uppercase tracking-[0.2em] text-secondary mb-4">' +
+              title +
+              "</h2>" +
+              '<div class="grid gap-3">' +
+              inner +
+              "</div></section>"
+            );
+          }
+          el.innerHTML =
+            section("Films", movies, "movie", "Film") +
+            section("Séries", series, "series", "Série") +
+            section("Documentaires", docs, "documentary", "Documentaire");
+        })
+        .catch(function () {
+          document.getElementById("search-empty").textContent =
+            "Impossible de charger le catalogue.";
+          document.getElementById("search-empty").classList.remove("hidden");
+        });
+    });
+  </script>
+</body>
+</html>

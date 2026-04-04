@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinémathèque | Documentaires</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="assets/js/site-common.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#abc7fe",
+            secondary: "#ffb3af",
+            "on-surface": "#e2e2e5",
+            "on-surface-variant": "#c4c6d0",
+            background: "#121416",
+            "surface-container": "#1e2022",
+            "surface-container-low": "#1a1c1e",
+            "outline-variant": "#43474f",
+            "on-primary": "#0e305e",
+          },
+          fontFamily: { headline: ["Noto Serif"], body: ["Manrope"], label: ["Manrope"] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: Manrope, sans-serif; background: #121416; }
+    .font-serif { font-family: "Noto Serif", serif; }
+    .material-symbols-outlined { font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24; }
+  </style>
+</head>
+<body class="text-on-surface selection:bg-primary selection:text-on-primary">
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
+    <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+      <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
+      <div class="hidden md:flex items-center space-x-10">
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight" href="index.html">Home</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight" href="movies.html">Movies</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight" href="series.html">Series</a>
+        <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Documentaries</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight" href="chatbot.html">Chatbot</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight" href="theaters.html">Theaters</a>
+      </div>
+    </div>
+  </nav>
+  <main class="pt-32 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto">
+    <header class="mb-16">
+      <h1 class="text-5xl md:text-7xl font-serif mb-6 tracking-tight leading-none">
+        <span class="block">Documentaires</span>
+        <span class="block text-primary italic">français</span>
+      </h1>
+      <p class="max-w-2xl text-on-surface-variant leading-relaxed">Réel et mémoire : une sélection de films documentaires (catalogue local).</p>
+    </header>
+    <div id="docs-react-root"></div>
+  </main>
+  <script type="text/babel">
+    const { useEffect, useMemo, useState } = React;
+    function DocsExplorer() {
+      const [items, setItems] = useState([]);
+      const [genre, setGenre] = useState("Tous");
+      const [isLoading, setIsLoading] = useState(true);
+      const genres = useMemo(() => ["Tous", ...new Set(items.map((d) => d.genre))], [items]);
+      const filtered = useMemo(() => items.filter((d) => genre === "Tous" || d.genre === genre), [items, genre]);
+
+      useEffect(() => {
+        fetch("assets/data/documentaries.json")
+          .then((r) => r.json())
+          .then((data) => {
+            setItems(Array.isArray(data) ? data : []);
+            setIsLoading(false);
+          })
+          .catch(() => {
+            setItems([]);
+            setIsLoading(false);
+          });
+      }, []);
+
+      return (
+        <div className="flex flex-col lg:flex-row gap-12">
+          <aside className="w-full lg:w-64 flex-shrink-0 space-y-6">
+            <h3 className="label-md uppercase tracking-[0.2em] text-secondary font-bold">Genre</h3>
+            <div className="flex flex-wrap lg:flex-col gap-3">
+              {genres.map((g) => (
+                <button key={g} type="button" onClick={() => setGenre(g)} className={`text-left py-1 transition-colors pl-4 border-l-2 ${genre === g ? "text-on-surface border-primary" : "text-on-surface-variant hover:text-primary border-transparent"}`}>{g}</button>
+              ))}
+            </div>
+          </aside>
+          <div className="flex-grow">
+            {isLoading ? <p className="text-on-surface-variant">Chargement…</p> : null}
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
+              {filtered.map((doc) => (
+                <div key={doc.title} className="group">
+                  <div className="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
+                    <a href={SiteCommon.detailHref("documentary", doc.title)} className="block h-full">
+                      <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src={doc.image} alt={doc.title} />
+                    </a>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-6 gap-2">
+                      <a href={SiteCommon.detailHref("documentary", doc.title)} className="bg-primary text-on-primary px-5 py-2 label-md uppercase tracking-wider font-bold">Fiche</a>
+                      {doc.trailerUrl ? (
+                        <a href={doc.trailerUrl} target="_blank" rel="noopener noreferrer" className="bg-surface-variant text-on-background px-4 py-2 label-md uppercase tracking-wider font-bold border border-outline-variant/40">Bande-annonce</a>
+                      ) : null}
+                    </div>
+                  </div>
+                  <a href={SiteCommon.detailHref("documentary", doc.title)} className="block text-left space-y-1">
+                    <div className="flex justify-between items-baseline">
+                      <h2 className="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">{doc.title}</h2>
+                      <span className="label-md text-secondary">{doc.year}</span>
+                    </div>
+                    <p className="label-md uppercase tracking-widest text-on-surface-variant">{doc.director}</p>
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById("docs-react-root")).render(<DocsExplorer />);
+  </script>
+  <footer class="w-full border-t border-slate-800/50 bg-slate-950">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
+      <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
+      <div class="flex space-x-8 mb-6 md:mb-0">
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400" href="terms.html">Terms</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400" href="privacy.html">Privacy</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400" href="mailto:contact@cinematheque.example">Contact</a>
+      </div>
+      <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">© 2024 Digital Cinémathèque</div>
+    </div>
+  </footer>
+</body>
+</html>

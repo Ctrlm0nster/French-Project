@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cinémathèque | Fiche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/site-common.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#abc7fe",
+            secondary: "#ffb3af",
+            "on-surface": "#e2e2e5",
+            "on-surface-variant": "#c4c6d0",
+            background: "#121416",
+            "surface-container": "#1e2022",
+            "surface-container-high": "#282a2c",
+            "outline-variant": "#43474f",
+            "on-primary": "#0e305e",
+          },
+          fontFamily: { headline: ["Noto Serif"], body: ["Manrope"] },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }
+    .font-serif { font-family: "Noto Serif", serif; }
+  </style>
+</head>
+<body class="min-h-screen">
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl border-b border-white/5">
+    <div class="flex justify-between items-center px-6 md:px-12 py-6 max-w-[1600px] mx-auto">
+      <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
+      <div class="hidden md:flex gap-8 text-sm font-serif">
+        <a class="text-slate-400 hover:text-white" href="index.html">Accueil</a>
+        <a class="text-slate-400 hover:text-white" href="movies.html">Films</a>
+        <a class="text-slate-400 hover:text-white" href="series.html">Séries</a>
+        <a class="text-slate-400 hover:text-white" href="documentaries.html">Documentaires</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-28 pb-20 px-6 md:px-12 max-w-4xl mx-auto">
+    <p id="detail-error" class="text-red-300 hidden">Fiche introuvable.</p>
+    <article id="detail-root" class="hidden">
+      <p id="detail-kind" class="text-xs uppercase tracking-[0.25em] text-secondary mb-4"></p>
+      <h1 id="detail-title" class="text-4xl md:text-5xl font-serif mb-4"></h1>
+      <p id="detail-meta" class="text-on-surface-variant mb-8"></p>
+      <div id="detail-poster-wrap" class="mb-10">
+        <img id="detail-poster" class="w-full max-h-[480px] object-cover bg-surface-container" alt="" />
+      </div>
+      <div class="prose prose-invert max-w-none">
+        <h2 class="text-sm uppercase tracking-widest text-secondary mb-3">Synopsis</h2>
+        <p id="detail-desc" class="text-on-surface-variant leading-relaxed"></p>
+      </div>
+      <div class="mt-10 flex flex-wrap gap-4">
+        <a id="detail-trailer" href="#" target="_blank" rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3 text-sm font-bold uppercase tracking-widest">
+          <span class="material-symbols-outlined text-xl">play_arrow</span>
+          Bande-annonce
+        </a>
+        <a id="detail-back" href="movies.html" class="inline-flex items-center gap-2 border border-outline-variant px-8 py-3 text-sm uppercase tracking-widest text-on-surface hover:border-primary">
+          Retour
+        </a>
+      </div>
+    </article>
+  </main>
+
+  <footer class="border-t border-slate-800/50 bg-slate-950 py-10 px-12">
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 max-w-6xl mx-auto text-[10px] uppercase tracking-widest text-slate-500">
+      <a href="index.html" class="font-serif text-white text-base normal-case tracking-normal">Cinémathèque</a>
+      <div class="flex gap-8">
+        <a href="terms.html" class="hover:text-red-400">Conditions</a>
+        <a href="privacy.html" class="hover:text-red-400">Confidentialité</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var type = (params.get("type") || "movie").toLowerCase();
+      var title = params.get("title");
+      if (!title) {
+        document.getElementById("detail-error").classList.remove("hidden");
+        return;
+      }
+      var decoded = title;
+
+      var path =
+        type === "series"
+          ? "assets/data/series.json"
+          : type === "documentary"
+            ? "assets/data/documentaries.json"
+            : "assets/data/movies.json";
+
+      fetch(path)
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (rows) {
+          var item = rows.find(function (row) {
+            return row.title === decoded;
+          });
+          if (!item) {
+            document.getElementById("detail-error").classList.remove("hidden");
+            return;
+          }
+          document.getElementById("detail-kind").textContent =
+            type === "series"
+              ? "Série"
+              : type === "documentary"
+                ? "Documentaire"
+                : "Film";
+          document.getElementById("detail-title").textContent = item.title;
+          var metaParts = [];
+          if (item.year) metaParts.push(item.year);
+          if (item.director) metaParts.push(item.director);
+          if (item.genre) metaParts.push(item.genre);
+          if (type === "series" && item.episodes)
+            metaParts.push(item.episodes + " épisodes");
+          document.getElementById("detail-meta").textContent = metaParts.join(" · ");
+          document.getElementById("detail-poster").src = item.image;
+          document.getElementById("detail-poster").alt = item.title;
+          document.getElementById("detail-desc").textContent =
+            item.description ||
+            "Aucune description pour le moment.";
+          var trailer = item.trailerUrl || "#";
+          var tr = document.getElementById("detail-trailer");
+          tr.href = trailer;
+          if (trailer === "#") {
+            tr.classList.add("pointer-events-none", "opacity-50");
+          }
+          var back = document.getElementById("detail-back");
+          if (type === "series") back.href = "series.html";
+          else if (type === "documentary") back.href = "documentaries.html";
+          else back.href = "movies.html";
+          document.getElementById("detail-root").classList.remove("hidden");
+        })
+        .catch(function () {
+          document.getElementById("detail-error").classList.remove("hidden");
+        });
+    })();
+  </script>
+</body>
+</html>

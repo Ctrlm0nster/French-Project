@@ -22,6 +22,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script src="assets/js/config.local.js"></script>
   <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/site-common.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -119,6 +120,8 @@
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
           href="series.html">Series</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="documentaries.html">Documentaries</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
           href="chatbot.html">Chatbot</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
           href="theaters.html">Theaters</a>
@@ -156,7 +159,7 @@
     function MoviesExplorer() {
       const [genre, setGenre] = useState("Tous les films");
       const [director, setDirector] = useState("Tous les réalisateurs");
-      const [query, setQuery] = useState("");
+      const [query, setQuery] = useState(() => (typeof window !== "undefined" ? (new URLSearchParams(window.location.search).get("q") || "") : ""));
       const [page, setPage] = useState(1);
       const [movies, setMovies] = useState([]);
       const [isLoading, setIsLoading] = useState(true);
@@ -220,20 +223,27 @@
             {isLoading ? <p className="text-on-surface-variant">Loading movies...</p> : null}
             <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-16 gap-x-8">
               {pagedItems.map((movie) => (
-                <div key={movie.title} className="group cursor-pointer">
+                <div key={movie.title} className="group">
                   <div className="relative aspect-[2/3] overflow-hidden bg-surface-container mb-6">
-                    <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src={movie.image} alt={movie.title} />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                      <button className="bg-primary text-on-primary px-6 py-3 label-md uppercase tracking-wider font-bold">Voir les détails</button>
+                    <a href={SiteCommon.detailHref("movie", movie.title)} className="block h-full">
+                      <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src={movie.image} alt={movie.title} />
+                    </a>
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-6 gap-2">
+                      <a href={SiteCommon.detailHref("movie", movie.title)} className="bg-primary text-on-primary px-5 py-2 label-md uppercase tracking-wider font-bold text-center">Fiche</a>
+                      {movie.trailerUrl ? (
+                        <a href={movie.trailerUrl} target="_blank" rel="noopener noreferrer" className="bg-surface-variant text-on-background px-4 py-2 label-md uppercase tracking-wider font-bold border border-outline-variant/40">
+                          Bande-annonce
+                        </a>
+                      ) : null}
                     </div>
                   </div>
-                  <div className="space-y-1">
+                  <a href={SiteCommon.detailHref("movie", movie.title)} className="block space-y-1 text-left">
                     <div className="flex justify-between items-baseline">
                       <h2 className="text-2xl font-serif tracking-tight group-hover:text-primary transition-colors">{movie.title}</h2>
                       <span className="label-md text-secondary">{movie.year}</span>
                     </div>
                     <p className="label-md uppercase tracking-widest text-on-surface-variant">{movie.director}</p>
-                  </div>
+                  </a>
                 </div>
               ))}
             </div>
@@ -258,11 +268,11 @@
       <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
       <div class="flex space-x-8 mb-6 md:mb-0">
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Terms of Service</a>
+          href="terms.html">Terms of Service</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Privacy Policy</a>
+          href="privacy.html">Privacy Policy</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Contact</a>
+          href="mailto:contact@cinematheque.example">Contact</a>
       </div>
       <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
         © 2024 Digital Cinémathèque. All rights reserved.

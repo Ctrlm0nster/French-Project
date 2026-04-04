@@ -4,48 +4,71 @@
     "year": 1960,
     "director": "Jean-Luc Godard",
     "genre": "Nouvelle Vague",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCO2k2LN3aylrLZWACadXeEwq4ecxnyOkW1jrrYI-ApKX_bMWU-W8kSM1j6N4bxDTC2WVXKz_hvku0d_taH3sCe88_BAl_Xuf2A3EFKNFoFqyBMm8IdVFE0yNCOosMb97jGXwAH3FvClN9SD51CEH1JzyxU4KFlc9tOX2ESFA5L6k5dnd1mEW02s-JhD7NNy5nOLXq6WFM8zTwHG9HUfKOKNaCLzy_6RIaGYciNW2lpzDuq-8y92HGLt3xWGZ1RJWow8gwz9y3Oc3k"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCO2k2LN3aylrLZWACadXeEwq4ecxnyOkW1jrrYI-ApKX_bMWU-W8kSM1j6N4bxDTC2WVXKz_hvku0d_taH3sCe88_BAl_Xuf2A3EFKNFoFqyBMm8IdVFE0yNCOosMb97jGXwAH3FvClN9SD51CEH1JzyxU4KFlc9tOX2ESFA5L6k5dnd1mEW02s-JhD7NNy5nOLXq6WFM8zTwHG9HUfKOKNaCLzy_6RIaGYciNW2lpzDuq-8y92HGLt3xWGZ1RJWow8gwz9y3Oc3k",
+    "description": "Michel, petit voyou, vole une voiture à Marseille et tue un policier. Il retrouve Patricia, une vendeuse de journaux à Paris, et tente de fuir vers l’Italie dans un film qui bouleverse le cinéma.",
+    "trailerUrl": "https://www.youtube.com/watch?v=dOPTCVIgS8"
   },
   {
     "title": "La règle du jeu",
     "year": 1939,
     "director": "Jean Renoir",
     "genre": "Nouvelle Vague",
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthf.bing.com%2Fth%2Fid%2FOIP.knQpkAnusZA5IGTRxBZ7TAAAAA%3Fcb%3Dthfc1%26pid%3DApi&f=1&ipt=434646a3f3f7ebb0fc014ddf9cae93eaa48eb7f1d707642def13c55751fae267&ipo=images"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthf.bing.com%2Fth%2Fid%2FOIP.knQpkAnusZA5IGTRxBZ7TAAAAA%3Fcb%3Dthfc1%26pid%3DApi&f=1&ipt=434646a3f3f7ebb0fc014ddf9cae93eaa48eb7f1d707642def13c55751fae267&ipo=images",
+    "description": "Un week-end à la campagne chez les aristocrates français : amours, mensonges et chasse à courre mènent à un drame qui révèle les fractures de la société d’avant-guerre.",
+    "trailerUrl": "https://www.youtube.com/results?search_query=La+r%C3%A8gle+du+jeu+Jean+Renoir"
   },
   {
     "title": "Les Quatre Cents Coups",
     "year": 1959,
     "director": "François Truffaut",
     "genre": "Nouvelle Vague",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDZvI6IA6qmY43ghCsiw2nTWXeVEMA7mCOipsQKTkh1-9oJO9GFge94O8QRqAGt6qxuFwbaHpD0IbsEoEckjjN3e9yoxftje4tQ61W1O5Ml5xcC9yu2RhGvWXejpeOUdxrJKWXZWhYoFBKBaL1oYKTf4TlE1ycTmClETdNxSQFwq4bKUIV0f195K9RbL9_tKDBWf1GlupmfoJUgAVM2RIOwpnnQPeU1i0LsV-FlDVzNLD2H4ct9Yw8bbffQwGp5vC4XJlMV06h5mGA"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDZvI6IA6qmY43ghCsiw2nTWXeVEMA7mCOipsQKTkh1-9oJO9GFge94O8QRqAGt6qxuFwbaHpD0IbsEoEckjjN3e9yoxftje4tQ61W1O5Ml5xcC9yu2RhGvWXejpeOUdxrJKWXZWhYoFBKBaL1oYKTf4TlE1ycTmClETdNxSQFwq4bKUIV0f195K9RbL9_tKDBWf1GlupmfoJUgAVM2RIOwpnnQPeU1i0LsV-FlDVzNLD2H4ct9Yw8bbffQwGp5vC4XJlMV06h5mGA",
+    "description": "Antoine Doinel, enfant en difficulté à Paris, trouve refuge dans le cinéma et la littérature ; le film de Truffaut est un manifeste intime de la Nouvelle Vague.",
+    "trailerUrl": "https://www.youtube.com/watch?v=i89oN8v9RdU"
   },
   {
     "title": "Portrait de la jeune fille en feu",
     "year": 2019,
     "director": "Céline Sciamma",
     "genre": "Drame Psychologique",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCTDICqjC3gpwmAquX9S0j7e0Hg5SXTht5ZmpaPZEZrpGWAGk_0MI60upK3SeJ7d5RrarLlzcACU__kwEbri0Oic6m1JSuTsUUXPobNjk3kZlZlguxhlBXorZcqMSFC94_Gtx4JAG_0zuBFb9EqzUUcOAZoeNgCvBaePXSkyOxpASV-kSwmzuGC_2OYB0VFymev3Vq4yMeyyKzE3hfa5QU7hLY-wvLXyVQ4rjrIle7bbf9TzyvrxBHIaj9DE6fvDLUIId0s74vrNms"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCTDICqjC3gpwmAquX9S0j7e0Hg5SXTht5ZmpaPZEZrpGWAGk_0MI60upK3SeJ7d5RrarLlzcACU__kwEbri0Oic6m1JSuTsUUXPobNjk3kZlZlguxhlBXorZcqMSFC94_Gtx4JAG_0zuBFb9EqzUUcOAZoeNgCvBaePXSkyOxpASV-kSwmzuGC_2OYB0VFymev3Vq4yMeyyKzE3hfa5QU7hLY-wvLXyVQ4rjrIle7bbf9TzyvrxBHIaj9DE6fvDLUIId0s74vrNms",
+    "description": "En Bretagne au XVIIIᵉ siècle, une peintre est chargée du portrait d’une jeune femme promise contre son gré : un regard tendre et politique sur le désir et la liberté.",
+    "trailerUrl": "https://www.youtube.com/watch?v=RHRQOlt4PqA"
   },
   {
     "title": "La Haine",
     "year": 1995,
     "director": "Mathieu Kassovitz",
     "genre": "Polar Français",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMchufuIsWFDWPVEPGWRJ2wmauv0MMNJumHep1-MHBqewwUX49fnxuum-Lc4xi1YGyswBiPnyPV0duVZKN9Jxd_b2q_3rfGwfI3OrqXKI7lKoAa-CXvnqT1W1D_LjQyXtPNQOxObJljhnH_LFyJbuofnFiqRa8r8BFYmNK3E506A0CFTe8xRACDAm8w5XaJX838wW2WLhGRxOgQVCZ-3GulWzQPW7gv-ODCpJ9Amy-SJdPlLMtrs1i5ucfdeYM1gfYDjxq04vvPIA"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCMchufuIsWFDWPVEPGWRJ2wmauv0MMNJumHep1-MHBqewwUX49fnxuum-Lc4xi1YGyswBiPnyPV0duVZKN9Jxd_b2q_3rfGwfI3OrqXKI7lKoAa-CXvnqT1W1D_LjQyXtPNQOxObJljhnH_LFyJbuofnFiqRa8r8BFYmNK3E506A0CFTe8xRACDAm8w5XaJX838wW2WLhGRxOgQVCZ-3GulWzQPW7gv-ODCpJ9Amy-SJdPlLMtrs1i5ucfdeYM1gfYDjxq04vvPIA",
+    "description": "Après une émeute, trois amis de banlieue errent dans Paris pendant vingt-quatre heures tendues ; un classique noir et blanc sur la colère et la fraternité.",
+    "trailerUrl": "https://www.youtube.com/watch?v=4K1hoMlkP_M"
   },
   {
     "title": "Cléo de 5 à 7",
     "year": 1962,
     "director": "Agnès Varda",
     "genre": "Comédie Dramatique",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDZomzSpjdob207xc0HTITz8sm2e2Hpd0B61tsBWZPejS-oxb4dy6_u8ZiJn78D2eFn2UoLHLGqY_cQAFm0l1WSGnxpIY3N5lVq9ASaY_P5NGfUZPGZoDhd0H3MsMR_KtBXTK3UIuf5eNm-PeZaJYH3wd9DcwewUWhX9nFymaJRaB-tNqNi0bZuwHRfoY_xToiUtQSqHkVJCC0nADUDGoEFtPALjR73RLqy9PYup4-bZifWd9fHqnx2cGEF9eLLrSZHho51DygSgGE"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDZomzSpjdob207xc0HTITz8sm2e2Hpd0B61tsBWZPejS-oxb4dy6_u8ZiJn78D2eFn2UoLHLGqY_cQAFm0l1WSGnxpIY3N5lVq9ASaY_P5NGfUZPGZoDhd0H3MsMR_KtBXTK3UIuf5eNm-PeZaJYH3wd9DcwewUWhX9nFymaJRaB-tNqNi0bZuwHRfoY_xToiUtQSqHkVJCC0nADUDGoEFtPALjR73RLqy9PYup4-bZifWd9fHqnx2cGEF9eLLrSZHho51DygSgGE",
+    "description": "Cléo attend les résultats d’une analyse médicale et traverse Paris en temps réel : une fable légère et profonde sur la peur et la solidarité féminine.",
+    "trailerUrl": "https://www.youtube.com/watch?v=Kk2QU7d3VJ0"
   },
   {
     "title": "Le Samouraï",
     "year": 1967,
     "director": "Jean-Pierre Melville",
     "genre": "Polar Français",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U"
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U",
+    "description": "Jef Costello, tueur à gages au chapeau et au trench, enchaîne les missions jusqu’à ce qu’une assignation tourne mal : le polar stylisé par excellence.",
+    "trailerUrl": "https://www.youtube.com/watch?v=KlIvk6J_yV0"
+  },
+  {
+    "title": "Le Silence de la mer",
+    "year": 1949,
+    "director": "Jean-Pierre Melville",
+    "genre": "Drame de Résistance",
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtRn0yInxoRcmQ_zI0QLqOuIKr4VQZERvEkSNTmNLmGGb38o5DQZJnYrXSLIcd0nfxIKDQO-4uRR09av7nc_4UE5k7zKFHi5mRKFoglCt4_Df1Y0WOfz5opXRg5ZK500Zf0CxseX8yeBNgDE5Pl23SrAvrfiZLLEFCot7KrD5WUz9q6T_bUeUVvsvYzL4o8p19g-8EnEZwXLsqwDvHkpItNhTzxFST0PsnujxN7xqc-Aq4T2Z4jfKS8Ds3dWOV1K6GqdKTYfu_q_g",
+    "description": "Un officier allemand réquisitionne le logis d’un oncle et de sa nièce en Bretagne occupée ; le silence devient acte de résistance. Adaptation du roman de Vercors.",
+    "trailerUrl": "https://www.youtube.com/results?search_query=Le+Silence+de+la+mer+1949+Melville"
   }
 ]

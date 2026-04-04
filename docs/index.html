@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html class="dark" lang="en">
+<html class="dark" lang="fr">
 
 <head>
   <meta charset="utf-8" />
@@ -15,6 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/site-common.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -122,18 +123,20 @@
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
           href="series.html">Series</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+          href="documentaries.html">Documentaries</a>
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
           href="chatbot.html">Chatbot</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
           href="theaters.html">Theaters</a>
       </div>
-      <div class="flex items-center gap-6">
-        <div class="relative group">
-          <span class="material-symbols-outlined text-blue-200 cursor-pointer">language</span>
-        </div>
-        <div
-          class="w-8 h-8 bg-surface-container-high border border-outline-variant/20 flex items-center justify-center">
-          <span class="material-symbols-outlined text-sm">search</span>
-        </div>
+      <div class="flex items-center gap-4 md:gap-6 flex-wrap justify-end">
+        <div id="google_translate_element" class="min-h-[40px] text-xs [&_select]:bg-slate-900 [&_select]:text-slate-200"></div>
+        <form action="search.html" method="get" class="relative flex items-center gap-2">
+          <span class="material-symbols-outlined text-slate-400 text-xl hidden sm:inline">search</span>
+          <input name="q" type="search" placeholder="Rechercher…"
+            class="bg-surface-container-high/40 border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-sm py-2 px-2 w-36 md:w-56 text-on-background placeholder:text-slate-500" />
+          <button type="submit" class="text-xs uppercase tracking-wider text-primary hover:text-white font-bold">OK</button>
+        </form>
       </div>
     </div>
   </nav>
@@ -158,91 +161,55 @@
         class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic">
         "In the quiet of the night, a silent resistance speaks louder than a thousand words."
       </p>
-      <div class="flex items-center gap-8">
-        <button
-          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold flex items-center gap-3">
+      <div class="flex flex-wrap items-center gap-4 md:gap-8">
+        <a href="https://www.youtube.com/results?search_query=Le+Silence+de+la+mer+1949+Melville+trailer" target="_blank" rel="noopener noreferrer"
+          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-          Watch Feature
-        </button>
-        <button
-          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30">
-          Learn More
-        </button>
+          Bande-annonce
+        </a>
+        <a href="detail.html?type=movie&amp;title=Le%20Silence%20de%20la%20mer"
+          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center">
+          En savoir plus
+        </a>
       </div>
     </div>
     <div class="absolute bottom-12 right-12 z-20 hidden md:flex flex-col gap-2 items-end">
-      <span class="text-xs uppercase tracking-[0.4em] text-outline">Currently Screening</span>
+      <span class="text-xs uppercase tracking-[0.4em] text-outline">À l’affiche</span>
       <div class="w-48 h-1 bg-outline-variant/30 relative">
         <div class="absolute top-0 left-0 w-1/3 h-full bg-secondary"></div>
       </div>
     </div>
   </section>
-  <!-- Trending Section (Bento Grid) -->
-  <section class="py-32 px-12 bg-surface-container-lowest">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-      <div class="max-w-2xl">
-        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Trending <span
-            class="text-secondary italic">Now</span></h2>
-        <p class="text-on-surface-variant font-body">Selected highlights from the contemporary French scene, blending
-          nouvelle vague sensibilities with modern storytelling.</p>
-      </div>
-      <div class="flex gap-4">
-        <span class="label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinema</span>
-        <span
-          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Series</span>
-        <span
-          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Documentaries</span>
-      </div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[800px]">
-      <!-- Featured Trending Card -->
-      <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Modern French cinematic portrait of a woman looking through a window with red and blue neon light reflections"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbkOo4NwJFSW9LNBiWRWyPELltG_Zuqm2y6EdyjgO-2BIIniCd9R8KDGh9RYbT2a8msZgAyix8172pFrmmh1emUKf13XImsujhBqB8PXijuu_wlF2YP9Nbaa50Uw4PPThHH9sCA-gHdcj2WB23ng9-2ideJTQ4VoijXv99wmCp9__uxtNbA3q8nQdcDxcoUIFZdX-iVozGxtI_DK67dcowmQHNfj9W6BUuH3GJjr0brQGMNQYD-SX9hATr_8P7IEzltTh282EixCw" />
-        <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
-        <div class="absolute bottom-0 left-0 p-10 w-full">
-          <span class="label-sm uppercase tracking-[0.2em] text-primary mb-3 block">Grand Prix Winner</span>
-          <h3 class="text-3xl font-headline mb-4">Anatomie d'une chute</h3>
-          <div class="flex gap-4 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span class="text-xs uppercase tracking-widest text-outline">Drama / 2023</span>
-            <div class="h-px w-12 bg-outline-variant"></div>
-            <span class="material-symbols-outlined text-secondary">add_circle</span>
-          </div>
+  <!-- Currently screening (carousel from catalogue) -->
+  <section class="py-16 px-6 md:px-12 bg-background border-y border-white/5">
+    <div class="max-w-[1600px] mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+        <div>
+          <h2 class="text-3xl md:text-4xl font-headline font-bold tracking-tight">À l'affiche <span class="text-secondary italic">actuellement</span></h2>
+          <p class="text-on-surface-variant font-body mt-2 max-w-xl">Sélection du catalogue — fiches détaillées et bandes-annonces.</p>
         </div>
+        <a href="movies.html" class="text-sm uppercase tracking-widest text-primary hover:text-white border-b border-primary/40 pb-1">Tous les films</a>
       </div>
-      <!-- Bento Item 2 -->
-      <div class="relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 2"
-          class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
-          data-alt="Black and white close up of an antique film camera lens with soft studio lighting and cinematic shadows"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuACvyKj2xIc2RbEPhCckW0crzuXCtmuQ4gOFjVs2E-Ia6b1yhoxzumk1yfznrOvlRZ9UB9a21iToQHsP9aWT03xDv6ZA6DxPIs8eBsfo2KFyYPVNHVD2Yf-PeGxr84r9PWZWLsl-XN6NyjccuxXs23eTScZKa8ohkSLuy8kl09Qj--o_WOYbJJEAW03qAMiotxK3MdDiGykXuXzF1HrHLBplCJNJUFpGrXvrv8i9QQDlZnU7MvPasEVuY1HGowLF-Sow2TYuHkciWQ" />
-        <div class="absolute inset-0 bg-primary-container/20 mix-blend-overlay"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
-          <h4 class="text-xl font-headline font-bold">L'Origine du Mal</h4>
-        </div>
-      </div>
-      <!-- Bento Item 3 -->
-      <div class="relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Interior of an opulent French opera house with velvet red seats and golden balconies, low angle shot"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXtOxxKer5NWhcZOv76W5TdA-ADIFrYBEdSx8977ckrRgsJ_x94sHcFO7hkHnB9EJIPqpuISmkbV96xHp2clb1JP_VmQ1o-Om-AvrTPw8OO-DASPr4KSrXKKBbjxR7YksJvIw3YxN7UuZ8QbPuY6uhWfdKidQSEIhxYOxm4HEB42e-I75KimNwnwbK6DgehgzwTs0vOGAVWPUiUxEN2mW4v1rVuhBfmR5KiweIqz1lYcoT5tRlxN-lP4x9iDvia9aCfj6fv7ASTLk" />
-        <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
-          <h4 class="text-xl font-headline font-bold">Pacifiction</h4>
-        </div>
-      </div>
-      <!-- Bento Item 4 -->
-      <div class="md:col-span-2 relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Blurred lights of a Parisian cafe at dusk with red chairs and blue awning, impressionist photography style"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgazdXwa3VxdIULTreI1-wMGg_kfM30NvCxMFcVGCQ7q8dJVVu3x0f509_9f9X5ahX-6vchLIr6eMHa_2xt10IFvndwzf4zBnMZanqWew3mlJ1PM3XXAA4FLnIwFQGFMLe4SNp2i7oE3TaR4v0FHM4tCHHJVH9RaIMNRobyrqwu9MoycpTitzNDsacpaCDu8HpSUna_2wMSe5d9wJknImrKP53cI6clIusuCPYu2goNxdQAdM_q41PAAQnON0tKbLkBMlYb-nsZVk" />
-        <div class="absolute inset-0 bg-secondary-container/10 mix-blend-multiply"></div>
-        <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
-          <h4 class="text-2xl font-headline font-bold">Le Règne Animal</h4>
-        </div>
-      </div>
+      <div id="screening-strip" class="flex overflow-x-auto no-scrollbar gap-6 pb-4 snap-x"></div>
     </div>
   </section>
+  <!-- Trending (dynamic tabs) -->
+  <section class="py-32 px-12 bg-surface-container-lowest">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-8">
+      <div class="max-w-2xl">
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Tendances <span
+            class="text-secondary italic">du moment</span></h2>
+        <p class="text-on-surface-variant font-body">Films, séries et documentaires issus du catalogue.</p>
+      </div>
+      <div class="flex gap-4 flex-wrap" id="trending-tabs">
+        <button type="button" data-trend="cinema" class="trend-tab label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinéma</button>
+        <button type="button" data-trend="series" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Séries</button>
+        <button type="button" data-trend="docs" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Documentaires</button>
+      </div>
+    </div>
+    <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]"></div>
+  </section>
+
   <!-- Curated Classics (Horizontal Scroll) -->
   <section class="py-32 bg-background relative overflow-hidden">
     <div class="px-12 mb-16 border-l-[12px] border-secondary ml-12">
@@ -252,7 +219,7 @@
     </div>
     <div class="flex overflow-x-auto no-scrollbar gap-12 px-12 pb-12 snap-x">
       <!-- Classic 1 -->
-      <div class="flex-none w-[350px] snap-start group">
+      <a href="detail.html?type=movie&amp;title=%C3%80%20bout%20de%20souffle" class="flex-none w-[350px] snap-start group block text-left">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
           <img alt="Classic 1"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
@@ -262,16 +229,16 @@
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
             1960</div>
         </div>
-        <h3 class="text-2xl font-headline mb-2">À bout de souffle</h3>
+        <h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">À bout de souffle</h3>
         <p class="text-sm font-label uppercase tracking-widest text-outline">Jean-Luc Godard</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>VOIR LA FICHE</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
-      </div>
+      </a>
       <!-- Classic 2 -->
-      <div class="flex-none w-[350px] snap-start group">
+      <a href="detail.html?type=movie&amp;title=Les%20Quatre%20Cents%20Coups" class="flex-none w-[350px] snap-start group block text-left">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
           <img alt="Classic 2"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
@@ -281,14 +248,14 @@
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
             1959</div>
         </div>
-        <h3 class="text-2xl font-headline mb-2">Les Quatre Cents Coups</h3>
+        <h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">Les Quatre Cents Coups</h3>
         <p class="text-sm font-label uppercase tracking-widest text-outline">François Truffaut</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>VOIR LA FICHE</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
-      </div>
+      </a>
       <!-- Classic 3 -->
       <div class="flex-none w-[350px] snap-start group">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
@@ -362,11 +329,11 @@
       <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
       <div class="flex gap-12 mb-8 md:mb-0">
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Terms of Service</a>
+          href="terms.html">Terms of Service</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Privacy Policy</a>
+          href="privacy.html">Privacy Policy</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="#">Contact</a>
+          href="mailto:contact@cinematheque.example">Contact</a>
       </div>
       <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
         © 2024 Digital Cinémathèque. All rights reserved.
@@ -379,6 +346,145 @@
       <div class="w-1/3 bg-red-600"></div>
     </div>
   </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.SiteCommon) SiteCommon.initGoogleTranslate();
+
+      function esc(s) {
+        return String(s)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      var screening = document.getElementById("screening-strip");
+      if (screening) {
+        fetch("assets/data/movies.json")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (movies) {
+            var slice = movies.slice(0, 8);
+            screening.innerHTML = slice
+              .map(function (m) {
+                var href = SiteCommon.detailHref("movie", m.title);
+                return (
+                  '<a href="' +
+                  href +
+                  '" class="flex-none w-44 snap-start group shrink-0">' +
+                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-3">' +
+                  '<img src="' +
+                  esc(m.image) +
+                  '" alt="' +
+                  esc(m.title) +
+                  '" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />' +
+                  "</div>" +
+                  '<p class="text-sm font-serif truncate text-on-background">' +
+                  esc(m.title) +
+                  "</p>" +
+                  '<p class="text-[10px] text-outline">' +
+                  m.year +
+                  "</p></a>"
+                );
+              })
+              .join("");
+          });
+      }
+
+      var grid = document.getElementById("trending-grid");
+      var tabs = document.querySelectorAll("#trending-tabs .trend-tab");
+      var buckets = { cinema: [], series: [], docs: [] };
+
+      if (grid && tabs.length) {
+        Promise.all([
+          fetch("assets/data/movies.json").then(function (r) {
+            return r.json();
+          }),
+          fetch("assets/data/series.json").then(function (r) {
+            return r.json();
+          }),
+          fetch("assets/data/documentaries.json").then(function (r) {
+            return r.json();
+          }),
+        ]).then(function (all) {
+          buckets.cinema = all[0].slice(0, 6);
+          buckets.series = all[1].slice(0, 6);
+          buckets.docs = all[2].slice(0, 6);
+
+          function render(tabKey) {
+            var rows =
+              tabKey === "cinema"
+                ? buckets.cinema
+                : tabKey === "series"
+                  ? buckets.series
+                  : buckets.docs;
+            var t =
+              tabKey === "cinema"
+                ? "movie"
+                : tabKey === "series"
+                  ? "series"
+                  : "documentary";
+            var label =
+              tabKey === "cinema"
+                ? "Film"
+                : tabKey === "series"
+                  ? "Série"
+                  : "Documentaire";
+            grid.innerHTML = rows
+              .map(function (row) {
+                var href = SiteCommon.detailHref(t, row.title);
+                var sub = row.director
+                  ? row.director
+                  : row.genre +
+                    (row.year ? " · " + row.year : "");
+                return (
+                  '<a href="' +
+                  href +
+                  '" class="relative group overflow-hidden bg-surface-container min-h-[280px] block">' +
+                  '<img src="' +
+                  esc(row.image) +
+                  '" alt="" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />' +
+                  '<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>' +
+                  '<div class="absolute bottom-0 left-0 right-0 p-6">' +
+                  '<span class="text-[10px] uppercase tracking-widest text-secondary">' +
+                  label +
+                  "</span>" +
+                  '<h3 class="text-xl font-headline mt-2 text-white">' +
+                  esc(row.title) +
+                  "</h3>" +
+                  '<p class="text-xs text-slate-400 mt-1">' +
+                  esc(sub) +
+                  "</p></div></a>"
+                );
+              })
+              .join("");
+          }
+
+          render("cinema");
+
+          tabs.forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var k = btn.getAttribute("data-trend");
+              tabs.forEach(function (b) {
+                var on = b === btn;
+                b.classList.toggle("text-on-surface", on);
+                b.classList.toggle("border-secondary", on);
+                b.classList.toggle("border-transparent", !on);
+                b.classList.toggle("text-outline", !on);
+              });
+              render(
+                k === "cinema"
+                  ? "cinema"
+                  : k === "series"
+                    ? "series"
+                    : "docs"
+              );
+            });
+          });
+        });
+      }
+    });
+  </script>
 </body>
 
 </html>
