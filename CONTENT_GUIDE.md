@@ -49,6 +49,7 @@ Valid genres currently used:
 - `Polar`
 - `Histoire`
 - `Comédie`
+- `Téléréalité`
 
 ## Pagination behavior
 

@@ -1,87 +1,80 @@
 [
   {
     "title": "Koh-Lanta",
-    "genre": "Téléréalité (Aventure)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 13,
-    "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Koh-Lanta_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BYTllY2IxNjUtYWUzMy00ZDk0LTlkYzktZjZkY2E1YWM5MmMyXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=e56688a239dc1474f63e2d8f0e7284e733ce578f7beb58611d6e9c26ac25551d"
   },
   {
     "title": "The Voice : la plus belle voix",
-    "genre": "Téléréalité (Musique)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 14,
-    "image": "https://upload.wikimedia.org/wikipedia/en/0/0f/The_Voice_France_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.justwatch.com%2Fposter%2F304257690%2Fs718%2Fsaison-13.%257Bformat%257D&f=1&nofb=1&ipt=faec0da97b2e8ffb5b22bd95060b6195321de808574529c6c5b9c5d95c597d07"
   },
   {
     "title": "Les Marseillais",
     "genre": "Téléréalité",
     "year": 2023,
     "episodes": 60,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/6/6c/Les_Marseillais_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BYmQxYjg4NDUtYWZhYy00YTcwLWJlOWItMTBjYjMwNmRjZjMxXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=18465a317f776a8f01ccd3d7f3a3d50fe62a6340dffcc4750a53da73952109ab"
   },
   {
     "title": "Secret Story",
     "genre": "Téléréalité",
     "year": 2024,
     "episodes": 50,
-    "image": "https://upload.wikimedia.org/wikipedia/en/2/2d/Secret_Story_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BYjFhMjhlYzAtMzkyNS00YzNiLTg2ZDEtZjU3ZjRmMTBiM2YzXkEyXkFqcGc%40._V1_FMjpg_UX1000_.jpg&f=1&nofb=1&ipt=356c63115d912c5a0a8646ece16d14f2625fa2e2887faff4ad882082d078e936"
   },
   {
     "title": "L'amour est dans le pré",
-    "genre": "Téléréalité (Rencontres)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 15,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/2/2e/Lamour_est_dans_le_pre_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.justwatch.com%2Fposter%2F243847328%2Fs718%2Flamour-est-dans-le-pre.jpg&f=1&nofb=1&ipt=f4b3e4fe39e4783464c5ffe9efa2e0ca72e7f69ee837754fcc865627b0f4f75e"
   },
   {
     "title": "Top Chef",
-    "genre": "Téléréalité (Cuisine)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 16,
-    "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Top_Chef_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BMjViMTA5OTgtMzgxOS00ZWFhLTlmMmQtNmQxZTliYmQ1NzA3XkEyXkFqcGc%40._V1_.jpg&f=1&nofb=1&ipt=bf14c03a534c4c85333c87cd890aacce7b6903eb20eeafedcc0ad30b9d713a71"
   },
   {
     "title": "MasterChef France",
-    "genre": "Téléréalité (Cuisine)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 12,
-    "image": "https://upload.wikimedia.org/wikipedia/en/e/e4/MasterChef_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.justwatch.com%2Fposter%2F300491467%2Fs718%2Fsaison-1.jpg&f=1&nofb=1&ipt=03c16bd04c71fba50cc96d9b174fac0a3b9108ffc0243841d04a3e14c981c4da"
   },
   {
     "title": "Danse avec les stars",
-    "genre": "Téléréalité (Danse)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 10,
-    "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Dancing_with_the_Stars_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimages.justwatch.com%2Fposter%2F253056494%2Fs718%2Fsaison-11.%257Bformat%257D&f=1&nofb=1&ipt=8bc2043877479ce439f763009bd9f780b1264801ed43f1b28f186515496c984b"
   },
   {
     "title": "Pékin Express",
-    "genre": "Téléréalité (Aventure)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 12,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/3/3c/Pekin_Express_logo.png"
-  },
-  {
-    "title": "Les Anges",
-    "genre": "Téléréalité",
-    "year": 2022,
-    "episodes": 70,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/5/5a/Les_Anges_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.rgstatic.com%2Fcontent%2Fshow%2Ffef7fe75-51cf-4017-8faf-af6e902151a1%2Fposter-342.jpg&f=1&nofb=1&ipt=1b3e023156816a56a95f2dce9deea182471a9cf9c42a8d5a0454698b6784d841"
   },
   {
     "title": "La Villa des Cœurs Brisés",
     "genre": "Téléréalité",
     "year": 2023,
     "episodes": 55,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/0/0a/La_Villa_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.tv-programme.com%2Fphotos%2Fbande-annonce-de-la-villa-des-coeurs-brises-98-981356-1200.webp&f=1&nofb=1&ipt=7aebbd0589cc2bbd8543ca13232dd173ea5eb713cff68cd6b7f775a4f7833d0a"
   },
   {
     "title": "Mariés au premier regard",
-    "genre": "Téléréalité (Mariage)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 14,
-    "image": "https://upload.wikimedia.org/wikipedia/fr/9/9a/Marie_au_premier_regard_logo.png"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.ouest-france.fr%2Fv1%2Fpictures%2F90df1960d2c82fd72dffc1eb81a3f830-maries-au-premier-regard-documentaire-telerealite-programme-tv%3Fwidth%3D1260%26height%3D708%26sign%3D7cc990faeba553369b34a7b94183f2f8a6f1e12890015ecf53a044153cc65ed8%26client_id%3Dbpservices&f=1&nofb=1&ipt=b8f672c5d9d54229b68030c27bd395d760815d8c5f372e0ebc5205266802e578"
   },
   {
     "title": "Qui veut épouser mon fils ?",
@@ -99,21 +92,21 @@
   },
   {
     "title": "Le Meilleur Pâtissier",
-    "genre": "Téléréalité (Cuisine)",
+    "genre": "Téléréalité",
     "year": 2024,
     "episodes": 12,
     "image": "https://upload.wikimedia.org/wikipedia/fr/2/2c/Meilleur_Patissier_logo.png"
   },
   {
     "title": "Objectif Top Chef",
-    "genre": "Téléréalité (Cuisine)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 40,
     "image": "https://upload.wikimedia.org/wikipedia/fr/7/7f/Objectif_Top_Chef_logo.png"
   },
   {
     "title": "Les Apprentis Aventuriers",
-    "genre": "Téléréalité (Aventure)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 50,
     "image": "https://upload.wikimedia.org/wikipedia/fr/8/8a/Apprentis_Aventuriers_logo.png"
@@ -127,14 +120,14 @@
   },
   {
     "title": "La France a un incroyable talent",
-    "genre": "Téléréalité (Talent)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 12,
     "image": "https://upload.wikimedia.org/wikipedia/fr/6/6c/Incroyable_Talent_logo.png"
   },
   {
     "title": "Les Cinquante",
-    "genre": "Téléréalité (Compétition)",
+    "genre": "Téléréalité",
     "year": 2023,
     "episodes": 50,
     "image": "https://upload.wikimedia.org/wikipedia/fr/5/5b/Les_Cinquante_logo.png"
