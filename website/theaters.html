@@ -243,95 +243,23 @@
             { name: "Institut Lumière", city: "Lyon", type: "Cinema", note: "Birthplace of the Cinematographe.", lat: 45.7454, lng: 4.8719 },
             { name: "Théâtre de la Criée", city: "Marseille", type: "Acting Theater", note: "National drama center at Old Port.", lat: 43.2951, lng: 5.3698 }
         ];
-        function loadGoogleMaps() {
-            const key = (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "";
-            if (!key) {
-                return Promise.reject(new Error("Missing Google Maps API key"));
-            }
-            if (window.google && window.google.maps) {
-                return Promise.resolve(window.google.maps);
-            }
-            if (window.__gmapsLoadingPromise) {
-                return window.__gmapsLoadingPromise;
-            }
-            window.__gmapsLoadingPromise = new Promise((resolve, reject) => {
-                const script = document.createElement("script");
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&loading=async&libraries=marker&v=beta`;
-                script.async = true;
-                script.defer = true;
-                script.onload = () => resolve(window.google.maps);
-                script.onerror = () => reject(new Error("Failed to load Google Maps"));
-                document.head.appendChild(script);
-            });
-            return window.__gmapsLoadingPromise;
-        }
-
         function GoogleMapPanel({ venues, selectedVenue }) {
-            const mapRef = useRef(null);
-            const mapNodeRef = useRef(null);
-            const markersRef = useRef([]);
-            const [mapError, setMapError] = useState("");
-            useEffect(() => {
-                let cancelled = false;
-                loadGoogleMaps()
-                    .then(async (maps) => {
-                        if (cancelled) return;
-                        const { AdvancedMarkerElement } = await maps.importLibrary("marker");
-                        if (!mapRef.current) {
-                            mapRef.current = new maps.Map(mapNodeRef.current, {
-                                center: { lat: 46.6034, lng: 1.8883 },
-                                zoom: 5,
-                                mapId: "DEMO_MAP_ID",
-                                disableDefaultUI: false
-                            });
-                        }
-                        const map = mapRef.current;
-                        markersRef.current.forEach((m) => {
-                            m.map = null;
-                        });
-                        markersRef.current = [];
-                        const bounds = new maps.LatLngBounds();
-                        venues.forEach((venue) => {
-                            const img = document.createElement("img");
-                            img.className = "flag-icon";
-                            img.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-                            const marker = new AdvancedMarkerElement({
-                                map,
-                                position: { lat: venue.lat, lng: venue.lng },
-                                title: venue.name,
-                                content: img
-                            });
-                            markersRef.current.push(marker);
-                            bounds.extend({ lat: venue.lat, lng: venue.lng });
-                        });
-                        if (selectedVenue) {
-                            map.setCenter({ lat: selectedVenue.lat, lng: selectedVenue.lng });
-                            map.setZoom(12);
-                        } else if (venues.length > 0) {
-                            map.fitBounds(bounds, 50);
-                        } else {
-                            map.setCenter({ lat: 46.6034, lng: 1.8883 });
-                            map.setZoom(5);
-                        }
-                        setMapError("");
-                    })
-                    .catch((error) => {
-                        setMapError(error.message || "Map unavailable");
-                    });
-                return () => {
-                    cancelled = true;
-                };
-            }, [filtered, selectedVenue]);
-
-            if (mapError) {
-                return (
-                    <div className="map-fallback">
-                        Google Maps unavailable. Add a valid key in config.local.js.
-                    </div>
-                );
+            if (!selectedVenue) {
+                return <div className="map-fallback">Select a location to view on map</div>;
             }
-
-            return <div ref={mapNodeRef} className="map-shell" />;
+            const iframeSrc = `https://maps.google.com/maps?q=${selectedVenue.lat},${selectedVenue.lng}&z=14&output=embed`;
+            
+            return (
+                <div className="w-full h-full min-h-[500px]">
+                    <iframe 
+                        className="w-full h-full filter invert hue-rotate-180 opacity-80"
+                        title={selectedVenue.name} 
+                        src={iframeSrc} 
+                        frameBorder="0" 
+                        allowFullScreen>
+                    </iframe>
+                </div>
+            );
         }
 
         function TheatersExplorer() {
@@ -343,7 +271,7 @@
                 if (!filtered.some((v) => selectedVenue && v.name === selectedVenue.name)) {
                     setSelectedVenue(filtered[0] || null);
                 }
-            }, [venues, selectedVenue]);
+            }, [filtered, selectedVenue]);
             return (
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
