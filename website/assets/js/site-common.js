@@ -12,6 +12,18 @@
   }
 
   window.SiteCommon = {
+    /** Fisher–Yates shuffle (copy) — random order on each page load. */
+    shuffleArray: function (array) {
+      var arr = array.slice();
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+      }
+      return arr;
+    },
+
     detailHref: function (type, title) {
       return (
         'detail.html?type=' +
@@ -34,6 +46,7 @@
             pageLanguage: 'fr',
             includedLanguages: 'en,fr',
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            /* Do not auto-open the translate widget / top bar */
             autoDisplay: false,
           },
           'google_translate_element'

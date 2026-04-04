@@ -195,6 +195,30 @@
       </div>
     </div>
   </section>
+  <!-- Spotlight: 3 films + 3 series, shuffled, auto-rotating carousel -->
+  <section class="border-y border-white/5 bg-gradient-to-b from-surface-container-low/80 to-background py-14 px-6 md:px-12">
+    <div class="mx-auto max-w-6xl">
+      <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-[0.25em] text-secondary">À la une</span>
+          <h2 class="font-headline text-3xl font-bold tracking-tight md:text-4xl">Films &amp; séries <span class="text-primary italic">en rotation</span></h2>
+          <p class="mt-2 max-w-xl text-sm text-on-surface-variant">Trois films et trois séries — ordre mélangé à chaque chargement.</p>
+        </div>
+        <div id="spotlight-dots" class="flex flex-wrap items-center gap-2"></div>
+      </div>
+      <div id="spotlight-viewport" class="relative overflow-hidden rounded-2xl border border-outline-variant/50 bg-[#0c0e10] shadow-2xl ring-1 ring-white/[0.04]">
+        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform"></div>
+        <button type="button" id="spotlight-prev" aria-label="Slide précédent"
+          class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
+          <span class="material-symbols-outlined text-2xl">chevron_left</span>
+        </button>
+        <button type="button" id="spotlight-next" aria-label="Slide suivant"
+          class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
+          <span class="material-symbols-outlined text-2xl">chevron_right</span>
+        </button>
+      </div>
+    </div>
+  </section>
   <!-- Currently screening (carousel from catalogue) -->
   <section class="py-16 px-6 md:px-12 bg-background border-y border-white/5">
     <div class="max-w-[1600px] mx-auto">
@@ -372,6 +396,168 @@
           .replace(/"/g, "&quot;");
       }
 
+      var spotlightViewport = document.getElementById("spotlight-viewport");
+      var spotlightTrack = document.getElementById("spotlight-track");
+      var spotlightDots = document.getElementById("spotlight-dots");
+      var spotlightPrev = document.getElementById("spotlight-prev");
+      var spotlightNext = document.getElementById("spotlight-next");
+      var spotlightIndex = 0;
+      var spotlightSlideCount = 0;
+      var spotlightTimer = null;
+
+      function spotlightLayout() {
+        if (!spotlightViewport || !spotlightTrack) return;
+        var w = spotlightViewport.offsetWidth;
+        var slides = spotlightTrack.children;
+        for (var i = 0; i < slides.length; i++) {
+          slides[i].style.flex = "0 0 " + w + "px";
+          slides[i].style.width = w + "px";
+        }
+        spotlightGo(spotlightIndex, true);
+      }
+
+      function spotlightGo(i, instant) {
+        if (!spotlightViewport || !spotlightTrack || spotlightSlideCount < 1) return;
+        spotlightIndex = ((i % spotlightSlideCount) + spotlightSlideCount) % spotlightSlideCount;
+        var w = spotlightViewport.offsetWidth;
+        if (instant) {
+          spotlightTrack.style.transition = "none";
+        }
+        spotlightTrack.style.transform = "translateX(" + -spotlightIndex * w + "px)";
+        if (instant) {
+          spotlightTrack.offsetHeight;
+          spotlightTrack.style.transition = "";
+        }
+        if (spotlightDots) {
+          var dots = spotlightDots.querySelectorAll("button");
+          for (var d = 0; d < dots.length; d++) {
+            var on = d === spotlightIndex;
+            dots[d].classList.toggle("bg-primary", on);
+            dots[d].classList.toggle("border-primary", on);
+            dots[d].classList.toggle("bg-on-surface-variant/30", !on);
+            dots[d].classList.toggle("border-outline-variant/60", !on);
+          }
+        }
+      }
+
+      function spotlightStartTimer() {
+        if (spotlightTimer) clearInterval(spotlightTimer);
+        if (spotlightSlideCount < 2) return;
+        spotlightTimer = setInterval(function () {
+          spotlightGo(spotlightIndex + 1, false);
+        }, 5500);
+      }
+
+      if (
+        spotlightViewport &&
+        spotlightTrack &&
+        spotlightDots &&
+        SiteCommon &&
+        spotlightPrev &&
+        spotlightNext
+      ) {
+        Promise.all([
+          fetch("assets/data/movies.json").then(function (r) {
+            return r.json();
+          }),
+          fetch("assets/data/series.json").then(function (r) {
+            return r.json();
+          }),
+        ]).then(function (all) {
+          var mv = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 3);
+          var sr = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 3);
+          var slidesData = [];
+          for (var si = 0; si < 3; si++) {
+            if (mv[si]) slidesData.push({ kind: "movie", row: mv[si] });
+            if (sr[si]) slidesData.push({ kind: "series", row: sr[si] });
+          }
+          spotlightSlideCount = slidesData.length;
+          if (!spotlightSlideCount) {
+            spotlightViewport.closest("section").style.display = "none";
+            return;
+          }
+          spotlightTrack.innerHTML = slidesData
+            .map(function (sd) {
+              var row = sd.row;
+              var isSerie = sd.kind === "series";
+              var type = isSerie ? "series" : "movie";
+              var href = SiteCommon.detailHref(type, row.title);
+              var badge = isSerie ? "Série" : "Film";
+              var meta = isSerie
+                ? esc(row.genre || "") +
+                  (row.year ? " · " + row.year : "") +
+                  (row.episodes ? " · " + row.episodes + " ép." : "")
+                : esc(row.director || "") + (row.year ? " · " + row.year : "");
+              var trailer =
+                row.trailerUrl
+                  ? '<a href="' +
+                    String(row.trailerUrl).replace(/"/g, "%22") +
+                    '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-primary/50 bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15"><span class="material-symbols-outlined text-[18px]">play_circle</span>Watch trailer</a>'
+                  : "";
+              return (
+                '<div class="flex shrink-0 flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10">' +
+                '<a href="' +
+                href +
+                '" class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 overflow-hidden border border-outline-variant/40 bg-surface-container sm:max-w-[180px]">' +
+                '<img src="' +
+                esc(row.image) +
+                '" alt="' +
+                esc(row.title) +
+                '" class="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0" />' +
+                "</a>" +
+                '<div class="min-w-0 flex-1 text-center md:text-left">' +
+                '<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">' +
+                badge +
+                "</span>" +
+                '<h3 class="font-headline mt-2 text-2xl font-bold tracking-tight text-on-surface md:text-3xl">' +
+                esc(row.title) +
+                "</h3>" +
+                '<p class="mt-2 text-sm text-on-surface-variant">' +
+                meta +
+                "</p>" +
+                '<div class="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">' +
+                '<a href="' +
+                href +
+                '" class="inline-flex items-center rounded border border-primary bg-primary/20 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary hover:bg-primary/30">Fiche</a>' +
+                trailer +
+                "</div></div></div>"
+              );
+            })
+            .join("");
+          spotlightDots.innerHTML = slidesData
+            .map(function (_, idx) {
+              return (
+                '<button type="button" data-idx="' +
+                idx +
+                '" class="h-2.5 w-2.5 rounded-full border transition-colors" aria-label="Slide ' +
+                (idx + 1) +
+                '"></button>'
+              );
+            })
+            .join("");
+          spotlightDots.querySelectorAll("button").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+              var idx = parseInt(btn.getAttribute("data-idx"), 10);
+              spotlightGo(idx, false);
+              spotlightStartTimer();
+            });
+          });
+          spotlightPrev.addEventListener("click", function () {
+            spotlightGo(spotlightIndex - 1, false);
+            spotlightStartTimer();
+          });
+          spotlightNext.addEventListener("click", function () {
+            spotlightGo(spotlightIndex + 1, false);
+            spotlightStartTimer();
+          });
+          window.addEventListener("resize", function () {
+            spotlightLayout();
+          });
+          spotlightLayout();
+          spotlightStartTimer();
+        });
+      }
+
       var screening = document.getElementById("screening-strip");
       if (screening) {
         fetch("assets/data/movies.json")
@@ -379,7 +565,7 @@
             return r.json();
           })
           .then(function (movies) {
-            var slice = movies.slice(0, 8);
+            var slice = SiteCommon.shuffleArray(Array.isArray(movies) ? movies : []).slice(0, 8);
             screening.innerHTML = slice
               .map(function (m) {
                 var href = SiteCommon.detailHref("movie", m.title);
@@ -390,7 +576,7 @@
                       '" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 rounded border border-primary/40 bg-primary-container/20 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/20 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[16px] leading-none">play_circle</span><span>Watch trailer</span></a>'
                     : "";
                 return (
-                  '<div class="flex-none w-44 snap-start shrink-0 flex flex-col">' +
+                  '<div class="flex-none w-36 snap-start shrink-0 flex flex-col">' +
                   '<a href="' +
                   href +
                   '" class="group block">' +
@@ -431,9 +617,9 @@
             return r.json();
           }),
         ]).then(function (all) {
-          buckets.cinema = all[0].slice(0, 6);
-          buckets.series = all[1].slice(0, 6);
-          buckets.docs = all[2].slice(0, 6);
+          buckets.cinema = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 6);
+          buckets.series = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 6);
+          buckets.docs = SiteCommon.shuffleArray(Array.isArray(all[2]) ? all[2] : []).slice(0, 6);
 
           function render(tabKey) {
             var rows =
@@ -467,23 +653,23 @@
                     '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex w-fit items-center gap-2 rounded-lg border border-primary/50 bg-black/40 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[18px]">play_circle</span><span>Watch trailer</span></a>'
                   : "";
                 return (
-                  '<div class="relative flex min-h-[300px] flex-col overflow-hidden bg-surface-container shadow-lg">' +
+                  '<div class="group relative mx-auto flex w-full max-w-[280px] flex-col overflow-hidden bg-surface-container shadow-lg">' +
                   '<a href="' +
                   href +
-                  '" class="relative block min-h-[200px] flex-1 overflow-hidden">' +
+                  '" class="relative block aspect-[2/3] w-full overflow-hidden">' +
                   '<img src="' +
                   esc(row.image) +
-                  '" alt="" class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 hover:scale-105" />' +
-                  '<div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/35 to-transparent"></div>' +
+                  '" alt="" class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0" />' +
+                  '<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>' +
                   "</a>" +
-                  '<div class="relative z-10 -mt-16 flex flex-1 flex-col bg-gradient-to-t from-[#121416] via-[#121416]/98 to-transparent px-6 pb-6 pt-2">' +
+                  '<div class="flex flex-1 flex-col px-4 pb-5 pt-4">' +
                   '<span class="text-[10px] uppercase tracking-widest text-secondary">' +
                   label +
                   "</span>" +
                   '<a href="' +
                   href +
                   '" class="mt-2 block text-left">' +
-                  '<h3 class="font-headline text-xl text-white transition-colors hover:text-primary">' +
+                  '<h3 class="font-headline text-lg text-white transition-colors hover:text-primary">' +
                   esc(row.title) +
                   "</h3></a>" +
                   '<p class="mt-1 text-xs text-slate-400">' +
