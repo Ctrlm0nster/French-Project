@@ -1,0 +1,34 @@
+[
+  {
+    "badge": "The Director's Spotlight",
+    "title": "Le Silence <br /><span class=\"italic font-light text-primary-fixed-dim\">de la Mer</span>",
+    "desc": "\"In the quiet of the night, a silent resistance speaks louder than a thousand words.\"",
+    "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtRn0yInxoRcmQ_zI0QLqOuIKr4VQZERvEkSNTmNLmGGb38o5DQZJnYrXSLIcd0nfxIKDQO-4uRR09av7nc_4UE5k7zKFHi5mRKFoglCt4_Df1Y0WOfz5opXRg5ZK500Zf0CxseX8yeBNgDE5Pl23SrAvrfiZLLEFCot7KrD5WUz9q6T_bUeUVvsvYzL4o8p19g-8EnEZwXLsqwDvHkpItNhTzxFST0PsnujxN7xqc-Aq4T2Z4jfKS8Ds3dWOV1K6GqdKTYfu_q_g",
+    "trailerUrl": "https://www.youtube.com/results?search_query=Le+Silence+de+la+mer+1949+Melville+trailer",
+    "href": "detail.html?type=movie&title=Le%20Silence%20de%20la%20mer"
+  },
+  {
+    "badge": "Série Événement",
+    "title": "Le Bureau <br /><span class=\"italic font-light text-primary-fixed-dim\">des Légendes</span>",
+    "desc": "\"To live a lie is the greatest truth they know.\"",
+    "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuB31kK9B1k1x_i0X_B09rVlGvP3_vQj6LnMzLqKx1ZgW15E5GgN_UeH5_1lJtM1S1rY5C1T3Jb4O8W9E8J3d7WvT6r_P2Jq4V_U9H4_gY1B-fB1iI0T5XlHw4S_Q4D2sO9F-XfX2X_Z_Q9P1V8Ww3M6X3c3B_J-D1XlXfD9C_a1-t4o3l3q_V4Q_x2g",
+    "trailerUrl": "https://www.youtube.com/results?search_query=Le+Bureau+des+L%C3%A9gendes+trailer",
+    "href": "detail.html?type=series&title=Le%20Bureau%20des%20Légendes"
+  },
+  {
+    "badge": "Nouveau Culte",
+    "title": "Portrait de la jeune fille <br /><span class=\"italic font-light text-primary-fixed-dim\">en feu</span>",
+    "desc": "\"Do not regret. Remember.\"",
+    "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuD_U-S-N_R-R-S-M_t_b_r_G_G-V_T-F_U_V_S_H_E_C_E_G_W_C_Y_M_C_H_D_U_N_E_C_W_U_N_S_W_U_W_Q_Z-b-V-G-N-U-V-W-V-I-C",
+    "trailerUrl": "https://www.youtube.com/results?search_query=Portrait+de+la+jeune+fille+en+feu+trailer",
+    "href": "detail.html?type=movie&title=Portrait%20de%20la%20jeune%20fille%20en%20feu"
+  },
+  {
+    "badge": "Classique Intemporel",
+    "title": "La Haine <br /><span class=\"italic font-light text-primary-fixed-dim\"></span>",
+    "desc": "\"Jusqu'ici tout va bien...\"",
+    "img": "https://lh3.googleusercontent.com/aida-public/AB6AXuCrI0Lfm1WUQRqhDgV3nG6xk3vYtc_1IflE-6McBsXINAmiQGQGqB-gKhmxLRe5vTIVefD-mI5acOmBDXKqvPNiZ89O0zAo79QA_eSlIwA-ywlLUBHp5TkDNXt9WCl3wMVpuLYMaI9lNONmfhLRcVv4xP9deSil0ypKKu2kkY1lA1Xmot0jOzBpepRCXYCRfOVTgt27QctAFrVb1DOY8w9S-u8Aq6vRdmeIhKh6eJ1JfJ1xE-Tse0BDNVm4njKIgwtx4zlxPJGivSg",
+    "trailerUrl": "https://www.youtube.com/results?search_query=La+Haine+trailer",
+    "href": "detail.html?type=movie&title=La%20Haine"
+  }
+]
