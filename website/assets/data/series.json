@@ -1,56 +1,142 @@
 [
   {
-    "title": "Le Bureau des Légendes",
-    "genre": "Drame",
+    "title": "Koh-Lanta",
+    "genre": "Téléréalité (Aventure)",
     "year": 2024,
-    "episodes": 8,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCeah_M8qii9LF4blFI3KovBrK-s7oOLws1uZBeG9JOtq4DAQ2ZggWRzQlV2Y9BQBqlmf4ZIIl02o7EeonTfCyxcMUudkThfsNe1gAMuNsUS0PVw7t6tWFdVrfJ3zT421WqZGUEcc0vN2Dy9IMHB2WR3ZekPPsKqyULfUVUy1_K136ctGsYp-0XhocWuQ_EJvOUuBCWiHXDaaXfDydh7gTpU3RPWYj-VEO-d1pG2YwtbUmPzrq4HPR0JzqQSTNQGcYheGSBoVgeZCI",
-    "description": "Des agents du renseignement extérieur incarnent de fausses identités pendant des années ; une plongée dans le secret et le sacrifice.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Le+Bureau+des+L%C3%A9gendes+bande+annonce"
+    "episodes": 13,
+    "image": "https://upload.wikimedia.org/wikipedia/en/5/5a/Koh-Lanta_logo.png"
   },
   {
-    "title": "Versailles",
-    "genre": "Histoire",
-    "year": 2015,
-    "episodes": 30,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBEW4w8tggSbnTkWkn0wdgHD41_0eAF3qXvkI05dLLcncRqwUO56NUlY9NshajCI2lLfuI_9ps8W3reTIRBGpgitx2imF_meZgJjwZJfB7_MxmfjBqWFr8hKkwjtBE2CTDF0LV6PQna-lOBsPZ6sG1uucSLFl5uwuA9IAOY2DPh26_yy75xHGPMQMYo9BIa0xwfTVAHPj75mq_0YZZ32WM53Z6iyhQ2DpbtFo7u6es_XLlFAkHSc4P3rc0zL6989HWKImF9lS4VYqg",
-    "description": "Louis XIV transforme son père de chasse en palais pour imposer son pouvoir à la noblesse : intrigue, passion et splendeur baroque.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Versailles+s%C3%A9rie+Canal%2B"
+    "title": "The Voice : la plus belle voix",
+    "genre": "Téléréalité (Musique)",
+    "year": 2024,
+    "episodes": 14,
+    "image": "https://upload.wikimedia.org/wikipedia/en/0/0f/The_Voice_France_logo.png"
   },
   {
-    "title": "Lupin",
-    "genre": "Polar",
-    "year": 2021,
-    "episodes": 17,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCYXS5MmgN6T-GjLWKyHi955_J_jrorq9AMc6fsMH-6X_RQxVKHMndb1bXAG3bw4nmcfpr_WsRIOuCPaQlYvS-XFqTkUfComgmH3I9KiDmNSl56Ygqlrlyd8wg8W4_oocw6BvlUIyrcp0jmsYZDO4hIhtJmupW2BdYrPN3eELXKACn4tnqfboNuQcHdkukkR_4zJ6QZr3GLme5Swyd6IxpXbvGbTcFO2EgyX62S7FPbzvaa8WfUHKJvlIs7_lbczPOoE1WZqfKPyP8",
-    "description": "Assane Diop s’inspire d’Arsène Lupin pour démasquer l’injustice qui a détruit sa famille : un thriller élégant au cœur de Paris.",
-    "trailerUrl": "https://www.youtube.com/watch?v=ga0iTWXCGa0"
+    "title": "Les Marseillais",
+    "genre": "Téléréalité",
+    "year": 2023,
+    "episodes": 60,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/6/6c/Les_Marseillais_logo.png"
   },
   {
-    "title": "Dix Pour Cent",
-    "genre": "Comédie",
-    "year": 2015,
-    "episodes": 24,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCN8rf5bTgMEhFPpQehuchaBwJ6dWqwDafP4DCjmoXAHJbpEqd9xSv0zyLJksQXI1QzY8FQ1h-aC_t2bN6kEQIVtFbuIea1GtymMD_pySls4kDfA3Ix2BqdpGNox3asjlVv9htRhgPInJBzVxdlibNXHWdsZqNXQ_poYi_63Ir3Y11Wan9OTJI_5bxFFy8jlYDuzO4qItYjnuTKOrsuq8pkP4cCj5VRuveD9zh30fSlkJQYE582GKSN5eOVSjagO7RXsEYvXvgabkc",
-    "description": "Les agents d’une agence parisienne jonglent entre stars capricieuses et crises professionnelles dans une comédie grinçante et affectueuse.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Dix+pour+cent+s%C3%A9rie"
+    "title": "Secret Story",
+    "genre": "Téléréalité",
+    "year": 2024,
+    "episodes": 50,
+    "image": "https://upload.wikimedia.org/wikipedia/en/2/2d/Secret_Story_logo.png"
   },
   {
-    "title": "Zone Blanche",
-    "genre": "Drame",
-    "year": 2017,
+    "title": "L'amour est dans le pré",
+    "genre": "Téléréalité (Rencontres)",
+    "year": 2023,
+    "episodes": 15,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/2/2e/Lamour_est_dans_le_pre_logo.png"
+  },
+  {
+    "title": "Top Chef",
+    "genre": "Téléréalité (Cuisine)",
+    "year": 2024,
     "episodes": 16,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuABdoag3-v4czxdmp3y8alcWGMSz32oxZlT8BWVl_41VQiaMUE01et1bnMzMNMADvd1ksQIBQJh0zSXHoVxmcU7bFKusRU_qxmhU_t0uZd7VATzLIpjsZNvHyfBOMeEe-4X0ZvsD7GMzP3a96uTAeEQOPJf3T2HOjnAd1Sp2SucNW3I6ck1u9qAGCLveeUIxZX-trDN2FGNC_cC4U8Ll2MnVcmaD5ZQW-PRyIfmoIVhsz3yVwwcuHN7FaH8yLHy2F9cz2YcBfOCUpo",
-    "description": "Une gendarme enquête dans une vallée isolée où les habitants semblent cacher un secret lié à la forêt et à la disparition d’enfants.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Zone+Blanche+s%C3%A9rie"
+    "image": "https://upload.wikimedia.org/wikipedia/en/3/3c/Top_Chef_logo.png"
   },
   {
-    "title": "Ad Vitam",
-    "genre": "Polar",
-    "year": 2018,
-    "episodes": 6,
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAwRxufTuVxWayczMclhCNVjpSVnotdBPpSyRX7s8vL_hjprk0nAuMvP86wbvXRYVIYBBzf30w-O_fHIUafeoK58V2IlTuBNY1CDYjueD5MPPdz4K4d5-xSg_H-z-Jl3yFXu5tpMcQpTVSeZ5-02o34w_5aXSLiXye6p-dAlThq9DKJhCN3jGEyEwrt5ACKXF890RbeXq6b_NJvQw4rL-ktF2Fq9-2AKrrDiTnef3_iiNzRVLaiPeQUohsWp3fXnt49rptgl3aJgCc",
-    "description": "Dans une société où la régénération a vaincu la mort, un groupe d’adolescents se rebelle contre l’ordre établi : science-fiction noire et politique.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Ad+Vitam+s%C3%A9rie+Netflix"
+    "title": "MasterChef France",
+    "genre": "Téléréalité (Cuisine)",
+    "year": 2023,
+    "episodes": 12,
+    "image": "https://upload.wikimedia.org/wikipedia/en/e/e4/MasterChef_logo.png"
+  },
+  {
+    "title": "Danse avec les stars",
+    "genre": "Téléréalité (Danse)",
+    "year": 2024,
+    "episodes": 10,
+    "image": "https://upload.wikimedia.org/wikipedia/en/8/8e/Dancing_with_the_Stars_logo.png"
+  },
+  {
+    "title": "Pékin Express",
+    "genre": "Téléréalité (Aventure)",
+    "year": 2023,
+    "episodes": 12,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/3/3c/Pekin_Express_logo.png"
+  },
+  {
+    "title": "Les Anges",
+    "genre": "Téléréalité",
+    "year": 2022,
+    "episodes": 70,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/5/5a/Les_Anges_logo.png"
+  },
+  {
+    "title": "La Villa des Cœurs Brisés",
+    "genre": "Téléréalité",
+    "year": 2023,
+    "episodes": 55,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/0/0a/La_Villa_logo.png"
+  },
+  {
+    "title": "Mariés au premier regard",
+    "genre": "Téléréalité (Mariage)",
+    "year": 2024,
+    "episodes": 14,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/9/9a/Marie_au_premier_regard_logo.png"
+  },
+  {
+    "title": "Qui veut épouser mon fils ?",
+    "genre": "Téléréalité",
+    "year": 2023,
+    "episodes": 10,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/1/1f/QVEMF_logo.png"
+  },
+  {
+    "title": "Les Princes et Princesses de l’amour",
+    "genre": "Téléréalité",
+    "year": 2023,
+    "episodes": 65,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/4/4c/Princes_de_lamour_logo.png"
+  },
+  {
+    "title": "Le Meilleur Pâtissier",
+    "genre": "Téléréalité (Cuisine)",
+    "year": 2024,
+    "episodes": 12,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/2/2c/Meilleur_Patissier_logo.png"
+  },
+  {
+    "title": "Objectif Top Chef",
+    "genre": "Téléréalité (Cuisine)",
+    "year": 2023,
+    "episodes": 40,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/7/7f/Objectif_Top_Chef_logo.png"
+  },
+  {
+    "title": "Les Apprentis Aventuriers",
+    "genre": "Téléréalité (Aventure)",
+    "year": 2023,
+    "episodes": 50,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/8/8a/Apprentis_Aventuriers_logo.png"
+  },
+  {
+    "title": "Star Academy",
+    "genre": "Téléréalité (Musique)",
+    "year": 2024,
+    "episodes": 13,
+    "image": "https://upload.wikimedia.org/wikipedia/en/5/5d/Star_Academy_logo.png"
+  },
+  {
+    "title": "La France a un incroyable talent",
+    "genre": "Téléréalité (Talent)",
+    "year": 2023,
+    "episodes": 12,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/6/6c/Incroyable_Talent_logo.png"
+  },
+  {
+    "title": "Les Cinquante",
+    "genre": "Téléréalité (Compétition)",
+    "year": 2023,
+    "episodes": 50,
+    "image": "https://upload.wikimedia.org/wikipedia/fr/5/5b/Les_Cinquante_logo.png"
   }
 ]
