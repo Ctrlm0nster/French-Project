@@ -137,15 +137,10 @@
           href="theaters.html">Theaters</a>
       </div>
       <div class="flex items-center gap-4 md:gap-6 flex-wrap justify-end">
-        <div
-          class="flex items-center gap-2 md:gap-3 rounded-xl border border-outline-variant/40 bg-surface-container/60 px-3 py-2 shadow-lg shadow-black/30 backdrop-blur-sm">
-          <span class="material-symbols-outlined text-primary text-2xl shrink-0" aria-hidden="true">translate</span>
-          <div class="hidden sm:flex flex-col leading-tight pr-2 border-r border-outline-variant/50">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-secondary font-bold">Langue</span>
-            <span class="text-[10px] text-on-surface-variant">FR ↔ EN</span>
-          </div>
-          <div id="google_translate_element" class="translate-widget-root min-w-0"></div>
-        </div>
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+          <span class="material-symbols-outlined" data-icon="language">language</span>
+        </button>
+        <div id="google_translate_element" style="display:none;"></div>
         <form action="search.html" method="get" class="relative flex items-center gap-2">
           <span class="material-symbols-outlined text-slate-400 text-xl hidden sm:inline">search</span>
           <input name="q" type="search" placeholder="Rechercher…"

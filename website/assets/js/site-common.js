@@ -57,6 +57,31 @@
         'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
       s.async = true;
       document.head.appendChild(s);
+      
+      // Wire up custom toggle buttons
+      document.addEventListener("DOMContentLoaded", function() {
+        var toggleBtns = document.querySelectorAll('[data-icon="language"]');
+        toggleBtns.forEach(function(icon) {
+          var btn = icon.closest('button');
+          if (btn) {
+            btn.addEventListener('click', function(e) {
+              e.preventDefault();
+              var isEn = document.cookie.indexOf('googtrans=/fr/en') !== -1 || document.cookie.indexOf('googtrans=/auto/en') !== -1;
+              if (isEn) {
+                // Switch back to original (French)
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+                document.cookie = "googtrans=/fr/fr; path=/;";
+                location.reload();
+              } else {
+                // Switch to English
+                document.cookie = "googtrans=/fr/en; path=/;";
+                location.reload();
+              }
+            });
+          }
+        });
+      });
     },
   };
 })();
