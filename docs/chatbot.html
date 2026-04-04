@@ -15,9 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -108,6 +105,18 @@
         ::-webkit-scrollbar-thumb {
             background: #43474f;
         }
+
+        /* AIBotKit iframe: sit inside themed chrome; inner rounding matches embed */
+        .chatbot-embed-wrap {
+            background: linear-gradient(145deg, rgba(0, 38, 84, 0.35) 0%, rgba(18, 20, 22, 0.95) 45%, rgba(205, 3, 38, 0.08) 100%);
+        }
+
+        .chatbot-embed-wrap iframe {
+            display: block;
+            width: 100%;
+            min-height: 600px;
+            background: #1a1c1e;
+        }
     </style>
 </head>
 
@@ -163,17 +172,17 @@
                 <div class="bg-surface-container-low p-8 border-l-2 border-primary shadow-2xl">
                     <h3 class="font-headline text-xl mb-6">Thèmes du moment</h3>
                     <div class="flex flex-wrap gap-3">
-                        <button
-                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">La
-                            Nouvelle Vague</button>
-                        <button
-                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Noir
-                            &amp; Blanc</button>
-                        <button
-                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Cannes
-                            Classics</button>
-                        <button
-                            class="bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Surréalisme</button>
+                        <a href="search.html?q=Nouvelle+Vague"
+                            class="inline-block bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">La
+                            Nouvelle Vague</a>
+                        <a href="search.html?q=noir+blanc"
+                            class="inline-block bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Noir
+                            &amp; Blanc</a>
+                        <a href="search.html?q=Cannes"
+                            class="inline-block bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Cannes
+                            Classics</a>
+                        <a href="search.html?q=surr%C3%A9alisme"
+                            class="inline-block bg-surface-container-high px-4 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors">Surréalisme</a>
                     </div>
                 </div>
                 <!-- Featured Suggestion Card -->
@@ -190,8 +199,35 @@
                     </div>
                 </div>
             </div>
-            <!-- Main Chat Interface -->
-            <div id="chatbot-react-root" class="md:col-span-8 flex flex-col h-[700px] bg-surface-container-lowest shadow-2xl relative"></div>
+            <!-- AIBotKit chat (embedded) -->
+            <div class="md:col-span-8 w-full">
+                <div
+                    class="chatbot-embed-wrap rounded-xl overflow-hidden border border-outline-variant/50 shadow-2xl ring-1 ring-white/[0.06]">
+                    <div
+                        class="flex flex-wrap items-center gap-3 px-5 py-4 border-b border-outline-variant/40 bg-surface-container/80 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-primary text-2xl">smart_toy</span>
+                        <div class="min-w-0 flex-1">
+                            <p class="font-headline text-lg text-on-surface tracking-tight">Assistant Cinémathèque</p>
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-on-surface-variant mt-0.5">Posez vos
+                                questions sur le catalogue et le cinéma français</p>
+                        </div>
+                        <span
+                            class="hidden sm:inline text-[9px] uppercase tracking-widest text-outline border border-outline-variant/50 px-2 py-1 rounded-sm">AIBotKit</span>
+                    </div>
+                    <div class="p-2 md:p-3 bg-[#0c0e10]">
+                        <iframe title="Assistant Cinémathèque — chatbot"
+                            src="https://app.aibotkit.io/chatbot/8ba6a09a-21fc-49" width="100%" height="600"
+                            frameborder="0" allow="microphone"
+                            class="rounded-[10px] border border-outline-variant/30 shadow-inner"
+                            style="border: none; border-radius: 10px;"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <p class="mt-5 text-center text-[10px] uppercase tracking-[0.25em] text-outline">
+                    Le micro peut être demandé pour la conversation vocale · Contenu hébergé par un service tiers
+                </p>
+            </div>
         </div>
     </main>
     <!-- Footer -->
@@ -210,116 +246,6 @@
             © 2024 Digital Cinémathèque. All rights reserved.
         </div>
     </footer>
-    <script type="text/babel">
-        const { useMemo, useState } = React;
-
-        const THEME_REPLIES = {
-            "La Nouvelle Vague": "Magnifique choix. Commencez par Godard et Truffaut: une modernite brute, libre et melancolique.",
-            "Noir & Blanc": "Pour une esthetique noir et blanc, je recommande Melville, Clouzot et l'elegance des contrastes.",
-            "Cannes Classics": "Selection Cannes: \"Anatomie d'une chute\", \"Le Regne Animal\" et \"Portrait de la jeune fille en feu\".",
-            "Surréalisme": "Pour le surrealisme, explorez Bunuel cote francais, puis Resnais pour une narration fragmentee."
-        };
-
-        function CineAIChat() {
-            const [messages, setMessages] = useState([
-                {
-                    role: "ai",
-                    text: "Bonjour. Je suis votre guide pour cette exploration cinematographique. Quel genre d'emotion cherchez-vous a ressentir ce soir ?"
-                },
-                {
-                    role: "user",
-                    text: "Je cherche quelque chose de melancolique, peut-etre dans le style de la rive gauche des annees 60."
-                },
-                {
-                    role: "ai",
-                    text: "Un choix exquis. La Rive Gauche offre une profondeur intellectuelle sans pareille. Je vous suggere d'explorer le travail d'Alain Resnais."
-                }
-            ]);
-            const [input, setInput] = useState("");
-
-            const promptThemes = useMemo(() => Object.keys(THEME_REPLIES), []);
-
-            function sendMessage(text) {
-                const trimmed = text.trim();
-                if (!trimmed) return;
-                const aiText = THEME_REPLIES[trimmed] || "Je recommande d'explorer \"Hiroshima mon amour\", \"Cleo de 5 a 7\" et \"Le Samourai\" selon votre humeur.";
-                setMessages((prev) => [
-                    ...prev,
-                    { role: "user", text: trimmed },
-                    { role: "ai", text: aiText }
-                ]);
-                setInput("");
-            }
-
-            return (
-                <>
-                    <div className="flex-grow overflow-y-auto p-10 space-y-10">
-                        {messages.map((message, idx) => {
-                            const isAi = message.role === "ai";
-                            return (
-                                <div
-                                    key={idx}
-                                    className={`flex flex-col space-y-4 max-w-2xl ${isAi ? "" : "ml-auto items-end"}`}
-                                >
-                                    <div className={`flex items-center space-x-3 ${isAi ? "text-primary" : "text-secondary"}`}>
-                                        {isAi ? <span className="material-symbols-outlined">smart_toy</span> : null}
-                                        <span className="label-md uppercase tracking-[0.2em] font-bold">
-                                            {isAi ? "Cine-AI" : "Visiteur"}
-                                        </span>
-                                        {!isAi ? <span className="material-symbols-outlined">person</span> : null}
-                                    </div>
-                                    <div className={`${isAi ? "bg-surface-container p-6 border-l border-outline-variant/30" : "bg-surface-container-high p-6 border-r border-secondary/30"}`}>
-                                        <p className={`text-on-surface leading-relaxed ${isAi ? "italic font-headline" : "text-right"}`}>
-                                            {message.text}
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="p-8 bg-surface-container-lowest border-t border-outline-variant/10">
-                        <div className="mb-4 flex flex-wrap gap-2">
-                            {promptThemes.map((theme) => (
-                                <button
-                                    key={theme}
-                                    onClick={() => sendMessage(theme)}
-                                    className="bg-surface-container-high px-3 py-2 text-[10px] uppercase tracking-widest hover:bg-primary hover:text-on-primary transition-colors"
-                                >
-                                    {theme}
-                                </button>
-                            ))}
-                        </div>
-                        <div className="relative flex items-center">
-                            <input
-                                value={input}
-                                onChange={(event) => setInput(event.target.value)}
-                                onKeyDown={(event) => {
-                                    if (event.key === "Enter") sendMessage(input);
-                                }}
-                                className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:ring-0 focus:border-primary py-4 pr-12 text-sm tracking-widest uppercase placeholder:text-outline/50 transition-all font-label"
-                                placeholder="DECRIVEZ VOTRE ENVIE CINEMATOGRAPHIQUE..."
-                                type="text"
-                            />
-                            <button onClick={() => sendMessage(input)} className="absolute right-0 text-primary hover:text-secondary transition-colors">
-                                <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>send</span>
-                            </button>
-                        </div>
-                        <div className="mt-4 flex justify-between items-center text-[9px] uppercase tracking-[0.2em] text-outline">
-                            <span>IA entrainee sur les archives de la Cinematheque</span>
-                            <div className="flex space-x-4">
-                                <span className="text-blue-400">Bleu</span>
-                                <span className="text-white">Blanc</span>
-                                <span className="text-red-400">Rouge</span>
-                            </div>
-                        </div>
-                    </div>
-                </>
-            );
-        }
-
-        const root = ReactDOM.createRoot(document.getElementById("chatbot-react-root"));
-        root.render(<CineAIChat />);
-    </script>
 </body>
 
 </html>
