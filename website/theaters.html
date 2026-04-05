@@ -243,23 +243,111 @@
             { name: "Institut Lumière", city: "Lyon", type: "Cinema", note: "Birthplace of the Cinematographe.", lat: 45.7454, lng: 4.8719 },
             { name: "Théâtre de la Criée", city: "Marseille", type: "Acting Theater", note: "National drama center at Old Port.", lat: 43.2951, lng: 5.3698 }
         ];
-        function GoogleMapPanel({ venues, selectedVenue }) {
-            if (!selectedVenue) {
-                return <div className="map-fallback">Select a location to view on map</div>;
+        function loadGoogleMaps() {
+            if (window.google && window.google.maps) {
+                return Promise.resolve(window.google.maps);
             }
-            const iframeSrc = `https://maps.google.com/maps?q=${selectedVenue.lat},${selectedVenue.lng}&z=14&output=embed`;
+            if (window.__gmapsLoadingPromise) {
+                return window.__gmapsLoadingPromise;
+            }
+            window.__gmapsLoadingPromise = fetch('/api/maps-key')
+                .then(res => res.json())
+                .then(data => {
+                    const key = data.key || (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "";
+                    if (!key) {
+                        return Promise.reject(new Error("Missing Google Maps API key"));
+                    }
+                    return new Promise((resolve, reject) => {
+                        const script = document.createElement("script");
+                        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&loading=async&libraries=marker&v=beta`;
+                        script.async = true;
+                        script.defer = true;
+                        script.onload = () => resolve(window.google.maps);
+                        script.onerror = () => reject(new Error("Failed to load Google Maps script"));
+                        document.head.appendChild(script);
+                    });
+                })
+                .catch(err => {
+                    console.error("Maps key fetch failed:", err);
+                    throw err;
+                });
+            return window.__gmapsLoadingPromise;
+        }
+
+        function GoogleMapPanel({ venues, selectedVenue }) {
+            const mapRef = useRef(null);
+            const mapNodeRef = useRef(null);
+            const markersRef = useRef([]);
+            const [mapError, setMapError] = useState("");
             
-            return (
-                <div className="w-full h-full min-h-[500px]">
-                    <iframe 
-                        className="w-full h-full filter invert hue-rotate-180 opacity-80"
-                        title={selectedVenue.name} 
-                        src={iframeSrc} 
-                        frameBorder="0" 
-                        allowFullScreen>
-                    </iframe>
-                </div>
-            );
+            useEffect(() => {
+                let cancelled = false;
+                loadGoogleMaps()
+                    .then(async (maps) => {
+                        if (cancelled) return;
+                        const { AdvancedMarkerElement } = await maps.importLibrary("marker");
+                        if (!mapRef.current) {
+                            mapRef.current = new maps.Map(mapNodeRef.current, {
+                                center: { lat: 46.6034, lng: 1.8883 },
+                                zoom: 5,
+                                mapId: "DEMO_MAP_ID",
+                                disableDefaultUI: false
+                            });
+                        }
+                        const map = mapRef.current;
+                        
+                        // Clear old markers
+                        markersRef.current.forEach((m) => {
+                            m.map = null;
+                        });
+                        markersRef.current = [];
+                        
+                        const bounds = new maps.LatLngBounds();
+                        venues.forEach((venue) => {
+                            const img = document.createElement("img");
+                            img.className = "flag-icon";
+                            // A classic map pin image fallback for advanced markers
+                            img.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+                            const marker = new AdvancedMarkerElement({
+                                map,
+                                position: { lat: venue.lat, lng: venue.lng },
+                                title: venue.name,
+                                content: img
+                            });
+                            markersRef.current.push(marker);
+                            bounds.extend({ lat: venue.lat, lng: venue.lng });
+                        });
+                        
+                        if (selectedVenue) {
+                            map.setCenter({ lat: selectedVenue.lat, lng: selectedVenue.lng });
+                            map.setZoom(12);
+                        } else if (venues.length > 0) {
+                            map.fitBounds(bounds, 50);
+                        } else {
+                            map.setCenter({ lat: 46.6034, lng: 1.8883 });
+                            map.setZoom(5);
+                        }
+                        setMapError("");
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        setMapError(error.message || "Map unavailable");
+                    });
+                    
+                return () => {
+                    cancelled = true;
+                };
+            }, [venues, selectedVenue]);
+
+            if (mapError) {
+                return (
+                    <div className="map-fallback">
+                        {mapError}. Add your key in Vercel.
+                    </div>
+                );
+            }
+
+            return <div ref={mapNodeRef} className="map-shell filter invert hue-rotate-180 opacity-80" />;
         }
 
         function TheatersExplorer() {
