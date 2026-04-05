@@ -106,6 +106,17 @@
             background: #43474f;
         }
 
+        /* AIBotKit iframe: sit inside themed chrome; inner rounding matches embed */
+        .chatbot-embed-wrap {
+            background: linear-gradient(145deg, rgba(0, 38, 84, 0.35) 0%, rgba(18, 20, 22, 0.95) 45%, rgba(205, 3, 38, 0.08) 100%);
+        }
+
+        .chatbot-embed-wrap iframe {
+            display: block;
+            width: 100%;
+            min-height: 600px;
+            background: #1a1c1e;
+        }
     </style>
 </head>
 
@@ -188,13 +199,34 @@
                     </div>
                 </div>
             </div>
-            <!-- Chatbot instructions -->
-            <div class="md:col-span-8 w-full flex items-center justify-center h-full">
-                <div class="text-center p-8 bg-surface-container-low rounded-xl border border-outline-variant/50">
-                    <span class="material-symbols-outlined text-primary text-6xl mb-4">chat_bubble</span>
-                    <h2 class="text-2xl font-headline mb-4">Interagissez avec le bot</h2>
-                    <p class="text-on-surface-variant">L'assistant est disponible via le bouton de discussion dans le coin inférieur de l'écran.</p>
+            <!-- AIBotKit chat (embedded) -->
+            <div class="md:col-span-8 w-full">
+                <div
+                    class="chatbot-embed-wrap rounded-xl overflow-hidden border border-outline-variant/50 shadow-2xl ring-1 ring-white/[0.06]">
+                    <div
+                        class="flex flex-wrap items-center gap-3 px-5 py-4 border-b border-outline-variant/40 bg-surface-container/80 backdrop-blur-sm">
+                        <span class="material-symbols-outlined text-primary text-2xl">smart_toy</span>
+                        <div class="min-w-0 flex-1">
+                            <p class="font-headline text-lg text-on-surface tracking-tight">Assistant Cinémathèque</p>
+                            <p class="text-[11px] uppercase tracking-[0.2em] text-on-surface-variant mt-0.5">Posez vos
+                                questions sur le catalogue et le cinéma français</p>
+                        </div>
+                        <span
+                            class="hidden sm:inline text-[9px] uppercase tracking-widest text-outline border border-outline-variant/50 px-2 py-1 rounded-sm">AIBotKit</span>
+                    </div>
+                    <div class="p-2 md:p-3 bg-[#0c0e10]">
+                        <iframe title="Assistant Cinémathèque — chatbot"
+                            src="https://app.aibotkit.io/chatbot/8ba6a09a-21fc-49" width="100%" height="600"
+                            frameborder="0" allow="microphone"
+                            class="rounded-[10px] border border-outline-variant/30 shadow-inner"
+                            style="border: none; border-radius: 10px;"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                 </div>
+                <p class="mt-5 text-center text-[10px] uppercase tracking-[0.25em] text-outline">
+                    Le micro peut être demandé pour la conversation vocale · Contenu hébergé par un service tiers
+                </p>
             </div>
         </div>
     </main>
@@ -214,7 +246,6 @@
             © 2024 Digital Cinémathèque. All rights reserved.
         </div>
     </footer>
-    <script id="messenger-widget-b" src="https://cdn.botpenguin.com/website-bot.js" defer>69d0e1516331c200db090e92,69d0e13796511b7a9abf9983</script>
 </body>
 
 </html>
