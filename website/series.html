@@ -115,31 +115,33 @@
 
 <body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
     <!-- TopNavBar -->
-    <nav
-        class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50 flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-        <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
-        <div class="hidden md:flex items-center space-x-10">
-            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                href="index.html">Home</a>
-            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                href="movies.html">Movies</a>
-            <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Series</a>
-            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                href="documentaries.html">Documentaries</a>
-            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                href="chatbot.html">Chatbot</a>
-            <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                href="theaters.html">Theaters</a>
-        </div>
-        <div class="flex items-center space-x-6">
-            <div class="relative group">
-                <input
-                    class="bg-transparent border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-1 font-label transition-all duration-500 w-32 focus:w-64"
-                    placeholder="Search..." type="text" />
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
+        <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+            <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
+            <div class="hidden md:flex items-center space-x-10">
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="index.html">Accueil</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="movies.html">Cinéma</a>
+                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Séries</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="documentaries.html">Documentaires</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="chatbot.html">Assistant</a>
+                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+                    href="theaters.html">Salles</a>
             </div>
-            <button class="text-blue-200 hover:text-red-300 transition-all duration-500 ease-in-out">
-                <span class="material-symbols-outlined" data-icon="language">language</span>
-            </button>
+            <div class="flex items-center space-x-6">
+                <div class="relative group hidden lg:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
+                        placeholder="Rechercher..." type="text" />
+                </div>
+                <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+                    <span class="material-symbols-outlined" data-icon="language">language</span>
+                </button>
+            </div>
         </div>
     </nav>
     <main class="pt-32 pb-24 px-12 max-w-screen-2xl mx-auto">
@@ -234,7 +236,7 @@
                         </div>
                     </aside>
                     <div className="flex-grow">
-                        {isLoading ? <p className="text-on-surface-variant">Loading series...</p> : null}
+                        {isLoading ? <p className="text-on-surface-variant">Chargement des séries...</p> : null}
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-6">
                             {pagedItems.map((item) => (
                                 <div key={item.title} className="group mx-auto w-full max-w-[220px]">
@@ -250,7 +252,7 @@
                                                         <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
                                                         Bande-annonce
                                                     </span>
-                                                    <span className="text-[9px] font-bold normal-case tracking-[0.15em] text-on-surface-variant">Watch trailer</span>
+                                                    <span className="text-[9px] font-bold normal-case tracking-[0.15em] text-on-surface-variant">Voir</span>
                                                 </a>
                                             ) : null}
                                         </div>
@@ -281,19 +283,26 @@
         ReactDOM.createRoot(document.getElementById("series-react-root")).render(<SeriesExplorer />);
     </script>
     <!-- Footer -->
-    <footer
-        class="w-full border-t border-slate-800/50 bg-slate-950 flex flex-col md:flex-row justify-between items-center px-12 py-10">
-        <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
-        <div class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-12">
-            <a class="text-slate-500 hover:text-red-400 transition-colors duration-300 font-sans uppercase tracking-[0.2em] text-[10px]"
-                href="terms.html">Terms of Service</a>
-            <a class="text-slate-500 hover:text-red-400 transition-colors duration-300 font-sans uppercase tracking-[0.2em] text-[10px]"
-                href="privacy.html">Privacy Policy</a>
-            <a class="text-slate-500 hover:text-red-400 transition-colors duration-300 font-sans uppercase tracking-[0.2em] text-[10px]"
-                href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
+            <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
+            <div class="flex space-x-8 mb-6 md:mb-0">
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="terms.html">Conditions d'utilisation</a>
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="privacy.html">Confidentialité</a>
+                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+                    href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+            </div>
+            <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
+                © 2024 Digital Cinémathèque. Tous droits réservés.
+            </div>
         </div>
-        <div class="mt-8 md:mt-0 font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
-            © 2024 Digital Cinémathèque. All rights reserved.
+        <!-- Subtle Tricolour Accent Bar -->
+        <div class="flex h-1 w-full">
+            <div class="w-1/3 bg-blue-600"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-red-600"></div>
         </div>
     </footer>
 </body>

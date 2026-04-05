@@ -146,58 +146,57 @@
 
 <body class="bg-background text-on-background min-h-screen flex flex-col">
     <!-- TopNavBar -->
-    <nav
-        class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50 flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-        <div class="flex items-center gap-12">
-            <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
-            <div class="hidden md:flex gap-8">
+    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
+        <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+            <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
+            <div class="hidden md:flex items-center space-x-10">
                 <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="index.html">Home</a>
+                    href="index.html">Accueil</a>
                 <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="movies.html">Movies</a>
+                    href="movies.html">Cinéma</a>
                 <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="series.html">Series</a>
+                    href="series.html">Séries</a>
                 <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="documentaries.html">Documentaries</a>
+                    href="documentaries.html">Documentaires</a>
                 <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="chatbot.html">Chatbot</a>
-                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Theaters</a>
+                    href="chatbot.html">Assistant</a>
+                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Salles</a>
             </div>
-        </div>
-        <div class="flex items-center gap-6">
-            <div class="relative flex items-center bg-slate-900/50 px-4 py-2">
-                <span class="material-symbols-outlined text-blue-200 mr-2 text-sm">search</span>
-                <input
-                    class="bg-transparent border-none focus:ring-0 text-sm text-blue-100 placeholder:text-slate-500 font-body"
-                    placeholder="Find a location..." type="text" />
+            <div class="flex items-center space-x-6">
+                <div class="relative group hidden lg:block">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                    <input
+                        class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
+                        placeholder="Rechercher..." type="text" />
+                </div>
+                <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+                    <span class="material-symbols-outlined" data-icon="language">language</span>
+                </button>
             </div>
-            <button class="text-blue-200 hover:text-red-300 transition-all duration-500 ease-in-out">
-                <span class="material-symbols-outlined" data-icon="language">language</span>
-            </button>
         </div>
     </nav>
     <main class="flex-grow pt-24 pb-12 flex flex-col">
         <!-- Header Section -->
-        <header class="px-12 mb-12">
+        <header class="px-12 mb-12 mt-8">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
                 <div>
                     <span class="label-md font-label uppercase tracking-[0.3em] text-secondary mb-4 block">Le Répertoire
                         National</span>
-                    <h1 class="text-6xl font-headline font-bold text-on-background leading-tight">Find Your <span
-                            class="italic font-normal">Sanctuary</span></h1>
+                    <h1 class="text-6xl font-headline font-bold text-on-background leading-tight">Trouvez votre <span
+                            class="italic font-normal">Sanctuaire</span></h1>
                 </div>
                 <div class="flex gap-4 pb-2 overflow-x-auto no-scrollbar">
                     <button
                         class="bg-primary text-on-primary px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-colors duration-300">
-                        Cinema
+                        Cinéma d'Art
                     </button>
                     <button
                         class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
-                        Acting Theater
+                        Théâtre de Scène
                     </button>
                     <button
                         class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
-                        Large Drama Fest
+                        Grands Festivals
                     </button>
                 </div>
             </div>
@@ -210,26 +209,16 @@
                     <div
                         class="absolute -top-12 -left-12 w-64 h-64 border-l border-t border-primary/20 -z-10 group-hover:top-[-40px] group-hover:left-[-40px] transition-all duration-700">
                     </div>
-                    <img alt="Cinema Hall"
+                    <img alt="Salle de cinéma"
                         class="w-full grayscale brightness-75 hover:grayscale-0 transition-all duration-1000"
-                        data-alt="Dramatic interior of a classical French theater with red velvet seats and gold ornate detailing, dimly lit with a single spotlight on stage"
+                        data-alt="Intérieur dramatique d'un théâtre français classique avec des sièges en velours rouge et des détails dorés ornés, faiblement éclairé avec un seul projecteur sur scène"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5A1WcjH1JEPcoYgtMbRMQNH-5_SmRUmnzxi65W6pcRxeNZJO5ICgqXL5RwjrC5n6Z0eYE1aBVd10Vlmw3_ozdOH_JeHqLaHyoF-jERG_O3g7Hf-cOxD1PhHV4W41XQr0mTppSncU91uBSLZE_cdwt4ic5YPvnZTZj6S-Trk16L1jellbsdKIP20yuiRZWBvqLW0PbwPrVoUOv3k80YGN9gYBrqYSZ-cJFwZSQ4rNcusCtwZH0-4JKmrJ8MrW3h2i8fYCkU5wMjKE" />
                 </div>
                 <div>
-                    <h2 class="text-4xl font-headline mb-8 leading-tight">Preserving the <span
-                            class="text-secondary italic">Art</span> of Experience</h2>
+                    <h2 class="text-4xl font-headline mb-8 leading-tight">Préserver l'Art de l'Expérience</h2>
                     <div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
-                        <p>The Cinémathèque locator is more than a map; it is a curated archive of France's cultural
-                            architecture. Each pin represents a legacy of storytelling, from the smallest independent
-                            arthouse to the grandest national stages.</p>
-                        <p>We support the French tradition of "L'exception culturelle" by highlighting venues that
-                            prioritize artistic merit over commercial noise.</p>
-                    </div>
-                    <div class="mt-12">
-                        <button
-                            class="bg-transparent border border-primary text-primary px-10 py-4 font-label text-[10px] uppercase tracking-[0.3em] hover:bg-primary hover:text-on-primary transition-all duration-500">
-                            Download the Full Directory
-                        </button>
+                        <p>Le localisateur de la Cinémathèque est plus qu'une simple carte ; c'est une archive curatoriale de l'architecture culturelle française. Chaque repère représente un héritage de narration, de la plus petite salle indépendante aux plus grandes scènes nationales.</p>
+                        <p>Nous soutenons la tradition française de "L'exception culturelle" en mettant en avant les lieux qui privilégient le mérite artistique sur le bruit commercial.</p>
                     </div>
                 </div>
             </div>
@@ -238,10 +227,10 @@
     <script type="text/babel">
         const { useEffect, useMemo, useRef, useState } = React;
         const VENUES = [
-            { name: "Le Champo", city: "Paris, 5ème", type: "Cinema", note: "Iconic heritage cinema in the Latin Quarter.", lat: 48.8508, lng: 2.3445 },
-            { name: "Palais des Papes", city: "Avignon", type: "Drama Fest", note: "Historic stage for Festival d'Avignon.", lat: 43.9515, lng: 4.8070 },
-            { name: "Institut Lumière", city: "Lyon", type: "Cinema", note: "Birthplace of the Cinematographe.", lat: 45.7454, lng: 4.8719 },
-            { name: "Théâtre de la Criée", city: "Marseille", type: "Acting Theater", note: "National drama center at Old Port.", lat: 43.2951, lng: 5.3698 }
+            { name: "Le Champo", city: "Paris, 5ème", type: "Cinéma", note: "Cinéma d'art mythique du Quartier Latin.", lat: 48.8508, lng: 2.3445 },
+            { name: "Palais des Papes", city: "Avignon", type: "Festival", note: "Scène historique du Festival d'Avignon.", lat: 43.9515, lng: 4.8070 },
+            { name: "Institut Lumière", city: "Lyon", type: "Cinéma", note: "Lieu de naissance du Cinématographe.", lat: 45.7454, lng: 4.8719 },
+            { name: "Théâtre de la Criée", city: "Marseille", type: "Théâtre", note: "Centre dramatique national sur le Vieux Port.", lat: 43.2951, lng: 5.3698 }
         ];
         function loadGoogleMaps() {
             if (window.google && window.google.maps) {
@@ -331,7 +320,7 @@
                     })
                     .catch((error) => {
                         console.error(error);
-                        setMapError(error.message || "Map unavailable");
+                        setMapError(error.message || "Carte indisponible");
                     });
                     
                 return () => {
@@ -342,7 +331,7 @@
             if (mapError) {
                 return (
                     <div className="map-fallback">
-                        {mapError}. Add your key in Vercel.
+                        {mapError}. Ajoutez votre clé API.
                     </div>
                 );
             }
@@ -351,10 +340,10 @@
         }
 
         function TheatersExplorer() {
-            const [type, setType] = useState("All");
+            const [type, setType] = useState("Tous");
             const [query, setQuery] = useState("");
             const [selectedVenue, setSelectedVenue] = useState(null);
-            const filtered = useMemo(() => VENUES.filter((v) => (type === "All" || v.type === type) && (v.name.toLowerCase().includes(query.toLowerCase()) || v.city.toLowerCase().includes(query.toLowerCase()))), [type, query]);
+            const filtered = useMemo(() => VENUES.filter((v) => (type === "Tous" || v.type === type) && (v.name.toLowerCase().includes(query.toLowerCase()) || v.city.toLowerCase().includes(query.toLowerCase()))), [type, query]);
             useEffect(() => {
                 if (!filtered.some((v) => selectedVenue && v.name === selectedVenue.name)) {
                     setSelectedVenue(filtered[0] || null);
@@ -364,14 +353,14 @@
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
                         <GoogleMapPanel venues={filtered} selectedVenue={selectedVenue} />
-                        <div className="absolute top-8 left-8 right-8 flex gap-3">
-                            {["All", "Cinema", "Acting Theater", "Drama Fest"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
+                        <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
+                            {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
                         </div>
                     </div>
                     <div className="lg:col-span-4 bg-surface-container overflow-y-auto no-scrollbar max-h-[700px]">
                         <div className="p-8 border-b border-outline-variant/20">
-                            <h2 className="font-headline text-xl mb-2">Featured Destinations</h2>
-                            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Find a location..." className="w-full mt-4 bg-slate-900/50 px-4 py-2 text-sm text-blue-100 placeholder:text-slate-500" />
+                            <h2 className="font-headline text-xl mb-2">Destinations Phares</h2>
+                            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Trouver un lieu..." className="w-full mt-4 bg-slate-900/50 px-4 py-2 text-sm text-blue-100 placeholder:text-slate-500" />
                         </div>
                         {filtered.map((venue) => (
                             <div key={venue.name} onClick={() => setSelectedVenue(venue)} className={`p-8 hover:bg-surface-container-highest transition-colors border-t border-outline-variant/10 cursor-pointer ${selectedVenue && selectedVenue.name === venue.name ? "bg-surface-container-highest" : ""}`}>
@@ -388,21 +377,26 @@
         ReactDOM.createRoot(document.getElementById("theaters-react-root")).render(<TheatersExplorer />);
     </script>
     <!-- Footer -->
-    <footer class="bg-slate-950 w-full border-t border-slate-800/50">
+    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
         <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
-            <div class="flex flex-col items-center md:items-start gap-2 mb-8 md:mb-0">
-                <a href="index.html" class="text-lg font-serif text-white">Cinémathèque</a>
-                <span class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">© 2024 Digital
-                    Cinémathèque. All rights reserved.</span>
-            </div>
-            <div class="flex gap-10">
+            <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
+            <div class="flex space-x-8 mb-6 md:mb-0">
                 <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="terms.html">Terms of Service</a>
+                    href="terms.html">Conditions d'utilisation</a>
                 <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="privacy.html">Privacy Policy</a>
+                    href="privacy.html">Confidentialité</a>
                 <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
                     href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
             </div>
+            <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
+                © 2024 Digital Cinémathèque. Tous droits réservés.
+            </div>
+        </div>
+        <!-- Subtle Tricolour Accent Bar -->
+        <div class="flex h-1 w-full">
+            <div class="w-1/3 bg-blue-600"></div>
+            <div class="w-1/3 bg-white"></div>
+            <div class="w-1/3 bg-red-600"></div>
         </div>
     </footer>
 </body>
