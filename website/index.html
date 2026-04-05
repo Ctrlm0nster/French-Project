@@ -284,7 +284,7 @@
           href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
       </div>
       <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
-        © 2024 Digital Cinémathèque. Tous droits réservés.
+        © 2026 Digital Cinémathèque. Tous droits réservés.
       </div>
     </div>
     <!-- Subtle Tricolour Accent Bar -->
@@ -614,7 +614,7 @@
           });
         });
       }
-      
+
       // Hero Auto Rotation
       var heroSection = document.getElementById("hero-section");
       var heroImg = document.getElementById("hero-img");
@@ -624,19 +624,19 @@
       var heroTrailer = document.getElementById("hero-trailer");
       var heroLink = document.getElementById("hero-link");
       var heroProgress = document.getElementById("hero-progress");
-      
+
       if (heroSection && heroImg) {
         var heroSelection = [];
         var heroIdx = 0;
-        
+
         function updateHero() {
           if (heroSelection.length === 0) return;
           var item = heroSelection[heroIdx];
-          
+
           // Fade out
           heroImg.style.opacity = 0;
           document.getElementById('hero-content').style.opacity = 0;
-          
+
           setTimeout(function() {
             heroImg.src = item.img;
             heroBadge.innerHTML = item.badge;
@@ -644,7 +644,7 @@
             heroDesc.innerHTML = item.desc;
             heroTrailer.href = item.trailerUrl;
             heroLink.href = item.href;
-            
+
             // Wait a small moment before fading back in
             setTimeout(function() {
               heroImg.style.opacity = 1;
@@ -652,7 +652,7 @@
             }, 100);
           }, 1000);
         }
-        
+
         function rotateHero() {
           if (heroSelection.length === 0) return;
           heroProgress.style.transition = 'none';
@@ -661,14 +661,14 @@
             heroProgress.style.transition = 'width 5s linear';
             heroProgress.style.width = '100%';
           }, 50);
-          
+
           setTimeout(function() {
             heroIdx = (heroIdx + 1) % heroSelection.length;
             updateHero();
             rotateHero();
           }, 5000);
         }
-        
+
         fetch('assets/data/featured-hero.json')
           .then(function(res) { return res.json(); })
           .then(function(data) {
@@ -682,14 +682,14 @@
               heroDesc.innerHTML = firstItem.desc;
               if (heroTrailer) heroTrailer.href = firstItem.trailerUrl;
               if (heroLink) heroLink.href = firstItem.href;
-              
+
               // Fade in immediately
               setTimeout(function() {
                 heroImg.style.opacity = 1;
                 var hc = document.getElementById('hero-content');
                 if (hc) hc.style.opacity = 1;
               }, 50);
-              
+
               setTimeout(function() {
                 rotateHero();
               }, 100);
