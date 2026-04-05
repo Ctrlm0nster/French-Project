@@ -155,23 +155,23 @@
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
-      <img id="hero-img" alt="Film à l'affiche" style="opacity: 0;" class="w-full h-full object-cover object-center grayscale-[20%] transition-opacity duration-1000"
-        src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" />
+      <img id="hero-img" alt="Film à l'affiche" class="w-full h-full object-cover object-center grayscale-[20%] transition-opacity duration-1000"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.mS1_LdTRY9erw7pbHJoxpwHaE7%3Fpid%3DApi&f=1&ipt=674bf482b551dda7c43916d5747e5efe90d6b30390fbe64ab39b1b9f5b255d5f&ipo=images" />
     </div>
-    <div class="relative z-20 px-12 md:px-24 max-w-4xl" id="hero-content" style="opacity: 0;">
+    <div class="relative z-20 px-12 md:px-24 max-w-4xl" id="hero-content">
       <div class="mb-4">
-        <span id="hero-badge" class="label-md uppercase tracking-[0.3em] text-secondary font-bold transition-all duration-500"></span>
+        <span id="hero-badge" class="label-md uppercase tracking-[0.3em] text-secondary font-bold transition-all duration-500">IMDb 8.5/10</span>
       </div>
-      <h1 id="hero-title" class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6 transition-all duration-500"></h1>
+      <h1 id="hero-title" class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6 transition-all duration-500">Intouchables <br /><span class="italic font-light text-primary-fixed-dim">2011</span></h1>
       <p id="hero-desc"
-        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500"></p>
+        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
       <div class="flex flex-wrap items-center gap-4 md:gap-8">
-        <a id="hero-trailer" href="#" target="_blank" rel="noopener noreferrer"
+        <a id="hero-trailer" href="https://www.youtube.com/watch?v=EFGmBOJy8sc" target="_blank" rel="noopener noreferrer"
           class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           Bande-annonce
         </a>
-        <a id="hero-link" href="#"
+        <a id="hero-link" href="detail.html?type=movie&title=The%20Intouchables"
           class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300">
           En savoir plus
         </a>
@@ -196,7 +196,21 @@
         <div id="spotlight-dots" class="flex flex-wrap items-center gap-2"></div>
       </div>
       <div id="spotlight-viewport" class="relative overflow-hidden rounded-2xl border border-outline-variant/50 bg-[#0c0e10] shadow-2xl ring-1 ring-white/[0.04]">
-        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform"></div>
+        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform">
+          <!-- Initial Skeleton / Placeholder -->
+          <div class="flex shrink-0 w-full flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10 animate-pulse">
+            <div class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 bg-surface-container-high/50 sm:max-w-[180px]"></div>
+            <div class="flex-1 text-center md:text-left space-y-4">
+              <div class="h-3 w-20 bg-secondary/20 rounded"></div>
+              <div class="h-10 w-64 bg-on-surface/10 rounded"></div>
+              <div class="h-4 w-full bg-on-surface-variant/10 rounded"></div>
+              <div class="flex gap-3 justify-center md:justify-start pt-4">
+                <div class="h-10 w-24 bg-primary/20 rounded"></div>
+                <div class="h-10 w-32 bg-primary/10 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <button type="button" id="spotlight-prev" aria-label="Slide précédent"
           class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
           <span class="material-symbols-outlined text-2xl">chevron_left</span>
@@ -235,7 +249,14 @@
         <button type="button" data-trend="docs" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Documentaires</button>
       </div>
     </div>
-    <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]"></div>
+    <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]">
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+    </div>
   </section>
 
   <!-- Curated Classics (Horizontal Scroll) -->
