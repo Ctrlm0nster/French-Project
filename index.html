@@ -2,11 +2,7 @@
 <html lang="fr" class="dark">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Fast meta fallback but with a slight delay for splash effect -->
-  <meta http-equiv="refresh" content="2; url=website/index.html" />
-  
-  
+  <title>Cinémathèque | Bienvenue</title>
   <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
   <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
@@ -16,6 +12,8 @@
   <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="2; url=website/index.html" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,7 +76,7 @@
       letter-spacing: 0.5em;
       color: var(--secondary);
       font-weight: 500;
-      margin-left: 0.5em; /* Compensate for letter spacing */
+      margin-left: 0.5em;
     }
 
     .loader-bar {
@@ -122,7 +120,6 @@
       border-color: white;
     }
 
-    /* Ambient Glow */
     .glow {
       position: absolute;
       width: 40vw;
@@ -142,24 +139,18 @@
 </head>
 <body>
   <div class="glow"></div>
-  
   <div class="brand-container">
     <h1 class="logo">Cinémathèque</h1>
     <p class="tagline">Le sanctuaire du septième art</p>
   </div>
-
   <div class="manual-link">
     <a href="website/index.html" class="btn">Entrer dans l'archive</a>
   </div>
-
   <div class="loader-bar"></div>
-
   <script>
-    // JS Redirect as backup/primary
     setTimeout(() => {
       window.location.href = "website/index.html";
     }, 2200);
   </script>
 </body>
 </html>
-
