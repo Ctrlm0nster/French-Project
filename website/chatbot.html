@@ -365,7 +365,7 @@
         Réponds toujours en français. Utilise du Markdown léger pour la structure.`;
 
         // The user should set their OpenAI API key here
-        const API_KEY = window.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY"; // Placeholder or global var
+        const API_KEY = window.OPENAI_API_KEY || process.env.NEXT_PUBLIC_OPENAI_API_KEY; // Placeholder or global var
 
         const messagesArea = document.getElementById('messagesArea');
         const userInput = document.getElementById('userInput');
@@ -394,7 +394,7 @@
             const prompt = userInput.value.trim();
             if (!prompt) return;
 
-            if (!API_KEY || API_KEY === "YOUR_OPENAI_API_KEY") {
+            if (!API_KEY || API_KEY === "YOUR_OPENAI_API_KEY" || API_KEY.startsWith("process.env.")) {
                 appendMessage(prompt, true);
                 appendMessage("Erreur : La clé API OpenAI n'a pas été configurée. Veuillez consulter le <strong>CONTENT_GUIDE.md</strong> pour savoir comment l'ajouter.", false);
                 userInput.value = '';
@@ -453,7 +453,7 @@
         });
 
         // Warn if no API KEY
-        if (!API_KEY || API_KEY === "YOUR_OPENAI_API_KEY") {
+        if (!API_KEY || API_KEY === "YOUR_OPENAI_API_KEY" || API_KEY.toString().startsWith("process.env.")) {
             console.warn("OpenAI API Key is missing. Follow instructions in CONTENT_GUIDE.md.");
         }
     </script>

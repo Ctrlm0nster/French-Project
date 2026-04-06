@@ -85,6 +85,6 @@ For the chatbot to work, you must provide an OpenAI API Key.
 ## Publish updated content
 
 1. Update content in `website/`.
-2. Sync deployment copy:
-   - Windows: `robocopy website docs /E`
-3. Commit and push.
+2. Generate deployment copy with environment variables:
+   - Run: `npm run build`
+3. Commit and push. (Vercel will also run this command automatically).

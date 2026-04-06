@@ -1,4 +1,9 @@
 {
+  "name": "cinematheque",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.mjs"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.101.1"
   }
