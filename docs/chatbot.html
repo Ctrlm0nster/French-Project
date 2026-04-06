@@ -365,7 +365,7 @@
         Réponds toujours en français. Utilise du Markdown léger pour la structure.`;
 
         // The user should set their OpenAI API key here
-        const API_KEY = window.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY"; // Placeholder or global var
+        const API_KEY = window.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY"; // Placeholder for build-time replacement
 
         const messagesArea = document.getElementById('messagesArea');
         const userInput = document.getElementById('userInput');
@@ -440,8 +440,13 @@
                 if (history.length > 20) history = history.slice(history.length - 20);
 
             } catch (error) {
-                console.error(error);
-                appendMessage("Désolé, une erreur technique est survenue lors de la communication avec l'Agent ChatGPT.", false);
+                console.error("OpenAI API Error:", error);
+                const errorMsg = error.message.includes("401") 
+                    ? "Clé API invalide ou expirée." 
+                    : error.message.includes("429") 
+                        ? "Limite de quota atteinte ou trop de requêtes."
+                        : "Erreur réseau ou technique.";
+                appendMessage(`Désolé, une erreur est survenue (${errorMsg}). Veuillez vérifier votre configuration dans le <strong>CONTENT_GUIDE.md</strong>.`, false);
             } finally {
                 typingIndicator.style.display = 'none';
             }

@@ -24,7 +24,7 @@ function processDirectory(src, dest) {
             // Replace process.env placeholders with actual values from the environment
             if (srcPath.endsWith('.html') || srcPath.endsWith('.js')) {
                 const apiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
-                content = content.replace(/process\.env\.NEXT_PUBLIC_OPENAI_API_KEY/g, `"${apiKey}"`);
+                content = content.replace(/(process\.env\.NEXT_PUBLIC_OPENAI_API_KEY|"YOUR_OPENAI_API_KEY")/g, `"${apiKey}"`);
             }
 
             fs.writeFileSync(destPath, content);
