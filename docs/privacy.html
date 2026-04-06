@@ -16,32 +16,104 @@
   <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700&family=Manrope:wght@400;600&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="assets/js/site-common.js"></script>
   <style>body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }</style>
 </head>
 <body class="min-h-screen">
-  <nav class="border-b border-white/10 px-8 py-6 flex justify-between items-center">
-    <a href="index.html" class="text-xl font-serif italic text-blue-100">Cinémathèque</a>
-    <a href="index.html" class="text-sm text-slate-400 hover:text-white">Accueil</a>
+  <!-- TopNavBar -->
+  <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
+    <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+      <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
+      <div class="hidden md:flex items-center space-x-10">
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="index.html">Accueil</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="movies.html">Cinéma</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="series.html">Séries</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="documentaries.html">Documentaires</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="chatbot.html">Assistant</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="theaters.html">Salles</a>
+      </div>
+      <div class="flex items-center space-x-6">
+        <div class="relative group hidden lg:block">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+          <input
+            class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
+            placeholder="Rechercher..." type="text" />
+        </div>
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+          <span class="material-symbols-outlined" data-icon="language">language</span>
+        </button>
+      </div>
+    </div>
   </nav>
-  <main class="max-w-3xl mx-auto px-6 py-16">
-    <h1 class="text-4xl font-serif mb-8">Politique de confidentialité</h1>
-    <p class="text-slate-400 text-sm mb-10">Dernière mise à jour : avril 2026. Ce site est une vitrine éditoriale ; les présentes informations visent à être transparentes sur les données traitées.</p>
-    <section class="space-y-6 text-slate-300 leading-relaxed">
-      <h2 class="text-lg font-semibold text-white">1. Responsable du traitement</h2>
-      <p>Le site « Cinémathèque » (projet de démonstration) est édité à titre informatif. Pour toute question relative aux données personnelles, vous pouvez utiliser les coordonnées indiquées dans la section Contact du pied de page.</p>
-      <h2 class="text-lg font-semibold text-white pt-4">2. Données collectées</h2>
-      <p>Nous ne vendons pas vos données. Selon votre navigation, des cookies techniques ou des cookies de mesure d’audience peuvent être déposés par l’hébergeur ou des services tiers (par ex. traduction automatique via Google Translate si vous activez ce widget). Les formulaires de recherche sur le site s’exécutent localement ou via des requêtes vers des contenus statiques ; aucun compte utilisateur n’est requis pour consulter le catalogue.</p>
-      <h2 class="text-lg font-semibold text-white pt-4">3. Traduction (Google Translate)</h2>
-      <p>Si vous utilisez le sélecteur de langue, le contenu peut être envoyé aux serveurs Google conformément à la politique de confidentialité de Google. Nous n’y avons pas accès.</p>
-      <h2 class="text-lg font-semibold text-white pt-4">4. Vos droits</h2>
-      <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition lorsque le traitement est fondé sur un intérêt légitime. Pour l’exercer, contactez l’éditeur du site.</p>
-      <h2 class="text-lg font-semibold text-white pt-4">5. Hébergement</h2>
-      <p>Les fichiers statiques peuvent être hébergés sur une plateforme de type GitHub Pages ou équivalent. Les journaux techniques de l’hébergeur peuvent inclure votre adresse IP et la date d’accès.</p>
+
+  <main class="max-w-4xl mx-auto px-6 pt-32 pb-20">
+    <header class="mb-12">
+      <h1 class="text-5xl font-serif tracking-tight mb-4 text-on-surface">Politique de <span class="text-primary italic">Confidentialité</span></h1>
+      <p class="text-on-surface-variant text-lg font-light">Dernière mise à jour : avril 2026. Ce site est une vitrine éditoriale ; les présentes informations visent à être transparentes sur les données traitées.</p>
+    </header>
+
+    <section class="space-y-12 text-on-surface-variant leading-relaxed text-lg">
+      <div class="bg-surface-container-low p-8 border-l-2 border-primary">
+        <h2 class="text-2xl font-serif text-on-surface mb-6 italic">1. Responsable du traitement</h2>
+        <p>Le site « Cinémathèque » (projet de démonstration) est édité à titre informatif. Pour toute question relative aux données personnelles, vous pouvez utiliser les coordonnées indiquées dans la section Contact du pied de page.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-serif text-on-surface mb-6 italic">2. Données collectées</h2>
+        <p>Nous ne vendons pas vos données. Selon votre navigation, des cookies techniques ou des cookies de mesure d’audience peuvent être déposés par l’hébergeur ou des services tiers (par ex. traduction automatique via Google Translate si vous activez ce widget). Les formulaires de recherche sur le site s’exécutent localement ou via des requêtes vers des contenus statiques ; aucun compte utilisateur n’est requis pour consulter le catalogue.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-serif text-on-surface mb-6 italic">3. Traduction (Google Translate)</h2>
+        <p>Si vous utilisez le sélecteur de langue, le contenu peut être envoyé aux serveurs Google conformément à la politique de confidentialité de Google. Nous n’y avons pas accès.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-serif text-on-surface mb-6 italic">4. Vos droits</h2>
+        <p>Conformément au RGPD, vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation et d’opposition lorsque le traitement est fondé sur un intérêt légitime. Pour l’exercer, contactez l’éditeur du site.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-serif text-on-surface mb-6 italic">5. Hébergement</h2>
+        <p>Les fichiers statiques peuvent être hébergés sur une plateforme de type GitHub Pages ou équivalent. Les journaux techniques de l’hébergeur peuvent inclure votre adresse IP et la date d’accès.</p>
+      </div>
     </section>
-    <p class="mt-12 text-sm text-slate-500"><a href="index.html" class="text-primary hover:underline">← Retour à l’accueil</a></p>
+
+    <p class="mt-16 text-sm">
+      <a href="index.html" class="inline-flex items-center gap-2 border border-outline-variant px-8 py-3 text-xs uppercase tracking-[0.2em] text-on-surface hover:border-primary transition-colors">
+        ← Retour à l’accueil
+      </a>
+    </p>
   </main>
-  <footer class="border-t border-slate-800 py-8 text-center text-[10px] uppercase tracking-widest text-slate-500">
-    <a href="terms.html" class="hover:text-red-400">Conditions d’utilisation</a>
+
+  <!-- Footer -->
+  <footer class="w-full border-t border-slate-800/50 bg-slate-950">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
+      <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
+      <div class="flex space-x-8 mb-6 md:mb-0">
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="terms.html">Conditions d'utilisation</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="privacy.html">Confidentialité</a>
+        <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
+          href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+      </div>
+      <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
+        © 2026 Digital Cinémathèque. Tous droits réservés.
+      </div>
+    </div>
+    <!-- Subtle Tricolour Accent Bar -->
+    <div class="flex h-1 w-full">
+      <div class="w-1/3 bg-blue-600"></div>
+      <div class="w-1/3 bg-white"></div>
+      <div class="w-1/3 bg-red-600"></div>
+    </div>
   </footer>
 </body>
 </html>

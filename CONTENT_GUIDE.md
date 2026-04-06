@@ -57,27 +57,28 @@ Valid genres currently used:
 - Series page: `4` items per page
 - Pagination updates automatically after filtering/search.
 
-## Gemini Chatbot Settings
+## ChatGPT Agent Settings
 
-The chatbot in `chatbot.html` uses **Google Gemini 3.1 Pro**.
+The chatbot in `chatbot.html` uses **OpenAI ChatGPT (gpt-4o-mini)**.
 
 ### Configuring the API Key
 
-For the chatbot to work, you must provide a Google Gemini API Key.
+For the chatbot to work, you must provide an OpenAI API Key.
 
-1. Get your key from [Google AI Studio](https://aistudio.google.com/).
+1. Get your key from the [OpenAI Platform](https://platform.openai.com/api-keys).
 2. Open `website/chatbot.html` (and `docs/chatbot.html`).
 3. Locate this line in the `<script>` section near the bottom:
    ```js
-   const API_KEY = window.GEMINI_API_KEY || ""; 
+   const API_KEY = window.OPENAI_API_KEY || "sk-..."; 
    ```
-4. Replace `""` with your actual key:
+4. Replace `"sk-..."` with your actual key:
    ```js
-   const API_KEY = window.GEMINI_API_KEY || "YOUR_ACTUAL_KEY_HERE";
+   const API_KEY = window.OPENAI_API_KEY || "YOUR_ACTUAL_KEY_HERE";
    ```
 
 > [!WARNING]
 > Adding your API key directly to the HTML file makes it visible to anyone who visits your site. For production use, it is recommended to use a backend proxy.
+
 
 ## Publish updated content
 

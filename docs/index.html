@@ -5,7 +5,6 @@
 <head>
   <meta charset="utf-8" />
   <title>Cinémathèque | Accueil Editorial</title>
-  
   <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
   <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
@@ -135,28 +134,23 @@
     <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
       <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
       <div class="hidden md:flex gap-10 items-center">
-        <a class="font-serif tracking-tight text-blue-300 border-b border-red-400 pb-1" href="index.html">Home</a>
+        <a class="font-serif tracking-tight text-blue-300 border-b border-red-400 pb-1" href="index.html">Accueil</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="movies.html">Movies</a>
+          href="movies.html">Cinéma</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="series.html">Series</a>
+          href="series.html">Séries</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="documentaries.html">Documentaries</a>
+          href="documentaries.html">Documentaires</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="chatbot.html">Chatbot</a>
+          href="chatbot.html">Assistant</a>
         <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="theaters.html">Theaters</a>
+          href="theaters.html">Salles</a>
       </div>
       <div class="flex items-center gap-4 md:gap-6 flex-wrap justify-end">
-        <div
-          class="flex items-center gap-2 md:gap-3 rounded-xl border border-outline-variant/40 bg-surface-container/60 px-3 py-2 shadow-lg shadow-black/30 backdrop-blur-sm">
-          <span class="material-symbols-outlined text-primary text-2xl shrink-0" aria-hidden="true">translate</span>
-          <div class="hidden sm:flex flex-col leading-tight pr-2 border-r border-outline-variant/50">
-            <span class="text-[9px] uppercase tracking-[0.25em] text-secondary font-bold">Langue</span>
-            <span class="text-[10px] text-on-surface-variant">FR ↔ EN</span>
-          </div>
-          <div id="google_translate_element" class="translate-widget-root min-w-0"></div>
-        </div>
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+          <span class="material-symbols-outlined" data-icon="language">language</span>
+        </button>
+        <div id="google_translate_element" style="display:none;"></div>
         <form action="search.html" method="get" class="relative flex items-center gap-2">
           <span class="material-symbols-outlined text-slate-400 text-xl hidden sm:inline">search</span>
           <input name="q" type="search" placeholder="Rechercher…"
@@ -167,42 +161,36 @@
     </div>
   </nav>
   <!-- Hero Section -->
-  <section class="relative h-screen w-full overflow-hidden flex items-center">
+  <section id="hero-section" class="relative h-screen w-full overflow-hidden flex items-center transition-opacity duration-1000">
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
-      <img alt="Featured Film" class="w-full h-full object-cover object-center grayscale-[20%]"
-        data-alt="Cinematic wide shot of a classic French street at night with soft warm street lamps and deep blue shadows, film grain texture"
-        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtRn0yInxoRcmQ_zI0QLqOuIKr4VQZERvEkSNTmNLmGGb38o5DQZJnYrXSLIcd0nfxIKDQO-4uRR09av7nc_4UE5k7zKFHi5mRKFoglCt4_Df1Y0WOfz5opXRg5ZK500Zf0CxseX8yeBNgDE5Pl23SrAvrfiZLLEFCot7KrD5WUz9q6T_bUeUVvsvYzL4o8p19g-8EnEZwXLsqwDvHkpItNhTzxFST0PsnujxN7xqc-Aq4T2Z4jfKS8Ds3dWOV1K6GqdKTYfu_q_g" />
+      <img id="hero-img" alt="Film à l'affiche" class="w-full h-full object-cover object-center grayscale-[20%] transition-opacity duration-1000"
+        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.mS1_LdTRY9erw7pbHJoxpwHaE7%3Fpid%3DApi&f=1&ipt=674bf482b551dda7c43916d5747e5efe90d6b30390fbe64ab39b1b9f5b255d5f&ipo=images" />
     </div>
-    <div class="relative z-20 px-12 md:px-24 max-w-4xl">
+    <div class="relative z-20 px-12 md:px-24 max-w-4xl" id="hero-content">
       <div class="mb-4">
-        <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold">The Director's Spotlight</span>
+        <span id="hero-badge" class="label-md uppercase tracking-[0.3em] text-secondary font-bold transition-all duration-500">IMDb 8.5/10</span>
       </div>
-      <h1 class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6">
-        Le Silence <br />
-        <span class="italic font-light text-primary-fixed-dim">de la Mer</span>
-      </h1>
-      <p
-        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic">
-        "In the quiet of the night, a silent resistance speaks louder than a thousand words."
-      </p>
+      <h1 id="hero-title" class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6 transition-all duration-500">Intouchables <br /><span class="italic font-light text-primary-fixed-dim">2011</span></h1>
+      <p id="hero-desc"
+        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
       <div class="flex flex-wrap items-center gap-4 md:gap-8">
-        <a href="https://www.youtube.com/results?search_query=Le+Silence+de+la+mer+1949+Melville+trailer" target="_blank" rel="noopener noreferrer"
-          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3">
+        <a id="hero-trailer" href="https://www.youtube.com/watch?v=EFGmBOJy8sc" target="_blank" rel="noopener noreferrer"
+          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           Bande-annonce
         </a>
-        <a href="detail.html?type=movie&amp;title=Le%20Silence%20de%20la%20mer"
-          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center">
+        <a id="hero-link" href="detail.html?type=movie&title=The%20Intouchables"
+          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300">
           En savoir plus
         </a>
       </div>
     </div>
     <div class="absolute bottom-12 right-12 z-20 hidden md:flex flex-col gap-2 items-end">
       <span class="text-xs uppercase tracking-[0.4em] text-outline">À l’affiche</span>
-      <div class="w-48 h-1 bg-outline-variant/30 relative">
-        <div class="absolute top-0 left-0 w-1/3 h-full bg-secondary"></div>
+      <div class="w-48 h-1 bg-outline-variant/30 relative overflow-hidden">
+        <div id="hero-progress" class="absolute top-0 left-0 w-0 h-full bg-secondary"></div>
       </div>
     </div>
   </section>
@@ -212,13 +200,27 @@
       <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
         <div>
           <span class="text-xs font-bold uppercase tracking-[0.25em] text-secondary">À la une</span>
-          <h2 class="font-headline text-3xl font-bold tracking-tight md:text-4xl">Films &amp; séries <span class="text-primary italic">en rotation</span></h2>
-          <p class="mt-2 max-w-xl text-sm text-on-surface-variant">Trois films et trois séries — ordre mélangé à chaque chargement.</p>
+          <h2 class="font-headline text-3xl font-bold tracking-tight md:text-4xl">Lumière sur la <span class="text-primary italic">Sélection</span></h2>
+          <p class="mt-2 max-w-xl text-sm text-on-surface-variant">Une immersion dans notre catalogue : trois films et trois séries emblématiques, renouvelés à chaque regard.</p>
         </div>
         <div id="spotlight-dots" class="flex flex-wrap items-center gap-2"></div>
       </div>
       <div id="spotlight-viewport" class="relative overflow-hidden rounded-2xl border border-outline-variant/50 bg-[#0c0e10] shadow-2xl ring-1 ring-white/[0.04]">
-        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform"></div>
+        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform">
+          <!-- Initial Skeleton / Placeholder -->
+          <div class="flex shrink-0 w-full flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10 animate-pulse">
+            <div class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 bg-surface-container-high/50 sm:max-w-[180px]"></div>
+            <div class="flex-1 text-center md:text-left space-y-4">
+              <div class="h-3 w-20 bg-secondary/20 rounded"></div>
+              <div class="h-10 w-64 bg-on-surface/10 rounded"></div>
+              <div class="h-4 w-full bg-on-surface-variant/10 rounded"></div>
+              <div class="flex gap-3 justify-center md:justify-start pt-4">
+                <div class="h-10 w-24 bg-primary/20 rounded"></div>
+                <div class="h-10 w-32 bg-primary/10 rounded"></div>
+              </div>
+            </div>
+          </div>
+        </div>
         <button type="button" id="spotlight-prev" aria-label="Slide précédent"
           class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
           <span class="material-symbols-outlined text-2xl">chevron_left</span>
@@ -249,7 +251,7 @@
       <div class="max-w-2xl">
         <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Tendances <span
             class="text-secondary italic">du moment</span></h2>
-        <p class="text-on-surface-variant font-body">Films, séries et documentaires issus du catalogue.</p>
+        <p class="text-on-surface-variant font-body">Une sélection dynamique des œuvres qui agitent la critique et passionnent notre communauté.</p>
       </div>
       <div class="flex gap-4 flex-wrap" id="trending-tabs">
         <button type="button" data-trend="cinema" class="trend-tab label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinéma</button>
@@ -257,119 +259,46 @@
         <button type="button" data-trend="docs" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Documentaires</button>
       </div>
     </div>
-    <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]"></div>
+    <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]">
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+      <div class="aspect-[16/9] bg-surface-container animate-pulse rounded-lg border border-outline-variant/10"></div>
+    </div>
   </section>
 
   <!-- Curated Classics (Horizontal Scroll) -->
   <section class="py-32 bg-background relative overflow-hidden">
     <div class="px-12 mb-16 border-l-[12px] border-secondary ml-12">
       <h2 class="text-5xl font-headline font-bold tracking-tighter">Les Immortels</h2>
-      <p class="text-on-surface-variant font-serif italic mt-2">The foundation of modern cinema. Curated for the
-        intellectual soul.</p>
+      <p class="text-on-surface-variant font-serif italic mt-2">Le Panthéon du septième art. Des chefs-d'œuvre intemporels qui ont redéfini les horizons de l'imaginaire.</p>
     </div>
-    <div class="flex overflow-x-auto no-scrollbar gap-12 px-12 pb-12 snap-x">
-      <!-- Classic 1 -->
-      <a href="detail.html?type=movie&amp;title=%C3%80%20bout%20de%20souffle" class="flex-none w-[350px] snap-start group block text-left">
-        <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 1"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Monochrome close-up of a vintage film projector in motion with smoke and light rays"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl8gz679rKVLMMFwic0Mbc7K7H11oEkmrz2Rdk7sdxV5Q4JrLihrttIMVZNwW1MkPk3r_k9jEyhvFGPxGBvcv8yjrwxu_nREWXXVsO751TYbayD0zo6fgsnnqaG3GAP_I1VsXWLRPGUgN9-a9Z9avBKehjOvllCTy8vu3mlHEquz8WHSC7YDzxqCzYlPG49R85I6zSmVYPGlQHGv6vRhbtCeE53A0lepmnAbdQKfu8xSuFDqfAI0yx15bepygvQhLXY4Q0an5flUE" />
-          <div
-            class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
-            1960</div>
-        </div>
-        <h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">À bout de souffle</h3>
-        <p class="text-sm font-label uppercase tracking-widest text-outline">Jean-Luc Godard</p>
-        <div
-          class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>VOIR LA FICHE</span>
-          <span class="material-symbols-outlined text-sm">trending_flat</span>
-        </div>
-      </a>
-      <!-- Classic 2 -->
-      <a href="detail.html?type=movie&amp;title=Les%20Quatre%20Cents%20Coups" class="flex-none w-[350px] snap-start group block text-left">
-        <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 2"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Dark silhouette of a person standing in a doorway with dramatic long shadows on a stone floor"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrI0Lfm1WUQRqhDgV3nG6xk3vYtc_1IflE-6McBsXINAmiQGQGqB-gKhmxLRe5vTIVefD-mI5acOmBDXKqvPNiZ89O0zAo79QA_eSlIwA-ywlLUBHp5TkDNXt9WCl3wMVpuLYMaI9lNONmfhLRcVv4xP9deSil0ypKKu2kkY1lA1Xmot0jOzBpepRCXYCRfOVTgt27QctAFrVb1DOY8w9S-u8Aq6vRdmeIhKh6eJ1JfJ1xE-Tse0BDNVm4njKIgwtx4zlxPJGivSg" />
-          <div
-            class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
-            1959</div>
-        </div>
-        <h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">Les Quatre Cents Coups</h3>
-        <p class="text-sm font-label uppercase tracking-widest text-outline">François Truffaut</p>
-        <div
-          class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>VOIR LA FICHE</span>
-          <span class="material-symbols-outlined text-sm">trending_flat</span>
-        </div>
-      </a>
-      <!-- Classic 3 -->
-      <div class="flex-none w-[350px] snap-start group">
-        <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 3"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Close-up of old film reels stacked on top of each other with dust and vintage patina"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB95ZujzPJ12q2Wmxa7ODiaDbwU6VLw2NdPCS-dRqANwmTT4WdblautJVr9in7WJX_aiW-HJTx6K68U6_YcB_QYqC9vXAswvjUaXf1eVuZdLErdxdjKUUgkdvrTb31fEvrkJKuXVE6uVdIDR-2JILZuFAhBlJlxZS73v3mOryIzEn4PHSYPzV5zIMzmHTiNJ0IPdGgOFcKpEtGHMXKfqX417f63o9CAzVd7XZS8lCjkL_iXz5kBY8SIz-GtSizyUDQbgK-ffTeaoBQ" />
-          <div
-            class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
-            1962</div>
-        </div>
-        <h3 class="text-2xl font-headline mb-2">Jules et Jim</h3>
-        <p class="text-sm font-label uppercase tracking-widest text-outline">François Truffaut</p>
-        <div
-          class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
-          <span class="material-symbols-outlined text-sm">trending_flat</span>
-        </div>
-      </div>
-      <!-- Classic 4 -->
-      <div class="flex-none w-[350px] snap-start group">
-        <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 4"
-            class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Abstract shadow of a classic bistro chair on a cobblestone street with morning sunlight"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXq0VinMsxaRb3-VrQMAjqHtU8UKb_YosauN69Vwevh_U04epUaEO30YbRlSOHhF40zH5-m1wLEYlmKWzQIShZrpbT1pd75USovGKfLuTkRMbm0IeE_VQtKk6_cr_SMU-mzybdVwoKbupngS7V7m3nkRflvKnRDZXhuYLzYpF2OT3zQPRgvu7LpegD0MKKIRQ1Q5IGMYspjCgBDoivyKRhQ0F3AGAD66dhfoe3qk6anaTrJFuiJRIU3ppxsEQNAVUHkz_r-iX5mdo" />
-          <div
-            class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
-            1967</div>
-        </div>
-        <h3 class="text-2xl font-headline mb-2">Playtime</h3>
-        <p class="text-sm font-label uppercase tracking-widest text-outline">Jacques Tati</p>
-        <div
-          class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
-          <span class="material-symbols-outlined text-sm">trending_flat</span>
-        </div>
-      </div>
+    <div class="flex overflow-x-auto no-scrollbar gap-12 px-12 pb-12 snap-x" id="immortals-strip">
     </div>
   </section>
   <!-- Director's Note Section (Asymmetric) -->
   <section class="py-32 px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center bg-surface-container-lowest">
     <div class="md:col-span-7 relative">
       <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/10 -z-10"></div>
-      <img alt="Director Note" class="w-full aspect-video object-cover"
-        data-alt="Artistic high contrast shot of a director's chair on a dark empty film set with a single spotlight"
+      <img alt="Note du directeur" class="w-full aspect-video object-cover"
+        data-alt="Photographie artistique à haut contraste d'une chaise de réalisateur sur un plateau de tournage sombre avec un seul projecteur"
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMW8wz42GXaWiGx7ErtgOEoovRzO_45vjZErynAs6VG_q8ve2xqE9sKVg9sSjRoUVz9g1Q4mQuuU-g2N4Neb2mjBjyo8JUX-ke1qUyBJ7EDnbU1x3cZQg8z6giCpOljeQgqOaOJ4bX5TYEK3yO1MfjWZjauvV79mNirbI_IbSqSr6aW8iSdRrA_qgYQaOCReZXZitCAt8DHjPv_gjW1lfJDMeegeUsBTevgKwdMBU7cC29O9HqAzmJqgxGUxuy2DMEW4MRFT8jGGQ" />
       <div class="absolute bottom-[-30px] right-[-30px] bg-secondary p-8 hidden md:block">
         <span class="material-symbols-outlined text-on-secondary text-5xl">format_quote</span>
       </div>
     </div>
     <div class="md:col-span-5 md:pl-12">
-      <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold block mb-4">The Editorial View</span>
-      <h2 class="text-4xl font-headline italic mb-8">"Cinema is the most beautiful fraud in the world."</h2>
+      <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold block mb-4">Le regard éditorial</span>
+      <h2 class="text-4xl font-headline italic mb-8">"Le cinéma est la plus belle escroquerie du monde."</h2>
       <div class="space-y-6 text-on-surface-variant leading-loose font-body">
-        <p>The Cinémathèque is not just a repository; it is a living, breathing testament to the power of the frame. Our
-          curation process for this season focuses on the 'Invisible Resistance'—films that moved hearts without a
-          single shot fired.</p>
-        <p>Join us this Friday for an exclusive talk with modern auteurs as we dissect the heritage of the Nouvelle
-          Vague in a digital age.</p>
+        <p>La Cinémathèque s'érige comme un sanctuaire de la mémoire visuelle, où chaque archive est une promesse d'émerveillement. Notre processus de sélection privilégie l'émotion pure et l'audace narrative, au-delà des époques et des frontières.</p>
+        <p>Plus qu'un catalogue, nous construisons un dialogue entre les époques. Rejoignez-nous pour explorer l'héritage de la Nouvelle Vague et son écho vibrant dans les récits numériques de demain.</p>
       </div>
       <button
         class="mt-12 text-sm font-label uppercase tracking-[0.3em] border-b border-primary text-primary pb-2 hover:text-white hover:border-white transition-all">
-        Read the Journal
+        Lire le journal
       </button>
     </div>
   </section>
@@ -379,14 +308,14 @@
       <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
       <div class="flex gap-12 mb-8 md:mb-0">
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="terms.html">Terms of Service</a>
+          href="terms.html">Conditions d'utilisation</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="privacy.html">Privacy Policy</a>
+          href="privacy.html">Confidentialité</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
           href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
       </div>
       <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
-        © 2024 Digital Cinémathèque. All rights reserved.
+        © 2026 Digital Cinémathèque. Tous droits réservés.
       </div>
     </div>
     <!-- Subtle Tricolour Accent Bar -->
@@ -514,7 +443,7 @@
                 esc(row.image) +
                 '" alt="' +
                 esc(row.title) +
-                '" class="h-full w-full object-cover grayscale transition duration-500 hover:grayscale-0" />' +
+                '" class="h-full w-full object-cover transition duration-500" />' +
                 "</a>" +
                 '<div class="min-w-0 flex-1 text-center md:text-left">' +
                 '<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">' +
@@ -596,7 +525,7 @@
                   esc(m.image) +
                   '" alt="' +
                   esc(m.title) +
-                  '" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />' +
+                  '" class="w-full h-full object-cover transition-all duration-500" />' +
                   "</div>" +
                   '<p class="text-sm font-serif truncate text-on-background">' +
                   esc(m.title) +
@@ -715,6 +644,117 @@
             });
           });
         });
+      }
+
+      // Hero Auto Rotation
+      var heroSection = document.getElementById("hero-section");
+      var heroImg = document.getElementById("hero-img");
+      var heroBadge = document.getElementById("hero-badge");
+      var heroTitle = document.getElementById("hero-title");
+      var heroDesc = document.getElementById("hero-desc");
+      var heroTrailer = document.getElementById("hero-trailer");
+      var heroLink = document.getElementById("hero-link");
+      var heroProgress = document.getElementById("hero-progress");
+
+      if (heroSection && heroImg) {
+        var heroSelection = [];
+        var heroIdx = 0;
+
+        function updateHero() {
+          if (heroSelection.length === 0) return;
+          var item = heroSelection[heroIdx];
+
+          // Fade out
+          heroImg.style.opacity = 0;
+          document.getElementById('hero-content').style.opacity = 0;
+
+          setTimeout(function() {
+            heroImg.src = item.img;
+            heroBadge.innerHTML = item.badge;
+            heroTitle.innerHTML = item.title;
+            heroDesc.innerHTML = item.desc;
+            heroTrailer.href = item.trailerUrl;
+            heroLink.href = item.href;
+
+            // Wait a small moment before fading back in
+            setTimeout(function() {
+              heroImg.style.opacity = 1;
+              document.getElementById('hero-content').style.opacity = 1;
+            }, 100);
+          }, 1000);
+        }
+
+        function rotateHero() {
+          if (heroSelection.length === 0) return;
+          heroProgress.style.transition = 'none';
+          heroProgress.style.width = '0%';
+          setTimeout(function() {
+            heroProgress.style.transition = 'width 5s linear';
+            heroProgress.style.width = '100%';
+          }, 50);
+
+          setTimeout(function() {
+            heroIdx = (heroIdx + 1) % heroSelection.length;
+            updateHero();
+            rotateHero();
+          }, 5000);
+        }
+
+        fetch('assets/data/featured-hero.json')
+          .then(function(res) { return res.json(); })
+          .then(function(data) {
+            heroSelection = data;
+            if (heroSelection && heroSelection.length > 0) {
+              // Immediately show the first item without delay
+              var firstItem = heroSelection[0];
+              heroImg.src = firstItem.img;
+              heroBadge.innerHTML = firstItem.badge;
+              heroTitle.innerHTML = firstItem.title;
+              heroDesc.innerHTML = firstItem.desc;
+              if (heroTrailer) heroTrailer.href = firstItem.trailerUrl;
+              if (heroLink) heroLink.href = firstItem.href;
+
+              // Fade in immediately
+              setTimeout(function() {
+                heroImg.style.opacity = 1;
+                var hc = document.getElementById('hero-content');
+                if (hc) hc.style.opacity = 1;
+              }, 50);
+
+              setTimeout(function() {
+                rotateHero();
+              }, 100);
+            }
+          })
+          .catch(function(err) {
+            console.error("Failed to load featured hero items:", err);
+          });
+      }
+
+      // Load Les Immortels
+      var immortalsStrip = document.getElementById("immortals-strip");
+      if (immortalsStrip) {
+        fetch("assets/data/immortals.json")
+          .then(function(r) { return r.json(); })
+          .then(function(items) {
+            immortalsStrip.innerHTML = items.map(function(item) {
+              return '<a href="' + item.href + '" class="flex-none w-[350px] snap-start group block text-left">' +
+                '<div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">' +
+                  '<img alt="' + esc(item.title) + '" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="' + esc(item.image) + '" />' +
+                  '<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">' + item.year + '</div>' +
+                '</div>' +
+                '<h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">' + esc(item.title) + '</h3>' +
+                '<p class="text-sm font-label uppercase tracking-widest text-outline">' + esc(item.director) + '</p>' +
+                '<div class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">' +
+                  '<span>VOIR LA FICHE</span>' +
+                  '<span class="material-symbols-outlined text-sm">trending_flat</span>' +
+                '</div>' +
+              '</a>';
+            }).join("");
+          })
+          .catch(function(err) {
+            console.error("Failed to load Immortels:", err);
+          });
       }
     });
   </script>

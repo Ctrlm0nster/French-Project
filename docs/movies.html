@@ -5,7 +5,6 @@
 <head>
   <meta charset="utf-8" />
   <title>Cinémathèque | L'Anthologie du Cinéma</title>
-  
   <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
   <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
@@ -126,16 +125,16 @@
       <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
       <div class="hidden md:flex items-center space-x-10">
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-          href="index.html">Home</a>
-        <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Movies</a>
+          href="index.html">Accueil</a>
+        <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Cinéma</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-          href="series.html">Series</a>
+          href="series.html">Séries</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-          href="documentaries.html">Documentaries</a>
+          href="documentaries.html">Documentaires</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-          href="chatbot.html">Chatbot</a>
+          href="chatbot.html">Assistant</a>
         <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-          href="theaters.html">Theaters</a>
+          href="theaters.html">Salles</a>
       </div>
       <div class="flex items-center space-x-6">
         <div class="relative group hidden lg:block">
@@ -154,12 +153,12 @@
     <!-- Header Section -->
     <header class="mb-16">
       <h1 class="text-5xl md:text-7xl font-serif mb-6 tracking-tight leading-none overflow-hidden">
-        <span class="block">La Collection</span>
-        <span class="block text-primary italic">Permanente.</span>
+        <span class="block">L'Anthologie du</span>
+        <span class="block text-primary italic">Septième Art.</span>
       </h1>
-      <p class="max-w-2xl text-on-surface-variant body-lg leading-relaxed">
-        Une sélection rigoureuse des chefs-d'œuvre du cinéma français, de la Nouvelle Vague aux visions contemporaines.
-        Explorez l'héritage visuel d'une nation de conteurs.
+      <p class="max-w-2xl text-on-surface-variant body-lg leading-relaxed italic">
+        Une sélection rigoureuse de chefs-d'œuvre, des éclats de la Nouvelle Vague aux audaces contemporaines.
+        Un voyage à travers l'âme du récit cinématographique.
       </p>
     </header>
     <div id="movies-react-root"></div>
@@ -174,7 +173,7 @@
       const [page, setPage] = useState(1);
       const [movies, setMovies] = useState([]);
       const [isLoading, setIsLoading] = useState(true);
-      const itemsPerPage = 6;
+      const itemsPerPage = 8;
       const directors = useMemo(() => ["Tous les réalisateurs", ...new Set(movies.map((m) => m.director))], [movies]);
       const genres = useMemo(() => ["Tous les films", ...new Set(movies.map((m) => m.genre))], [movies]);
 
@@ -232,8 +231,8 @@
             </div>
           </aside>
           <div className="flex-grow">
-            {isLoading ? <p className="text-on-surface-variant">Loading movies...</p> : null}
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-y-10 gap-x-6">
+            {isLoading ? <p className="text-on-surface-variant">Chargement du catalogue...</p> : null}
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-6">
               {pagedItems.map((movie) => (
                 <div key={movie.title} className="group mx-auto w-full max-w-[220px]">
                   <div className="relative aspect-[2/3] overflow-hidden bg-surface-container mb-4">
@@ -241,14 +240,14 @@
                       <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" src={movie.image} alt={movie.title} />
                     </a>
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4 gap-2">
-                      <a href={SiteCommon.detailHref("movie", movie.title)} className="bg-primary text-on-primary px-4 py-2 text-[10px] uppercase tracking-wider font-bold text-center">Fiche</a>
+                       <a href={SiteCommon.detailHref("movie", movie.title)} className="bg-primary text-on-primary px-4 py-2 text-[10px] uppercase tracking-wider font-bold text-center">Fiche</a>
                       {movie.trailerUrl ? (
                         <a href={movie.trailerUrl} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-0.5 bg-surface-variant text-on-background px-3 py-2 text-[10px] uppercase tracking-wider font-bold border border-primary/40 hover:border-primary sm:flex-row sm:gap-2">
                           <span className="inline-flex items-center gap-1.5">
                             <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
                             Bande-annonce
                           </span>
-                          <span className="text-[9px] font-bold normal-case tracking-[0.15em] text-on-surface-variant">Watch trailer</span>
+                          <span className="text-[9px] font-bold normal-case tracking-[0.15em] text-on-surface-variant">Voir</span>
                         </a>
                       ) : null}
                     </div>
@@ -265,11 +264,11 @@
             </div>
             <div className="mt-16 flex justify-center items-center space-x-4">
               <button disabled={page === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
-                <span className="material-symbols-outlined">chevron_left</span>
+                <span class="material-symbols-outlined">chevron_left</span>
               </button>
               <span className="label-md text-on-surface mx-4">PAGE {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span>
               <button disabled={page === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant">
-                <span className="material-symbols-outlined">chevron_right</span>
+                <span class="material-symbols-outlined">chevron_right</span>
               </button>
             </div>
           </div>
@@ -284,15 +283,21 @@
       <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
       <div class="flex space-x-8 mb-6 md:mb-0">
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="terms.html">Terms of Service</a>
+          href="terms.html">Conditions d'utilisation</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="privacy.html">Privacy Policy</a>
+          href="privacy.html">Confidentialité</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
           href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
       </div>
       <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
-        © 2024 Digital Cinémathèque. All rights reserved.
+        © 2026 Digital Cinémathèque. Tous droits réservés.
       </div>
+    </div>
+    <!-- Subtle Tricolour Accent Bar -->
+    <div class="flex h-1 w-full">
+      <div class="w-1/3 bg-blue-600"></div>
+      <div class="w-1/3 bg-white"></div>
+      <div class="w-1/3 bg-red-600"></div>
     </div>
   </footer>
 </body>

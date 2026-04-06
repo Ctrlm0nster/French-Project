@@ -12,6 +12,18 @@
   }
 
   window.SiteCommon = {
+    /** Fisher–Yates shuffle (copy) — random order on each page load. */
+    shuffleArray: function (array) {
+      var arr = array.slice();
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+      }
+      return arr;
+    },
+
     detailHref: function (type, title) {
       return (
         'detail.html?type=' +
@@ -34,6 +46,7 @@
             pageLanguage: 'fr',
             includedLanguages: 'en,fr',
             layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            /* Do not auto-open the translate widget / top bar */
             autoDisplay: false,
           },
           'google_translate_element'
@@ -46,4 +59,31 @@
       document.head.appendChild(s);
     },
   };
+
+  // Wire up custom toggle buttons globally via event delegation and auto-init GT if English selected
+  document.addEventListener("DOMContentLoaded", function() {
+    var isEn = document.cookie.indexOf('googtrans=/fr/en') !== -1 || document.cookie.indexOf('googtrans=/auto/en') !== -1;
+    if (isEn && window.SiteCommon && window.SiteCommon.initGoogleTranslate) {
+      window.SiteCommon.initGoogleTranslate();
+    }
+    
+    document.body.addEventListener('click', function(e) {
+      var icon = e.target.closest('[data-icon="language"]');
+      if (icon) {
+        e.preventDefault();
+        var currentlyEn = document.cookie.indexOf('googtrans=/fr/en') !== -1 || document.cookie.indexOf('googtrans=/auto/en') !== -1;
+        if (currentlyEn) {
+          // Switch back to original (French)
+          document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + location.hostname;
+          document.cookie = "googtrans=/fr/fr; path=/;";
+          location.reload();
+        } else {
+          // Switch to English
+          document.cookie = "googtrans=/fr/en; path=/;";
+          location.reload();
+        }
+      }
+    });
+  });
 })();

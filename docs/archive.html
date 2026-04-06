@@ -26,6 +26,7 @@
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/site-common.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -125,43 +126,47 @@
   <!-- TopNavBar -->
   <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
     <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-      <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
-      <div class="hidden md:flex gap-10 items-center">
-        <a class="font-serif tracking-tight text-blue-300 border-b border-red-400 pb-1" href="index.html">Home</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="movies.html">Movies</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="series.html">Series</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="documentaries.html">Documentaries</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="chatbot.html">Chatbot</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
-          href="theaters.html">Theaters</a>
+      <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
+      <div class="hidden md:flex items-center space-x-10">
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="index.html">Accueil</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="movies.html">Cinéma</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="series.html">Séries</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="documentaries.html">Documentaires</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="chatbot.html">Assistant</a>
+        <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
+          href="theaters.html">Salles</a>
       </div>
-      <div class="flex items-center gap-6">
-        <div class="relative group">
-          <span class="material-symbols-outlined text-blue-200 cursor-pointer">language</span>
+      <div class="flex items-center space-x-6">
+        <div class="relative group hidden lg:block">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+          <input
+            class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
+            placeholder="Rechercher..." type="text" />
         </div>
-        <div
-          class="w-8 h-8 bg-surface-container-high border border-outline-variant/20 flex items-center justify-center">
-          <span class="material-symbols-outlined text-sm">search</span>
-        </div>
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+          <span class="material-symbols-outlined" data-icon="language">language</span>
+        </button>
       </div>
     </div>
   </nav>
+
   <!-- Hero Section -->
   <section class="relative h-screen w-full overflow-hidden flex items-center">
     <div class="absolute inset-0 z-0">
       <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
       <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
-      <img alt="Featured Film" class="w-full h-full object-cover object-center grayscale-[20%]"
-        data-alt="Cinematic wide shot of a classic French street at night with soft warm street lamps and deep blue shadows, film grain texture"
+      <img alt="Film en vedette" class="w-full h-full object-cover object-center grayscale-[20%]"
+        data-alt="Plan large cinématographique d'une rue française classique de nuit avec des lampadaires chauds et des ombres bleues profondes, texture grain film"
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtRn0yInxoRcmQ_zI0QLqOuIKr4VQZERvEkSNTmNLmGGb38o5DQZJnYrXSLIcd0nfxIKDQO-4uRR09av7nc_4UE5k7zKFHi5mRKFoglCt4_Df1Y0WOfz5opXRg5ZK500Zf0CxseX8yeBNgDE5Pl23SrAvrfiZLLEFCot7KrD5WUz9q6T_bUeUVvsvYzL4o8p19g-8EnEZwXLsqwDvHkpItNhTzxFST0PsnujxN7xqc-Aq4T2Z4jfKS8Ds3dWOV1K6GqdKTYfu_q_g" />
     </div>
     <div class="relative z-20 px-12 md:px-24 max-w-4xl">
       <div class="mb-4">
-        <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold">The Director's Spotlight</span>
+        <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold">Pleins feux sur le réalisateur</span>
       </div>
       <h1 class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6">
         Le Silence <br />
@@ -169,56 +174,56 @@
       </h1>
       <p
         class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic">
-        "In the quiet of the night, a silent resistance speaks louder than a thousand words."
+        "Dans le calme de la nuit, une résistance silencieuse parle plus fort que mille mots."
       </p>
       <div class="flex items-center gap-8">
         <button
           class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold flex items-center gap-3">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-          Watch Feature
+          Voir le film
         </button>
         <button
           class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30">
-          Learn More
+          En savoir plus
         </button>
       </div>
     </div>
     <div class="absolute bottom-12 right-12 z-20 hidden md:flex flex-col gap-2 items-end">
-      <span class="text-xs uppercase tracking-[0.4em] text-outline">Currently Screening</span>
+      <span class="text-xs uppercase tracking-[0.4em] text-outline">Actuellement à l'affiche</span>
       <div class="w-48 h-1 bg-outline-variant/30 relative">
         <div class="absolute top-0 left-0 w-1/3 h-full bg-secondary"></div>
       </div>
     </div>
   </section>
+
   <!-- Trending Section (Bento Grid) -->
   <section class="py-32 px-12 bg-surface-container-lowest">
     <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
       <div class="max-w-2xl">
-        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Trending <span
-            class="text-secondary italic">Now</span></h2>
-        <p class="text-on-surface-variant font-body">Selected highlights from the contemporary French scene, blending
-          nouvelle vague sensibilities with modern storytelling.</p>
+        <h2 class="text-4xl md:text-5xl font-headline font-bold tracking-tight mb-6">Tendances <span
+            class="text-secondary italic">Actuelles</span></h2>
+        <p class="text-on-surface-variant font-body">Une sélection des moments forts de la scène française contemporaine, mêlant sensibilités de la nouvelle vague et récits modernes.</p>
       </div>
       <div class="flex gap-4">
-        <span class="label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinema</span>
+        <span class="label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinéma</span>
         <span
-          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Series</span>
+          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Séries</span>
         <span
-          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Documentaries</span>
+          class="label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors cursor-pointer">Documentaires</span>
       </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-6 h-[800px]">
       <!-- Featured Trending Card -->
       <div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Modern French cinematic portrait of a woman looking through a window with red and blue neon light reflections"
+        <img alt="Tendance 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          data-alt="Portrait cinématographique français moderne d'une femme regardant par une fenêtre avec des reflets néon rouges et bleus"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbkOo4NwJFSW9LNBiWRWyPELltG_Zuqm2y6EdyjgO-2BIIniCd9R8KDGh9RYbT2a8msZgAyix8172pFrmmh1emUKf13XImsujhBqB8PXijuu_wlF2YP9Nbaa50Uw4PPThHH9sCA-gHdcj2WB23ng9-2ideJTQ4VoijXv99wmCp9__uxtNbA3q8nQdcDxcoUIFZdX-iVozGxtI_DK67dcowmQHNfj9W6BUuH3GJjr0brQGMNQYD-SX9hATr_8P7IEzltTh282EixCw" />
         <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-80"></div>
         <div class="absolute bottom-0 left-0 p-10 w-full">
-          <span class="label-sm uppercase tracking-[0.2em] text-primary mb-3 block">Grand Prix Winner</span>
+          <span class="label-sm uppercase tracking-[0.2em] text-primary mb-3 block">Lauréat du Grand Prix</span>
           <h3 class="text-3xl font-headline mb-4">Anatomie d'une chute</h3>
           <div class="flex gap-4 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <span class="text-xs uppercase tracking-widest text-outline">Drama / 2023</span>
+            <span class="text-xs uppercase tracking-widest text-outline">Drame / 2023</span>
             <div class="h-px w-12 bg-outline-variant"></div>
             <span class="material-symbols-outlined text-secondary">add_circle</span>
           </div>
@@ -226,9 +231,9 @@
       </div>
       <!-- Bento Item 2 -->
       <div class="relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 2"
+        <img alt="Tendance 2"
           class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-105"
-          data-alt="Black and white close up of an antique film camera lens with soft studio lighting and cinematic shadows"
+          data-alt="Gros plan noir et blanc d'un objectif de caméra ancienne avec un éclairage de studio doux et des ombres cinématographiques"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuACvyKj2xIc2RbEPhCckW0crzuXCtmuQ4gOFjVs2E-Ia6b1yhoxzumk1yfznrOvlRZ9UB9a21iToQHsP9aWT03xDv6ZA6DxPIs8eBsfo2KFyYPVNHVD2Yf-PeGxr84r9PWZWLsl-XN6NyjccuxXs23eTScZKa8ohkSLuy8kl09Qj--o_WOYbJJEAW03qAMiotxK3MdDiGykXuXzF1HrHLBplCJNJUFpGrXvrv8i9QQDlZnU7MvPasEVuY1HGowLF-Sow2TYuHkciWQ" />
         <div class="absolute inset-0 bg-primary-container/20 mix-blend-overlay"></div>
         <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
@@ -237,8 +242,8 @@
       </div>
       <!-- Bento Item 3 -->
       <div class="relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Interior of an opulent French opera house with velvet red seats and golden balconies, low angle shot"
+        <img alt="Tendance 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          data-alt="Intérieur d'un opéra français opulent avec des sièges en velours rouge et des balcons dorés, plan en contre-plongée"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXtOxxKer5NWhcZOv76W5TdA-ADIFrYBEdSx8977ckrRgsJ_x94sHcFO7hkHnB9EJIPqpuISmkbV96xHp2clb1JP_VmQ1o-Om-AvrTPw8OO-DASPr4KSrXKKBbjxR7YksJvIw3YxN7UuZ8QbPuY6uhWfdKidQSEIhxYOxm4HEB42e-I75KimNwnwbK6DgehgzwTs0vOGAVWPUiUxEN2mW4v1rVuhBfmR5KiweIqz1lYcoT5tRlxN-lP4x9iDvia9aCfj6fv7ASTLk" />
         <div class="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 to-transparent">
           <h4 class="text-xl font-headline font-bold">Pacifiction</h4>
@@ -246,8 +251,8 @@
       </div>
       <!-- Bento Item 4 -->
       <div class="md:col-span-2 relative group overflow-hidden bg-surface-container">
-        <img alt="Trend 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          data-alt="Blurred lights of a Parisian cafe at dusk with red chairs and blue awning, impressionist photography style"
+        <img alt="Tendance 4" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          data-alt="Lumières floues d'un café parisien au crépuscule avec des chaises rouges et un auvent bleu, style de photographie impressionniste"
           src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgazdXwa3VxdIULTreI1-wMGg_kfM30NvCxMFcVGCQ7q8dJVVu3x0f509_9f9X5ahX-6vchLIr6eMHa_2xt10IFvndwzf4zBnMZanqWew3mlJ1PM3XXAA4FLnIwFQGFMLe4SNp2i7oE3TaR4v0FHM4tCHHJVH9RaIMNRobyrqwu9MoycpTitzNDsacpaCDu8HpSUna_2wMSe5d9wJknImrKP53cI6clIusuCPYu2goNxdQAdM_q41PAAQnON0tKbLkBMlYb-nsZVk" />
         <div class="absolute inset-0 bg-secondary-container/10 mix-blend-multiply"></div>
         <div class="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/80 to-transparent">
@@ -256,20 +261,20 @@
       </div>
     </div>
   </section>
+
   <!-- Curated Classics (Horizontal Scroll) -->
   <section class="py-32 bg-background relative overflow-hidden">
     <div class="px-12 mb-16 border-l-[12px] border-secondary ml-12">
       <h2 class="text-5xl font-headline font-bold tracking-tighter">Les Immortels</h2>
-      <p class="text-on-surface-variant font-serif italic mt-2">The foundation of modern cinema. Curated for the
-        intellectual soul.</p>
+      <p class="text-on-surface-variant font-serif italic mt-2">La fondation du cinéma moderne. Préservés pour l'âme intellectuelle.</p>
     </div>
     <div class="flex overflow-x-auto no-scrollbar gap-12 px-12 pb-12 snap-x">
       <!-- Classic 1 -->
       <div class="flex-none w-[350px] snap-start group">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 1"
+          <img alt="Classique 1"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Monochrome close-up of a vintage film projector in motion with smoke and light rays"
+            data-alt="Gros plan monochrome d'un projecteur de film vintage en mouvement avec de la fumée et des rayons lumineux"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl8gz679rKVLMMFwic0Mbc7K7H11oEkmrz2Rdk7sdxV5Q4JrLihrttIMVZNwW1MkPk3r_k9jEyhvFGPxGBvcv8yjrwxu_nREWXXVsO751TYbayD0zo6fgsnnqaG3GAP_I1VsXWLRPGUgN9-a9Z9avBKehjOvllCTy8vu3mlHEquz8WHSC7YDzxqCzYlPG49R85I6zSmVYPGlQHGv6vRhbtCeE53A0lepmnAbdQKfu8xSuFDqfAI0yx15bepygvQhLXY4Q0an5flUE" />
           <div
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -279,16 +284,16 @@
         <p class="text-sm font-label uppercase tracking-widest text-outline">Jean-Luc Godard</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>EXPLORER LES ARCHIVES</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
       </div>
       <!-- Classic 2 -->
       <div class="flex-none w-[350px] snap-start group">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 2"
+          <img alt="Classique 2"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Dark silhouette of a person standing in a doorway with dramatic long shadows on a stone floor"
+            data-alt="Silhouette sombre d'une personne se tenant dans un encadrement de porte avec de longues ombres dramatiques sur un sol en pierre"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrI0Lfm1WUQRqhDgV3nG6xk3vYtc_1IflE-6McBsXINAmiQGQGqB-gKhmxLRe5vTIVefD-mI5acOmBDXKqvPNiZ89O0zAo79QA_eSlIwA-ywlLUBHp5TkDNXt9WCl3wMVpuLYMaI9lNONmfhLRcVv4xP9deSil0ypKKu2kkY1lA1Xmot0jOzBpepRCXYCRfOVTgt27QctAFrVb1DOY8w9S-u8Aq6vRdmeIhKh6eJ1JfJ1xE-Tse0BDNVm4njKIgwtx4zlxPJGivSg" />
           <div
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -298,16 +303,16 @@
         <p class="text-sm font-label uppercase tracking-widest text-outline">François Truffaut</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>EXPLORER LES ARCHIVES</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
       </div>
       <!-- Classic 3 -->
       <div class="flex-none w-[350px] snap-start group">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 3"
+          <img alt="Classique 3"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Close-up of old film reels stacked on top of each other with dust and vintage patina"
+            data-alt="Gros plan de bobines de film anciennes empilées les unes sur les autres avec de la poussière et une patine vintage"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuB95ZujzPJ12q2Wmxa7ODiaDbwU6VLw2NdPCS-dRqANwmTT4WdblautJVr9in7WJX_aiW-HJTx6K68U6_YcB_QYqC9vXAswvjUaXf1eVuZdLErdxdjKUUgkdvrTb31fEvrkJKuXVE6uVdIDR-2JILZuFAhBlJlxZS73v3mOryIzEn4PHSYPzV5zIMzmHTiNJ0IPdGgOFcKpEtGHMXKfqX417f63o9CAzVd7XZS8lCjkL_iXz5kBY8SIz-GtSizyUDQbgK-ffTeaoBQ" />
           <div
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -317,16 +322,16 @@
         <p class="text-sm font-label uppercase tracking-widest text-outline">François Truffaut</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>EXPLORER LES ARCHIVES</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
       </div>
       <!-- Classic 4 -->
       <div class="flex-none w-[350px] snap-start group">
         <div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">
-          <img alt="Classic 4"
+          <img alt="Classique 4"
             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-            data-alt="Abstract shadow of a classic bistro chair on a cobblestone street with morning sunlight"
+            data-alt="Ombre abstraite d'une chaise de bistrot classique sur une rue pavée avec la lumière du soleil matinale"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXq0VinMsxaRb3-VrQMAjqHtU8UKb_YosauN69Vwevh_U04epUaEO30YbRlSOHhF40zH5-m1wLEYlmKWzQIShZrpbT1pd75USovGKfLuTkRMbm0IeE_VQtKk6_cr_SMU-mzybdVwoKbupngS7V7m3nkRflvKnRDZXhuYLzYpF2OT3zQPRgvu7LpegD0MKKIRQ1Q5IGMYspjCgBDoivyKRhQ0F3AGAD66dhfoe3qk6anaTrJFuiJRIU3ppxsEQNAVUHkz_r-iX5mdo" />
           <div
             class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">
@@ -336,53 +341,52 @@
         <p class="text-sm font-label uppercase tracking-widest text-outline">Jacques Tati</p>
         <div
           class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-          <span>EXPLORE ARCHIVE</span>
+          <span>EXPLORER LES ARCHIVES</span>
           <span class="material-symbols-outlined text-sm">trending_flat</span>
         </div>
       </div>
     </div>
   </section>
+
   <!-- Director's Note Section (Asymmetric) -->
   <section class="py-32 px-12 grid grid-cols-1 md:grid-cols-12 gap-12 items-center bg-surface-container-lowest">
     <div class="md:col-span-7 relative">
       <div class="absolute -top-12 -left-12 w-64 h-64 bg-primary/10 -z-10"></div>
-      <img alt="Director Note" class="w-full aspect-video object-cover"
-        data-alt="Artistic high contrast shot of a director's chair on a dark empty film set with a single spotlight"
+      <img alt="Note du réalisateur" class="w-full aspect-video object-cover"
+        data-alt="Plan artistique à haut contraste d'une chaise de réalisateur sur un plateau de tournage vide et sombre avec un seul projecteur"
         src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMW8wz42GXaWiGx7ErtgOEoovRzO_45vjZErynAs6VG_q8ve2xqE9sKVg9sSjRoUVz9g1Q4mQuuU-g2N4Neb2mjBjyo8JUX-ke1qUyBJ7EDnbU1x3cZQg8z6giCpOljeQgqOaOJ4bX5TYEK3yO1MfjWZjauvV79mNirbI_IbSqSr6aW8iSdRrA_qgYQaOCReZXZitCAt8DHjPv_gjW1lfJDMeegeUsBTevgKwdMBU7cC29O9HqAzmJqgxGUxuy2DMEW4MRFT8jGGQ" />
       <div class="absolute bottom-[-30px] right-[-30px] bg-secondary p-8 hidden md:block">
         <span class="material-symbols-outlined text-on-secondary text-5xl">format_quote</span>
       </div>
     </div>
     <div class="md:col-span-5 md:pl-12">
-      <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold block mb-4">The Editorial View</span>
-      <h2 class="text-4xl font-headline italic mb-8">"Cinema is the most beautiful fraud in the world."</h2>
+      <span class="label-md uppercase tracking-[0.3em] text-secondary font-bold block mb-4">Le regard éditorial</span>
+      <h2 class="text-4xl font-headline italic mb-8">"Le cinéma est la plus belle fraude du monde."</h2>
       <div class="space-y-6 text-on-surface-variant leading-loose font-body">
-        <p>The Cinémathèque is not just a repository; it is a living, breathing testament to the power of the frame. Our
-          curation process for this season focuses on the 'Invisible Resistance'—films that moved hearts without a
-          single shot fired.</p>
-        <p>Join us this Friday for an exclusive talk with modern auteurs as we dissect the heritage of the Nouvelle
-          Vague in a digital age.</p>
+        <p>La Cinémathèque n'est pas seulement un répertoire ; c'est un témoignage vivant de la puissance de l'image. Notre processus de sélection cette saison se concentre sur la « Résistance Invisible », ces films qui ont touché les cœurs sans qu'un seul coup de feu ne soit tiré.</p>
+        <p>Rejoignez-nous ce vendredi pour une rencontre exclusive avec des auteurs modernes alors que nous disséquons l'héritage de la Nouvelle Vague à l'ère numérique.</p>
       </div>
       <button
         class="mt-12 text-sm font-label uppercase tracking-[0.3em] border-b border-primary text-primary pb-2 hover:text-white hover:border-white transition-all">
-        Read the Journal
+        Lire le Journal
       </button>
     </div>
   </section>
+
   <!-- Footer -->
   <footer class="w-full border-t border-slate-800/50 bg-slate-950">
     <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
       <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
-      <div class="flex gap-12 mb-8 md:mb-0">
+      <div class="flex space-x-8 mb-6 md:mb-0">
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="terms.html">Terms of Service</a>
+          href="terms.html">Conditions d'utilisation</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-          href="privacy.html">Privacy Policy</a>
+          href="privacy.html">Confidentialité</a>
         <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
           href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
       </div>
       <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
-        © 2026 Digital Cinémathèque. All rights reserved.
+        © 2026 Digital Cinémathèque. Tous droits réservés.
       </div>
     </div>
     <!-- Subtle Tricolour Accent Bar -->
@@ -391,6 +395,8 @@
       <div class="w-1/3 bg-white"></div>
       <div class="w-1/3 bg-red-600"></div>
     </div>
+  </footer>
+
   </footer>
 </body>
 
