@@ -70,10 +70,10 @@ For the chatbot to work, you must provide an OpenAI API Key.
 3. Locate this line in the `<script>` section near the bottom:
 
    ```js
-   const API_KEY = window.OPENAI_API_KEY || "sk-...E9YA";
+   const API_KEY = window.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
    ```
 
-4. Replace `"sk-...E9YA"` with your actual key:
+4. Replace `"YOUR_OPENAI_API_KEY"` with your actual key:
 
    ```js
    const API_KEY = window.OPENAI_API_KEY || "YOUR_ACTUAL_KEY_HERE";
