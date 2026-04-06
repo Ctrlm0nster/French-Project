@@ -1,47 +1,23 @@
 [
   {
-    "title": "Le Peuple migrateur",
-    "year": 2001,
-    "director": "Jacques Perrin, Jacques Cluzaud",
-    "genre": "Nature",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDtRn0yInxoRcmQ_zI0QLqOuIKr4VQZERvEkSNTmNLmGGb38o5DQZJnYrXSLIcd0nfxIKDQO-4uRR09av7nc_4UE5k7zKFHi5mRKFoglCt4_Df1Y0WOfz5opXRg5ZK500Zf0CxseX8yeBNgDE5Pl23SrAvrfiZLLEFCot7KrD5WUz9q6T_bUeUVvsvYzL4o8p19g-8EnEZwXLsqwDvHkpItNhTzxFST0PsnujxN7xqc-Aq4T2Z4jfKS8Ds3dWOV1K6GqdKTYfu_q_g",
-    "description": "Un voyage époustouflant sur les routes migratoires des oiseaux, sans parole mais avec une musique et des images d’une puissance rare.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Le+Peuple+migrateur+bande+annonce"
-  },
-  {
-    "title": "Être et avoir",
-    "year": 2002,
-    "director": "Nicolas Philibert",
-    "genre": "Société",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCbkOo4NwJFSW9LNBiWRWyPELltG_Zuqm2y6EdyjgO-2BIIniCd9R8KDGh9RYbT2a8msZgAyix8172pFrmmh1emUKf13XImsujhBqB8PXijuu_wlF2YP9Nbaa50Uw4PPThHH9sCA-gHdcj2WB23ng9-2ideJTQ4VoijXv99wmCp9__uxtNbA3q8nQdcDxcoUIFZdX-iVozGxtI_DK67dcowmQHNfj9W6BUuH3GJjr0brQGMNQYD-SX9hATr_8P7IEzltTh282EixCw",
-    "description": "Portrait d’une petite école rurale et d’un instituteur qui guide ses élèves avec patience et humanité.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=%C3%8Atre+et+avoir+documentaire"
-  },
-  {
-    "title": "Marche à suivre",
-    "year": 2014,
-    "director": "Jean-Stéphane Bron",
-    "genre": "Justice",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuACvyKj2xIc2RbEPhCckW0crzuXCtmuQ4gOFjVs2E-Ia6b1yhoxzumk1yfznrOvlRZ9UB9a21iToQHsP9aWT03xDv6ZA6DxPIs8eBsfo2KFyYPVNHVD2Yf-PeGxr84r9PWYWLsl-XN6NyjccuxXs23eTScZKa8ohkSLuy8kl09Qj--o_WOYbJJEAW03qAMiotxK3MdDiGykXuXzF1HrHLBplCJNJUFpGrXvrv8i9QQDlZnU7MvPasEVuY1HGowLF-Sow2TYuHkciWQ",
-    "description": "Plongée dans les coulisses du Tribunal pénal international pour l’ex-Yougoslavie à La Haye.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Marche+%C3%A0+suivre+documentaire"
-  },
-  {
-    "title": "Visages, villages",
-    "year": 2017,
-    "director": "Agnès Varda, JR",
-    "genre": "Art",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCXtOxxKer5NWhcZOv76W5TdA-ADIFrYBEdSx8977ckrRgsJ_x94sHcFO7hkHnB9EJIPqpuISmkbV96xHp2clb1JP_VmQ1o-Om-AvrTPw8OO-DASPr4KSrXKKBbjxR7YksJvIw3YxN7UuZ8QbPuY6uhWfdKidQSEIhxYOxm4HEB42e-I75KimNwnwbK6DgehgzwTs0vOGAVWPUiUxEN2mW4v1rVuhBfmR5KiweIqz1lYcoT5tRlxN-lP4x9iDvia9aCfj6fv7ASTLk",
-    "description": "Agnès Varda et JR parcourent la France en collant des portraits géants sur des murs : un road-movie tendre et inventif.",
-    "trailerUrl": "https://www.youtube.com/watch?v=h-2wAFwPd3o"
-  },
-  {
-    "title": "Notre dame",
+    "title": "Coffee Break French",
     "year": 2020,
-    "director": "Valérie Donzelli",
-    "genre": "Histoire",
-    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBgazdXwa3VxdIULTreI1-wMGg_kfM30NvCxMFcVGCQ7q8dJVVu3x0f509_9f9X5ahX-6vchLIr6eMHa_2xt10IFvndwzf4zBnMZanqWew3mlJ1PM3XXAA4FLnIwFQGFMLe4SNp2i7oE3TaR4v0FHM4tCHHJVH9RaIMNRobyrqwu9MoycpTitzNDsacpaCDu8HpSUna_2wMSe5d9wJknImrKP53cI6clIusuCPYu2goNxdQAdM_q41PAAQnON0tKbLkBMlYb-nsZVk",
-    "description": "Reconstitution sensible de l’incendie de Notre-Dame et des hommes et femmes mobilisés ce soir-là.",
-    "trailerUrl": "https://www.youtube.com/results?search_query=Notre+dame+Val%C3%A9rie+Donzelli"
+    "author": "Coffee Break Languages",
+    "time": "15-20 min per episode",
+    "image": "assets/posters/Coffee_Day.jpeg"
+  },
+  {
+    "title": "InnerFrench",
+    "year": 2017,
+    "author": "Hugo Cotton",
+    "time": "20-30 min per episode",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHTZXZ9eyoVp-JrG9EvZZ_T2GgR_3L4uiKNQ&s"
+  },
+  {
+    "title": "Learn French by Podcast",
+    "year": 2006,
+    "author": "FrenchPod101",
+    "time": "10-15 min per episode",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPodcasts125%2Fv4%2F3c%2F78%2F32%2F3c7832f3-520a-8630-c844-d68bdf1b7e91%2Fmza_1874989222460489719.jpg%2F1200x1200bf-60.jpg&f=1&nofb=1&ipt=14c3206159936b02deadf569eec34655a43bd54db337a084d1e182a40fef3681"
   }
 ]

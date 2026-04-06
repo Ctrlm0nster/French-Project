@@ -100,34 +100,89 @@
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
 
-        .glass-panel {
-            background: rgba(18, 20, 22, 0.7);
-            backdrop-filter: blur(24px);
+        /* Chat specific styles */
+        .chat-container {
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            background: #0c0e10;
         }
 
-        ::-webkit-scrollbar {
-            width: 4px;
+        .messages-area {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        ::-webkit-scrollbar-track {
+        .message {
+            max-width: 80%;
+            padding: 1rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .message.user {
+            align-self: flex-end;
+            background: rgba(171, 199, 254, 0.1);
+            border: 1px solid rgba(171, 199, 254, 0.2);
+            color: #e2e2e5;
+            border-radius: 12px 12px 0 12px;
+        }
+
+        .message.bot {
+            align-self: flex-start;
+            background: rgba(40, 42, 44, 0.5);
+            border: 1px solid rgba(67, 71, 79, 0.3);
+            color: #c4c6d0;
+            border-radius: 12px 12px 12px 0;
+        }
+
+        .input-area {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid rgba(67, 71, 79, 0.3);
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+            background: rgba(18, 20, 22, 0.5);
+        }
+
+        .chat-input {
+            flex: 1;
             background: transparent;
+            border: none;
+            color: #e2e2e5;
+            font-size: 0.9rem;
+            padding: 0.5rem 0;
+            outline: none !important;
         }
 
-        ::-webkit-scrollbar-thumb {
-            background: #43474f;
+        .send-btn {
+            color: #abc7fe;
+            transition: all 0.3s ease;
         }
 
-        /* AIBotKit iframe: sit inside themed chrome; inner rounding matches embed */
-        .chatbot-embed-wrap {
-            background: linear-gradient(145deg, rgba(0, 38, 84, 0.35) 0%, rgba(18, 20, 22, 0.95) 45%, rgba(205, 3, 38, 0.08) 100%);
+        .send-btn:hover {
+            color: #ffb3af;
+            transform: scale(1.1);
         }
 
-        .chatbot-embed-wrap iframe {
-            display: block;
-            width: 100%;
-            min-height: 600px;
-            background: #1a1c1e;
+        .typing-indicator {
+            font-size: 0.8rem;
+            color: #abc7fe;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            display: none;
         }
+
+        /* Markdown-like styling for bot responses */
+        .message.bot strong { color: #abc7fe; font-weight: 600; }
+        .message.bot em { color: #ffb3af; }
+        .message.bot ul { list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; }
+
     </style>
 </head>
 
@@ -225,19 +280,28 @@
                         <span
                             class="hidden sm:inline text-[9px] uppercase tracking-widest text-outline border border-outline-variant/50 px-2 py-1 rounded-sm">AIBotKit</span>
                     </div>
-                    <div class="p-2 md:p-3 bg-[#0c0e10]">
-                        <iframe title="Assistant Cinémathèque — chatbot"
-                            src="https://app.aibotkit.io/chatbot/8ba6a09a-21fc-49" width="100%" height="600"
-                            frameborder="0" allow="microphone"
-                            class="rounded-[10px] border border-outline-variant/30 shadow-inner"
-                            style="border: none; border-radius: 10px;"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="chat-container">
+                        <div id="messagesArea" class="messages-area">
+                            <div class="message bot">
+                                Bienvenue dans l'Oracle de la Cinémathèque. Comment puis-je vous éclairer sur le septième art aujourd'hui ?
+                            </div>
+                        </div>
+                        <div id="typingIndicator" class="px-6 typing-indicator">
+                            L'Oracle réfléchit...
+                        </div>
+                        <div class="input-area">
+                            <input type="text" id="userInput" placeholder="Demandez quelque chose sur le cinéma..." 
+                                class="chat-input" autocomplete="off" />
+                            <button id="sendBtn" class="send-btn">
+                                <span class="material-symbols-outlined">send</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
                 <p class="mt-5 text-center text-[10px] uppercase tracking-[0.25em] text-outline">
-                    Le micro peut être demandé pour la conversation vocale · Contenu hébergé par un service tiers
+                    Propulsé par Google Gemini 3.1 Pro · Intelligence Artificielle Expérimentale
                 </p>
+
             </div>
         </div>
     </main>
@@ -257,6 +321,93 @@
             © 2026 Digital Cinémathèque. All rights reserved.
         </div>
     </footer>
+    <script type="importmap">
+        {
+          "imports": {
+            "@google/generative-ai": "https://esm.run/@google/generative-ai"
+          }
+        }
+    </script>
+    <script type="module">
+        import { GoogleGenerativeAI } from "@google/generative-ai";
+
+        // Configuration - TO BE UPDATED BY USER IN CONTENT_GUIDE.md
+        const INITIAL_PROMPT = `Tu es l'Expert de la Cinémathèque, un conservateur numérique passionné et érudit. 
+        Ton style est élégant, précis et légèrement poétique. Tu aides les utilisateurs à explorer le cinéma français et mondial.
+        Si on te demande des recommandations, privilégie les classiques et les pépites du catalogue "Cinémathèque".
+        Réponds toujours en français. Utilise du Markdown léger pour la structure.`;
+
+        // The user should set their API key here or via a global config
+        const API_KEY = window.GEMINI_API_KEY || "AIzaSyAgTn6Wi2IwY2-crgqQUVK8gmVRM7-ftkY";
+
+        const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
+        const model = genAI ? genAI.getGenerativeModel({ 
+            model: "gemini-1.5-pro",
+            systemInstruction: INITIAL_PROMPT
+        }) : null;
+
+        let chat = model ? model.startChat({
+            history: [],
+            generationConfig: { maxOutputTokens: 1000 },
+        }) : null;
+
+        const messagesArea = document.getElementById('messagesArea');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        function appendMessage(text, isUser) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            // Simple markdown-to-html conversion for bold and lists
+            let formattedText = text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>')
+                .replace(/<\/ul>\n<ul>/g, ''); // Join adjacent lists
+            
+            msgDiv.innerHTML = formattedText;
+            messagesArea.appendChild(msgDiv);
+            messagesArea.scrollTop = messagesArea.scrollHeight;
+        }
+
+        async function handleSend() {
+            const prompt = userInput.value.trim();
+            if (!prompt) return;
+
+            if (!API_KEY) {
+                appendMessage(prompt, true);
+                appendMessage("Erreur : La clé API Gemini n'a pas été configurée. Veuillez consulter le <strong>CONTENT_GUIDE.md</strong> pour savoir comment l'ajouter.", false);
+                userInput.value = '';
+                return;
+            }
+
+            appendMessage(prompt, true);
+            userInput.value = '';
+            typingIndicator.style.display = 'block';
+
+            try {
+                const result = await chat.sendMessage(prompt);
+                const response = await result.response;
+                appendMessage(response.text(), false);
+            } catch (error) {
+                console.error(error);
+                appendMessage("Désolé, une erreur technique est survenue lors de la communication avec l'Oracle.", false);
+            } finally {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        sendBtn.addEventListener('click', handleSend);
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        // Warn if no API KEY
+        if (!API_KEY) {
+            console.warn("Gemini API Key is missing. Follow instructions in CONTENT_GUIDE.md.");
+        }
+    </script>
 </body>
 
 </html>
