@@ -68,17 +68,19 @@ For the chatbot to work, you must provide an OpenAI API Key.
 1. Get your key from the [OpenAI Platform](https://platform.openai.com/api-keys).
 2. Open `website/chatbot.html` (and `docs/chatbot.html`).
 3. Locate this line in the `<script>` section near the bottom:
+
    ```js
-   const API_KEY = window.OPENAI_API_KEY || "sk-..."; 
+   const API_KEY = window.OPENAI_API_KEY || "sk-...E9YA";
    ```
-4. Replace `"sk-..."` with your actual key:
+
+4. Replace `"sk-...E9YA"` with your actual key:
+
    ```js
    const API_KEY = window.OPENAI_API_KEY || "YOUR_ACTUAL_KEY_HERE";
    ```
 
 > [!WARNING]
 > Adding your API key directly to the HTML file makes it visible to anyone who visits your site. For production use, it is recommended to use a backend proxy.
-
 
 ## Publish updated content
 
