@@ -62,5 +62,53 @@
     "note": "Monument historique à l'architecture néoclassique.",
     "lat": 48.8501,
     "lng": 2.3385
+  },
+  {
+    "name": "Palais des Festivals",
+    "city": "Cannes",
+    "type": "Festival",
+    "note": "Lieu mythique accueillant le Festival de Cannes chaque année.",
+    "lat": 43.5510,
+    "lng": 7.0173
+  },
+  {
+    "name": "Opéra Garnier",
+    "city": "Paris, 9ème",
+    "type": "Théâtre",
+    "note": "Chef-d'œuvre de l'architecture théâtrale du XIXe siècle.",
+    "lat": 48.8719,
+    "lng": 2.3314
+  },
+  {
+    "name": "Théâtre Mogador",
+    "city": "Paris, 9ème",
+    "type": "Théâtre",
+    "note": "Grand théâtre privé parisien réputé pour ses comédies musicales.",
+    "lat": 48.8756,
+    "lng": 2.3314
+  },
+  {
+    "name": "Festival d'Angoulême",
+    "city": "Angoulême",
+    "type": "Festival",
+    "note": "Célèbre pour son Festival International de la Bande Dessinée et son Festival du Film Francophone.",
+    "lat": 45.6484,
+    "lng": 0.1562
+  },
+  {
+    "name": "Le Louxor",
+    "city": "Paris, 10ème",
+    "type": "Cinéma",
+    "note": "Cinéma mythique à la façade néo-égyptienne.",
+    "lat": 48.8837,
+    "lng": 2.3496
+  },
+  {
+    "name": "Théâtre du Châtelet",
+    "city": "Paris, 1er",
+    "type": "Théâtre",
+    "note": "Théâtre historique accueillant opéra, danse et concerts.",
+    "lat": 48.8578,
+    "lng": 2.3464
   }
 ]
