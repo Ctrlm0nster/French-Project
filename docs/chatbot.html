@@ -5,16 +5,25 @@
 <head>
     <meta charset="utf-8" />
     <title>Cinémathèque | L'Oracle Numérique</title>
-    
-  <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
+
+    <link rel="apple-touch-icon" sizes="57x57"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap"
@@ -179,10 +188,20 @@
         }
 
         /* Markdown-like styling for bot responses */
-        .message.bot strong { color: #abc7fe; font-weight: 600; }
-        .message.bot em { color: #ffb3af; }
-        .message.bot ul { list-style: disc; margin-left: 1.25rem; margin-top: 0.5rem; }
+        .message.bot strong {
+            color: #abc7fe;
+            font-weight: 600;
+        }
 
+        .message.bot em {
+            color: #ffb3af;
+        }
+
+        .message.bot ul {
+            list-style: disc;
+            margin-left: 1.25rem;
+            margin-top: 0.5rem;
+        }
     </style>
 </head>
 
@@ -283,14 +302,15 @@
                     <div class="chat-container">
                         <div id="messagesArea" class="messages-area">
                             <div class="message bot">
-                                Bienvenue dans l'Oracle de la Cinémathèque. Comment puis-je vous éclairer sur le septième art aujourd'hui ?
+                                Bienvenue dans l'Oracle de la Cinémathèque. Comment puis-je vous éclairer sur le
+                                septième art aujourd'hui ?
                             </div>
                         </div>
                         <div id="typingIndicator" class="px-6 typing-indicator">
                             L'Oracle réfléchit...
                         </div>
                         <div class="input-area">
-                            <input type="text" id="userInput" placeholder="Demandez quelque chose sur le cinéma..." 
+                            <input type="text" id="userInput" placeholder="Demandez quelque chose sur le cinéma..."
                                 class="chat-input" autocomplete="off" />
                             <button id="sendBtn" class="send-btn">
                                 <span class="material-symbols-outlined">send</span>
@@ -332,16 +352,16 @@
         import { GoogleGenerativeAI } from "@google/generative-ai";
 
         // Configuration - TO BE UPDATED BY USER IN CONTENT_GUIDE.md
-        const INITIAL_PROMPT = `Tu es l'Expert de la Cinémathèque, un conservateur numérique passionné et érudit. 
+        const INITIAL_PROMPT = `Tu es l'Expert de la Cinémathèque, un conservateur numérique passionné et érudit.
         Ton style est élégant, précis et légèrement poétique. Tu aides les utilisateurs à explorer le cinéma français et mondial.
         Si on te demande des recommandations, privilégie les classiques et les pépites du catalogue "Cinémathèque".
         Réponds toujours en français. Utilise du Markdown léger pour la structure.`;
 
         // The user should set their API key here or via a global config
-        const API_KEY = window.GEMINI_API_KEY || "AIzaSyAgTn6Wi2IwY2-crgqQUVK8gmVRM7-ftkY";
+        const API_KEY = window.GEMINI_API_KEY || "AIzaSyD_Rj-b4MrcMEMmNstTdehe7N1Uxtvh2k0";
 
         const genAI = API_KEY ? new GoogleGenerativeAI(API_KEY) : null;
-        const model = genAI ? genAI.getGenerativeModel({ 
+        const model = genAI ? genAI.getGenerativeModel({
             model: "gemini-1.5-pro",
             systemInstruction: INITIAL_PROMPT
         }) : null;
@@ -365,7 +385,7 @@
                 .replace(/\*(.*?)\*/g, '<em>$1</em>')
                 .replace(/^\* (.*$)/gim, '<ul><li>$1</li></ul>')
                 .replace(/<\/ul>\n<ul>/g, ''); // Join adjacent lists
-            
+
             msgDiv.innerHTML = formattedText;
             messagesArea.appendChild(msgDiv);
             messagesArea.scrollTop = messagesArea.scrollHeight;
