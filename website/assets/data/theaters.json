@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Le Champo",
+    "city": "Paris, 5ème",
+    "type": "Cinéma",
+    "note": "Cinéma d'art mythique du Quartier Latin.",
+    "lat": 48.8508,
+    "lng": 2.3445
+  },
+  {
+    "name": "Palais des Papes",
+    "city": "Avignon",
+    "type": "Festival",
+    "note": "Scène historique du Festival d'Avignon.",
+    "lat": 43.9515,
+    "lng": 4.8070
+  },
+  {
+    "name": "Institut Lumière",
+    "city": "Lyon",
+    "type": "Cinéma",
+    "note": "Lieu de naissance du Cinématographe.",
+    "lat": 45.7454,
+    "lng": 4.8719
+  },
+  {
+    "name": "Théâtre de la Criée",
+    "city": "Marseille",
+    "type": "Théâtre",
+    "note": "Centre dramatique national sur le Vieux Port.",
+    "lat": 43.2951,
+    "lng": 5.3698
+  },
+  {
+    "name": "Le Grand Rex",
+    "city": "Paris, 2ème",
+    "type": "Cinéma",
+    "note": "Célèbre pour sa décoration atmosphérique et sa salle de 2700 places.",
+    "lat": 48.8705,
+    "lng": 2.3482
+  },
+  {
+    "name": "La Cinémathèque française",
+    "city": "Paris, 12ème",
+    "type": "Cinéma",
+    "note": "Musée national dédié à l'histoire du cinéma dans un bâtiment par Frank Gehry.",
+    "lat": 48.8394,
+    "lng": 2.3828
+  },
+  {
+    "name": "Théâtre des Célestins",
+    "city": "Lyon",
+    "type": "Théâtre",
+    "note": "Théâtre à l'italienne prestigieux au coeur de Lyon.",
+    "lat": 45.7597,
+    "lng": 4.8315
+  },
+  {
+    "name": "Odéon-Théâtre de l'Europe",
+    "city": "Paris, 6ème",
+    "type": "Théâtre",
+    "note": "Monument historique à l'architecture néoclassique.",
+    "lat": 48.8501,
+    "lng": 2.3385
+  }
+]

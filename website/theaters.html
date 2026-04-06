@@ -129,31 +129,14 @@
             width: 100%;
             height: 100%;
             min-height: 500px;
+            filter: grayscale(1) contrast(1.1) brightness(0.9);
+            transition: all 0.5s ease;
         }
 
-        .map-fallback {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            color: #c4c6d0;
-            background: #1a1c1e;
-            text-align: center;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            font-size: 11px;
+        .map-shell:hover {
+            filter: grayscale(0.5) contrast(1.1) brightness(1);
         }
 
-        .flag-icon {
-            position: relative;
-            left: 8px;
-            width: 34px;
-            height: 34px;
-            object-fit: contain;
-        }
     </style>
 </head>
 
@@ -243,12 +226,7 @@
     </main>
     <script type="text/babel">
         const { useEffect, useMemo, useRef, useState } = React;
-        const VENUES = [
-            { name: "Le Champo", city: "Paris, 5ème", type: "Cinéma", note: "Cinéma d'art mythique du Quartier Latin.", lat: 48.8508, lng: 2.3445 },
-            { name: "Palais des Papes", city: "Avignon", type: "Festival", note: "Scène historique du Festival d'Avignon.", lat: 43.9515, lng: 4.8070 },
-            { name: "Institut Lumière", city: "Lyon", type: "Cinéma", note: "Lieu de naissance du Cinématographe.", lat: 45.7454, lng: 4.8719 },
-            { name: "Théâtre de la Criée", city: "Marseille", type: "Théâtre", note: "Centre dramatique national sur le Vieux Port.", lat: 43.2951, lng: 5.3698 }
-        ];
+
         function OpenLayersMapPanel({ venues, selectedVenue }) {
             const mapNodeRef = useRef(null);
             const mapRef = useRef(null);
@@ -277,7 +255,7 @@
                         layers: [
                             new ol.layer.Tile({
                                 source: new ol.source.OSM({
-                                    url: 'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' // Dark theme
+                                    url: 'https://{a-c}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png' // Legible Voyager theme
                                 })
                             }),
                             vectorLayer
@@ -288,6 +266,7 @@
                         }),
                         controls: []
                     });
+
                 }
 
                 const map = mapRef.current;
@@ -322,24 +301,39 @@
                 };
             }, [venues, selectedVenue]);
 
-            return <div ref={mapNodeRef} className="map-shell grayscale brightness-90 contrast-125" />;
+            return <div ref={mapNodeRef} className="map-shell" />;
         }
 
 
         function TheatersExplorer() {
+            const [venues, setVenues] = useState([]);
+            const [isLoading, setIsLoading] = useState(true);
             const [type, setType] = useState("Tous");
             const [query, setQuery] = useState("");
             const [selectedVenue, setSelectedVenue] = useState(null);
-            const filtered = useMemo(() => VENUES.filter((v) => (type === "Tous" || v.type === type) && (v.name.toLowerCase().includes(query.toLowerCase()) || v.city.toLowerCase().includes(query.toLowerCase()))), [type, query]);
+
             useEffect(() => {
-                if (!filtered.some((v) => selectedVenue && v.name === selectedVenue.name)) {
+                fetch("assets/data/theaters.json")
+                    .then(r => r.json())
+                    .then(data => {
+                        setVenues(data);
+                        setSelectedVenue(data[0] || null);
+                        setIsLoading(false);
+                    })
+                    .catch(() => setIsLoading(false));
+            }, []);
+
+            const filtered = useMemo(() => venues.filter((v) => (type === "Tous" || v.type === type) && (v.name.toLowerCase().includes(query.toLowerCase()) || v.city.toLowerCase().includes(query.toLowerCase()))), [venues, type, query]);
+            useEffect(() => {
+                if (filtered.length > 0 && (!selectedVenue || !filtered.some((v) => v.name === selectedVenue.name))) {
                     setSelectedVenue(filtered[0] || null);
                 }
             }, [filtered, selectedVenue]);
             return (
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        <OpenLayersMapPanel venues={filtered} selectedVenue={selectedVenue} />
+                        {isLoading ? <div className="map-fallback">Chargement de la carte...</div> : <OpenLayersMapPanel venues={filtered} selectedVenue={selectedVenue} />}
+
                         <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
                             {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
                         </div>
