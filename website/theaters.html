@@ -26,10 +26,11 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.4.0/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@v10.4.0/dist/ol.js"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script src="assets/js/config.local.js"></script>
     <script src="assets/js/site-common.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -248,123 +249,82 @@
             { name: "Institut Lumière", city: "Lyon", type: "Cinéma", note: "Lieu de naissance du Cinématographe.", lat: 45.7454, lng: 4.8719 },
             { name: "Théâtre de la Criée", city: "Marseille", type: "Théâtre", note: "Centre dramatique national sur le Vieux Port.", lat: 43.2951, lng: 5.3698 }
         ];
-        function loadGoogleMaps() {
-            if (window.google && window.google.maps) {
-                return Promise.resolve(window.google.maps);
-            }
-            if (window.__gmapsLoadingPromise) {
-                return window.__gmapsLoadingPromise;
-            }
-
-            // Priority: APP_CONFIG (local) > Fetch (Vercel/Production)
-            const localKey = (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "";
-
-            const getKeyPromise = localKey
-                ? Promise.resolve({ key: localKey })
-                : fetch('/api/maps-key').then(r => r.json()).catch(() => ({ key: "" }));
-
-            window.__gmapsLoadingPromise = getKeyPromise.then(data => {
-                const key = data.key || localKey;
-                if (!key) {
-                    throw new Error("Missing Google Maps API key. Please check config.local.js");
-                }
-                return new Promise((resolve, reject) => {
-                    if (document.querySelector('script[src*="maps.googleapis.com"]')) {
-                        const interval = setInterval(() => {
-                            if (window.google && window.google.maps) {
-                                clearInterval(interval);
-                                resolve(window.google.maps);
-                            }
-                        }, 100);
-                        return;
-                    }
-                    const script = document.createElement("script");
-                    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(key)}&loading=async&libraries=marker&v=beta`;
-                    script.async = true;
-                    script.onload = () => resolve(window.google.maps);
-                    script.onerror = () => reject(new Error("Failed to load Google Maps script"));
-                    document.head.appendChild(script);
-                });
-            });
-
-            return window.__gmapsLoadingPromise;
-        }
-
-        function GoogleMapPanel({ venues, selectedVenue }) {
-            const mapRef = useRef(null);
+        function OpenLayersMapPanel({ venues, selectedVenue }) {
             const mapNodeRef = useRef(null);
-            const markersRef = useRef([]);
-            const [mapError, setMapError] = useState("");
+            const mapRef = useRef(null);
+            const vectorSourceRef = useRef(null);
 
             useEffect(() => {
-                let cancelled = false;
-                loadGoogleMaps()
-                    .then(async (maps) => {
-                        if (cancelled) return;
-                        const { AdvancedMarkerElement } = await maps.importLibrary("marker");
-                        if (!mapRef.current) {
-                            mapRef.current = new maps.Map(mapNodeRef.current, {
-                                center: { lat: 46.6034, lng: 1.8883 },
-                                zoom: 5,
-                                mapId: "DEMO_MAP_ID",
-                                disableDefaultUI: false
-                            });
-                        }
-                        const map = mapRef.current;
+                if (!mapNodeRef.current) return;
 
-                        // Clear old markers
-                        markersRef.current.forEach((m) => {
-                            m.map = null;
-                        });
-                        markersRef.current = [];
-
-                        const bounds = new maps.LatLngBounds();
-                        venues.forEach((venue) => {
-                            const img = document.createElement("img");
-                            img.className = "flag-icon";
-                            // A classic map pin image fallback for advanced markers
-                            img.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-                            const marker = new AdvancedMarkerElement({
-                                map,
-                                position: { lat: venue.lat, lng: venue.lng },
-                                title: venue.name,
-                                content: img
-                            });
-                            markersRef.current.push(marker);
-                            bounds.extend({ lat: venue.lat, lng: venue.lng });
-                        });
-
-                        if (selectedVenue) {
-                            map.setCenter({ lat: selectedVenue.lat, lng: selectedVenue.lng });
-                            map.setZoom(12);
-                        } else if (venues.length > 0) {
-                            map.fitBounds(bounds, 50);
-                        } else {
-                            map.setCenter({ lat: 46.6034, lng: 1.8883 });
-                            map.setZoom(5);
-                        }
-                        setMapError("");
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                        setMapError(error.message || "Carte indisponible");
+                // Initialize map if not exists
+                if (!mapRef.current) {
+                    vectorSourceRef.current = new ol.source.Vector();
+                    const vectorLayer = new ol.layer.Vector({
+                        source: vectorSourceRef.current,
+                        style: new ol.style.Style({
+                            image: new ol.style.Icon({
+                                anchor: [0.5, 1],
+                                src: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // Elegant pin
+                                scale: 0.06,
+                                color: '#abc7fe'
+                            })
+                        })
                     });
 
+                    mapRef.current = new ol.Map({
+                        target: mapNodeRef.current,
+                        layers: [
+                            new ol.layer.Tile({
+                                source: new ol.source.OSM({
+                                    url: 'https://{a-c}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png' // Dark theme
+                                })
+                            }),
+                            vectorLayer
+                        ],
+                        view: new ol.View({
+                            center: ol.proj.fromLonLat([1.8883, 46.6034]),
+                            zoom: 5.5
+                        }),
+                        controls: []
+                    });
+                }
+
+                const map = mapRef.current;
+                const source = vectorSourceRef.current;
+                source.clear();
+
+                const features = venues.map(venue => {
+                    const feature = new ol.Feature({
+                        geometry: new ol.geom.Point(ol.proj.fromLonLat([venue.lng, venue.lat])),
+                        name: venue.name
+                    });
+                    return feature;
+                });
+
+                source.addFeatures(features);
+
+                if (selectedVenue) {
+                    map.getView().animate({
+                        center: ol.proj.fromLonLat([selectedVenue.lng, selectedVenue.lat]),
+                        zoom: 13,
+                        duration: 1000
+                    });
+                } else if (features.length > 0) {
+                    map.getView().fit(source.getExtent(), {
+                        padding: [50, 50, 50, 50],
+                        duration: 1000
+                    });
+                }
+
                 return () => {
-                    cancelled = true;
+                    // map.setTarget(null); // Optional cleanup
                 };
             }, [venues, selectedVenue]);
 
-            if (mapError) {
-                return (
-                    <div className="map-fallback">
-                        {mapError}. Ajoutez votre clé API.
-                    </div>
-                );
-            }
-
-            return <div ref={mapNodeRef} className="map-shell filter invert hue-rotate-180 opacity-80" />;
+            return <div ref={mapNodeRef} className="map-shell grayscale brightness-90 contrast-125" />;
         }
+
 
         function TheatersExplorer() {
             const [type, setType] = useState("Tous");
@@ -379,7 +339,7 @@
             return (
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        <GoogleMapPanel venues={filtered} selectedVenue={selectedVenue} />
+                        <OpenLayersMapPanel venues={filtered} selectedVenue={selectedVenue} />
                         <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
                             {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
                         </div>
