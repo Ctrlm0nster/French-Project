@@ -13,18 +13,16 @@
   <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="2; url=website/index.html" />
+  <meta http-equiv="refresh" content="3; url=website/index.html" />
   
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@1,300;1,700&family=Manrope:wght@300;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg: #0c0e10;
-      --primary: #abc7fe;
-      --secondary: #ffb3af;
-      --text: #e2e2e5;
+      --bg: #080a0f;
+      --primary: #c084fc;
+      --secondary: #f472b6;
+      --text: #f1f5f9;
     }
     
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -32,7 +30,7 @@
     body {
       background-color: var(--bg);
       color: var(--text);
-      font-family: 'Manrope', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       height: 100vh;
       display: flex;
       flex-direction: column;
@@ -57,11 +55,10 @@
     }
 
     .logo {
-      font-family: 'Noto Serif', serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(3rem, 10vw, 6rem);
-      letter-spacing: -0.02em;
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      letter-spacing: -0.04em;
       color: white;
       margin-bottom: 0.5rem;
       background: linear-gradient(to bottom, #fff, #889);
@@ -92,7 +89,7 @@
       height: 2px;
       width: 0;
       background: linear-gradient(90deg, transparent, var(--primary), transparent);
-      animation: load 2.3s linear forwards;
+      animation: load 3.1s linear forwards;
     }
 
     @keyframes load {
@@ -173,7 +170,7 @@
   <script>
     setTimeout(() => {
       window.location.href = "website/index.html";
-    }, 2200);
+    }, 3000);
   </script>
 </body>
 </html>

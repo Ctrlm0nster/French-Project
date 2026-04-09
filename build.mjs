@@ -21,7 +21,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
     }
 });
 const srcDir = path.join(__dirname, 'website');
-const destDir = path.join(__dirname, 'docs');
+const destDocsDir = path.join(__dirname, 'docs');
+const destSiteDir = path.join(destDocsDir, 'website');
 
 // Function to recursively copy and process files
 function processDirectory(src, dest) {
@@ -57,5 +58,19 @@ function processDirectory(src, dest) {
 }
 
 console.log('Building project: Injecting environment variables...');
-processDirectory(srcDir, destDir);
+
+// Clear old docs
+if (fs.existsSync(destDocsDir)) {
+    fs.rmSync(destDocsDir, { recursive: true, force: true });
+}
+fs.mkdirSync(destDocsDir, { recursive: true });
+
+processDirectory(srcDir, destSiteDir);
+
+// Copy root index.html to docs/index.html
+const rootIndexSrc = path.join(__dirname, 'index.html');
+if (fs.existsSync(rootIndexSrc)) {
+    fs.copyFileSync(rootIndexSrc, path.join(destDocsDir, 'index.html'));
+}
+
 console.log('Build complete: Files synced to docs/');

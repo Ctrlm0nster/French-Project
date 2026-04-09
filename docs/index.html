@@ -1,10 +1,8 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="fr">
-
+<html lang="fr" class="dark">
 <head>
   <meta charset="utf-8" />
-  <title>Cinémathèque | Accueil Editorial</title>
+  <title>Cinémathèque | Bienvenue</title>
   <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
   <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
   <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
@@ -14,753 +12,165 @@
   <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="refresh" content="3; url=website/index.html" />
+  
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link id="cinematheque-translate-css" rel="stylesheet" href="assets/css/google-translate.css" />
-  <link rel="stylesheet" href="assets/css/cursor.css" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <script src="assets/js/site-common.js"></script>
-  <script src="assets/js/cursor.js"></script>
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "primary": "#7c3aed",
-            "secondary": "#ec4899",
-            "background": "#080a0f",
-            "surface": "#0f1117",
-            "surface-container": "#141720",
-            "surface-container-low": "#0d0f14",
-            "surface-container-high": "#1a1d28",
-            "surface-container-highest": "#22263a",
-            "surface-container-lowest": "#080a0f",
-            "on-surface": "#f1f5f9",
-            "on-surface-variant": "#94a3b8",
-            "on-background": "#f1f5f9",
-            "outline": "#475569",
-            "outline-variant": "rgba(255,255,255,0.08)",
-            "on-primary": "#ffffff",
-            "on-secondary": "#ffffff",
-            "primary-fixed-dim": "#c084fc"
-          },
-          fontFamily: {
-            headline: ['Syne', 'Space Grotesk', 'sans-serif'],
-            body: ['Space Grotesk', 'sans-serif'],
-            label: ['Space Grotesk', 'sans-serif'],
-          },
-          borderRadius: {
-            DEFAULT: '8px',
-            sm: '6px',
-            md: '14px',
-            lg: '20px',
-            xl: '28px',
-            full: '9999px',
-          }
-        }
+  
+  <style>
+    :root {
+      --bg: #080a0f;
+      --primary: #c084fc;
+      --secondary: #f472b6;
+      --text: #f1f5f9;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Space Grotesk', sans-serif;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      perspective: 1000px;
+    }
+
+    .brand-container {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(20px) translateZ(-100px);
+      animation: entrance 1.5s cubic-bezier(0.2, 0, 0.2, 1) forwards;
+    }
+
+    @keyframes entrance {
+      to {
+        opacity: 1;
+        transform: translateY(0) translateZ(0);
       }
     }
-  </script>
-  <style>
-    body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
-    .font-serif { font-family: 'Syne', sans-serif; }
-    .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-    .no-scrollbar::-webkit-scrollbar { display: none; }
-    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .translate-widget-root { min-height:40px; display:flex; align-items:center; }
-    .reveal-on-scroll { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease,transform 0.7s ease; }
-    .reveal-on-scroll.is-visible { opacity:1; transform:translateY(0); }
-    .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .genre-gradient-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(124,58,237,0.4),rgba(236,72,153,0.3),transparent); }
-    section { position:relative; }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 10vw, 6.5rem);
+      letter-spacing: -0.04em;
+      color: white;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(to bottom, #fff, #889);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .tagline {
+      font-size: clamp(0.75rem, 2vw, 1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.5em;
+      color: var(--secondary);
+      font-weight: 500;
+      margin-left: 0.5em;
+      animation: pulseTagline 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulseTagline {
+      0%, 100% { opacity: 0.75; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    .loader-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      animation: load 3.1s linear forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    .manual-link {
+      margin-top: 4rem;
+      opacity: 0;
+      animation: fadeIn 0.5s 1.5s forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    .btn {
+      text-decoration: none;
+      color: var(--text);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      padding: 1rem 2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .glow {
+      position: absolute;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      filter: blur(80px);
+      opacity: 0.05;
+      z-index: -1;
+      animation: float 10s infinite alternate;
+    }
+
+    @keyframes float {
+      from { transform: translate(-10%, -10%); }
+      to { transform: translate(10%, 10%); }
+    }
+
+    .film-grain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.45) 0.5px, transparent 0.6px);
+      background-size: 3px 3px;
+      animation: grainShift 0.5s steps(2) infinite;
+      mix-blend-mode: soft-light;
+    }
+
+    @keyframes grainShift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-2px, 2px); }
+    }
   </style>
 </head>
-
-<body class="bg-background text-on-background">
-  <!-- Background ambient orbs -->
-  <div class="bg-orbs" aria-hidden="true"></div>
-
-  <!-- TopNavBar -->
-  <nav class="nav-modern" id="main-nav">
-    <a href="index.html" class="nav-logo">Cinémathèque</a>
-    <ul class="nav-links hidden md:flex">
-      <li><a href="index.html" class="active">Accueil</a></li>
-      <li><a href="movies.html">Cinéma</a></li>
-      <li><a href="series.html">Séries</a></li>
-      <li><a href="documentaries.html">Docs</a></li>
-      <li><a href="chatbot.html">Assistant</a></li>
-      <li><a href="theaters.html">Salles</a></li>
-    </ul>
-    <div class="nav-actions flex items-center gap-4">
-            <form action="search.html" method="get" class="relative hidden sm:block">
-                <input
-                    id="search-input"
-                    name="q"
-                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
-                    placeholder="Rechercher..." type="text" />
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
-            </form>
-            <button class="btn btn-glass btn-icon">
-                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
-            </button>
-        </div>
-    </nav>
-  <!-- Hero Section -->
-  <section id="hero-section" class="relative h-screen w-full overflow-hidden flex items-center transition-opacity duration-1000">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
-      <img id="hero-img" alt="Film à l'affiche" class="w-full h-full object-cover object-center grayscale-[20%] transition-opacity duration-1000"
-        src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.mS1_LdTRY9erw7pbHJoxpwHaE7%3Fpid%3DApi&f=1&ipt=674bf482b551dda7c43916d5747e5efe90d6b30390fbe64ab39b1b9f5b255d5f&ipo=images" />
-    </div>
-    <div class="relative z-20 px-12 md:px-24 max-w-4xl" id="hero-content">
-      <div class="mb-4">
-        <span id="hero-badge" class="label-md uppercase tracking-[0.3em] text-secondary font-bold transition-all duration-500">IMDb 8.5/10</span>
-      </div>
-      <h1 id="hero-title" class="text-7xl md:text-9xl font-headline font-bold leading-tight tracking-tighter text-on-background mb-6 transition-all duration-500">Intouchables <br /><span class="italic font-light text-primary-fixed-dim">2011</span></h1>
-      <p id="hero-desc"
-        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
-      <div class="flex flex-wrap items-center gap-4 md:gap-8">
-        <a id="hero-trailer" href="https://www.youtube.com/watch?v=EFGmBOJy8sc" target="_blank" rel="noopener noreferrer"
-          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300 magnetic">
-          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
-          Bande-annonce
-        </a>
-        <a id="hero-link" href="detail.html?type=movie&title=The%20Intouchables"
-          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300 magnetic">
-          En savoir plus
-        </a>
-      </div>
-    </div>
-    <div class="absolute bottom-12 right-12 z-20 hidden md:flex flex-col gap-2 items-end">
-      <span class="text-xs uppercase tracking-[0.4em] text-outline">À l’affiche</span>
-      <div class="w-48 h-1 bg-outline-variant/30 relative overflow-hidden">
-        <div id="hero-progress" class="absolute top-0 left-0 w-0 h-full bg-secondary"></div>
-      </div>
-    </div>
-  </section>
-  <!-- divider -->
-  <div class="genre-gradient-divider"></div>
-
-  <!-- Spotlight: 3 films + 3 series, shuffled, auto-rotating carousel -->
-  <section style="padding:5rem 1.5rem 5rem;position:relative">
-    <div style="max-width:1200px;margin:0 auto">
-      <div style="margin-bottom:2.5rem;display:flex;flex-direction:column;gap:1.5rem" class="md:flex-row md:items-end md:justify-between">
-        <div>
-          <div class="section-eyebrow">À la une</div>
-          <h2 class="section-title">Lumière sur la <span class="grad-text">Sélection</span></h2>
-          <p style="margin-top:0.6rem;max-width:500px;font-size:0.9rem;color:var(--text-secondary);line-height:1.65">Une immersion dans notre catalogue — trois films et trois séries emblématiques.</p>
-        </div>
-        <div id="spotlight-dots" class="flex flex-wrap items-center gap-2"></div>
-      </div>
-      <div id="spotlight-viewport" class="spotlight-wrap relative overflow-hidden">
-        <div id="spotlight-track" class="flex transition-transform duration-700 ease-out will-change-transform">
-          <!-- Initial Skeleton / Placeholder -->
-          <div class="flex shrink-0 w-full flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10 animate-pulse">
-            <div class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 bg-surface-container-high/50 sm:max-w-[180px]"></div>
-            <div class="flex-1 text-center md:text-left space-y-4">
-              <div class="h-3 w-20 bg-secondary/20 rounded"></div>
-              <div class="h-10 w-64 bg-on-surface/10 rounded"></div>
-              <div class="h-4 w-full bg-on-surface-variant/10 rounded"></div>
-              <div class="flex gap-3 justify-center md:justify-start pt-4">
-                <div class="h-10 w-24 bg-primary/20 rounded"></div>
-                <div class="h-10 w-32 bg-primary/10 rounded"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <button type="button" id="spotlight-prev" aria-label="Slide précédent"
-          class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
-          <span class="material-symbols-outlined text-2xl">chevron_left</span>
-        </button>
-        <button type="button" id="spotlight-next" aria-label="Slide suivant"
-          class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
-          <span class="material-symbols-outlined text-2xl">chevron_right</span>
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- divider -->
-  <div class="genre-gradient-divider"></div>
-
-  <!-- Currently screening (carousel from catalogue) -->
-  <section style="padding:5rem 1.5rem;position:relative;background:rgba(255,255,255,0.01)">
-    <div style="max-width:1600px;margin:0 auto">
-      <div style="display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem">
-        <div>
-          <div class="section-eyebrow">Catalogue</div>
-          <h2 class="section-title">À l'affiche <span class="grad-text">actuellement</span></h2>
-          <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:0.5rem">Sélection du catalogue — fiches détaillées et bandes-annonces.</p>
-        </div>
-        <a href="movies.html" class="btn btn-outline" style="font-size:0.75rem">Tous les films →</a>
-      </div>
-      <div id="screening-strip" class="flex overflow-x-auto no-scrollbar no-scroll-bar gap-5 pb-4" style="scroll-snap-type:x mandatory"></div>
-    </div>
-  </section>
-  <!-- divider -->
-  <div class="genre-gradient-divider"></div>
-
-  <!-- Trending (dynamic tabs) -->
-  <section style="padding:5rem 1.5rem 5rem;background:rgba(8,10,15,0.7)">
-    <div style="max-width:1280px;margin:0 auto">
-      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;gap:1.5rem">
-        <div>
-          <div class="section-eyebrow">Trending</div>
-          <h2 class="section-title">Tendances <span class="grad-text">du moment</span></h2>
-          <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:0.5rem;max-width:460px">Une sélection dynamique des œuvres qui agitent la critique.</p>
-        </div>
-        <div class="filter-group" id="trending-tabs">
-          <button type="button" data-trend="cinema" class="filter-chip active trend-tab">Cinéma</button>
-          <button type="button" data-trend="series" class="filter-chip trend-tab">Séries</button>
-          <button type="button" data-trend="docs" class="filter-chip trend-tab">Documentaires</button>
-        </div>
-      </div>
-      <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" style="min-height:200px">
-        <div class="skeleton" style="aspect-ratio:2/3;border-radius:14px"></div>
-        <div class="skeleton" style="aspect-ratio:2/3;border-radius:14px"></div>
-        <div class="skeleton" style="aspect-ratio:2/3;border-radius:14px"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Curated Classics (Horizontal Scroll) -->
-  <section id="immortals" class="py-32 bg-background relative overflow-hidden">
-    <div class="px-12 mb-16 border-l-[12px] border-secondary ml-12">
-      <h2 class="text-5xl font-headline font-bold tracking-tighter">Les Immortels</h2>
-      <p class="text-on-surface-variant font-serif italic mt-2">Le Panthéon du septième art. Des chefs-d'œuvre intemporels qui ont redéfini les horizons de l'imaginaire.</p>
-    </div>
-    <div class="flex overflow-x-auto no-scrollbar gap-12 px-12 pb-12 snap-x" id="immortals-strip">
-    </div>
-  </section>
-  <!-- divider -->
-  <div class="genre-gradient-divider"></div>
-
-  <!-- Director's Note Section -->
-  <section style="padding:5rem 1.5rem;background:rgba(8,10,15,0.8)">
-    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr;gap:3rem;align-items:center" class="md:grid-cols-2">
-      <div style="position:relative">
-        <!-- Glow accent -->
-        <div style="position:absolute;top:-30px;left:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(124,58,237,0.2),transparent 70%);z-index:0"></div>
-        <div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)">
-          <img alt="Note du directeur" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1)"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMW8wz42GXaWiGx7ErtgOEoovRzO_45vjZErynAs6VG_q8ve2xqE9sKVg9sSjRoUVz9g1Q4mQuuU-g2N4Neb2mjBjyo8JUX-ke1qUyBJ7EDnbU1x3cZQg8z6giCpOljeQgqOaOJ4bX5TYEK3yO1MfjWZjauvV79mNirbI_IbSqSr6aW8iSdRrA_qgYQaOCReZXZitCAt8DHjPv_gjW1lfJDMeegeUsBTevgKwdMBU7cC29O9HqAzmJqgxGUxuy2DMEW4MRFT8jGGQ" />
-          <!-- Quote pill overlay -->
-          <div style="position:absolute;bottom:16px;right:16px;background:linear-gradient(135deg,rgba(124,58,237,0.8),rgba(236,72,153,0.7));border-radius:50%;width:56px;height:56px;display:flex;align-items:center;justify-content:center">
-            <span class="material-symbols-outlined" style="color:#fff;font-size:28px;font-variation-settings:'FILL' 1">format_quote</span>
-          </div>
-        </div>
-      </div>
-      <div style="padding-left:0">
-        <div class="section-eyebrow">Le regard éditorial</div>
-        <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-family:var(--font-display);font-weight:800;letter-spacing:-0.03em;margin:0.75rem 0 1.5rem;font-style:italic">"Le cinéma est la plus belle <span class="grad-text">escroquerie du monde."</span></h2>
-        <div style="color:var(--text-secondary);line-height:1.8;font-size:0.9rem;display:flex;flex-direction:column;gap:1rem">
-          <p>La Cinémathèque s'érige comme un sanctuaire de la mémoire visuelle, où chaque archive est une promesse d'émerveillement.</p>
-          <p>Plus qu'un catalogue, nous construisons un dialogue entre les époques. Rejoignez-nous pour explorer l'héritage de la Nouvelle Vague.</p>
-        </div>
-        <button class="btn btn-outline" style="margin-top:2rem">Lire le journal →</button>
-      </div>
-    </div>
-  </section>
-  <!-- Footer -->
-  <footer class="footer-modern">
-    <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
-      <a href="index.html" class="footer-logo">Cinémathèque</a>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap">
-        <a class="footer-link" href="terms.html">Conditions</a>
-        <a class="footer-link" href="privacy.html">Confidentialité</a>
-        <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
-      </div>
-      <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">
-        © 2026 Digital Cinémathèque
-      </div>
-    </div>
-    <div class="footer-bar"></div>
-  </footer>
+<body>
+  <div class="glow"></div>
+  <div class="film-grain"></div>
+  <div class="brand-container">
+    <h1 class="logo">Cinémathèque</h1>
+    <p class="tagline">Le sanctuaire du septième art</p>
+  </div>
+  <div class="manual-link">
+    <a href="website/index.html" class="btn">Entrer dans l'archive</a>
+  </div>
+  <div class="loader-bar"></div>
   <script>
-    // Nav scroll effect
-    window.addEventListener('scroll', function() {
-      var nav = document.getElementById('main-nav');
-      if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
-    });
-
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.SiteCommon) SiteCommon.initGoogleTranslate();
-
-      function initScrollReveal() {
-        var targets = document.querySelectorAll(
-          "#spotlight-viewport, #screening-strip > *, #trending-grid > *, #immortals-strip > *, section > div, footer"
-        );
-        targets.forEach(function (el) {
-          el.classList.add("reveal-on-scroll");
-        });
-
-        if (!("IntersectionObserver" in window)) {
-          targets.forEach(function (el) { el.classList.add("is-visible"); });
-          return;
-        }
-
-        var observer = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer.unobserve(entry.target);
-            }
-          });
-        }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
-
-        targets.forEach(function (el) { observer.observe(el); });
-      }
-
-      function animateFreshElements(selector) {
-        var elements = document.querySelectorAll(selector);
-        elements.forEach(function (el) {
-          el.classList.add("reveal-on-scroll");
-          requestAnimationFrame(function () {
-            el.classList.add("is-visible");
-          });
-        });
-      }
-      initScrollReveal();
-
-      function esc(s) {
-        return String(s)
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/"/g, "&quot;");
-      }
-
-      var spotlightViewport = document.getElementById("spotlight-viewport");
-      var spotlightTrack = document.getElementById("spotlight-track");
-      var spotlightDots = document.getElementById("spotlight-dots");
-      var spotlightPrev = document.getElementById("spotlight-prev");
-      var spotlightNext = document.getElementById("spotlight-next");
-      var spotlightIndex = 0;
-      var spotlightSlideCount = 0;
-      var spotlightTimer = null;
-
-      function spotlightLayout() {
-        if (!spotlightViewport || !spotlightTrack) return;
-        var w = spotlightViewport.offsetWidth;
-        var slides = spotlightTrack.children;
-        for (var i = 0; i < slides.length; i++) {
-          slides[i].style.flex = "0 0 " + w + "px";
-          slides[i].style.width = w + "px";
-        }
-        spotlightGo(spotlightIndex, true);
-      }
-
-      function spotlightGo(i, instant) {
-        if (!spotlightViewport || !spotlightTrack || spotlightSlideCount < 1) return;
-        spotlightIndex = ((i % spotlightSlideCount) + spotlightSlideCount) % spotlightSlideCount;
-        var w = spotlightViewport.offsetWidth;
-        if (instant) {
-          spotlightTrack.style.transition = "none";
-        }
-        spotlightTrack.style.transform = "translateX(" + -spotlightIndex * w + "px)";
-        if (instant) {
-          spotlightTrack.offsetHeight;
-          spotlightTrack.style.transition = "";
-        }
-        if (spotlightDots) {
-          var dots = spotlightDots.querySelectorAll("button");
-          for (var d = 0; d < dots.length; d++) {
-            var on = d === spotlightIndex;
-            dots[d].classList.toggle("bg-primary", on);
-            dots[d].classList.toggle("border-primary", on);
-            dots[d].classList.toggle("bg-on-surface-variant/30", !on);
-            dots[d].classList.toggle("border-outline-variant/60", !on);
-          }
-        }
-      }
-
-      function spotlightStartTimer() {
-        if (spotlightTimer) clearInterval(spotlightTimer);
-        if (spotlightSlideCount < 2) return;
-        spotlightTimer = setInterval(function () {
-          spotlightGo(spotlightIndex + 1, false);
-        }, 5500);
-      }
-
-      if (
-        spotlightViewport &&
-        spotlightTrack &&
-        spotlightDots &&
-        SiteCommon &&
-        spotlightPrev &&
-        spotlightNext
-      ) {
-        Promise.all([
-          fetch("assets/data/movies.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/series.json").then(function (r) {
-            return r.json();
-          }),
-        ]).then(function (all) {
-          var mv = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 3);
-          var sr = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 3);
-          var slidesData = [];
-          for (var si = 0; si < 3; si++) {
-            if (mv[si]) slidesData.push({ kind: "movie", row: mv[si] });
-            if (sr[si]) slidesData.push({ kind: "series", row: sr[si] });
-          }
-          spotlightSlideCount = slidesData.length;
-          if (!spotlightSlideCount) {
-            spotlightViewport.closest("section").style.display = "none";
-            return;
-          }
-          spotlightTrack.innerHTML = slidesData
-            .map(function (sd) {
-              var row = sd.row;
-              var isSerie = sd.kind === "series";
-              var type = isSerie ? "series" : "movie";
-              var href = SiteCommon.detailHref(type, row.title);
-              var badge = isSerie ? "Série" : "Film";
-              var meta = isSerie
-                ? esc(row.genre || "") +
-                  (row.year ? " · " + row.year : "") +
-                  (row.episodes ? " · " + row.episodes + " ép." : "")
-                : esc(row.director || "") + (row.year ? " · " + row.year : "");
-              var trailer =
-                row.trailerUrl
-                  ? '<a href="' +
-                    String(row.trailerUrl).replace(/"/g, "%22") +
-                    '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-primary/50 bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15"><span class="material-symbols-outlined text-[18px]">play_circle</span>Watch trailer</a>'
-                  : "";
-              return (
-                '<div class="flex shrink-0 flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10">' +
-                '<a href="' +
-                href +
-                '" class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 overflow-hidden border border-outline-variant/40 bg-surface-container sm:max-w-[180px] hover-tilt">' +
-                '<img src="' +
-                esc(row.image) +
-                '" alt="' +
-                esc(row.title) +
-                '" class="h-full w-full object-cover transition duration-500" />' +
-                "</a>" +
-                '<div class="min-w-0 flex-1 text-center md:text-left">' +
-                '<span class="text-[10px] font-bold uppercase tracking-[0.2em] text-secondary">' +
-                badge +
-                "</span>" +
-                '<h3 class="font-headline mt-2 text-2xl font-bold tracking-tight text-on-surface md:text-3xl">' +
-                esc(row.title) +
-                "</h3>" +
-                '<p class="mt-2 text-sm text-on-surface-variant">' +
-                meta +
-                "</p>" +
-                '<div class="mt-6 flex flex-wrap items-center justify-center gap-3 md:justify-start">' +
-                '<a href="' +
-                href +
-                '" class="inline-flex items-center rounded border border-primary bg-primary/20 px-5 py-2.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary hover:bg-primary/30">Fiche</a>' +
-                trailer +
-                "</div></div></div>"
-              );
-            })
-            .join("");
-          animateFreshElements("#spotlight-track > *");
-          spotlightDots.innerHTML = slidesData
-            .map(function (_, idx) {
-              return (
-                '<button type="button" data-idx="' +
-                idx +
-                '" class="h-2.5 w-2.5 rounded-full border transition-colors" aria-label="Slide ' +
-                (idx + 1) +
-                '"></button>'
-              );
-            })
-            .join("");
-          spotlightDots.querySelectorAll("button").forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var idx = parseInt(btn.getAttribute("data-idx"), 10);
-              spotlightGo(idx, false);
-              spotlightStartTimer();
-            });
-          });
-          spotlightPrev.addEventListener("click", function () {
-            spotlightGo(spotlightIndex - 1, false);
-            spotlightStartTimer();
-          });
-          spotlightNext.addEventListener("click", function () {
-            spotlightGo(spotlightIndex + 1, false);
-            spotlightStartTimer();
-          });
-          window.addEventListener("resize", function () {
-            spotlightLayout();
-          });
-          spotlightLayout();
-          spotlightStartTimer();
-        });
-      }
-
-      var screening = document.getElementById("screening-strip");
-      if (screening) {
-        fetch("assets/data/movies.json")
-          .then(function (r) {
-            return r.json();
-          })
-          .then(function (movies) {
-            var slice = SiteCommon.shuffleArray(Array.isArray(movies) ? movies : []).slice(0, 8);
-            screening.innerHTML = slice
-              .map(function (m) {
-                var href = SiteCommon.detailHref("movie", m.title);
-                var trailer =
-                  m.trailerUrl
-                    ? '<a href="' +
-                      String(m.trailerUrl).replace(/"/g, "%22") +
-                      '" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 rounded border border-primary/40 bg-primary-container/20 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/20 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[16px] leading-none">play_circle</span><span>Watch trailer</span></a>'
-                    : "";
-                return (
-                  '<div class="flex-none w-36 snap-start shrink-0 flex flex-col">' +
-                  '<a href="' +
-                  href +
-                  '" class="group block">' +
-                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-2 hover-tilt">' +
-                  '<img src="' +
-                  esc(m.image) +
-                  '" alt="' +
-                  esc(m.title) +
-                  '" class="w-full h-full object-cover transition-all duration-500" />' +
-                  "</div>" +
-                  '<p class="text-sm font-serif truncate text-on-background">' +
-                  esc(m.title) +
-                  "</p>" +
-                  '<p class="text-[10px] text-outline">' +
-                  m.year +
-                  "</p></a>" +
-                  trailer +
-                  "</div>"
-                );
-              })
-              .join("");
-            animateFreshElements("#screening-strip > *");
-          });
-      }
-
-      var grid = document.getElementById("trending-grid");
-      var tabs = document.querySelectorAll("#trending-tabs .trend-tab");
-      var buckets = { cinema: [], series: [], docs: [] };
-
-      if (grid && tabs.length) {
-        Promise.all([
-          fetch("assets/data/movies.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/series.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/documentaries.json").then(function (r) {
-            return r.json();
-          }),
-        ]).then(function (all) {
-          buckets.cinema = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 6);
-          buckets.series = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 6);
-          buckets.docs = SiteCommon.shuffleArray(Array.isArray(all[2]) ? all[2] : []).slice(0, 6);
-
-          function render(tabKey) {
-            var rows =
-              tabKey === "cinema"
-                ? buckets.cinema
-                : tabKey === "series"
-                  ? buckets.series
-                  : buckets.docs;
-            var t =
-              tabKey === "cinema"
-                ? "movie"
-                : tabKey === "series"
-                  ? "series"
-                  : "documentary";
-            var label =
-              tabKey === "cinema"
-                ? "Film"
-                : tabKey === "series"
-                  ? "Série"
-                  : "Documentaire";
-            grid.innerHTML = rows
-              .map(function (row) {
-                var href = SiteCommon.detailHref(t, row.title);
-                var sub = row.director
-                  ? row.director
-                  : row.genre +
-                    (row.year ? " · " + row.year : "");
-                var trailerRow = row.trailerUrl
-                  ? '<a href="' +
-                    String(row.trailerUrl).replace(/"/g, "%22") +
-                    '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex w-fit items-center gap-2 rounded-lg border border-primary/50 bg-black/40 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[18px]">play_circle</span><span>Watch trailer</span></a>'
-                  : "";
-                return (
-                  '<div class="group relative mx-auto flex w-full max-w-[280px] flex-col overflow-hidden bg-surface-container shadow-lg">' +
-                  '<a href="' +
-                  href +
-                  '" class="relative block aspect-[2/3] w-full overflow-hidden hover-tilt">' +
-                  '<img src="' +
-                  esc(row.image) +
-                  '" alt="" class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0" />' +
-                  '<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>' +
-                  "</a>" +
-                  '<div class="flex flex-1 flex-col px-4 pb-5 pt-4">' +
-                  '<span class="text-[10px] uppercase tracking-widest text-secondary">' +
-                  label +
-                  "</span>" +
-                  '<a href="' +
-                  href +
-                  '" class="mt-2 block text-left">' +
-                  '<h3 class="font-headline text-lg text-white transition-colors hover:text-primary">' +
-                  esc(row.title) +
-                  "</h3></a>" +
-                  '<p class="mt-1 text-xs text-slate-400">' +
-                  esc(sub) +
-                  "</p>" +
-                  trailerRow +
-                  "</div></div>"
-                );
-              })
-              .join("");
-            animateFreshElements("#trending-grid > *");
-          }
-
-          render("cinema");
-
-          tabs.forEach(function (btn) {
-            btn.addEventListener("click", function () {
-              var k = btn.getAttribute("data-trend");
-              tabs.forEach(function (b) {
-                var on = b === btn;
-                b.classList.toggle("text-on-surface", on);
-                b.classList.toggle("border-secondary", on);
-                b.classList.toggle("border-transparent", !on);
-                b.classList.toggle("text-outline", !on);
-              });
-              render(
-                k === "cinema"
-                  ? "cinema"
-                  : k === "series"
-                    ? "series"
-                    : "docs"
-              );
-            });
-          });
-        });
-      }
-
-      // Hero Auto Rotation
-      var heroSection = document.getElementById("hero-section");
-      var heroImg = document.getElementById("hero-img");
-      var heroBadge = document.getElementById("hero-badge");
-      var heroTitle = document.getElementById("hero-title");
-      var heroDesc = document.getElementById("hero-desc");
-      var heroTrailer = document.getElementById("hero-trailer");
-      var heroLink = document.getElementById("hero-link");
-      var heroProgress = document.getElementById("hero-progress");
-
-      if (heroSection && heroImg) {
-        var heroSelection = [];
-        var heroIdx = 0;
-
-        function updateHero() {
-          if (heroSelection.length === 0) return;
-          var item = heroSelection[heroIdx];
-
-          // Fade out
-          heroImg.style.opacity = 0;
-          document.getElementById('hero-content').style.opacity = 0;
-
-          setTimeout(function() {
-            heroImg.src = item.img;
-            heroBadge.innerHTML = item.badge;
-            heroTitle.innerHTML = item.title;
-            heroDesc.innerHTML = item.desc;
-            heroTrailer.href = item.trailerUrl;
-            heroLink.href = item.href;
-
-            // Wait a small moment before fading back in
-            setTimeout(function() {
-              heroImg.style.opacity = 1;
-              document.getElementById('hero-content').style.opacity = 1;
-            }, 100);
-          }, 1000);
-        }
-
-        function rotateHero() {
-          if (heroSelection.length === 0) return;
-          heroProgress.style.transition = 'none';
-          heroProgress.style.width = '0%';
-          setTimeout(function() {
-            heroProgress.style.transition = 'width 5s linear';
-            heroProgress.style.width = '100%';
-          }, 50);
-
-          setTimeout(function() {
-            heroIdx = (heroIdx + 1) % heroSelection.length;
-            updateHero();
-            rotateHero();
-          }, 5000);
-        }
-
-        fetch('assets/data/featured-hero.json')
-          .then(function(res) { return res.json(); })
-          .then(function(data) {
-            heroSelection = data;
-            if (heroSelection && heroSelection.length > 0) {
-              // Immediately show the first item without delay
-              var firstItem = heroSelection[0];
-              heroImg.src = firstItem.img;
-              heroBadge.innerHTML = firstItem.badge;
-              heroTitle.innerHTML = firstItem.title;
-              heroDesc.innerHTML = firstItem.desc;
-              if (heroTrailer) heroTrailer.href = firstItem.trailerUrl;
-              if (heroLink) heroLink.href = firstItem.href;
-
-              // Fade in immediately
-              setTimeout(function() {
-                heroImg.style.opacity = 1;
-                var hc = document.getElementById('hero-content');
-                if (hc) hc.style.opacity = 1;
-              }, 50);
-
-              setTimeout(function() {
-                rotateHero();
-              }, 100);
-            }
-          })
-          .catch(function(err) {
-            console.error("Failed to load featured hero items:", err);
-          });
-      }
-
-      // Load Les Immortels
-      var immortalsStrip = document.getElementById("immortals-strip");
-      if (immortalsStrip) {
-        fetch("assets/data/immortals.json")
-          .then(function(r) { return r.json(); })
-          .then(function(items) {
-            immortalsStrip.innerHTML = items.map(function(item) {
-              return '<a href="' + item.href + '" class="flex-none w-[350px] snap-start group block text-left">' +
-                '<div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high hover-tilt">' +
-                  '<img alt="' + esc(item.title) + '" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="' + esc(item.image) + '" />' +
-                  '<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">' + item.year + '</div>' +
-                '</div>' +
-                '<h3 class="text-2xl font-headline mb-2 group-hover:text-primary transition-colors">' + esc(item.title) + '</h3>' +
-                '<p class="text-sm font-label uppercase tracking-widest text-outline">' + esc(item.director) + '</p>' +
-                '<div class="mt-6 flex items-center gap-4 text-xs font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">' +
-                  '<span>VOIR LA FICHE</span>' +
-                  '<span class="material-symbols-outlined text-sm">trending_flat</span>' +
-                '</div>' +
-              '</a>';
-            }).join("");
-            animateFreshElements("#immortals-strip > *");
-          })
-          .catch(function(err) {
-            console.error("Failed to load Immortels:", err);
-          });
-      }
-    });
+    setTimeout(() => {
+      window.location.href = "website/index.html";
+    }, 3000);
   </script>
 </body>
-
 </html>
