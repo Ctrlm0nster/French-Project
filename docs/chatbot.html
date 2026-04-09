@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Cinémathèque | L'Oracle Numérique</title>
+    <title>Cinémathèque | L'Assistant Numérique</title>
 
     <link rel="apple-touch-icon" sizes="57x57"
         href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
@@ -250,7 +250,7 @@
             <span class="label-md uppercase tracking-[0.3em] text-secondary font-label mb-4 block">Intelligence
                 Artificielle</span>
             <h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface leading-tight">
-                L'Oracle de la <br /><span class="italic text-primary">Cinémathèque</span>.
+                L'Assistant de la <br /><span class="italic text-primary">Cinémathèque</span>.
             </h1>
             <p class="mt-8 text-on-surface-variant max-w-xl text-lg font-light leading-relaxed italic">
                 Explorez l'âme du septième art à travers un dialogue suspendu dans le temps.
@@ -310,12 +310,12 @@
                     <div class="chat-container">
                         <div id="messagesArea" class="messages-area">
                             <div class="message bot">
-                                Bienvenue dans l'Oracle de la Cinémathèque. Comment puis-je vous éclairer sur le
+                                Bienvenue dans l'Assistant de la Cinémathèque. Comment puis-je vous éclairer sur le
                                 septième art aujourd'hui ?
                             </div>
                         </div>
                         <div id="typingIndicator" class="px-6 typing-indicator">
-                            L'Oracle réfléchit...
+                            L'Assistant réfléchit...
                         </div>
                         <div class="input-area">
                             <input type="text" id="userInput" placeholder="Demandez quelque chose sur le cinéma..."
@@ -479,7 +479,7 @@
             } catch (error) {
                 console.error("Chat Error:", error);
                 
-                let errorMsg = "Erreur de connexion à l'Oracle.";
+                let errorMsg = "Erreur de connexion à l'Assistant.";
                 
                 if (window.location.protocol === 'file:') {
                     errorMsg = "Le chatbot ne peut pas fonctionner en ouvrant le fichier HTML directement. <br><br>Veuillez utiliser <strong>vercel dev</strong> ou déployer sur Vercel pour activer l'API sécurisée.";
