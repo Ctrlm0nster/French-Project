@@ -17,6 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
   <script src="assets/js/site-common.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
@@ -261,10 +263,24 @@
         });
       }
 
-      fetch(path)
-        .then(function (r) { return r.json(); })
-        .then(function (rows) {
-          var item = rows.find(function (row) { return row.title === title; });
+      function normalizeRemoteDetail(item) {
+        if (!item || typeof item !== "object") return null;
+        return {
+          title: item.title || item.name || "",
+          year: item.year || item.release_year || "",
+          director: item.director || item.director_name || "",
+          genre: item.genre || item.category || "",
+          episodes: item.episodes || item.episode_count || "",
+          image: item.image || item.poster_url || item.poster || "",
+          description: item.description || item.synopsis || "",
+          synopsis: item.synopsis || item.description || "",
+          trailerUrl: item.trailerUrl || item.trailer_url || item.trailer || "",
+          reviews: Array.isArray(item.reviews) ? item.reviews : [],
+          cast: Array.isArray(item.cast) ? item.cast : []
+        };
+      }
+
+      function renderItem(item) {
           if (!item) {
             detailError.classList.remove("hidden");
             return;
@@ -310,6 +326,38 @@
           else back.href = "movies.html";
 
           document.getElementById("detail-root").classList.remove("hidden");
+      }
+
+      fetch(path)
+        .then(function (r) { return r.json(); })
+        .then(function (rows) {
+          var localItem = rows.find(function (row) { return row.title === title; });
+          if (localItem) {
+            renderItem(localItem);
+            return;
+          }
+
+          if ((type === "movie" || type === "series") && window.SupabaseClient) {
+            var remotePromise = type === "series"
+              ? window.SupabaseClient.fetchSeries()
+              : window.SupabaseClient.fetchMovies();
+            return remotePromise
+              .then(function (remoteRows) {
+                var remoteItem = Array.isArray(remoteRows)
+                  ? remoteRows.find(function (row) { return row && row.title === title; })
+                  : null;
+                if (remoteItem) {
+                  renderItem(normalizeRemoteDetail(remoteItem));
+                } else {
+                  detailError.classList.remove("hidden");
+                }
+              })
+              .catch(function () {
+                detailError.classList.remove("hidden");
+              });
+          }
+
+          detailError.classList.remove("hidden");
         })
         .catch(function () {
           detailError.classList.remove("hidden");
