@@ -35,6 +35,7 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/site-common.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
@@ -358,7 +359,8 @@
     <!-- No extra imports needed for direct fetch, but we'll use standard headers -->
 
     <script type="module">
-        // Configuration note: The API key is now handled securely in /api/chat.js using the Groq SDK.
+        // Configuration note: The API key is handled securely in /api/chat.js.
+        // For static hosting (e.g. GitHub Pages), set APP_CONFIG.CHAT_API_URL in assets/js/config.js.
         const INITIAL_PROMPT = `Tu es l'Expert de la Cinémathèque, un conservateur numérique passionné et érudit.
         Ton style est élégant, précis et légèrement poétique. Tu aides les utilisateurs à explorer le cinéma français et mondial.
         Si on te demande des recommandations, privilégie les classiques et les pépites du catalogue "Cinémathèque".
@@ -371,6 +373,19 @@
 
         // History for context
         let history = [];
+
+        function normalizeEndpoint(url) {
+            if (!url) return '';
+            return url.trim().replace(/\/$/, '');
+        }
+
+        function getChatEndpoints() {
+            const endpoints = [];
+            const configured = normalizeEndpoint(window.APP_CONFIG && window.APP_CONFIG.CHAT_API_URL);
+            if (configured) endpoints.push(configured);
+            endpoints.push('/api/chat');
+            return [...new Set(endpoints)];
+        }
 
         function appendMessage(text, isUser) {
             const msgDiv = document.createElement('div');
@@ -387,6 +402,35 @@
             messagesArea.scrollTop = messagesArea.scrollHeight;
         }
 
+        async function sendToEndpoint(endpoint, payload) {
+            const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const contentType = response.headers.get('content-type') || '';
+            let data = null;
+
+            if (contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const rawText = await response.text();
+                data = { error: rawText || `HTTP ${response.status}` };
+            }
+
+            if (!response.ok) {
+                throw new Error(data.error || `HTTP ${response.status}`);
+            }
+
+            const text = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+            if (!text) throw new Error("Réponse invalide de l'API.");
+
+            return text;
+        }
+
         async function handleSend() {
             const prompt = userInput.value.trim();
             if (!prompt) return;
@@ -394,32 +438,34 @@
             appendMessage(prompt, true);
             userInput.value = '';
             typingIndicator.style.display = 'block';
+            sendBtn.disabled = true;
+            userInput.disabled = true;
 
             try {
-                // We call our internal API endpoint instead of the Groq API directly
-                // This keeps our API key secure on the server
-                const response = await fetch('/api/chat', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        model: 'llama-3.3-70b-versatile',
-                        messages: [
-                            { role: 'system', content: INITIAL_PROMPT },
-                            ...history,
-                            { role: 'user', content: prompt }
-                        ]
-                    })
-                });
+                const payload = {
+                    model: 'llama-3.3-70b-versatile',
+                    messages: [
+                        { role: 'system', content: INITIAL_PROMPT },
+                        ...history,
+                        { role: 'user', content: prompt }
+                    ]
+                };
 
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+                const endpoints = getChatEndpoints();
+                let text = '';
+                let lastError = null;
+
+                for (const endpoint of endpoints) {
+                    try {
+                        text = await sendToEndpoint(endpoint, payload);
+                        lastError = null;
+                        break;
+                    } catch (error) {
+                        lastError = error;
+                    }
                 }
 
-                const data = await response.json();
-                const text = data.choices[0].message.content;
+                if (lastError) throw lastError;
 
                 appendMessage(text, false);
 
@@ -435,11 +481,12 @@
                 
                 let errorMsg = "Erreur de connexion à l'Oracle.";
                 
-                // Detailed error for local testing without a server
                 if (window.location.protocol === 'file:') {
                     errorMsg = "Le chatbot ne peut pas fonctionner en ouvrant le fichier HTML directement. <br><br>Veuillez utiliser <strong>vercel dev</strong> ou déployer sur Vercel pour activer l'API sécurisée.";
-                } else if (error.message.includes("404")) {
-                    errorMsg = "L'endpoint API (/api/chat) est introuvable. Vérifiez que vous lancez le projet avec un serveur compatible (ex: Vercel CLI).";
+                } else if (window.location.hostname.endsWith("github.io") && !(window.APP_CONFIG && window.APP_CONFIG.CHAT_API_URL)) {
+                    errorMsg = "Cette version statique n'expose pas /api/chat. Ajoutez <strong>CHAT_API_URL</strong> dans assets/js/config.js vers votre backend Vercel.";
+                } else if (error.message && error.message.includes("404")) {
+                    errorMsg = "L'endpoint API est introuvable. Vérifiez /api/chat ou configurez APP_CONFIG.CHAT_API_URL.";
                 } else if (error.message.includes("401")) {
                     errorMsg = "La clé API Groq est manquante ou invalide sur le serveur.";
                 }
@@ -447,11 +494,14 @@
                 appendMessage(`Désolé, une erreur est survenue: <br><br>${errorMsg}`, false);
             } finally {
                 typingIndicator.style.display = 'none';
+                sendBtn.disabled = false;
+                userInput.disabled = false;
+                userInput.focus();
             }
         }
 
         sendBtn.addEventListener('click', handleSend);
-        userInput.addEventListener('keypress', (e) => {
+        userInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') handleSend();
         });
 

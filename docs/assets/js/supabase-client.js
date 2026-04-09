@@ -3,12 +3,12 @@
  * Provides a lightweight wrapper around the Supabase REST API
  * for fetching movies and series data.
  * 
- * Uses the public anon key from config.local.js (window.APP_CONFIG).
+ * Uses the public anon key from config.js (window.APP_CONFIG).
  * Falls back to local JSON files if Supabase is unavailable.
  */
 
 const SupabaseClient = (() => {
-  // Get config from window.APP_CONFIG (loaded from config.local.js)
+  // Get config from window.APP_CONFIG (loaded from config.js)
   const getConfig = () => {
     const config = window.APP_CONFIG || {};
     return {

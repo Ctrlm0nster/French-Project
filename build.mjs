@@ -19,6 +19,11 @@ if (fs.existsSync(envPath)) {
 const srcDir = path.join(__dirname, 'website');
 const destDir = path.join(__dirname, 'docs');
 
+// Keep docs/ in sync with website/ by removing stale files before copy.
+if (fs.existsSync(destDir)) {
+    fs.rmSync(destDir, { recursive: true, force: true });
+}
+
 // Function to recursively copy and process files
 function processDirectory(src, dest) {
     if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
