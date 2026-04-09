@@ -59,36 +59,33 @@ Valid genres currently used:
 
 ## Groq AI Settings
 
-The chatbot in `chatbot.html` uses **Groq AI (llama-3.3-70b-versatile)**.
+The chatbot now uses a secure backend implementation with the **Groq SDK** and **Vercel Serverless Functions**.
 
 ### Configuring the API Key
 
-For the chatbot to work, you must provide a Groq API Key.
+You no longer need to paste your API key directly into the HTML. Instead, follow these steps:
 
-1. Get your key from the [Groq Console](https://console.groq.com/keys).
-2. Open `website/chatbot.html`.
-3. Locate this line in the `<script>` section near the bottom:
+1. **Local Development**:
+   - Open your `.env` file.
+   - Set the `GROQ_API_KEY` variable:
+     ```bash
+     GROQ_API_KEY=gsk_your_key_here
+     ```
+   - The API will now use this key automatically.
 
-   ```js
-   const API_KEY = window.GROQ_API_KEY || "YOUR_GROQ_API_KEY";
-   ```
+2. **Production (Vercel)**:
+   - Go to your Vercel project dashboard.
+   - Navigate to **Settings** -> **Environment Variables**.
+   - Add a new variable:
+     - **Key**: `GROQ_API_KEY`
+     - **Value**: `gsk_your_actual_key`
+   - Vercel will securely provide this key to the `api/chat.js` function.
 
-4. Replace `"YOUR_GROQ_API_KEY"` with your actual key:
+### How it works
 
-   ```js
-   const API_KEY = window.GROQ_API_KEY || "gsk_xxxxxx...";
-   ```
-
-### Adding Key in Vercel (Production)
-
-To avoid exposure of your key in the HTML, you should use Vercel Environment Variables:
-
-1. Go to your project dashboard on Vercel.
-2. Navigate to **Settings** -> **Environment Variables**.
-3. Add a new variable:
-   - **Key**: `GROQ_API_KEY`
-   - **Value**: `gsk_your_actual_key`
-4. The `build.mjs` script will automatically inject this key into the deployed version during the build process.
+- The frontend (`chatbot.html`) sends requests to `/api/chat`.
+- The backend (`api/chat.js`) uses the `groq-sdk` to communicate with Groq using your private key.
+- This prevents your API key from being exposed to users visiting your website.
 
 ### How to use the AI
 
@@ -96,8 +93,8 @@ To avoid exposure of your key in the HTML, you should use Vercel Environment Var
 - **Ask about theaters**: "Où se trouve la Cinémathèque Française ?"
 - **General Help**: "Explique-moi l'influence de Jean-Luc Godard."
 
-> [!WARNING]
-> Adding your API key directly to the HTML file for local testing is fine, but always use Environment Variables for the live site to keep your credentials secure.
+> [!IMPORTANT]
+> Never share your API key or commit it to GitHub. The new system keeps it safe in environment variables.
 
 ## Publish updated content
 

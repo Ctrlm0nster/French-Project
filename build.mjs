@@ -37,10 +37,10 @@ function processDirectory(src, dest) {
             // Replace process.env placeholders with actual values from the environment
             if (srcPath.endsWith('.html') || srcPath.endsWith('.js')) {
                 const openaiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
-                const groqKey = process.env.GROQ_API_KEY || "YOUR_GROQ_API_KEY";
                 
+                // We no longer inject GROQ_API_KEY into the frontend for security reasons.
+                // It is now handled securely via /api/chat.js (Groq SDK).
                 content = content.replace(/(process\.env\.NEXT_PUBLIC_OPENAI_API_KEY|"YOUR_OPENAI_API_KEY")/g, `"${openaiKey}"`);
-                content = content.replace(/(process\.env\.GROQ_API_KEY|"YOUR_GROQ_API_KEY")/g, `"${groqKey}"`);
             }
 
             fs.writeFileSync(destPath, content);

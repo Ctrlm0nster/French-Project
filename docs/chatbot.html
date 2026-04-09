@@ -358,14 +358,11 @@
     <!-- No extra imports needed for direct fetch, but we'll use standard headers -->
 
     <script type="module">
-        // Configuration - TO BE UPDATED BY USER IN CONTENT_GUIDE.md
+        // Configuration note: The API key is now handled securely in /api/chat.js using the Groq SDK.
         const INITIAL_PROMPT = `Tu es l'Expert de la Cinémathèque, un conservateur numérique passionné et érudit.
         Ton style est élégant, précis et légèrement poétique. Tu aides les utilisateurs à explorer le cinéma français et mondial.
         Si on te demande des recommandations, privilégie les classiques et les pépites du catalogue "Cinémathèque".
         Réponds toujours en français. Utilise du Markdown léger pour la structure.`;
-
-        // The user should set their Groq API key here
-        const API_KEY = window.GROQ_API_KEY || "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"; // Placeholder for build-time replacement
 
         const messagesArea = document.getElementById('messagesArea');
         const userInput = document.getElementById('userInput');
@@ -394,23 +391,17 @@
             const prompt = userInput.value.trim();
             if (!prompt) return;
 
-            if (!API_KEY || API_KEY === "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" || API_KEY.startsWith("process.env.")) {
-                appendMessage(prompt, true);
-                appendMessage("Erreur : La clé API Groq n'a pas été configurée. Veuillez consulter le <strong>CONTENT_GUIDE.md</strong> pour savoir comment l'ajouter.", false);
-                userInput.value = '';
-                return;
-            }
-
             appendMessage(prompt, true);
             userInput.value = '';
             typingIndicator.style.display = 'block';
 
             try {
-                const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                // We call our internal API endpoint instead of the Groq API directly
+                // This keeps our API key secure on the server
+                const response = await fetch('/api/chat', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${API_KEY}`
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         model: 'llama-3.3-70b-versatile',
@@ -418,13 +409,13 @@
                             { role: 'system', content: INITIAL_PROMPT },
                             ...history,
                             { role: 'user', content: prompt }
-                        ],
-                        max_tokens: 1024
+                        ]
                     })
                 });
 
                 if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
                 }
 
                 const data = await response.json();
@@ -436,17 +427,21 @@
                 history.push({ role: 'user', content: prompt });
                 history.push({ role: 'assistant', content: text });
 
-                // Limit history to last 10 messages to keep context fresh and stay within limits
+                // Limit history
                 if (history.length > 20) history = history.slice(history.length - 20);
 
             } catch (error) {
-                console.error("Groq API Error:", error);
-                const errorMsg = error.message.includes("401") 
-                    ? "Clé API invalide ou expirée." 
-                    : error.message.includes("429") 
-                        ? "Limite de quota atteinte ou trop de requêtes."
-                        : "Erreur réseau ou technique.";
-                appendMessage(`Désolé, une erreur est survenue (${errorMsg}). Veuillez vérifier votre configuration dans le <strong>CONTENT_GUIDE.md</strong>.`, false);
+                console.error("Chat Error:", error);
+                
+                // Fallback message for local development if /api/chat isn't available
+                let errorMsg = "Erreur de connexion à l'Oracle.";
+                if (error.message.includes("404")) {
+                    errorMsg = "L'endpoint API (/api/chat) est introuvable. Assurez-vous d'utiliser Vercel pour le développement local.";
+                } else if (error.message.includes("401")) {
+                    errorMsg = "La clé API Groq n'est pas configurée correctement sur le serveur.";
+                }
+
+                appendMessage(`Désolé, une erreur est survenue: ${errorMsg}`, false);
             } finally {
                 typingIndicator.style.display = 'none';
             }
@@ -457,10 +452,7 @@
             if (e.key === 'Enter') handleSend();
         });
 
-        // Warn if no API KEY
-        if (!API_KEY || API_KEY === "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" || API_KEY.toString().startsWith("process.env.")) {
-            console.warn("Groq API Key is missing. Follow instructions in CONTENT_GUIDE.md.");
-        }
+        // Verification logic is now handled server-side.
     </script>
 
 </body>

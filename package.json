@@ -5,6 +5,7 @@
     "build": "node build.mjs"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.101.1"
+    "@supabase/supabase-js": "^2.101.1",
+    "groq-sdk": "^1.1.2"
   }
 }
