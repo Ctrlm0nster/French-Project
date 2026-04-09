@@ -1,0 +1,95 @@
+[
+  {
+    "title": "Catherine Deneuve",
+    "activeYears": "1957 - Présent",
+    "nationality": "France",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fzoomboola.com%2Fimages%2Fcatalog%2F2022%2F3%2Fcatherine-deneuve_76.jpg&f=1&nofb=1&ipt=d9e942f60f5dc6fd7a5eaad5e83b6ec551cf17ee232a9daa942ab012f79d6739",
+    "biography": "Icône du cinéma français et européen, Catherine Deneuve traverse les décennies avec une élégance froide, de la Nouvelle Vague aux drames contemporains.",
+    "filmography": [
+      { "title": "Les Parapluies de Cherbourg", "year": 1964 },
+      { "title": "Belle de Jour", "year": 1967 },
+      { "title": "Indochine", "year": 1992 }
+    ]
+  },
+  {
+    "title": "Alain Delon",
+    "activeYears": "1957 - 2024",
+    "nationality": "France",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.letribunaldunet.fr%2Fwp-content%2Fuploads%2F2024%2F02%2Falain-delon-1.jpg&f=1&nofb=1&ipt=9651a18f56037ceb9c59d0fa86974b1532168ac2b092d5e9c7ff46d69feb55b4",
+    "biography": "Figure majeure du polar français, Alain Delon incarne une présence magnétique qui a marqué durablement le cinéma de genre européen.",
+    "filmography": [
+      { "title": "Le Samouraï", "year": 1967 },
+      { "title": "Le Cercle Rouge", "year": 1970 },
+      { "title": "Plein Soleil", "year": 1960 }
+    ]
+  },
+  {
+    "title": "Agnès Varda",
+    "activeYears": "1955 - 2019",
+    "nationality": "France",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BNWIyZTBiMTctYzE4Ni00ZjFkLTgyZDUtZjQ3NGQwNzI0MDQ2XkEyXkFqcGc%40._V1_.jpg&f=1&nofb=1&ipt=78b12a47496708132b7dedd59a36df0c045542c8d42bcd012b3a64dc9f3e8195",
+    "biography": "Réalisatrice pionnière de la Rive Gauche, Agnès Varda a fusionné documentaire, fiction et regard humaniste dans une œuvre libre et inventive.",
+    "filmography": [
+      { "title": "Cléo de 5 à 7", "year": 1962 },
+      { "title": "Sans toit ni loi", "year": 1985 },
+      { "title": "Les Glaneurs et la Glaneuse", "year": 2000 }
+    ]
+  },
+  {
+    "title": "Jean Gabin",
+    "activeYears": "1928 - 1976",
+    "nationality": "France",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic1.purepeople.com%2Farticles%2F7%2F17%2F13%2F97%2F%40%2F2051965-jean-gabin-en-1974-950x0-2.jpg&f=1&nofb=1&ipt=0db1f0661233b129d8c5310c32b598667e4b6b10353f21a6a57b9a87fd9e1f5f",
+    "biography": "Monument du cinéma populaire français, Jean Gabin a imposé une vérité de jeu qui a influencé plusieurs générations d'acteurs.",
+    "filmography": [
+      { "title": "Le Quai des brumes", "year": 1938 },
+      { "title": "La Traversée de Paris", "year": 1956 },
+      { "title": "Le Clan des Siciliens", "year": 1969 }
+    ]
+  },
+  {
+    "title": "Brigitte Bardot",
+    "activeYears": "1952 - 1973",
+    "nationality": "France",
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.vogue.fr%2Fphotos%2F6333151e5d880bf5df301af1%2F2%3A3%2Fw_2560%252Cc_limit%2FGettyImages-119119793.jpg&f=1&nofb=1&ipt=eaceaf76dac671eaf3fb60c4a792f6cc1097c6d7f5681f3add511c6e73c42e93",
+    "biography": "Actrice et symbole culturel des années 50-60, Brigitte Bardot a bouleversé les codes de la féminité à l'écran en France comme à l'international.",
+    "filmography": [
+      { "title": "Et Dieu... créa la femme", "year": 1956 },
+      { "title": "Le Mépris", "year": 1963 },
+      { "title": "Viva Maria!", "year": 1965 }
+    ]
+  },
+  {
+    "title": "Jean Reno",
+    "activeYears": "1978 - Présent",
+    "nationality": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/62/Jean_Reno_Cannes_2016.jpg",
+    "biography": "Acteur emblématique du cinéma d'action français, Jean Reno est connu pour ses rôles de policiers, tueurs et antihéros charismatiques.",
+    "filmography": [
+      { "title": "Léon", "year": 1994, "href": "detail.html?type=movie&title=L%C3%A9on" },
+      { "title": "Wasabi", "year": 2001, "href": "detail.html?type=movie&title=Wasabi" },
+      { "title": "Le Baiser Mortel du Dragon", "year": 2001, "href": "detail.html?type=movie&title=Le%20Baiser%20Mortel%20du%20Dragon" }
+    ]
+  },
+  {
+    "title": "Ryoko Hirosue",
+    "activeYears": "1994 - Présent",
+    "nationality": "Japon",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/12/Ryoko_Hirosue_2007.jpg",
+    "biography": "Actrice japonaise populaire, Ryoko Hirosue apporte une énergie lumineuse et moderne à ses rôles dramatiques et comiques.",
+    "filmography": [
+      { "title": "Wasabi", "year": 2001, "href": "detail.html?type=movie&title=Wasabi" }
+    ]
+  },
+  {
+    "title": "Michel Muller",
+    "activeYears": "1994 - Présent",
+    "nationality": "France",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/57/Michel_Muller_2016.jpg",
+    "biography": "Comédien français au style satirique, Michel Muller est apprécié pour ses seconds rôles marquants et son humour décalé.",
+    "filmography": [
+      { "title": "Wasabi", "year": 2001, "href": "detail.html?type=movie&title=Wasabi" },
+      { "title": "La Vérité si je mens ! 2", "year": 2001 }
+    ]
+  }
+]

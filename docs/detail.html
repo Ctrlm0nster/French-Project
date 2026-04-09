@@ -42,6 +42,18 @@
   <style>
     body { font-family: Manrope, sans-serif; background: #121416; color: #e2e2e5; }
     .font-serif { font-family: "Noto Serif", serif; }
+    .section-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #ffb3af;
+      margin-bottom: 0.8rem;
+    }
+    .detail-panel {
+      background: #1e2022;
+      border: 1px solid #43474f;
+      padding: 1.1rem 1.2rem;
+    }
   </style>
 </head>
 <body class="min-h-screen">
@@ -82,26 +94,46 @@
     <article id="detail-root" class="hidden pt-8">
       <p id="detail-kind" class="text-xs uppercase tracking-[0.25em] text-secondary mb-4"></p>
       <h1 id="detail-title" class="text-4xl md:text-5xl font-serif mb-4 tracking-tight"></h1>
-      <p id="detail-meta" class="text-on-surface-variant mb-8 text-lg font-light"></p>
-      <div id="detail-poster-wrap" class="mb-10 shadow-2xl">
-        <img id="detail-poster" class="w-full max-h-[480px] object-cover bg-surface-container" alt="" />
-      </div>
-      <div class="prose prose-invert max-w-none">
-        <h2 class="text-sm uppercase tracking-widest text-secondary mb-3">Synopsis</h2>
-        <p id="detail-desc" class="text-on-surface-variant leading-relaxed text-lg"></p>
-      </div>
-      <div class="mt-12 flex flex-wrap gap-4">
-        <a id="detail-trailer" href="#" target="_blank" rel="noopener noreferrer" class="hidden"
-          data-visible-class="inline-flex flex-col gap-1 rounded-lg bg-gradient-to-br from-primary to-[#8fa8d8] px-8 py-4 text-sm font-bold uppercase tracking-widest text-on-primary shadow-lg shadow-primary/20 ring-1 ring-white/10 transition hover:brightness-110 sm:flex-row sm:items-center sm:gap-4">
-          <span class="inline-flex items-center gap-2">
-            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-            <span>Bande-annonce</span>
-          </span>
-          <span class="text-[10px] font-semibold normal-case tracking-[0.2em] text-on-primary/90 sm:border-l sm:border-on-primary/40 sm:pl-4">Voir</span>
-        </a>
-        <a id="detail-back" href="movies.html" class="inline-flex items-center gap-2 border border-outline-variant px-8 py-3 text-xs uppercase tracking-[0.2em] text-on-surface hover:border-primary transition-colors">
-          Retour
-        </a>
+      <p id="detail-meta" class="text-on-surface-variant mb-10 text-lg font-light"></p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div class="lg:col-span-4">
+          <div id="detail-poster-wrap" class="shadow-2xl">
+            <img id="detail-poster" class="w-full max-w-[340px] mx-auto aspect-[2/3] object-cover bg-surface-container" alt="" />
+          </div>
+          <div class="mt-6 flex flex-col gap-3">
+            <a id="detail-trailer" href="#" target="_blank" rel="noopener noreferrer" class="hidden"
+              data-visible-class="inline-flex items-center justify-center gap-2 rounded-lg bg-gradient-to-br from-primary to-[#8fa8d8] px-5 py-3 text-xs font-bold uppercase tracking-widest text-on-primary shadow-lg shadow-primary/20 ring-1 ring-white/10 transition hover:brightness-110">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+              <span>Voir la bande-annonce</span>
+            </a>
+            <a id="detail-back" href="movies.html" class="inline-flex items-center justify-center gap-2 border border-outline-variant px-5 py-3 text-xs uppercase tracking-[0.2em] text-on-surface hover:border-primary transition-colors">
+              Retour
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8 space-y-6">
+          <section id="synopsis-section" class="detail-panel">
+            <h2 id="synopsis-title" class="section-title">Synopsis</h2>
+            <p id="detail-synopsis" class="text-on-surface-variant leading-relaxed text-[1.02rem]"></p>
+          </section>
+
+          <section id="reviews-section" class="detail-panel">
+            <h2 class="section-title">Critiques</h2>
+            <ul id="detail-reviews" class="list-disc pl-5 space-y-2 text-on-surface-variant"></ul>
+          </section>
+
+          <section id="cast-section" class="detail-panel">
+            <h2 class="section-title">Distribution</h2>
+            <div id="detail-cast" class="flex flex-wrap gap-3"></div>
+          </section>
+
+          <section id="filmography-section" class="detail-panel hidden">
+            <h2 class="section-title">Filmographie</h2>
+            <ul id="detail-filmography" class="space-y-2 text-on-surface-variant"></ul>
+          </section>
+        </div>
       </div>
     </article>
   </main>
@@ -135,66 +167,152 @@
       var params = new URLSearchParams(window.location.search);
       var type = (params.get("type") || "movie").toLowerCase();
       var title = params.get("title");
+      var detailError = document.getElementById("detail-error");
+
       if (!title) {
-        document.getElementById("detail-error").classList.remove("hidden");
+        detailError.classList.remove("hidden");
         return;
       }
-      var decoded = title;
 
-      var path =
-        type === "series"
-          ? "assets/data/series.json"
-          : type === "documentary"
-            ? "assets/data/documentaries.json"
-            : "assets/data/movies.json";
+      var dataPathByType = {
+        movie: "assets/data/movies.json",
+        series: "assets/data/series.json",
+        documentary: "assets/data/documentaries.json",
+        person: "assets/data/actors.json"
+      };
+
+      var path = dataPathByType[type] || dataPathByType.movie;
+
+      function setTrailer(trailerUrl) {
+        var tr = document.getElementById("detail-trailer");
+        var visibleClass = tr.getAttribute("data-visible-class") || "";
+        if (trailerUrl && trailerUrl !== "#") {
+          tr.href = trailerUrl;
+          tr.className = visibleClass;
+        } else {
+          tr.className = "hidden";
+        }
+      }
+
+      function renderCast(cast) {
+        var castSection = document.getElementById("cast-section");
+        var castRoot = document.getElementById("detail-cast");
+        castRoot.innerHTML = "";
+        if (!Array.isArray(cast) || cast.length === 0) {
+          castSection.classList.add("hidden");
+          return;
+        }
+        castSection.classList.remove("hidden");
+        cast.forEach(function (person) {
+          var link = document.createElement("a");
+          var personName = typeof person === "string" ? person : person.name;
+          var href = typeof person === "string"
+            ? "detail.html?type=person&title=" + encodeURIComponent(person)
+            : (person.href || ("detail.html?type=person&title=" + encodeURIComponent(person.name)));
+          link.href = href;
+          link.className = "inline-flex items-center border border-outline-variant px-3 py-1.5 text-xs uppercase tracking-wider text-on-surface-variant hover:border-primary hover:text-on-surface transition-colors";
+          link.textContent = personName;
+          castRoot.appendChild(link);
+        });
+      }
+
+      function renderReviews(reviews) {
+        var reviewsSection = document.getElementById("reviews-section");
+        var reviewsRoot = document.getElementById("detail-reviews");
+        reviewsRoot.innerHTML = "";
+        if (!Array.isArray(reviews) || reviews.length === 0) {
+          reviewsSection.classList.add("hidden");
+          return;
+        }
+        reviewsSection.classList.remove("hidden");
+        reviews.forEach(function (review) {
+          var li = document.createElement("li");
+          li.textContent = review;
+          reviewsRoot.appendChild(li);
+        });
+      }
+
+      function renderFilmography(works) {
+        var filmographySection = document.getElementById("filmography-section");
+        var filmographyRoot = document.getElementById("detail-filmography");
+        filmographyRoot.innerHTML = "";
+        if (!Array.isArray(works) || works.length === 0) {
+          filmographySection.classList.add("hidden");
+          return;
+        }
+        filmographySection.classList.remove("hidden");
+        works.forEach(function (work) {
+          var li = document.createElement("li");
+          li.className = "border-b border-outline-variant/50 pb-2";
+          var label = "";
+          if (work.year) label += work.year + " · ";
+          label += work.title || "Titre indisponible";
+
+          if (work.href) {
+            var a = document.createElement("a");
+            a.href = work.href;
+            a.className = "hover:text-primary transition-colors";
+            a.textContent = label;
+            li.appendChild(a);
+          } else {
+            li.textContent = label;
+          }
+          filmographyRoot.appendChild(li);
+        });
+      }
 
       fetch(path)
-        .then(function (r) {
-          return r.json();
-        })
+        .then(function (r) { return r.json(); })
         .then(function (rows) {
-          var item = rows.find(function (row) {
-            return row.title === decoded;
-          });
+          var item = rows.find(function (row) { return row.title === title; });
           if (!item) {
-            document.getElementById("detail-error").classList.remove("hidden");
+            detailError.classList.remove("hidden");
             return;
           }
-          document.getElementById("detail-kind").textContent =
-            type === "series"
-              ? "Série"
-              : type === "documentary"
-                ? "Documentaire"
-                : "Film";
+
+          var kind = "Film";
+          if (type === "series") kind = "Série";
+          if (type === "documentary") kind = "Documentaire";
+          if (type === "person") kind = "Artiste";
+          document.getElementById("detail-kind").textContent = kind;
           document.getElementById("detail-title").textContent = item.title;
+
           var metaParts = [];
           if (item.year) metaParts.push(item.year);
           if (item.director) metaParts.push(item.director);
           if (item.genre) metaParts.push(item.genre);
-          if (type === "series" && item.episodes)
-            metaParts.push(item.episodes + " épisodes");
+          if (type === "series" && item.episodes) metaParts.push(item.episodes + " épisodes");
+          if (type === "person" && item.activeYears) metaParts.push(item.activeYears);
+          if (type === "person" && item.nationality) metaParts.push(item.nationality);
           document.getElementById("detail-meta").textContent = metaParts.join(" · ");
+
           document.getElementById("detail-poster").src = item.image;
           document.getElementById("detail-poster").alt = item.title;
-          document.getElementById("detail-desc").textContent =
-            item.description ||
-            "Aucune description pour le moment.";
-          var tr = document.getElementById("detail-trailer");
-          var vis = tr.getAttribute("data-visible-class") || "";
-          if (item.trailerUrl && item.trailerUrl !== "#") {
-            tr.href = item.trailerUrl;
-            tr.className = vis;
-          } else {
-            tr.className = "hidden";
+          document.getElementById("synopsis-title").textContent = type === "person" ? "Biographie" : "Synopsis";
+          document.getElementById("detail-synopsis").textContent =
+            item.synopsis || item.description || item.biography || "Aucun synopsis pour le moment.";
+
+          renderReviews(item.reviews || []);
+          renderCast(item.cast || []);
+          renderFilmography(item.filmography || []);
+
+          if (type === "person") {
+            document.getElementById("reviews-section").classList.add("hidden");
+            document.getElementById("cast-section").classList.add("hidden");
           }
+
+          setTrailer(item.trailerUrl || item.trailerURL || item.youtubeTrailer || "");
+
           var back = document.getElementById("detail-back");
           if (type === "series") back.href = "series.html";
           else if (type === "documentary") back.href = "documentaries.html";
+          else if (type === "person") back.href = "index.html#immortals";
           else back.href = "movies.html";
+
           document.getElementById("detail-root").classList.remove("hidden");
         })
         .catch(function () {
-          document.getElementById("detail-error").classList.remove("hidden");
+          detailError.classList.remove("hidden");
         });
     })();
   </script>

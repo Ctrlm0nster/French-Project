@@ -240,7 +240,27 @@
     "genre": "Polar Français",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.tmdb.org%2Ft%2Fp%2Foriginal%2FnY7gkHa2Lf8hNwzWmXO2qEAlMkc.jpg&f=1&nofb=1&ipt=8631764b1e6f2d9830d77706f97bec0e351390b807144b0e76faeaf2659f2695",
     "description": "Un détective français au caractère bien trempé se rend à Tokyo après la mort de son ancienne amante et découvre qu'il a une fille adolescente.",
-    "trailerURL": "https://www.youtube.com/watch?v=Oo42IigWIpQ"
+    "synopsis": "Hubert Fiorentini, policier français brutal mais loyal, hérite d'une fortune inattendue au Japon. Il y découvre Yumi, la fille qu'il n'a jamais connue, et doit la protéger d'un réseau criminel tout en apprenant à devenir père.",
+    "reviews": [
+      "Un polar comique rythmé par l'énergie de Jean Reno et un vrai sens du dépaysement.",
+      "Le duo franco-japonais fonctionne grâce à un ton léger, nerveux et accessible.",
+      "Une proposition divertissante de début des années 2000, entre action et émotion familiale."
+    ],
+    "cast": [
+      {
+        "name": "Jean Reno",
+        "href": "detail.html?type=person&title=Jean%20Reno"
+      },
+      {
+        "name": "Ryoko Hirosue",
+        "href": "detail.html?type=person&title=Ryoko%20Hirosue"
+      },
+      {
+        "name": "Michel Muller",
+        "href": "detail.html?type=person&title=Michel%20Muller"
+      }
+    ],
+    "trailerUrl": "https://www.youtube.com/watch?v=Oo42IigWIpQ"
   },
   {
     "title": "Dobermann",

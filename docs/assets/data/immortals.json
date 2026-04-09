@@ -4,34 +4,44 @@
     "year": "1957 - Présent",
     "director": "Actrice Légendaire",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fzoomboola.com%2Fimages%2Fcatalog%2F2022%2F3%2Fcatherine-deneuve_76.jpg&f=1&nofb=1&ipt=d9e942f60f5dc6fd7a5eaad5e83b6ec551cf17ee232a9daa942ab012f79d6739",
-    "href": "detail.html?type=person&title=Catherine%20Deneuve"
+    "href": "detail.html?type=person&title=Catherine%20Deneuve",
+    "bio": "Icône du cinéma français, reconnue pour son élégance et sa longévité artistique.",
+    "notableWorks": ["Les Parapluies de Cherbourg", "Belle de Jour", "Indochine"]
   },
   {
     "title": "Alain Delon",
     "year": "1957 - 2024",
     "director": "Le Samouraï du Cinéma",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.letribunaldunet.fr%2Fwp-content%2Fuploads%2F2024%2F02%2Falain-delon-1.jpg&f=1&nofb=1&ipt=9651a18f56037ceb9c59d0fa86974b1532168ac2b092d5e9c7ff46d69feb55b4",
-    "href": "detail.html?type=person&title=Alain%20Delon"
+    "href": "detail.html?type=person&title=Alain%20Delon",
+    "bio": "Figure centrale du polar français et du cinéma d'auteur européen.",
+    "notableWorks": ["Le Samouraï", "Le Cercle Rouge", "Plein Soleil"]
   },
   {
     "title": "Agnès Varda",
     "year": "1955 - 2019",
     "director": "Réalisatrice & Pionnière",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FM%2FMV5BNWIyZTBiMTctYzE4Ni00ZjFkLTgyZDUtZjQ3NGQwNzI0MDQ2XkEyXkFqcGc%40._V1_.jpg&f=1&nofb=1&ipt=78b12a47496708132b7dedd59a36df0c045542c8d42bcd012b3a64dc9f3e8195",
-    "href": "detail.html?type=person&title=Agn%C3%A8s%20Varda"
+    "href": "detail.html?type=person&title=Agn%C3%A8s%20Varda",
+    "bio": "Pionnière de la modernité cinématographique et de la narration documentaire.",
+    "notableWorks": ["Cléo de 5 à 7", "Sans toit ni loi", "Les Glaneurs et la Glaneuse"]
   },
   {
     "title": "Jean Gabin",
     "year": "1928 - 1976",
     "director": "L'Âme du Cinéma Français",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic1.purepeople.com%2Farticles%2F7%2F17%2F13%2F97%2F%40%2F2051965-jean-gabin-en-1974-950x0-2.jpg&f=1&nofb=1&ipt=0db1f0661233b129d8c5310c32b598667e4b6b10353f21a6a57b9a87fd9e1f5f",
-    "href": "detail.html?type=person&title=Jean%20Gabin"
+    "href": "detail.html?type=person&title=Jean%20Gabin",
+    "bio": "Voix et visage d'un cinéma populaire exigeant, entre réalisme poétique et polar.",
+    "notableWorks": ["Le Quai des brumes", "La Traversée de Paris", "Le Clan des Siciliens"]
   },
   {
     "title": "Brigitte Bardot",
     "year": "1952 - 1973",
     "director": "L'Icône de la Liberté",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.vogue.fr%2Fphotos%2F6333151e5d880bf5df301af1%2F2%3A3%2Fw_2560%252Cc_limit%2FGettyImages-119119793.jpg&f=1&nofb=1&ipt=eaceaf76dac671eaf3fb60c4a792f6cc1097c6d7f5681f3add511c6e73c42e93",
-    "href": "detail.html?type=person&title=Brigitte%20Bardot"
+    "href": "detail.html?type=person&title=Brigitte%20Bardot",
+    "bio": "Symbole culturel mondial dont l'image a redéfini la star féminine française.",
+    "notableWorks": ["Et Dieu... créa la femme", "Le Mépris", "Viva Maria!"]
   }
 ]

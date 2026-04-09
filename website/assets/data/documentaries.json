@@ -19,5 +19,101 @@
     "author": "FrenchPod101",
     "time": "10-15 min per episode",
     "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPodcasts125%2Fv4%2F3c%2F78%2F32%2F3c7832f3-520a-8630-c844-d68bdf1b7e91%2Fmza_1874989222460489719.jpg%2F1200x1200bf-60.jpg&f=1&nofb=1&ipt=14c3206159936b02deadf569eec34655a43bd54db337a084d1e182a40fef3681"
+  },
+  {
+    "title": "One Thing In A French Day",
+    "year": 2006,
+    "author": "Laetitia Perraut",
+    "time": "5-10 min per episode",
+    "description": "A daily podcast sharing simple stories about everyday life in France.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+  },
+  {
+    "title": "French Voices Podcast",
+    "year": 2015,
+    "author": "Jessica Salomon",
+    "time": "30-40 min per episode",
+    "description": "Interviews with French speakers to improve listening and cultural understanding.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+  },
+  {
+    "title": "News in Slow French",
+    "year": 2010,
+    "author": "Linguistica 360",
+    "time": "20-30 min per episode",
+    "description": "Weekly news explained slowly to help learners understand spoken French.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+  },
+  {
+    "title": "French Your Way Podcast",
+    "year": 2012,
+    "author": "Jessica J. Gourdon",
+    "time": "10-15 min per episode",
+    "description": "Short lessons focusing on grammar, pronunciation, and useful expressions.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+  },
+  {
+    "title": "Parlez Away",
+    "year": 2018,
+    "author": "Babbel",
+    "time": "15-20 min per episode",
+    "description": "A fun podcast that teaches French through stories and conversations.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+  },
+  {
+    "title": "Chef’s Table: France",
+    "year": 2016,
+    "author": "Netflix",
+    "time": "50 min per episode",
+    "description": "A documentary series exploring the lives of famous French chefs and cuisine.",
+    "image": "https://upload.wikimedia.org/wikipedia/en/3/3d/Chef%27s_Table_title_card.png"
+  },
+  {
+    "title": "Street Food: France",
+    "year": 2020,
+    "author": "Netflix",
+    "time": "30 min per episode",
+    "description": "Showcases French street food culture and local culinary traditions.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Street_food.jpg"
+  },
+  {
+    "title": "France From Above",
+    "year": 2011,
+    "author": "Yann Arthus-Bertrand",
+    "time": "90 min",
+    "description": "A visual documentary showing aerial views of France’s landscapes and cities.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/France_landscape.jpg"
+  },
+  {
+    "title": "Versailles Documentary",
+    "year": 2015,
+    "author": "BBC",
+    "time": "60 min",
+    "description": "Explores the history and architecture of the Palace of Versailles.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Chateau_de_Versailles.jpg"
+  },
+  {
+    "title": "Paris: The Luminous Years",
+    "year": 2010,
+    "author": "PBS",
+    "time": "60 min",
+    "description": "A documentary about Paris as a center of art, culture, and creativity.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg"
+  },
+  {
+    "title": "Secrets of the Louvre",
+    "year": 2020,
+    "author": "National Geographic",
+    "time": "60 min",
+    "description": "Reveals hidden stories and secrets of the famous Louvre Museum.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Louvre_Museum.jpg"
+  },
+  {
+    "title": "France Travel Guide Documentary",
+    "year": 2022,
+    "author": "Travel Channel",
+    "time": "45 min",
+    "description": "A guide to exploring France’s cities, culture, and tourist attractions.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg"
   }
 ]
