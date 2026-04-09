@@ -43,7 +43,7 @@ CREATE POLICY "Allow public read access on series" ON series FOR SELECT USING (t
 
 async function setup() {
   console.log('Creating tables...');
-  
+
   // Use the SQL endpoint via fetch since supabase-js doesn't have raw SQL
   const sqlResponse = await fetch(`${SUPABASE_URL}/rest/v1/rpc/`, {
     method: 'POST',
@@ -53,7 +53,7 @@ async function setup() {
       'Content-Type': 'application/json',
     },
   });
-  
+
   // Try creating tables via the postgres connection string
   // Since we can't run raw SQL via REST API, let's use the Supabase Management API
   // Actually, let's use the /sql endpoint
@@ -65,22 +65,19 @@ async function setup() {
     },
     body: JSON.stringify({ query: SQL }),
   });
-  
+
   console.log('Management API status:', mgmtResponse.status);
   const mgmtData = await mgmtResponse.text();
   console.log('Management API response:', mgmtData);
-  
+
   // If the above doesn't work, try inserting data directly
   // (tables might already exist from dashboard setup)
   console.log('\nTrying to insert movies data...');
-  
+
   const movies = [
-    { title: 'À bout de souffle', year: 1960, director: 'Jean-Luc Godard', genre: 'Nouvelle Vague', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCO2k2LN3aylrLZWACadXeEwq4ecxnyOkW1jrrYI-ApKX_bMWU-W8kSM1j6N4bxDTC2WVXKz_hvku0d_taH3sCe88_BAl_Xuf2A3EFKNFoFqyBMm8IdVFE0yNCOosMb97jGXwAH3FvClN9SD51CEH1JzyxU4KFlc9tOX2ESFA5L6k5dnd1mEW02s-JhD7NNy5nOLXq6WFM8zTwHG9HUfKOKNaCLzy_6RIaGYciNW2lpzDuq-8y92HGLt3xWGZ1RJWow8gwz9y3Oc3k' },
     { title: 'La règle du jeu', year: 1939, director: 'Jean Renoir', genre: 'Nouvelle Vague', image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fthf.bing.com%2Fth%2Fid%2FOIP.knQpkAnusZA5IGTRxBZ7TAAAAA%3Fcb%3Dthfc1%26pid%3DApi&f=1&ipt=434646a3f3f7ebb0fc014ddf9cae93eaa48eb7f1d707642def13c55751fae267&ipo=images' },
-    { title: 'Les Quatre Cents Coups', year: 1959, director: 'François Truffaut', genre: 'Nouvelle Vague', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZvI6IA6qmY43ghCsiw2nTWXeVEMA7mCOipsQKTkh1-9oJO9GFge94O8QRqAGt6qxuFwbaHpD0IbsEoEckjjN3e9yoxftje4tQ61W1O5Ml5xcC9yu2RhGvWXejpeOUdxrJKWXZWhYoFBKBaL1oYKTf4TlE1ycTmClETdNxSQFwq4bKUIV0f195K9RbL9_tKDBWf1GlupmfoJUgAVM2RIOwpnnQPeU1i0LsV-FlDVzNLD2H4ct9Yw8bbffQwGp5vC4XJlMV06h5mGA' },
     { title: 'Portrait de la jeune fille en feu', year: 2019, director: 'Céline Sciamma', genre: 'Drame Psychologique', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCTDICqjC3gpwmAquX9S0j7e0Hg5SXTht5ZmpaPZEZrpGWAGk_0MI60upK3SeJ7d5RrarLlzcACU__kwEbri0Oic6m1JSuTsUUXPobNjk3kZlZlguxhlBXorZcqMSFC94_Gtx4JAG_0zuBFb9EqzUUcOAZoeNgCvBaePXSkyOxpASV-kSwmzuGC_2OYB0VFymev3Vq4yMeyyKzE3hfa5QU7hLY-wvLXyVQ4rjrIle7bbf9TzyvrxBHIaj9DE6fvDLUIId0s74vrNms' },
     { title: 'La Haine', year: 1995, director: 'Mathieu Kassovitz', genre: 'Polar Français', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMchufuIsWFDWPVEPGWRJ2wmauv0MMNJumHep1-MHBqewwUX49fnxuum-Lc4xi1YGyswBiPnyPV0duVZKN9Jxd_b2q_3rfGwfI3OrqXKI7lKoAa-CXvnqT1W1D_LjQyXtPNQOxObJljhnH_LFyJbuofnFiqRa8r8BFYmNK3E506A0CFTe8xRACDAm8w5XaJX838wW2WLhGRxOgQVCZ-3GulWzQPW7gv-ODCpJ9Amy-SJdPlLMtrs1i5ucfdeYM1gfYDjxq04vvPIA' },
-    { title: 'Cléo de 5 à 7', year: 1962, director: 'Agnès Varda', genre: 'Comédie Dramatique', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDZomzSpjdob207xc0HTITz8sm2e2Hpd0B61tsBWZPejS-oxb4dy6_u8ZiJn78D2eFn2UoLHLGqY_cQAFm0l1WSGnxpIY3N5lVq9ASaY_P5NGfUZPGZoDhd0H3MsMR_KtBXTK3UIuf5eNm-PeZaJYH3wd9DcwewUWhX9nFymaJRaB-tNqNi0bZuwHRfoY_xToiUtQSqHkVJCC0nADUDGoEFtPALjR73RLqy9PYup4-bZifWd9fHqnx2cGEF9eLLrSZHho51DygSgGE' },
     { title: 'Le Samouraï', year: 1967, director: 'Jean-Pierre Melville', genre: 'Polar Français', image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBj6y_sAoXVX82PqjV-RqqDZqdMyEetAgG0bvVtZ9BghsBhnQmdmdJ_a0WCLfEm8_bIG2TxgDAd_2OGQgG40nmCRUPIXlJzSt7GWqbWswMSkykfWW33cCTrvgS_TYOsKWJvlzmCFJeTghUF482_Zytf9Km6uZTxq92YaMxPPyR2igHBVPw5_Q19fV165ewYgpYmy1Zd9uvSacTvW1_M8IAxCYnV82ISW9WzULbDboZMDyNkZCTbdF71KUVCR5wtPBN8chsl5xSba0U' },
   ];
 
@@ -104,7 +101,7 @@ async function setup() {
   const { data: readMovies, error: readError } = await supabase.from('movies').select('*');
   console.log('Movies read:', readError ? `ERROR: ${readError.message}` : `Got ${readMovies?.length} movies`);
   if (readMovies) console.log('First movie:', JSON.stringify(readMovies[0], null, 2));
-  
+
   const { data: readSeries, error: readSeriesError } = await supabase.from('series').select('*');
   console.log('Series read:', readSeriesError ? `ERROR: ${readSeriesError.message}` : `Got ${readSeries?.length} series`);
 }

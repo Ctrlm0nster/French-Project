@@ -304,6 +304,9 @@
 
           document.getElementById("detail-poster").src = item.image;
           document.getElementById("detail-poster").alt = item.title;
+          document.getElementById("detail-poster").onerror = function () {
+            this.src = "https://placehold.co/440x660/1e2022/e2e2e5?text=Affiche+indisponible";
+          };
           document.getElementById("synopsis-title").textContent = type === "person" ? "Biographie" : "Synopsis";
           document.getElementById("detail-synopsis").textContent =
             item.synopsis || item.description || item.biography || "Aucun synopsis pour le moment.";
