@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="fr">
 
 <head>
@@ -15,189 +14,94 @@
   <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
   <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
+  <link rel="icon" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" type="image/png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.4.0/ol.css">
-    <script src="https://cdn.jsdelivr.net/npm/ol@v10.4.0/dist/ol.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAtr95g66mD0_h6h7GrEIL2mNiM-wG45v0&loading=async&libraries=marker" async defer></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="assets/js/site-common.js"></script>
+    <link rel="stylesheet" href="assets/css/cursor.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/js/cursor.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary-fixed-variant": "#2a4776",
-                        "primary-fixed-dim": "#abc7fe",
-                        "primary": "#abc7fe",
-                        "on-surface": "#e2e2e5",
-                        "inverse-primary": "#435e8f",
-                        "secondary": "#ffb3af",
-                        "on-primary": "#0e305e",
-                        "on-primary-container": "#738ec2",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "error-container": "#93000a",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-fixed": "#001b3f",
-                        "tertiary": "#c6c6c7",
-                        "on-secondary": "#68000e",
-                        "tertiary-fixed": "#e2e2e2",
-                        "on-secondary-fixed-variant": "#930018",
-                        "secondary-fixed": "#ffdad7",
-                        "surface-container-low": "#1a1c1e",
-                        "surface-container-high": "#282a2c",
-                        "surface-container-highest": "#333537",
-                        "secondary-container": "#cd0326",
-                        "outline": "#8e909a",
-                        "primary-container": "#002654",
-                        "on-background": "#e2e2e5",
-                        "background": "#121416",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "surface-bright": "#37393b",
-                        "secondary-fixed-dim": "#ffb3af",
-                        "on-surface-variant": "#c4c6d0",
-                        "on-tertiary": "#2f3131",
-                        "on-tertiary-container": "#8d8e8e",
-                        "outline-variant": "#43474f",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "surface-container-lowest": "#0c0e10",
-                        "tertiary-container": "#252727",
-                        "primary-fixed": "#d7e3ff",
-                        "on-secondary-container": "#ffdcda",
-                        "on-secondary-fixed": "#410005",
-                        "error": "#ffb4ab",
-                        "surface-tint": "#abc7fe",
-                        "surface-container": "#1e2022",
-                        "surface-variant": "#333537",
-                        "inverse-on-surface": "#2f3133",
-                        "on-error": "#690005",
-                        "surface": "#121416",
-                        "surface-dim": "#121416",
-                        "inverse-surface": "#e2e2e5"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0px",
-                        "lg": "0px",
-                        "xl": "0px",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Noto Serif"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    }
+            theme: { extend: {
+                colors: {
+                    "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
+                    "surface": "#0f1117", "surface-container": "#141720",
+                    "surface-container-low": "#0d0f14", "surface-container-high": "#1a1d28",
+                    "surface-container-highest": "#22263a",
+                    "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
+                    "on-background": "#f1f5f9", "outline-variant": "rgba(255,255,255,0.08)",
+                    "on-primary": "#ffffff", "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#c084fc", "primary-container": "#3b0764"
                 },
-            },
+                fontFamily: { headline: ['Syne','Space Grotesk','sans-serif'], body: ['Space Grotesk','sans-serif'], label: ['Space Grotesk','sans-serif'] },
+                borderRadius: { DEFAULT:'8px', full:'9999px', lg:'20px', xl:'28px' }
+            }}
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        body {
-            background-color: #121416;
-            color: #e2e2e5;
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .cinematic-shadow {
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-
-        .map-shell {
-            width: 100%;
-            height: 100%;
-            min-height: 500px;
-            filter: contrast(1.2) brightness(1); /* Enhanced contrast, natural colors */
-            transition: all 0.5s ease;
-        }
-
-        .map-shell:hover {
-            filter: contrast(1.3) brightness(1.1);
-        }
-
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
+        .font-serif { font-family: 'Syne', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .no-scrollbar::-webkit-scrollbar { display:none; }
+        .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+        .map-shell { width:100%; height:100%; min-height:500px; filter:contrast(1.2) brightness(1); transition:all 0.5s ease; }
+        .map-shell:hover { filter:contrast(1.3) brightness(1.1); }
     </style>
 </head>
 
 <body class="bg-background text-on-background min-h-screen flex flex-col">
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
-        <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-            <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
-            <div class="hidden md:flex items-center space-x-10">
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="index.html">Accueil</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="movies.html">Cinéma</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="series.html">Séries</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="documentaries.html">Documentaires</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="chatbot.html">Assistant</a>
-                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Salles</a>
-            </div>
-            <div class="flex items-center space-x-6">
-                <div class="relative group hidden lg:block">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                    <input
-                        class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
-                        placeholder="Rechercher..." type="text" />
-                </div>
-                <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
-                    <span class="material-symbols-outlined" data-icon="language">language</span>
-                </button>
-            </div>
+    <div class="bg-orbs" aria-hidden="true"></div>
+    <nav class="nav-modern" id="main-nav">
+        <a href="index.html" class="nav-logo">Cinémathèque</a>
+        <ul class="nav-links hidden md:flex">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="movies.html">Cinéma</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="documentaries.html">Docs</a></li>
+            <li><a href="chatbot.html">Assistant</a></li>
+            <li><a href="theaters.html" class="active">Salles</a></li>
+        </ul>
+        <div class="nav-actions flex items-center gap-4">
+            <form action="search.html" method="get" class="relative hidden sm:block">
+                <input
+                    id="search-input"
+                    name="q"
+                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
+                    placeholder="Rechercher..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+            </form>
+            <button class="btn btn-glass btn-icon">
+                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
+            </button>
         </div>
     </nav>
     <main class="flex-grow pt-24 pb-12 flex flex-col">
-        <!-- Header Section -->
-        <header class="px-12 mb-12 mt-8">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-8">
+        <header class="px-6 md:px-12 mb-10 mt-8">
+            <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem">
                 <div>
-                    <span class="label-md font-label uppercase tracking-[0.3em] text-secondary mb-4 block">Le Répertoire
-                        National</span>
-                    <h1 class="text-6xl font-headline font-bold text-on-background leading-tight">L'Écrin des <br /><span
-                            class="italic font-normal text-primary">Projections</span></h1>
-                    <p class="mt-6 text-on-surface-variant max-w-xl text-lg font-light leading-relaxed italic">
-                        Découvrez nos salles partenaires, des théâtres historiques aux écrins contemporains.
-                        Parcourez le répertoire national des sanctuaires dédiés à l'image et à la scène.
+                    <div class="section-eyebrow">Le Répertoire National</div>
+                    <h1 class="section-title" style="font-size:clamp(2rem,6vw,4.5rem);margin-top:0.5rem">
+                        L'Écrin des <span class="grad-text">Projections</span>
+                    </h1>
+                    <p style="margin-top:0.75rem;max-width:480px;color:var(--text-secondary);font-size:0.88rem;line-height:1.75;font-style:italic">
+                        Découvrez nos salles partenaires — des théâtres historiques aux écrins contemporains.
                     </p>
                 </div>
-                <div class="flex gap-4 pb-2 overflow-x-auto no-scrollbar">
-                    <button
-                        class="bg-primary text-on-primary px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-white transition-colors duration-300">
-                        Cinéma d'Art
-                    </button>
-                    <button
-                        class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
-                        Théâtre de Scène
-                    </button>
-                    <button
-                        class="bg-surface-container-high text-on-surface-variant px-8 py-3 font-label text-[10px] uppercase tracking-[0.2em] hover:bg-surface-container-highest transition-colors duration-300">
-                        Grands Festivals
-                    </button>
+                <div class="filter-group">
+                    <button class="filter-chip active" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Cinéma d'Art</button>
+                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Théâtre de Scène</button>
+                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Grands Festivals</button>
                 </div>
             </div>
         </header>
@@ -227,79 +131,92 @@
     <script type="text/babel">
         const { useEffect, useMemo, useRef, useState } = React;
 
-        function OpenLayersMapPanel({ venues, selectedVenue }) {
+        function GoogleMapPanel({ venues, selectedVenue, streetViewMode }) {
             const mapNodeRef = useRef(null);
             const mapRef = useRef(null);
-            const vectorSourceRef = useRef(null);
+            const markersRef = useRef([]);
 
             useEffect(() => {
-                if (!mapNodeRef.current) return;
+                // Wait for Google Maps API to load
+                const checkGoogle = setInterval(() => {
+                    if (window.google && window.google.maps) {
+                        clearInterval(checkGoogle);
+                        initOrUpdateMap();
+                    }
+                }, 100);
 
-                // Initialize map if not exists
-                if (!mapRef.current) {
-                    vectorSourceRef.current = new ol.source.Vector();
-                    const vectorLayer = new ol.layer.Vector({
-                        source: vectorSourceRef.current,
-                        style: new ol.style.Style({
-                            image: new ol.style.Icon({
-                                anchor: [0.5, 1],
-                                src: 'https://cdn-icons-png.flaticon.com/512/684/684908.png', // Elegant pin
-                                scale: 0.06,
-                                color: '#abc7fe'
-                            })
-                        })
+                function initOrUpdateMap() {
+                    if (!mapNodeRef.current) return;
+
+                    // Initialize map if not exists
+                    if (!mapRef.current) {
+                        mapRef.current = new window.google.maps.Map(mapNodeRef.current, {
+                            center: { lat: 46.6034, lng: 1.8883 },
+                            zoom: 5.5,
+                            mapId: "DEMO_MAP_ID",
+                            disableDefaultUI: true,
+                            zoomControl: true,
+                            styles: [
+                                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                                {
+                                    featureType: "water",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#17263c" }],
+                                }
+                            ]
+                        });
+                    }
+
+                    const map = mapRef.current;
+
+                    // Clear existing markers
+                    markersRef.current.forEach(m => m.setMap(null));
+                    markersRef.current = [];
+
+                    const bounds = new window.google.maps.LatLngBounds();
+
+                    venues.forEach(venue => {
+                        const lat = venue.lat || venue.location?.coordinates?.latitude || 0;
+                        const lng = venue.lng || venue.location?.coordinates?.longitude || 0;
+                        const position = { lat: lat, lng: lng };
+                        const marker = new window.google.maps.marker.AdvancedMarkerElement({
+                            position: position,
+                            map: map,
+                            title: venue.name
+                        });
+                        markersRef.current.push(marker);
+                        bounds.extend(position);
                     });
 
-                    mapRef.current = new ol.Map({
-                        target: mapNodeRef.current,
-                        layers: [
-                            new ol.layer.Tile({
-                                source: new ol.source.OSM({
-                                    url: 'https://{a-c}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png' // Legible Voyager theme
-                                })
-                            }),
-                            vectorLayer
-                        ],
-                        view: new ol.View({
-                            center: ol.proj.fromLonLat([1.8883, 46.6034]),
-                            zoom: 5.5
-                        }),
-                        controls: []
-                    });
-
+                    if (selectedVenue) {
+                        const lat = selectedVenue.lat || selectedVenue.location?.coordinates?.latitude || 0;
+                        const lng = selectedVenue.lng || selectedVenue.location?.coordinates?.longitude || 0;
+                        map.panTo({ lat: lat, lng: lng });
+                        map.setZoom(13);
+                        
+                        // Street View Logic
+                        const panorama = map.getStreetView();
+                        if (streetViewMode) {
+                            panorama.setPosition({ lat: lat, lng: lng });
+                            panorama.setPov({
+                                heading: selectedVenue.street_view_3d?.heading_deg || selectedVenue.location?.street_view_3d?.heading_deg || 0,
+                                pitch: selectedVenue.street_view_3d?.pitch_deg || selectedVenue.location?.street_view_3d?.pitch_deg || 0,
+                            });
+                            panorama.setVisible(true);
+                        } else {
+                            panorama.setVisible(false);
+                        }
+                        
+                    } else if (venues.length > 0) {
+                        map.getStreetView()?.setVisible(false);
+                        map.fitBounds(bounds);
+                    }
                 }
 
-                const map = mapRef.current;
-                const source = vectorSourceRef.current;
-                source.clear();
-
-                const features = venues.map(venue => {
-                    const feature = new ol.Feature({
-                        geometry: new ol.geom.Point(ol.proj.fromLonLat([venue.lng, venue.lat])),
-                        name: venue.name
-                    });
-                    return feature;
-                });
-
-                source.addFeatures(features);
-
-                if (selectedVenue) {
-                    map.getView().animate({
-                        center: ol.proj.fromLonLat([selectedVenue.lng, selectedVenue.lat]),
-                        zoom: 13,
-                        duration: 1000
-                    });
-                } else if (features.length > 0) {
-                    map.getView().fit(source.getExtent(), {
-                        padding: [50, 50, 50, 50],
-                        duration: 1000
-                    });
-                }
-
-                return () => {
-                    // map.setTarget(null); // Optional cleanup
-                };
-            }, [venues, selectedVenue]);
+                return () => clearInterval(checkGoogle);
+            }, [venues, selectedVenue, streetViewMode]);
 
             return <div ref={mapNodeRef} className="map-shell" />;
         }
@@ -311,19 +228,29 @@
             const [type, setType] = useState("Tous");
             const [query, setQuery] = useState("");
             const [selectedVenue, setSelectedVenue] = useState(null);
+            const [isStreetView, setIsStreetView] = useState(false);
+
+            useEffect(() => {
+                setIsStreetView(false);
+            }, [selectedVenue]);
 
             useEffect(() => {
                 fetch("assets/data/theaters.json")
                     .then(r => r.json())
                     .then(data => {
-                        setVenues(data);
-                        setSelectedVenue(data[0] || null);
+                        const parsedVenues = Array.isArray(data) ? data : (data.sites || []);
+                        setVenues(parsedVenues);
+                        setSelectedVenue(parsedVenues[0] || null);
                         setIsLoading(false);
                     })
                     .catch(() => setIsLoading(false));
             }, []);
 
-            const filtered = useMemo(() => venues.filter((v) => (type === "Tous" || v.type === type) && (v.name.toLowerCase().includes(query.toLowerCase()) || v.city.toLowerCase().includes(query.toLowerCase()))), [venues, type, query]);
+            const filtered = useMemo(() => venues.filter((v) => {
+                const venueCity = v.city || v.location?.address?.city || "";
+                const venueType = v.type || v.identity?.type || "Cinéma";
+                return (type === "Tous" || venueType.includes(type)) && (v.name.toLowerCase().includes(query.toLowerCase()) || venueCity.toLowerCase().includes(query.toLowerCase()));
+            }), [venues, type, query]);
             useEffect(() => {
                 if (filtered.length > 0 && (!selectedVenue || !filtered.some((v) => v.name === selectedVenue.name))) {
                     setSelectedVenue(filtered[0] || null);
@@ -332,7 +259,7 @@
             return (
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
-                        {isLoading ? <div className="map-fallback">Chargement de la carte...</div> : <OpenLayersMapPanel venues={filtered} selectedVenue={selectedVenue} />}
+                        {isLoading ? <div className="map-fallback">Chargement de la carte...</div> : <GoogleMapPanel venues={filtered} selectedVenue={selectedVenue} streetViewMode={isStreetView} />}
 
                         <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
                             {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
@@ -343,14 +270,58 @@
                             <h2 className="font-headline text-xl mb-2">Destinations Phares</h2>
                             <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Trouver un lieu..." className="w-full mt-4 bg-slate-900/50 px-4 py-2 text-sm text-blue-100 placeholder:text-slate-500" />
                         </div>
-                        {filtered.map((venue) => (
-                            <div key={venue.name} onClick={() => setSelectedVenue(venue)} className={`p-8 hover:bg-surface-container-highest transition-colors border-t border-outline-variant/10 cursor-pointer ${selectedVenue && selectedVenue.name === venue.name ? "bg-surface-container-highest" : ""}`}>
-                                <span className="font-label text-[10px] uppercase tracking-[0.2em] text-primary">{venue.city}</span>
-                                <h3 className="font-headline text-2xl mt-2 mb-2">{venue.name}</h3>
-                                <p className="font-body text-sm text-on-surface-variant italic mb-4">{venue.note}</p>
-                                <div className="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1 inline-block">{venue.type}</div>
-                            </div>
-                        ))}
+                        {filtered.map((venue) => {
+                            const city = venue.city || venue.location?.address?.city || 'Inconnu';
+                            const venueType = venue.type || venue.identity?.type || 'Cinéma';
+                            const note = venue.note || venue.label || (venue.history ? `Fondé en ${venue.founded}` : '');
+                            const isSelected = selectedVenue && (selectedVenue.name === venue.name);
+
+                            return (
+                                <div key={venue.name} onClick={() => setSelectedVenue(venue)} className={`p-8 hover:bg-surface-container-highest transition-colors border-t border-outline-variant/10 cursor-pointer ${isSelected ? "bg-surface-container-highest" : ""}`}>
+                                    <span className="font-label text-[10px] uppercase tracking-[0.2em] text-primary">{city}</span>
+                                    <h3 className="font-headline text-2xl mt-2 mb-2">{venue.name}</h3>
+                                    <p className="font-body text-sm text-on-surface-variant italic mb-4">{note}</p>
+                                    <div className="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1 inline-block mb-3">{venueType}</div>
+                                    
+                                    {isSelected && (
+                                        <div className="mt-4 pt-4 border-t border-outline-variant/20 text-sm text-on-surface-variant space-y-3">
+                                            {venue.location?.address && (
+                                                <p><strong className="text-on-surface">Adresse :</strong> {venue.location.address.street}, {venue.location.address.postal_code} {venue.location.address.city}</p>
+                                            )}
+                                            {venue.contact && <p><strong className="text-on-surface">Téléphone :</strong> {venue.contact.phone}</p>}
+                                            {venue.identity?.screens && <p><strong className="text-on-surface">Salles :</strong> {venue.identity.screens}</p>}
+                                            {venue.history?.key_milestones && (
+                                                <div className="mt-3">
+                                                    <strong className="text-on-surface block mb-2 uppercase text-[10px] tracking-widest">Chronologie récente :</strong>
+                                                    <ul className="space-y-1 border-l-2 border-primary/30 pl-3 ml-1">
+                                                        {venue.history.key_milestones.slice(-3).map((m, i) => (
+                                                            <li key={i} className="text-xs break-words"><strong>{m.year}</strong> - {m.event}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                            
+                                            <div className="mt-6 pt-2 flex flex-col gap-2">
+                                                <a 
+                                                    href={`theater-detail.html?id=${encodeURIComponent(venue.id || venue.name)}`} 
+                                                    className="w-full bg-primary/20 hover:bg-primary transition-colors duration-300 text-primary hover:text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
+                                                >
+                                                    <span className="material-symbols-outlined text-[16px]">info</span>
+                                                    En Savoir Plus
+                                                </a>
+                                                <button 
+                                                    onClick={(e) => { e.stopPropagation(); setIsStreetView(!isStreetView); }}
+                                                    className="w-full bg-slate-800 hover:bg-white hover:text-slate-900 transition-colors duration-300 text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
+                                                >
+                                                    <span className="material-symbols-outlined text-[16px]">{isStreetView ? 'map' : '3d_rotation'}</span>
+                                                    {isStreetView ? 'Revenir à la carte' : 'Voir en 3D (Street View)'}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             );
@@ -358,28 +329,21 @@
         ReactDOM.createRoot(document.getElementById("theaters-react-root")).render(<TheatersExplorer />);
     </script>
     <!-- Footer -->
-    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
-        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
-            <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
-            <div class="flex space-x-8 mb-6 md:mb-0">
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="terms.html">Conditions d'utilisation</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="privacy.html">Confidentialité</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+    <footer class="footer-modern">
+        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+            <a href="index.html" class="footer-logo">Cinémathèque</a>
+            <div style="display:flex;gap:2rem">
+                <a class="footer-link" href="terms.html">Conditions</a>
+                <a class="footer-link" href="privacy.html">Confidentialité</a>
+                <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
             </div>
-            <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
-                © 2026 Digital Cinémathèque. Tous droits réservés.
-            </div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque</div>
         </div>
-        <!-- Subtle Tricolour Accent Bar -->
-        <div class="flex h-1 w-full">
-            <div class="w-1/3 bg-blue-600"></div>
-            <div class="w-1/3 bg-white"></div>
-            <div class="w-1/3 bg-red-600"></div>
-        </div>
+        <div class="footer-bar"></div>
     </footer>
+    <script>
+        window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>30);});
+    </script>
 </body>
 
 </html>

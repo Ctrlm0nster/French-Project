@@ -4,18 +4,22 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Load .env file into process.env
-const envPath = path.join(__dirname, '.env');
-if (fs.existsSync(envPath)) {
-    const envContent = fs.readFileSync(envPath, 'utf8');
-    envContent.split('\n').forEach(line => {
-        const [key, ...valueParts] = line.split('=');
-        if (key && valueParts.length > 0) {
-            const value = valueParts.join('=').trim().replace(/^["']|["']$/g, '');
-            process.env[key.trim()] = value;
-        }
-    });
-}
+// Load .env and .env.local files into process.env
+['.env', '.env.local'].forEach(envFile => {
+    const envPath = path.join(__dirname, envFile);
+    if (fs.existsSync(envPath)) {
+        const envContent = fs.readFileSync(envPath, 'utf8');
+        envContent.split('\n').forEach(line => {
+            const [key, ...valueParts] = line.split('=');
+            if (key && valueParts.length > 0) {
+                const value = valueParts.join('=').trim().replace(/^["']|["']$/g, '');
+                if (!process.env[key.trim()]) {
+                    process.env[key.trim()] = value;
+                }
+            }
+        });
+    }
+});
 const srcDir = path.join(__dirname, 'website');
 const destDir = path.join(__dirname, 'docs');
 
@@ -41,6 +45,10 @@ function processDirectory(src, dest) {
                 // We no longer inject GROQ_API_KEY into the frontend for security reasons.
                 // It is now handled securely via /api/chat.js (Groq SDK).
                 content = content.replace(/(process\.env\.NEXT_PUBLIC_OPENAI_API_KEY|"YOUR_OPENAI_API_KEY")/g, `"${openaiKey}"`);
+
+                // Insert Google Maps API Key
+                const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY || "VOTRE_CLE_API";
+                content = content.replace(/VOTRE_CLE_API/g, googleMapsKey);
             }
 
             fs.writeFileSync(destPath, content);

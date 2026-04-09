@@ -16,6 +16,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -24,159 +28,70 @@
     <script src="assets/js/supabase-client.js"></script>
     <script src="assets/js/site-common.js"></script>
     <link rel="stylesheet" href="assets/css/cursor.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
     <script src="assets/js/cursor.js"></script>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@400;500;700&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary-fixed-variant": "#2a4776",
-                        "primary-fixed-dim": "#abc7fe",
-                        "primary": "#abc7fe",
-                        "on-surface": "#e2e2e5",
-                        "inverse-primary": "#435e8f",
-                        "secondary": "#ffb3af",
-                        "on-primary": "#0e305e",
-                        "on-primary-container": "#738ec2",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "error-container": "#93000a",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-fixed": "#001b3f",
-                        "tertiary": "#c6c6c7",
-                        "on-secondary": "#68000e",
-                        "tertiary-fixed": "#e2e2e2",
-                        "on-secondary-fixed-variant": "#930018",
-                        "secondary-fixed": "#ffdad7",
-                        "surface-container-low": "#1a1c1e",
-                        "surface-container-high": "#282a2c",
-                        "surface-container-highest": "#333537",
-                        "secondary-container": "#cd0326",
-                        "outline": "#8e909a",
-                        "primary-container": "#002654",
-                        "on-background": "#e2e2e5",
-                        "background": "#121416",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "surface-bright": "#37393b",
-                        "secondary-fixed-dim": "#ffb3af",
-                        "on-surface-variant": "#c4c6d0",
-                        "on-tertiary": "#2f3131",
-                        "on-tertiary-container": "#8d8e8e",
-                        "outline-variant": "#43474f",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "surface-container-lowest": "#0c0e10",
-                        "tertiary-container": "#252727",
-                        "primary-fixed": "#d7e3ff",
-                        "on-secondary-container": "#ffdcda",
-                        "on-secondary-fixed": "#410005",
-                        "error": "#ffb4ab",
-                        "surface-tint": "#abc7fe",
-                        "surface-container": "#1e2022",
-                        "surface-variant": "#333537",
-                        "inverse-on-surface": "#2f3133",
-                        "on-error": "#690005",
-                        "surface": "#121416",
-                        "surface-dim": "#121416",
-                        "inverse-surface": "#e2e2e5"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0px",
-                        "lg": "0px",
-                        "xl": "0px",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Noto Serif"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    }
+            theme: { extend: {
+                colors: {
+                    "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
+                    "surface": "#0f1117", "surface-container": "#141720",
+                    "surface-container-low": "#0d0f14", "surface-container-high": "#1a1d28",
+                    "surface-container-highest": "#22263a", "surface-container-lowest": "#080a0f",
+                    "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
+                    "on-background": "#f1f5f9", "outline": "#475569",
+                    "outline-variant": "rgba(255,255,255,0.08)",
+                    "on-primary": "#ffffff", "on-secondary": "#ffffff", "primary-fixed-dim": "#c084fc"
                 },
-            },
+                fontFamily: { headline: ['Syne','Space Grotesk','sans-serif'], body: ['Space Grotesk','sans-serif'], label: ['Space Grotesk','sans-serif'] },
+                borderRadius: { DEFAULT:'8px', full:'9999px', lg:'20px', xl:'28px' }
+            }}
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-
-        body {
-            background-color: #121416;
-            color: #e2e2e5;
-            font-family: 'Manrope', sans-serif;
-        }
-
-        .cinematic-shadow {
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-        }
-
-        .glass-nav {
-            background: rgba(18, 20, 22, 0.7);
-            backdrop-filter: blur(24px);
-        }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
+        .font-serif { font-family: 'Syne', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     </style>
 </head>
 
-<body class="bg-background text-on-background selection:bg-primary selection:text-on-primary">
-    <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
-        <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-            <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
-            <div class="hidden md:flex items-center space-x-10">
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight magnetic"
-                    href="index.html">Accueil</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight magnetic"
-                    href="movies.html">Cinéma</a>
-                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight magnetic" href="#">Séries</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight magnetic"
-                    href="documentaries.html">Documentaires</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight magnetic"
-                    href="chatbot.html">Assistant</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight magnetic"
-                    href="theaters.html">Salles</a>
-            </div>
-            <div class="flex items-center space-x-6">
-                <div class="relative group hidden lg:block">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                    <input
-                        class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
-                        placeholder="Rechercher..." type="text" />
-                </div>
-                <button class="text-blue-200 hover:text-red-300 transition-all duration-500 magnetic">
-                    <span class="material-symbols-outlined" data-icon="language">language</span>
-                </button>
-            </div>
+<body class="bg-background text-on-background">
+    <div class="bg-orbs" aria-hidden="true"></div>
+    <nav class="nav-modern" id="main-nav">
+        <a href="index.html" class="nav-logo">Cinémathèque</a>
+        <ul class="nav-links hidden md:flex">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="movies.html">Cinéma</a></li>
+            <li><a href="series.html" class="active">Séries</a></li>
+            <li><a href="documentaries.html">Docs</a></li>
+            <li><a href="chatbot.html">Assistant</a></li>
+            <li><a href="theaters.html">Salles</a></li>
+        </ul>
+        <div class="nav-actions flex items-center gap-4">
+            <form action="search.html" method="get" class="relative hidden sm:block">
+                <input
+                    id="search-input"
+                    name="q"
+                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
+                    placeholder="Rechercher..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+            </form>
+            <button class="btn btn-glass btn-icon">
+                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
+            </button>
         </div>
     </nav>
-    <main class="pt-32 pb-24 px-12 max-w-screen-2xl mx-auto">
-        <!-- Editorial Header -->
-        <header class="mb-20 grid grid-cols-12 gap-8 items-end">
-            <div class="col-span-12 md:col-span-8">
-                <span class="label-md uppercase tracking-[0.2em] text-secondary font-label mb-4 block">Archive
-                    Numérique</span>
-                <h1 class="text-6xl md:text-8xl font-headline font-bold leading-tight mb-8">Les Séries <br /><span
-                        class="italic font-normal text-primary">Contemporaines</span></h1>
-                <p class="text-xl text-on-surface-variant max-w-2xl font-body leading-relaxed italic">
-                    Une collection curatoriale de l'excellence narrative. De la tension du polar noir à la poésie du
-                    drame historique, explorez les nouveaux horizons de la narration hexagonale.
-                </p>
-            </div>
-            <div class="col-span-12 md:col-span-4 flex justify-end">
-                <div class="bg-surface-container-low p-8 border-l-2 border-secondary h-fit">
-                    <span class="block font-headline italic text-xl mb-2 text-on-surface">Le mot du conservateur</span>
-                    <p class="text-sm font-body text-on-surface-variant italic leading-relaxed">
-                        "La série n'est plus le parent pauvre du cinéma, elle est son extension la plus audacieuse."
-                    </p>
-                </div>
-            </div>
+    <main class="pt-28 pb-24 px-6 md:px-12" style="max-width:1600px;margin:0 auto">
+        <header class="mb-14">
+            <div class="section-eyebrow">Archive Numérique</div>
+            <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);margin-top:0.5rem">
+                Les Séries <span class="grad-text">Contemporaines</span>
+            </h1>
+            <p style="max-width:540px;margin-top:1rem;color:var(--text-secondary);font-size:0.92rem;line-height:1.75;font-style:italic">
+                Une collection curatoriale de l'excellence narrative — de la tension du polar noir à la poésie du drame historique.
+            </p>
         </header>
         <div id="series-react-root"></div>
     </main>
@@ -194,7 +109,8 @@
             const years = useMemo(() => ["Toutes les années", ...[...new Set(series.map((s) => String(s.year)))].sort((a, b) => Number(b) - Number(a))], [series]);
 
             useEffect(() => {
-                SupabaseClient.fetchSeries()
+                fetch('assets/data/series.json')
+                    .then((r) => r.json())
                     .then((data) => {
                         const arr = Array.isArray(data) ? data : [];
                         setSeries(SiteCommon.shuffleArray(arr));
@@ -302,28 +218,21 @@
         ReactDOM.createRoot(document.getElementById("series-react-root")).render(<SeriesExplorer />);
     </script>
     <!-- Footer -->
-    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
-        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
-            <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
-            <div class="flex space-x-8 mb-6 md:mb-0">
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="terms.html">Conditions d'utilisation</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="privacy.html">Confidentialité</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+    <footer class="footer-modern">
+        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+            <a href="index.html" class="footer-logo">Cinémathèque</a>
+            <div style="display:flex;gap:2rem">
+                <a class="footer-link" href="terms.html">Conditions</a>
+                <a class="footer-link" href="privacy.html">Confidentialité</a>
+                <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
             </div>
-            <div class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500">
-                © 2026 Digital Cinémathèque. Tous droits réservés.
-            </div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque</div>
         </div>
-        <!-- Subtle Tricolour Accent Bar -->
-        <div class="flex h-1 w-full">
-            <div class="w-1/3 bg-blue-600"></div>
-            <div class="w-1/3 bg-white"></div>
-            <div class="w-1/3 bg-red-600"></div>
-        </div>
+        <div class="footer-bar"></div>
     </footer>
+    <script>
+        window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>30);});
+    </script>
 </body>
 
 </html>

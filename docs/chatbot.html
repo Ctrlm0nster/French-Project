@@ -25,315 +25,106 @@
     <link rel="apple-touch-icon" sizes="180x180"
         href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script src="assets/js/config.js"></script>
     <script src="assets/js/site-common.js"></script>
+    <link rel="stylesheet" href="assets/css/cursor.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/js/cursor.js"></script>
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "on-primary-fixed-variant": "#2a4776",
-                        "primary-fixed-dim": "#abc7fe",
-                        "primary": "#abc7fe",
-                        "on-surface": "#e2e2e5",
-                        "inverse-primary": "#435e8f",
-                        "secondary": "#ffb3af",
-                        "on-primary": "#0e305e",
-                        "on-primary-container": "#738ec2",
-                        "on-tertiary-fixed": "#1a1c1c",
-                        "error-container": "#93000a",
-                        "on-error-container": "#ffdad6",
-                        "on-primary-fixed": "#001b3f",
-                        "tertiary": "#c6c6c7",
-                        "on-secondary": "#68000e",
-                        "tertiary-fixed": "#e2e2e2",
-                        "on-secondary-fixed-variant": "#930018",
-                        "secondary-fixed": "#ffdad7",
-                        "surface-container-low": "#1a1c1e",
-                        "surface-container-high": "#282a2c",
-                        "surface-container-highest": "#333537",
-                        "secondary-container": "#cd0326",
-                        "outline": "#8e909a",
-                        "primary-container": "#002654",
-                        "on-background": "#e2e2e5",
-                        "background": "#121416",
-                        "tertiary-fixed-dim": "#c6c6c7",
-                        "surface-bright": "#37393b",
-                        "secondary-fixed-dim": "#ffb3af",
-                        "on-surface-variant": "#c4c6d0",
-                        "on-tertiary": "#2f3131",
-                        "on-tertiary-container": "#8d8e8e",
-                        "outline-variant": "#43474f",
-                        "on-tertiary-fixed-variant": "#454747",
-                        "surface-container-lowest": "#0c0e10",
-                        "tertiary-container": "#252727",
-                        "primary-fixed": "#d7e3ff",
-                        "on-secondary-container": "#ffdcda",
-                        "on-secondary-fixed": "#410005",
-                        "error": "#ffb4ab",
-                        "surface-tint": "#abc7fe",
-                        "surface-container": "#1e2022",
-                        "surface-variant": "#333537",
-                        "inverse-on-surface": "#2f3133",
-                        "on-error": "#690005",
-                        "surface": "#121416",
-                        "surface-dim": "#121416",
-                        "inverse-surface": "#e2e2e5"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0px",
-                        "lg": "0px",
-                        "xl": "0px",
-                        "full": "9999px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Noto Serif"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    }
+            theme: { extend: {
+                colors: {
+                    "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
+                    "surface-container": "#141720", "surface-container-low": "#0d0f14",
+                    "surface-container-high": "#1a1d28", "surface-container-lowest": "#080a0f",
+                    "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
+                    "on-background": "#f1f5f9", "outline": "#475569",
+                    "outline-variant": "rgba(255,255,255,0.08)",
+                    "on-primary": "#ffffff", "on-secondary": "#ffffff"
                 },
-            },
+                fontFamily: { headline: ['Syne','sans-serif'], body: ['Space Grotesk','sans-serif'], label: ['Space Grotesk','sans-serif'] },
+                borderRadius: { DEFAULT:'8px', full:'9999px', lg:'20px' }
+            }}
         }
     </script>
     <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-
-        /* Chat specific styles */
-        .chat-container {
-            height: 600px;
-            display: flex;
-            flex-direction: column;
-            background: #0c0e10;
-        }
-
-        .messages-area {
-            flex: 1;
-            overflow-y: auto;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            position: relative;
-        }
-
-        .message.user {
-            align-self: flex-end;
-            background: rgba(171, 199, 254, 0.1);
-            border: 1px solid rgba(171, 199, 254, 0.2);
-            color: #e2e2e5;
-            border-radius: 12px 12px 0 12px;
-        }
-
-        .message.bot {
-            align-self: flex-start;
-            background: rgba(40, 42, 44, 0.5);
-            border: 1px solid rgba(67, 71, 79, 0.3);
-            color: #c4c6d0;
-            border-radius: 12px 12px 12px 0;
-        }
-
-        .input-area {
-            padding: 1rem 1.5rem;
-            border-top: 1px solid rgba(67, 71, 79, 0.3);
-            display: flex;
-            gap: 0.75rem;
-            align-items: center;
-            background: rgba(18, 20, 22, 0.5);
-        }
-
-        .chat-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: #e2e2e5;
-            font-size: 0.9rem;
-            padding: 0.5rem 0;
-            outline: none !important;
-        }
-
-        .send-btn {
-            color: #abc7fe;
-            transition: all 0.3s ease;
-        }
-
-        .send-btn:hover {
-            color: #ffb3af;
-            transform: scale(1.1);
-        }
-
-        .typing-indicator {
-            font-size: 0.8rem;
-            color: #abc7fe;
-            font-style: italic;
-            margin-bottom: 0.5rem;
-            display: none;
-        }
-
-        .profile-questions {
-            padding: 1rem 1.25rem;
-            border-bottom: 1px solid rgba(67, 71, 79, 0.35);
-            background: rgba(30, 32, 34, 0.65);
-        }
-
-        .profile-question-title {
-            font-size: 0.72rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #8e909a;
-            margin-bottom: 0.45rem;
-        }
-
-        .profile-step-label {
-            font-size: 0.68rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: #abc7fe;
-            margin-bottom: 0.3rem;
-        }
-
-        .profile-options {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .profile-option-btn {
-            border: 1px solid rgba(142, 144, 154, 0.35);
-            background: rgba(18, 20, 22, 0.8);
-            color: #c4c6d0;
-            font-size: 0.78rem;
-            padding: 0.35rem 0.65rem;
-            border-radius: 9999px;
-            transition: all 0.2s ease;
-        }
-
-        .profile-option-btn:hover {
-            border-color: rgba(171, 199, 254, 0.6);
-            color: #e2e2e5;
-        }
-
-        .profile-option-btn.active {
-            background: rgba(171, 199, 254, 0.2);
-            border-color: rgba(171, 199, 254, 0.8);
-            color: #d7e3ff;
-        }
-
-        .profile-step-actions {
-            margin-top: 0.7rem;
-            display: flex;
-            justify-content: flex-end;
-        }
-
-        .profile-back-btn,
-        .profile-restart-btn {
-            border: 1px solid rgba(142, 144, 154, 0.45);
-            background: rgba(18, 20, 22, 0.7);
-            color: #c4c6d0;
-            font-size: 0.78rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-        .profile-back-btn:hover:not(:disabled),
-        .profile-restart-btn:hover:not(:disabled) {
-            border-color: rgba(171, 199, 254, 0.65);
-            color: #e2e2e5;
-        }
-
-        .profile-back-btn:disabled,
-        .profile-restart-btn:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
-        /* Markdown-like styling for bot responses */
-        .message.bot strong {
-            color: #abc7fe;
-            font-weight: 600;
-        }
-
-        .message.bot em {
-            color: #ffb3af;
-        }
-
-        .message.bot ul {
-            list-style: disc;
-            margin-left: 1.25rem;
-            margin-top: 0.5rem;
-        }
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
+        .font-serif { font-family: 'Syne', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .grad-text { background:linear-gradient(135deg,#c084fc,#ec4899,#fb923c); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        /* Legacy chat styles mapped to new system */
+        .chat-container { height: 580px; display: flex; flex-direction: column; background: rgba(8,10,15,0.95); }
+        .messages-area { flex: 1; overflow-y: auto; padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; scrollbar-width: thin; scrollbar-color: rgba(124,58,237,0.3) transparent; }
+        .message { max-width: 78%; padding: 0.85rem 1.1rem; font-size: 0.9rem; line-height: 1.55; }
+        .message.user { align-self: flex-end; background: linear-gradient(135deg,rgba(124,58,237,0.3),rgba(236,72,153,0.25)); border: 1px solid rgba(192,132,252,0.25); color: #f1f5f9; border-radius: 18px 18px 4px 18px; }
+        .message.bot { align-self: flex-start; background: rgba(255,255,255,0.045); border: 1px solid rgba(255,255,255,0.08); color: #94a3b8; border-radius: 4px 18px 18px 18px; }
+        .message.bot strong { color: #c084fc; }
+        .message.bot em { color: #fdba74; }
+        .message.bot ul { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
+        .input-area { display:flex; align-items:center; gap:0.75rem; padding:1rem 1.25rem; border-top:1px solid rgba(255,255,255,0.08); background:rgba(8,10,15,0.8); }
+        .chat-input { flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:9999px; color:#f1f5f9; font-family:'Space Grotesk',sans-serif; font-size:0.88rem; padding:0.6rem 1.1rem; outline:none; transition:border-color 0.3s,box-shadow 0.3s; }
+        .chat-input:focus { border-color:rgba(124,58,237,0.5); box-shadow:0 0 0 3px rgba(124,58,237,0.1); }
+        .send-btn { width:40px; height:40px; border-radius:9999px; background:linear-gradient(135deg,#7c3aed,#ec4899); border:none; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 16px rgba(124,58,237,0.4); transition:all 0.3s; }
+        .send-btn:hover { transform:scale(1.1); box-shadow:0 6px 24px rgba(124,58,237,0.6); }
+        .typing-indicator { font-size:0.8rem; color:#c084fc; font-style:italic; margin-bottom:0.5rem; display:none; padding: 0 1.5rem; }
+        .profile-questions { padding:1rem 1.25rem; border-bottom:1px solid rgba(255,255,255,0.08); background:rgba(255,255,255,0.025); }
+        .profile-question-title { font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase; color:#475569; margin-bottom:0.45rem; }
+        .profile-step-label { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:#c084fc; margin-bottom:0.3rem; font-weight:600; }
+        .profile-options { display:flex; flex-wrap:wrap; gap:0.45rem; }
+        .profile-option-btn { border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:#94a3b8; font-size:0.76rem; padding:5px 14px; border-radius:9999px; transition:all 0.2s; cursor:pointer; font-family:'Space Grotesk',sans-serif; }
+        .profile-option-btn:hover { border-color:rgba(192,132,252,0.5); color:#f1f5f9; background:rgba(124,58,237,0.1); }
+        .profile-option-btn.active { background:linear-gradient(135deg,rgba(124,58,237,0.35),rgba(236,72,153,0.25)); border-color:rgba(192,132,252,0.6); color:#e9d5ff; }
+        .profile-step-actions { margin-top:0.7rem; display:flex; justify-content:flex-end; gap:0.5rem; }
+        .profile-back-btn, .profile-restart-btn { border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:#94a3b8; font-size:0.74rem; padding:4px 14px; border-radius:9999px; transition:all 0.2s; cursor:pointer; font-family:'Space Grotesk',sans-serif; }
+        .profile-back-btn:hover:not(:disabled), .profile-restart-btn:hover:not(:disabled) { border-color:rgba(192,132,252,0.4); color:#f1f5f9; }
+        .profile-back-btn:disabled, .profile-restart-btn:disabled { opacity:0.35; cursor:not-allowed; }
     </style>
 </head>
 
-<body class="bg-background text-on-background font-body selection:bg-secondary selection:text-on-secondary">
+<body class="bg-background text-on-background">
+    <div class="bg-orbs" aria-hidden="true"></div>
     <!-- TopNavBar -->
-    <nav class="fixed top-0 w-full z-50 bg-slate-950/70 backdrop-blur-xl shadow-2xl shadow-black/50">
-        <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
-            <a href="index.html" class="text-2xl font-serif italic text-blue-100 tracking-tight">Cinémathèque</a>
-            <div class="hidden md:flex items-center space-x-10">
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="index.html">Accueil</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="movies.html">Cinéma</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="series.html">Séries</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="documentaries.html">Documentaires</a>
-                <a class="text-blue-300 border-b border-red-400 pb-1 font-serif tracking-tight" href="#">Assistant</a>
-                <a class="text-slate-400 hover:text-white transition-colors duration-500 font-serif tracking-tight"
-                    href="theaters.html">Salles</a>
-            </div>
-            <div class="flex items-center space-x-6">
-                <div class="relative group hidden lg:block">
-                    <span
-                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-                    <input
-                        class="bg-surface-container-high/40 border-none border-b border-outline-variant/20 focus:border-primary focus:ring-0 text-sm py-2 pl-10 pr-4 w-64 transition-all duration-500"
-                        placeholder="Rechercher..." type="text" />
-                </div>
-                <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
-                    <span class="material-symbols-outlined" data-icon="language">language</span>
-                </button>
-            </div>
+    <nav class="nav-modern" id="main-nav">
+        <a href="index.html" class="nav-logo">Cinémathèque</a>
+        <ul class="nav-links hidden md:flex">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="movies.html">Cinéma</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="documentaries.html">Docs</a></li>
+            <li><a href="chatbot.html" class="active">Assistant</a></li>
+            <li><a href="theaters.html">Salles</a></li>
+        </ul>
+        <div class="nav-actions flex items-center gap-4">
+            <form action="search.html" method="get" class="relative hidden sm:block">
+                <input
+                    id="search-input"
+                    name="q"
+                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
+                    placeholder="Rechercher..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+            </form>
+            <button class="btn btn-glass btn-icon">
+                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
+            </button>
         </div>
     </nav>
-    <main class="min-h-screen pt-32 pb-20 px-6 md:px-12 flex flex-col items-center relative overflow-hidden">
-        <!-- Aesthetic Background Elements -->
-        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
-            <div class="absolute top-1/4 -left-20 w-96 h-96 bg-primary-container opacity-20 blur-[120px]"></div>
-            <div class="absolute bottom-1/4 -right-20 w-96 h-96 bg-secondary-container opacity-10 blur-[120px]"></div>
-        </div>
+    <main class="min-h-screen pt-28 pb-20 px-6 md:px-12 flex flex-col items-center relative overflow-hidden">
+        <!-- Background ambient -->
+        <div class="bg-orbs" style="position:absolute"></div>
         <!-- Editorial Header -->
-        <div class="w-full max-w-6xl z-10 mb-16 text-center md:text-left pt-8">
-            <span class="label-md uppercase tracking-[0.3em] text-secondary font-label mb-4 block">Intelligence
-                Artificielle</span>
-            <h1 class="font-headline text-5xl md:text-7xl font-bold tracking-tighter text-on-surface leading-tight">
-                L'Assistant de la <br /><span class="italic text-primary">Cinémathèque</span>.
+        <div class="w-full max-w-6xl z-10 mb-14 text-center md:text-left pt-8">
+            <div class="section-eyebrow" style="justify-content:center">Intelligence Artificielle</div>
+            <h1 class="font-headline font-bold" style="font-size:clamp(2.5rem,8vw,5.5rem);letter-spacing:-0.04em;margin-top:0.6rem;line-height:1.05">
+                L'Assistant <span class="grad-text">Cinémathèque</span>.
             </h1>
-            <p class="mt-8 text-on-surface-variant max-w-xl text-lg font-light leading-relaxed italic">
+            <p class="mt-6 max-w-xl mx-auto md:mx-0" style="color:var(--text-secondary);font-size:0.97rem;line-height:1.8;font-style:italic">
                 Explorez l'âme du septième art à travers un dialogue suspendu dans le temps.
-                Interrogez notre intelligence pour redécouvrir des chefs-d'œuvre enfouis ou explorer des horizons
-                insoupçonnés.
             </p>
         </div>
         <!-- Chat Container: Bento Style Layout -->
@@ -370,20 +161,16 @@
                     </div>
                 </div>
             </div>
-            <!-- AIBotKit chat (embedded) -->
+            <!-- Chat Embed -->
             <div class="md:col-span-8 w-full">
-                <div
-                    class="chatbot-embed-wrap rounded-xl overflow-hidden border border-outline-variant/50 shadow-2xl ring-1 ring-white/[0.06]">
-                    <div
-                        class="flex flex-wrap items-center gap-3 px-5 py-4 border-b border-outline-variant/40 bg-surface-container/80 backdrop-blur-sm">
-                        <span class="material-symbols-outlined text-primary text-2xl">smart_toy</span>
-                        <div class="min-w-0 flex-1">
-                            <p class="font-headline text-lg text-on-surface tracking-tight">Assistant Cinémathèque</p>
-                            <p class="text-[11px] uppercase tracking-[0.2em] text-on-surface-variant mt-0.5">Posez vos
-                                questions sur le catalogue et le cinéma français</p>
+                <div class="glass-card" style="border-radius:20px;overflow:hidden;padding:0">
+                    <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.03)">
+                        <span class="material-symbols-outlined" style="font-size:24px;background:linear-gradient(135deg,#7c3aed,#ec4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">smart_toy</span>
+                        <div style="flex:1;min-width:0">
+                            <p style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:#f1f5f9">Assistant Cinémathèque</p>
+                            <p style="font-size:0.68rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-top:2px">Chat ciné intelligent · Groq AI</p>
                         </div>
-                        <span
-                            class="hidden sm:inline text-[9px] uppercase tracking-widest text-outline border border-outline-variant/50 px-2 py-1 rounded-sm">IA</span>
+                        <span class="label-pill violet" style="font-size:0.6rem">IA</span>
                     </div>
                     <div class="chat-container">
                         <div id="profileQuestions" class="profile-questions">
@@ -423,28 +210,21 @@
         </div>
     </main>
     <!-- Footer -->
-    <footer class="w-full border-t border-slate-800/50 bg-slate-950">
-        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-10 w-full">
-            <a href="index.html" class="text-lg font-serif text-white mb-6 md:mb-0">Cinémathèque</a>
-            <div class="flex space-x-8 mb-6 md:mb-0">
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="terms.html">Conditions d'utilisation</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="privacy.html">Confidentialité</a>
-                <a class="font-sans uppercase tracking-[0.2em] text-[10px] text-slate-500 hover:text-red-400 transition-colors duration-300"
-                    href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+    <footer class="footer-modern">
+        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+            <a href="index.html" class="footer-logo">Cinémathèque</a>
+            <div style="display:flex;gap:2rem">
+                <a class="footer-link" href="terms.html">Conditions</a>
+                <a class="footer-link" href="privacy.html">Confidentialité</a>
+                <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
             </div>
-            <div class="text-slate-500 font-sans uppercase tracking-[0.2em] text-[10px]">
-                © 2026 Digital Cinémathèque. Tous droits réservés.
-            </div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque</div>
         </div>
-        <!-- Subtle Tricolour Accent Bar -->
-        <div class="flex h-1 w-full">
-            <div class="w-1/3 bg-blue-600"></div>
-            <div class="w-1/3 bg-white"></div>
-            <div class="w-1/3 bg-red-600"></div>
-        </div>
+        <div class="footer-bar"></div>
     </footer>
+    <script>
+        window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>30);});
+    </script>
     <!-- No extra imports needed for direct fetch, but we'll use standard headers -->
 
     <script type="module">
