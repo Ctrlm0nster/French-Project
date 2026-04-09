@@ -4,21 +4,63 @@
     "year": 2020,
     "author": "Coffee Break Languages",
     "time": "15-20 min per episode",
-    "image": "assets/posters/Coffee_Day.jpeg"
+    "image": "assets/posters/Coffee_Day.jpeg",
+    "synopsis": "Coffee Break French propose un regard approfondi sur son sujet.",
+    "description": "Coffee Break French propose un regard approfondi sur son sujet.",
+    "director": "Coffee Break Languages",
+    "genre": "Documentaire",
+    "duration": "15-20 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "InnerFrench",
     "year": 2017,
     "author": "Hugo Cotton",
     "time": "20-30 min per episode",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHTZXZ9eyoVp-JrG9EvZZ_T2GgR_3L4uiKNQ&s"
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHTZXZ9eyoVp-JrG9EvZZ_T2GgR_3L4uiKNQ&s",
+    "synopsis": "InnerFrench propose un regard approfondi sur son sujet.",
+    "description": "InnerFrench propose un regard approfondi sur son sujet.",
+    "director": "Hugo Cotton",
+    "genre": "Documentaire",
+    "duration": "20-30 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Learn French by Podcast",
     "year": 2006,
     "author": "FrenchPod101",
     "time": "10-15 min per episode",
-    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPodcasts125%2Fv4%2F3c%2F78%2F32%2F3c7832f3-520a-8630-c844-d68bdf1b7e91%2Fmza_1874989222460489719.jpg%2F1200x1200bf-60.jpg&f=1&nofb=1&ipt=14c3206159936b02deadf569eec34655a43bd54db337a084d1e182a40fef3681"
+    "image": "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fis1-ssl.mzstatic.com%2Fimage%2Fthumb%2FPodcasts125%2Fv4%2F3c%2F78%2F32%2F3c7832f3-520a-8630-c844-d68bdf1b7e91%2Fmza_1874989222460489719.jpg%2F1200x1200bf-60.jpg&f=1&nofb=1&ipt=14c3206159936b02deadf569eec34655a43bd54db337a084d1e182a40fef3681",
+    "synopsis": "Learn French by Podcast propose un regard approfondi sur son sujet.",
+    "description": "Learn French by Podcast propose un regard approfondi sur son sujet.",
+    "director": "FrenchPod101",
+    "genre": "Documentaire",
+    "duration": "10-15 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "One Thing In A French Day",
@@ -26,7 +68,20 @@
     "author": "Laetitia Perraut",
     "time": "5-10 min per episode",
     "description": "A daily podcast sharing simple stories about everyday life in France.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png",
+    "synopsis": "A daily podcast sharing simple stories about everyday life in France.",
+    "director": "Laetitia Perraut",
+    "genre": "Documentaire",
+    "duration": "5-10 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "French Voices Podcast",
@@ -34,7 +89,20 @@
     "author": "Jessica Salomon",
     "time": "30-40 min per episode",
     "description": "Interviews with French speakers to improve listening and cultural understanding.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png",
+    "synopsis": "Interviews with French speakers to improve listening and cultural understanding.",
+    "director": "Jessica Salomon",
+    "genre": "Documentaire",
+    "duration": "30-40 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "News in Slow French",
@@ -42,7 +110,20 @@
     "author": "Linguistica 360",
     "time": "20-30 min per episode",
     "description": "Weekly news explained slowly to help learners understand spoken French.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png",
+    "synopsis": "Weekly news explained slowly to help learners understand spoken French.",
+    "director": "Linguistica 360",
+    "genre": "Documentaire",
+    "duration": "20-30 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "French Your Way Podcast",
@@ -50,7 +131,20 @@
     "author": "Jessica J. Gourdon",
     "time": "10-15 min per episode",
     "description": "Short lessons focusing on grammar, pronunciation, and useful expressions.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png",
+    "synopsis": "Short lessons focusing on grammar, pronunciation, and useful expressions.",
+    "director": "Jessica J. Gourdon",
+    "genre": "Documentaire",
+    "duration": "10-15 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Parlez Away",
@@ -58,7 +152,20 @@
     "author": "Babbel",
     "time": "15-20 min per episode",
     "description": "A fun podcast that teaches French through stories and conversations.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Podcast_icon.png",
+    "synopsis": "A fun podcast that teaches French through stories and conversations.",
+    "director": "Babbel",
+    "genre": "Documentaire",
+    "duration": "15-20 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Chef’s Table: France",
@@ -66,7 +173,20 @@
     "author": "Netflix",
     "time": "50 min per episode",
     "description": "A documentary series exploring the lives of famous French chefs and cuisine.",
-    "image": "https://upload.wikimedia.org/wikipedia/en/3/3d/Chef%27s_Table_title_card.png"
+    "image": "https://upload.wikimedia.org/wikipedia/en/3/3d/Chef%27s_Table_title_card.png",
+    "synopsis": "A documentary series exploring the lives of famous French chefs and cuisine.",
+    "director": "Netflix",
+    "genre": "Documentaire",
+    "duration": "50 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Street Food: France",
@@ -74,7 +194,20 @@
     "author": "Netflix",
     "time": "30 min per episode",
     "description": "Showcases French street food culture and local culinary traditions.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Street_food.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Street_food.jpg",
+    "synopsis": "Showcases French street food culture and local culinary traditions.",
+    "director": "Netflix",
+    "genre": "Documentaire",
+    "duration": "30 min per episode",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "France From Above",
@@ -82,7 +215,20 @@
     "author": "Yann Arthus-Bertrand",
     "time": "90 min",
     "description": "A visual documentary showing aerial views of France’s landscapes and cities.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/France_landscape.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/3f/France_landscape.jpg",
+    "synopsis": "A visual documentary showing aerial views of France’s landscapes and cities.",
+    "director": "Yann Arthus-Bertrand",
+    "genre": "Documentaire",
+    "duration": "90 min",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Versailles Documentary",
@@ -90,7 +236,20 @@
     "author": "BBC",
     "time": "60 min",
     "description": "Explores the history and architecture of the Palace of Versailles.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Chateau_de_Versailles.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Chateau_de_Versailles.jpg",
+    "synopsis": "Explores the history and architecture of the Palace of Versailles.",
+    "director": "BBC",
+    "genre": "Documentaire",
+    "duration": "60 min",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Paris: The Luminous Years",
@@ -98,7 +257,20 @@
     "author": "PBS",
     "time": "60 min",
     "description": "A documentary about Paris as a center of art, culture, and creativity.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg",
+    "synopsis": "A documentary about Paris as a center of art, culture, and creativity.",
+    "director": "PBS",
+    "genre": "Documentaire",
+    "duration": "60 min",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "Secrets of the Louvre",
@@ -106,7 +278,20 @@
     "author": "National Geographic",
     "time": "60 min",
     "description": "Reveals hidden stories and secrets of the famous Louvre Museum.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Louvre_Museum.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Louvre_Museum.jpg",
+    "synopsis": "Reveals hidden stories and secrets of the famous Louvre Museum.",
+    "director": "National Geographic",
+    "genre": "Documentaire",
+    "duration": "60 min",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   },
   {
     "title": "France Travel Guide Documentary",
@@ -114,6 +299,19 @@
     "author": "Travel Channel",
     "time": "45 min",
     "description": "A guide to exploring France’s cities, culture, and tourist attractions.",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Paris_cityscape.jpg",
+    "synopsis": "A guide to exploring France’s cities, culture, and tourist attractions.",
+    "director": "Travel Channel",
+    "genre": "Documentaire",
+    "duration": "45 min",
+    "country": "France",
+    "language": "Français",
+    "theme": "Société",
+    "cast": [],
+    "reviews": [
+      "Un documentaire clair et pédagogique, porté par une narration accessible.",
+      "La réalisation met en valeur le sujet avec rigueur et sens du détail."
+    ],
+    "trailerUrl": ""
   }
 ]

@@ -77,6 +77,12 @@
       color: var(--secondary);
       font-weight: 500;
       margin-left: 0.5em;
+      animation: pulseTagline 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulseTagline {
+      0%, 100% { opacity: 0.75; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
     }
 
     .loader-bar {
@@ -135,10 +141,27 @@
       from { transform: translate(-10%, -10%); }
       to { transform: translate(10%, 10%); }
     }
+
+    .film-grain {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0.08;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.45) 0.5px, transparent 0.6px);
+      background-size: 3px 3px;
+      animation: grainShift 0.5s steps(2) infinite;
+      mix-blend-mode: soft-light;
+    }
+
+    @keyframes grainShift {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-2px, 2px); }
+    }
   </style>
 </head>
 <body>
   <div class="glow"></div>
+  <div class="film-grain"></div>
   <div class="brand-container">
     <h1 class="logo">Cinémathèque</h1>
     <p class="tagline">Le sanctuaire du septième art</p>
