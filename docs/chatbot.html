@@ -433,15 +433,18 @@
             } catch (error) {
                 console.error("Chat Error:", error);
                 
-                // Fallback message for local development if /api/chat isn't available
                 let errorMsg = "Erreur de connexion à l'Oracle.";
-                if (error.message.includes("404")) {
-                    errorMsg = "L'endpoint API (/api/chat) est introuvable. Assurez-vous d'utiliser Vercel pour le développement local.";
+                
+                // Detailed error for local testing without a server
+                if (window.location.protocol === 'file:') {
+                    errorMsg = "Le chatbot ne peut pas fonctionner en ouvrant le fichier HTML directement. <br><br>Veuillez utiliser <strong>vercel dev</strong> ou déployer sur Vercel pour activer l'API sécurisée.";
+                } else if (error.message.includes("404")) {
+                    errorMsg = "L'endpoint API (/api/chat) est introuvable. Vérifiez que vous lancez le projet avec un serveur compatible (ex: Vercel CLI).";
                 } else if (error.message.includes("401")) {
-                    errorMsg = "La clé API Groq n'est pas configurée correctement sur le serveur.";
+                    errorMsg = "La clé API Groq est manquante ou invalide sur le serveur.";
                 }
 
-                appendMessage(`Désolé, une erreur est survenue: ${errorMsg}`, false);
+                appendMessage(`Désolé, une erreur est survenue: <br><br>${errorMsg}`, false);
             } finally {
                 typingIndicator.style.display = 'none';
             }
