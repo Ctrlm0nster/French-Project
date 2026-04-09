@@ -57,30 +57,47 @@ Valid genres currently used:
 - Series page: `4` items per page
 - Pagination updates automatically after filtering/search.
 
-## ChatGPT Agent Settings
+## Groq AI Settings
 
-The chatbot in `chatbot.html` uses **OpenAI ChatGPT (gpt-4o-mini)**.
+The chatbot in `chatbot.html` uses **Groq AI (llama-3.3-70b-versatile)**.
 
 ### Configuring the API Key
 
-For the chatbot to work, you must provide an OpenAI API Key.
+For the chatbot to work, you must provide a Groq API Key.
 
-1. Get your key from the [OpenAI Platform](https://platform.openai.com/api-keys).
-2. Open `website/chatbot.html` (and `docs/chatbot.html`).
+1. Get your key from the [Groq Console](https://console.groq.com/keys).
+2. Open `website/chatbot.html`.
 3. Locate this line in the `<script>` section near the bottom:
 
    ```js
-   const API_KEY = window.OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
+   const API_KEY = window.GROQ_API_KEY || "YOUR_GROQ_API_KEY";
    ```
 
-4. Replace `"YOUR_OPENAI_API_KEY"` with your actual key:
+4. Replace `"YOUR_GROQ_API_KEY"` with your actual key:
 
    ```js
-   const API_KEY = window.OPENAI_API_KEY || "YOUR_ACTUAL_KEY_HERE";
+   const API_KEY = window.GROQ_API_KEY || "gsk_xxxxxx...";
    ```
 
+### Adding Key in Vercel (Production)
+
+To avoid exposure of your key in the HTML, you should use Vercel Environment Variables:
+
+1. Go to your project dashboard on Vercel.
+2. Navigate to **Settings** -> **Environment Variables**.
+3. Add a new variable:
+   - **Key**: `GROQ_API_KEY`
+   - **Value**: `gsk_your_actual_key`
+4. The `build.mjs` script will automatically inject this key into the deployed version during the build process.
+
+### How to use the AI
+
+- **Ask about movies**: "Quels sont les meilleurs films de la Nouvelle Vague ?"
+- **Ask about theaters**: "Où se trouve la Cinémathèque Française ?"
+- **General Help**: "Explique-moi l'influence de Jean-Luc Godard."
+
 > [!WARNING]
-> Adding your API key directly to the HTML file makes it visible to anyone who visits your site. For production use, it is recommended to use a backend proxy.
+> Adding your API key directly to the HTML file for local testing is fine, but always use Environment Variables for the live site to keep your credentials secure.
 
 ## Publish updated content
 

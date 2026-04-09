@@ -26,7 +26,9 @@
     rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link id="cinematheque-translate-css" rel="stylesheet" href="assets/css/google-translate.css" />
+  <link rel="stylesheet" href="assets/css/cursor.css" />
   <script src="assets/js/site-common.js"></script>
+  <script src="assets/js/cursor.js"></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -134,20 +136,20 @@
     <div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
       <a href="index.html" class="text-2xl font-serif italic text-blue-100">Cinémathèque</a>
       <div class="hidden md:flex gap-10 items-center">
-        <a class="font-serif tracking-tight text-blue-300 border-b border-red-400 pb-1" href="index.html">Accueil</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+        <a class="font-serif tracking-tight text-blue-300 border-b border-red-400 pb-1 magnetic" href="index.html">Accueil</a>
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500 magnetic"
           href="movies.html">Cinéma</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500 magnetic"
           href="series.html">Séries</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500 magnetic"
           href="documentaries.html">Documentaires</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500 magnetic"
           href="chatbot.html">Assistant</a>
-        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500"
+        <a class="font-serif tracking-tight text-slate-400 hover:text-white transition-colors duration-500 magnetic"
           href="theaters.html">Salles</a>
       </div>
       <div class="flex items-center gap-4 md:gap-6 flex-wrap justify-end">
-        <button class="text-blue-200 hover:text-red-300 transition-all duration-500">
+        <button class="text-blue-200 hover:text-red-300 transition-all duration-500 magnetic">
           <span class="material-symbols-outlined" data-icon="language">language</span>
         </button>
         <div id="google_translate_element" style="display:none;"></div>
@@ -177,12 +179,12 @@
         class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
       <div class="flex flex-wrap items-center gap-4 md:gap-8">
         <a id="hero-trailer" href="https://www.youtube.com/watch?v=EFGmBOJy8sc" target="_blank" rel="noopener noreferrer"
-          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300">
+          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300 magnetic">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           Bande-annonce
         </a>
         <a id="hero-link" href="detail.html?type=movie&title=The%20Intouchables"
-          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300">
+          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300 magnetic">
           En savoir plus
         </a>
       </div>
@@ -222,11 +224,11 @@
           </div>
         </div>
         <button type="button" id="spotlight-prev" aria-label="Slide précédent"
-          class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
+          class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
           <span class="material-symbols-outlined text-2xl">chevron_left</span>
         </button>
         <button type="button" id="spotlight-next" aria-label="Slide suivant"
-          class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary">
+          class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
           <span class="material-symbols-outlined text-2xl">chevron_right</span>
         </button>
       </div>
@@ -254,9 +256,9 @@
         <p class="text-on-surface-variant font-body">Une sélection dynamique des œuvres qui agitent la critique et passionnent notre communauté.</p>
       </div>
       <div class="flex gap-4 flex-wrap" id="trending-tabs">
-        <button type="button" data-trend="cinema" class="trend-tab label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1">Cinéma</button>
-        <button type="button" data-trend="series" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Séries</button>
-        <button type="button" data-trend="docs" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent">Documentaires</button>
+        <button type="button" data-trend="cinema" class="trend-tab label-md uppercase tracking-widest text-on-surface border-b-2 border-secondary pb-1 magnetic">Cinéma</button>
+        <button type="button" data-trend="series" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent magnetic">Séries</button>
+        <button type="button" data-trend="docs" class="trend-tab label-md uppercase tracking-widest text-outline hover:text-on-surface transition-colors pb-1 border-b-2 border-transparent magnetic">Documentaires</button>
       </div>
     </div>
     <div id="trending-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[200px]">
@@ -438,7 +440,7 @@
                 '<div class="flex shrink-0 flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10">' +
                 '<a href="' +
                 href +
-                '" class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 overflow-hidden border border-outline-variant/40 bg-surface-container sm:max-w-[180px]">' +
+                '" class="relative mx-auto aspect-[2/3] w-full max-w-[140px] shrink-0 overflow-hidden border border-outline-variant/40 bg-surface-container sm:max-w-[180px] hover-tilt">' +
                 '<img src="' +
                 esc(row.image) +
                 '" alt="' +
@@ -520,7 +522,7 @@
                   '<a href="' +
                   href +
                   '" class="group block">' +
-                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-2">' +
+                  '<div class="relative aspect-[2/3] overflow-hidden bg-surface-container mb-2 hover-tilt">' +
                   '<img src="' +
                   esc(m.image) +
                   '" alt="' +
@@ -596,7 +598,7 @@
                   '<div class="group relative mx-auto flex w-full max-w-[280px] flex-col overflow-hidden bg-surface-container shadow-lg">' +
                   '<a href="' +
                   href +
-                  '" class="relative block aspect-[2/3] w-full overflow-hidden">' +
+                  '" class="relative block aspect-[2/3] w-full overflow-hidden hover-tilt">' +
                   '<img src="' +
                   esc(row.image) +
                   '" alt="" class="h-full w-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0" />' +
@@ -739,7 +741,7 @@
           .then(function(items) {
             immortalsStrip.innerHTML = items.map(function(item) {
               return '<a href="' + item.href + '" class="flex-none w-[350px] snap-start group block text-left">' +
-                '<div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high">' +
+                '<div class="relative aspect-[2/3] mb-6 overflow-hidden bg-surface-container-high hover-tilt">' +
                   '<img alt="' + esc(item.title) + '" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="' + esc(item.image) + '" />' +
                   '<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em]">' + item.year + '</div>' +
                 '</div>' +
