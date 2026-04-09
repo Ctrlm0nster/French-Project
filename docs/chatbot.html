@@ -422,7 +422,11 @@
             }
 
             if (!response.ok) {
-                throw new Error(data.error || `HTTP ${response.status}`);
+                const backendError = data && data.error ? String(data.error) : '';
+                const err = new Error(backendError || `HTTP ${response.status}`);
+                err.status = response.status;
+                err.endpoint = endpoint;
+                throw err;
             }
 
             const text = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
@@ -480,15 +484,19 @@
                 console.error("Chat Error:", error);
                 
                 let errorMsg = "Erreur de connexion à l'Assistant.";
+                const status = error && error.status ? Number(error.status) : 0;
+                const errorText = String((error && error.message) || "");
                 
                 if (window.location.protocol === 'file:') {
                     errorMsg = "Le chatbot ne peut pas fonctionner en ouvrant le fichier HTML directement. <br><br>Veuillez utiliser <strong>vercel dev</strong> ou déployer sur Vercel pour activer l'API sécurisée.";
+                } else if (status === 404 || errorText.includes("404")) {
+                    errorMsg = "L'endpoint API est introuvable. Vérifiez /api/chat ou configurez APP_CONFIG.CHAT_API_URL.";
                 } else if (window.location.hostname.endsWith("github.io") && !(window.APP_CONFIG && window.APP_CONFIG.CHAT_API_URL)) {
                     errorMsg = "Cette version statique n'expose pas /api/chat. Ajoutez <strong>CHAT_API_URL</strong> dans assets/js/config.js vers votre backend Vercel.";
-                } else if (error.message && error.message.includes("404")) {
-                    errorMsg = "L'endpoint API est introuvable. Vérifiez /api/chat ou configurez APP_CONFIG.CHAT_API_URL.";
-                } else if (error.message.includes("401")) {
-                    errorMsg = "La clé API Groq est manquante ou invalide sur le serveur.";
+                } else if (status === 401 || status === 403 || errorText.includes("401") || errorText.includes("403")) {
+                    errorMsg = "La clé API Groq est manquante, invalide, ou non autorisée côté serveur.";
+                } else if (status === 500 || /GROQ_API_KEY|api key|authentication|auth/i.test(errorText)) {
+                    errorMsg = "Le serveur IA a échoué. Vérifiez que la variable <strong>GROQ_API_KEY</strong> est bien définie dans Vercel (environnement Production), puis redéployez.";
                 }
 
                 appendMessage(`Désolé, une erreur est survenue: <br><br>${errorMsg}`, false);
