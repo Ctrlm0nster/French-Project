@@ -91,10 +91,14 @@
             <img id="detail-poster" class="w-full max-w-[340px] mx-auto aspect-[2/3] object-cover bg-surface-container" alt="" />
           </div>
           <div class="mt-6 flex flex-col gap-3">
+          <button id="detail-watch-btn" class="hidden inline-flex items-center justify-center gap-2 btn btn-primary px-5 py-3 text-xs uppercase tracking-widest font-bold">
+            <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+            <span>Regarder le Film</span>
+          </button>
           <a id="detail-trailer" href="#" target="_blank" rel="noopener noreferrer" class="hidden"
-            data-visible-class="inline-flex items-center justify-center gap-2 btn btn-primary px-5 py-3 text-xs">
+            data-visible-class="inline-flex items-center justify-center gap-2 btn btn-glass border-primary border-opacity-30 px-5 py-3 text-xs">
             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
-            <span>Voir la bande-annonce</span>
+            <span>Bande-annonce</span>
           </a>
           <a id="detail-back" href="movies.html" class="inline-flex items-center justify-center gap-2 btn btn-glass px-5 py-3 text-xs uppercase tracking-widest">
             Retour
@@ -103,6 +107,11 @@
         </div>
 
         <div class="lg:col-span-8 space-y-6">
+          <section id="player-section" class="hidden detail-panel overflow-hidden p-0 border-0 bg-black">
+            <div class="relative w-full" style="padding-top: 56.25%;">
+              <iframe id="vidking-player" src="" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+            </div>
+          </section>
           <section id="synopsis-section" class="detail-panel">
             <h2 id="synopsis-title" class="section-title">Synopsis</h2>
             <p id="detail-synopsis" class="text-on-surface-variant leading-relaxed text-[1.02rem]"></p>
@@ -280,6 +289,12 @@
           if (type === "series" && item.episodes) metaParts.push(item.episodes + " épisodes");
           if (type === "person" && item.activeYears) metaParts.push(item.activeYears);
           if (type === "person" && item.nationality) metaParts.push(item.nationality);
+          
+          // Added TMDB Rating support
+          if (item.rating) {
+            metaParts.push("⭐ " + item.rating);
+          }
+
           document.getElementById("detail-meta").textContent = metaParts.join(" · ");
 
           document.getElementById("detail-poster").src = item.image;
@@ -289,7 +304,7 @@
           };
           document.getElementById("synopsis-title").textContent = type === "person" ? "Biographie" : "Synopsis";
           document.getElementById("detail-synopsis").textContent =
-            item.synopsis || item.description || item.biography || "Aucun synopsis pour le moment.";
+            item.synopsis || item.description || item.overview || item.biography || "Aucun synopsis pour le moment.";
 
           renderReviews(item.reviews || []);
           renderCast(item.cast || []);
@@ -301,6 +316,38 @@
           }
 
           setTrailer(item.trailerUrl || item.trailerURL || item.youtubeTrailer || "");
+
+          const watchBtn = document.getElementById("detail-watch-btn");
+          const playerSection = document.getElementById("player-section");
+          const playerIframe = document.getElementById("vidking-player");
+
+          const isSeries = type === "series";
+          const streamType = isSeries ? "tv" : "movie";
+
+          if (item.tmdbId) {
+            watchBtn.classList.remove("hidden");
+            if (streamType === "tv") {
+              watchBtn.querySelector("span:last-child").textContent = "Regarder la Série";
+            } else {
+              watchBtn.querySelector("span:last-child").textContent = "Regarder le Film";
+            }
+            
+            watchBtn.onclick = function() {
+              let embedUrl = "";
+              if (streamType === "tv") {
+                embedUrl = `https://www.vidking.net/embed/tv/${item.tmdbId}/1/1?color=7c3aed&autoPlay=true&episodeSelector=true&nextEpisode=true`;
+              } else {
+                embedUrl = `https://www.vidking.net/embed/movie/${item.tmdbId}?color=7c3aed&autoPlay=true`;
+              }
+              
+              playerIframe.src = embedUrl;
+              playerSection.classList.remove("hidden");
+              playerSection.scrollIntoView({ behavior: 'smooth' });
+              watchBtn.classList.add("hidden");
+            };
+          } else {
+            watchBtn.classList.add("hidden");
+          }
 
           var back = document.getElementById("detail-back");
           if (type === "series") back.href = "series.html";
@@ -316,7 +363,41 @@
         .then(function (rows) {
           var localItem = rows.find(function (row) { return row.title === title; });
           if (localItem) {
-            renderItem(localItem);
+            // New logic: If localItem has a tmdbId, fetch enriched data from TMDB proxy
+            if (localItem.tmdbId) {
+              fetch(`/api/tmdb?type=${type}&id=${localItem.tmdbId}`)
+                .then(r => r.ok ? r.json() : null)
+                .then(tmdbInfo => {
+                   if (tmdbInfo) {
+                      // Merge TMDB data into local item
+                      localItem.tmdbId = tmdbInfo.id || localItem.tmdbId;
+                      localItem.overview = tmdbInfo.overview;
+                      localItem.synopsis = tmdbInfo.overview;
+                      localItem.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : localItem.rating;
+                      localItem.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : localItem.image;
+                      localItem.vote_average = tmdbInfo.vote_average;
+                      localItem.vote_count = tmdbInfo.vote_count;
+                      localItem.popularity = tmdbInfo.popularity;
+                      localItem.original_language = tmdbInfo.original_language;
+                      localItem.original_title = tmdbInfo.original_title;
+                      
+                      // Extract cast
+                      if (tmdbInfo.credits && tmdbInfo.credits.cast) {
+                        localItem.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
+                      }
+                      
+                      // Extract director
+                      if (tmdbInfo.credits && tmdbInfo.credits.crew) {
+                        const dir = tmdbInfo.credits.crew.find(c => c.job === "Director");
+                        if (dir) localItem.director = dir.name;
+                      }
+                   }
+                   renderItem(localItem);
+                })
+                .catch(() => renderItem(localItem));
+            } else {
+              renderItem(localItem);
+            }
             return;
           }
 

@@ -87,6 +87,23 @@ You no longer need to paste your API key directly into the HTML. Instead, follow
 - The backend (`api/chat.js`) uses the `groq-sdk` to communicate with Groq using your private key.
 - This prevents your API key from being exposed to users visiting your website.
 
+## TMDB API Settings
+
+The platform uses the **TMDB API** to automatically enrich movie and series data (synopsis, posters, ratings, etc.).
+
+### Configuring the TMDB API Key
+
+1. **Local Development**:
+   - Open your `.env` file.
+   - Set the `TMDB_API_KEY` variable:
+     ```bash
+     TMDB_API_KEY=your_tmdb_key_here
+     ```
+
+2. **Scraping / Syncing Data**:
+   - You can use the `tmdbId` field in the JSON files to fetch fresh information from TMDB.
+   - The system uses these IDs to link to the correct video playback and metadata.
+
 ### How to use the AI
 
 - **Ask about movies**: "Quels sont les meilleurs films de la Nouvelle Vague ?"
