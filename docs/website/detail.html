@@ -324,7 +324,9 @@
           const isSeries = type === "series";
           const streamType = isSeries ? "tv" : "movie";
 
-          if (item.tmdbId) {
+          const resolvedTmdbId = item.resolvedTmdbId ? String(item.resolvedTmdbId) : "";
+
+          if (resolvedTmdbId) {
             watchBtn.classList.remove("hidden");
             if (streamType === "tv") {
               watchBtn.querySelector("span:last-child").textContent = "Regarder la Série";
@@ -335,9 +337,9 @@
             watchBtn.onclick = function() {
               let embedUrl = "";
               if (streamType === "tv") {
-                embedUrl = `https://www.vidking.net/embed/tv/${item.tmdbId}/1/1?color=7c3aed&autoPlay=true&episodeSelector=true&nextEpisode=true`;
+                embedUrl = `https://www.vidking.net/embed/tv/${resolvedTmdbId}/1/1?color=7c3aed&autoPlay=true&episodeSelector=true&nextEpisode=true`;
               } else {
-                embedUrl = `https://www.vidking.net/embed/movie/${item.tmdbId}?color=7c3aed&autoPlay=true`;
+                embedUrl = `https://www.vidking.net/embed/movie/${resolvedTmdbId}?color=7c3aed&autoPlay=true`;
               }
               
               playerIframe.src = embedUrl;
@@ -363,14 +365,20 @@
         .then(function (rows) {
           var localItem = rows.find(function (row) { return row.title === title; });
           if (localItem) {
-            // New logic: If localItem has a tmdbId, fetch enriched data from TMDB proxy
-            if (localItem.tmdbId) {
-              fetch(`/api/tmdb?type=${type}&id=${localItem.tmdbId}`)
+            // Resolve TMDB by title/year first (fallback to existing tmdbId)
+            if (type === "movie" || type === "series") {
+              var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(type) +
+                "&title=" + encodeURIComponent(localItem.title || title) +
+                "&frenchOnly=1";
+              if (localItem.year) tmdbUrl += "&year=" + encodeURIComponent(localItem.year);
+              if (localItem.tmdbId) tmdbUrl += "&id=" + encodeURIComponent(localItem.tmdbId);
+
+              fetch(tmdbUrl)
                 .then(r => r.ok ? r.json() : null)
                 .then(tmdbInfo => {
                    if (tmdbInfo) {
                       // Merge TMDB data into local item
-                      localItem.tmdbId = tmdbInfo.id || localItem.tmdbId;
+                      localItem.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
                       localItem.overview = tmdbInfo.overview;
                       localItem.synopsis = tmdbInfo.overview;
                       localItem.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : localItem.rating;
@@ -411,7 +419,33 @@
                   ? remoteRows.find(function (row) { return row && row.title === title; })
                   : null;
                 if (remoteItem) {
-                  renderItem(normalizeRemoteDetail(remoteItem));
+                  var normalized = normalizeRemoteDetail(remoteItem);
+                  var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(type) +
+                    "&title=" + encodeURIComponent(normalized.title || title) +
+                    "&frenchOnly=1";
+                  if (normalized.year) tmdbUrl += "&year=" + encodeURIComponent(normalized.year);
+                  if (remoteItem.tmdbId || normalized.tmdbId) {
+                    tmdbUrl += "&id=" + encodeURIComponent(remoteItem.tmdbId || normalized.tmdbId);
+                  }
+
+                  fetch(tmdbUrl)
+                    .then(r => r.ok ? r.json() : null)
+                    .then(tmdbInfo => {
+                      if (tmdbInfo) {
+                        normalized.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
+                        normalized.overview = tmdbInfo.overview;
+                        normalized.synopsis = tmdbInfo.overview || normalized.synopsis;
+                        normalized.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : normalized.rating;
+                        normalized.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : normalized.image;
+                        if (tmdbInfo.credits && tmdbInfo.credits.cast) {
+                          normalized.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
+                        }
+                      }
+                      renderItem(normalized);
+                    })
+                    .catch(function () {
+                      renderItem(normalized);
+                    });
                 } else {
                   detailError.classList.remove("hidden");
                 }
