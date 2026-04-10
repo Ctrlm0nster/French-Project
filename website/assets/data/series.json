@@ -378,5 +378,131 @@
       "Le format épisodique maintient une progression efficace et un bon rythme narratif."
     ],
     "trailerUrl": ""
+  },
+  {
+    "title": "Mixte",
+    "year": 2021,
+    "type": "série",
+    "creator": "Marie Roussin",
+    "genre": "Comédie Dramatique",
+    "image": "",
+    "description": "En septembre 1963, le Lycée Voltaire accueille des filles pour la première fois, bouleversant le quotidien d'une centaine de garçons à l'aube de mai 68.",
+    "synopsis": "En septembre 1963, le Lycée Voltaire devient mixte et accueille des filles pour la première fois de son histoire. Elles sont 11 au total pour une centaine de garçons : une vraie révolution. En situant l'action dans un lycée, Mixte apporte un éclairage différent sur des thématiques très actuelles. Adultes et adolescents vont se chercher, parfois se trouver et apprendre à vivre ensemble dans le quotidien de ce lycée à l'aube de mai 68.",
+    "country": "France",
+    "language": "Français",
+    "rating": "Tous publics",
+    "episodeMinutes": 52,
+    "tags": [
+      "Comédie Dramatique",
+      "2020s",
+      "Années 60",
+      "Coming of Age",
+      "Romance"
+    ],
+    "cast": [
+      "Pierre Deladonchamps",
+      "Nina Meurisse",
+      "Maud Wyler"
+    ],
+    "reviews": [
+      "Mixte se distingue par une reconstitution soignée des années 60 et un regard moderne et sensible sur les rapports entre les genres.",
+      "Une série attachante qui mêle légèreté, nostalgie et des thématiques résolument actuelles avec beaucoup de charme."
+    ]
+  },
+  {
+    "title": "Alphonse",
+    "genre": "Comédie Dramatique",
+    "year": 2023,
+    "episodes": null,
+    "image": "",
+    "description": "Un quadragénaire en déroute renoue avec un père inconnu et découvre une surprenante vocation, croisant une galaxie de femmes passionnantes et excentriques.",
+    "synopsis": "Renouant avec un père qu'il connaissait à peine, Alphonse, un quadragénaire en pleine déroute professionnelle et conjugale, se découvre une surprenante vocation. Sa trajectoire va alors croiser celle d'une galaxie de femmes plus passionnantes et excentriques les unes que les autres, le plongeant au cœur d'une histoire à la fois périlleuse, transgressive et pleine de tendresse.",
+    "country": "France",
+    "language": "Français",
+    "seasons": 1,
+    "platform": "Canal+",
+    "status": "En cours",
+    "cast": [
+      "Jean Dujardin",
+      "Charlotte Gainsbourg",
+      "Nicole Garcia"
+    ],
+    "reviews": [
+      "Alphonse se distingue par une écriture ciselée signée Nicolas Bedos et un Jean Dujardin habité, touchant et drôle à la fois.",
+      "Une série ambitieuse et singulière qui mêle humour, émotion et une vision décalée mais tendre de la vie à quarante ans."
+    ],
+    "trailerUrl": ""
+  },
+  {
+    "title": "Los Años Nuevos",
+    "genre": "Comédie Dramatique",
+    "year": 2024,
+    "episodes": null,
+    "image": "",
+    "description": "Une décennie dans l'intimité d'un couple, racontée au fil des réveillons du Nouvel An, depuis leurs 30 ans jusqu'à leurs 40 ans.",
+    "synopsis": "Une décennie dans l'intimité d'un couple au fil des réveillons de la Saint-Sylvestre. Ana, qui se cherche, et Óscar, médecin à la vie plus rangée, se sont rencontrés lors du Nouvel An, le soir de leurs 30 ans. Chaque épisode est un instantané d'une année de leur vie commune, capturant la beauté et la fragilité du temps qui passe.",
+    "country": "Espagne, France",
+    "language": "Espagnol",
+    "seasons": 1,
+    "platform": "Netflix",
+    "status": "Terminée",
+    "cast": [
+      "Iria del Río",
+      "Francesco Carril",
+      "Pablo Gómez Pando"
+    ],
+    "reviews": [
+      "Los Años Nuevos se distingue par un dispositif narratif élégant et une justesse émotionnelle rare dans le portrait d'un couple qui évolue.",
+      "Une série intimiste et bouleversante qui mêle douceur, mélancolie et une observation fine des petits riens qui font ou défont une histoire d'amour."
+    ],
+    "trailerUrl": ""
+  },
+  {
+    "title": "Dear You",
+    "genre": "Comédie Romantique",
+    "year": 2025,
+    "episodes": null,
+    "image": "",
+    "description": "Alma, jeune parisienne débordée travaillant dans un palace, navigue entre clients farfelus, collègues compliqués et trois prétendants très différents dans la ville de l'Amour.",
+    "synopsis": "Alma, jeune parisienne, travaille dans un palace. Entre les exigences parfois farfelues de ses prestigieux clients, les rapports compliqués avec ses collègues et les histoires de cœur délirantes de ses amis, elle n'a pas le temps de rencontrer quelqu'un. Mais dans la ville de l'Amour, rien n'est impossible : un millionnaire sexy mais arrogant installé à l'hôtel, un barman cool fraîchement embauché, et un mystérieux interlocuteur rencontré sur l'appli Dear You vont bousculer sa vie.",
+    "country": "France",
+    "language": "Français",
+    "seasons": 1,
+    "platform": "France Télévisions",
+    "status": "En cours",
+    "cast": [
+      "Carla Poquin",
+      "Louka Meliava",
+      "Terence Telle"
+    ],
+    "reviews": [
+      "Dear You se distingue par son énergie parisienne pétillante et une héroïne attachante prise dans un joyeux tourbillon sentimental.",
+      "Une série feel-good légère et charmante qui joue avec les codes de la rom-com moderne dans un écrin de luxe à la française."
+    ],
+    "trailerUrl": ""
+  },
+  {
+    "title": "Bref. 2",
+    "genre": "Comédie",
+    "year": 2025,
+    "episodes": null,
+    "image": "",
+    "description": "À 40 ans, il se retrouve encore à la case départ — sans argent, sans copine, sans travail. Un énième échec qui va enfin le pousser à se prendre en main.",
+    "synopsis": "Ça y est, il a 40 ans. Et le constat est amer : à force de non-choix et de ne jamais réellement se prendre en main, il se retrouve encore et encore à la même place, en galère de thunes, sans copine et sans travail. Un énième retour à la case départ qui va enfin le motiver à réagir, à se prendre en main et à écouter quelqu'un d'autre que la voix dans sa tête.",
+    "country": "France",
+    "language": "Français",
+    "seasons": 2,
+    "platform": "Canal+",
+    "status": "En cours",
+    "cast": [
+      "Kyan Khojandi",
+      "Laura Felpin",
+      "Baptiste Lecaplain"
+    ],
+    "reviews": [
+      "Bref. 2 se distingue par le style nerveux et efficace qui a fait le succès de la première saison, revisité avec la maturité des 40 ans.",
+      "Une suite savoureuse qui mêle autodérision, tendresse et un humour du quotidien immédiatement reconnaissable."
+    ],
+    "trailerUrl": ""
   }
 ]
