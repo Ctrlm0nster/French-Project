@@ -68,8 +68,9 @@
         .message.bot em { color: #fdba74; }
         .message.bot ul { list-style: disc; padding-left: 1.2rem; margin-top: 0.4rem; }
         .input-area { display:flex; align-items:center; gap:0.75rem; padding:1rem 1.25rem; border-top:1px solid rgba(255,255,255,0.08); background:rgba(8,10,15,0.8); }
-        .chat-input { flex:1; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:9999px; color:#f1f5f9; font-family:'Space Grotesk',sans-serif; font-size:0.88rem; padding:0.6rem 1.1rem; outline:none; transition:border-color 0.3s,box-shadow 0.3s; }
-        .chat-input:focus { border-color:rgba(124,58,237,0.5); box-shadow:0 0 0 3px rgba(124,58,237,0.1); }
+        .chat-input { flex:1; background:rgba(255,255,255,0.05) !important; border:1px solid rgba(255,255,255,0.08) !important; border-radius:9999px; color:#ffffff !important; font-family:'Space Grotesk',sans-serif; font-size:0.88rem; padding:0.6rem 1.1rem; outline:none; transition:border-color 0.3s,box-shadow 0.3s; }
+        .chat-input::placeholder { color:rgba(255,255,255,0.6) !important; }
+        .chat-input:focus { border-color:rgba(124,58,237,0.5) !important; background:rgba(255,255,255,0.08) !important; box-shadow:0 0 0 3px rgba(124,58,237,0.1) !important; }
         .send-btn { width:40px; height:40px; border-radius:9999px; background:linear-gradient(135deg,#7c3aed,#ec4899); border:none; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 4px 16px rgba(124,58,237,0.4); transition:all 0.3s; }
         .send-btn:hover { transform:scale(1.1); box-shadow:0 6px 24px rgba(124,58,237,0.6); }
         .typing-indicator { font-size:0.8rem; color:#c084fc; font-style:italic; margin-bottom:0.5rem; display:none; padding: 0 1.5rem; }
