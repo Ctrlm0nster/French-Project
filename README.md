@@ -1,125 +1,113 @@
-# Cinémathèque Website
+# 🎬 Cinémathèque
 
-This repository contains a **dynamic website** built from Stitch MCP screens, deployed via **Vercel**. It integrates live data from external APIs to power key features.
+[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=flat-square&logo=vercel)](https://vercel.com/)
+[![Tech Stack](https://img.shields.io/badge/Stack-HTML%20%7C%20JS%20%7C%20Supabase%20%7C%20Groq-blue?style=flat-square)](https://github.com/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
 
-## Dynamic Data Integrations
-
-### Supabase API
-
-The site connects to a [Supabase](https://supabase.com/) backend to fetch and display dynamic content across the site. Movie and series metadata, user data, and other structured content are served in real time from the Supabase database via its REST API.
-
-- **Used for:** Fetching movies, series, and related metadata dynamically at runtime.
-- **Configuration:** Set your Supabase project URL and public anon key as Vercel environment variables (see [Vercel Deployment](#vercel-deployment) below).
-
-### Google Maps API — `/theater` Page
-
-The **Theater page** (`/theater`) uses the [Google Maps JavaScript API](https://developers.google.com/maps/documentation/javascript) to display an interactive map with cinema and theater locations.
-
-- **Used for:** Rendering a live map with markers for cinemas/theaters.
-- **Configuration:** A valid Google Maps API key with the **Maps JavaScript API** and **Places API** enabled is required (see [Vercel Deployment](#vercel-deployment) below).
+**Cinémathèque** is a premium, high-performance web platform dedicated to the exploration of French cinema. Built with a focus on modern aesthetics (Glassmorphism) and cutting-edge API integrations, it provides a seamless experience for discovering movies, series, and theater locations.
 
 ---
 
-## Configuration
+## ✨ Key Features
 
-API keys are managed as environment variables. For local development, create a `.env.local` file at the project root:
-
-```bash
-# .env.local — never commit this file
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_ANON_KEY=your-supabase-anon-key
-GOOGLE_MAPS_API_KEY=your-google-maps-api-key
-```
-
-> ⚠️ **Never commit secret keys to the repository.** Use Vercel's Environment Variables dashboard for production.
+- **🤖 AI Ciné-Chatbot**: A secure, context-aware chatbot powered by the **Groq SDK** and Llama 3 models, designed to answer queries about cinema history and provide recommendations.
+- **📡 Live Data Sync**: Real-time metadata enrichment using the **TMDB API** and **Supabase**, ensuring always-up-to-date movie details, posters, and ratings.
+- **🗺️ Interactive Theater Map**: Custom-styled exploration of cinemas and theaters via the **Google Maps JavaScript API**.
+- **🎭 Premium UI/UX**:
+  - **Glassmorphism Design**: Elegant visuals with frosted glass components.
+  - **Intelligent Micro-interactions**: 3D tilt effects, magnetic buttons, and custom animated cursors.
+  - **Dynamic Filtering**: Real-time search and pagination for movies and series.
+- **🔒 Secure Architecture**: Robust serverless backend via Vercel Functions to hide sensitive API keys (TMDB, Groq).
 
 ---
 
-## Vercel Deployment
+## 🛠️ Tech Stack
 
-This site is deployed on [Vercel](https://vercel.com/). Every push to `main` triggers an automatic production deployment.
-
-### First-time setup
-
-1. Import the repository in the [Vercel dashboard](https://vercel.com/new).
-2. Set the **Root Directory** to `website/` (the folder containing `index.html`).
-3. Add the following **Environment Variables** under **Project Settings → Environment Variables**:
-
-| Variable | Description |
-|----------|-------------|
-| `SUPABASE_URL` | Your Supabase project URL |
-| `SUPABASE_ANON_KEY` | Your Supabase public anon key |
-| `GOOGLE_MAPS_API_KEY` | Your Google Maps API key |
-
-1. Click **Deploy**.
-
-### Preview deployments
-
-Every pull request automatically gets a unique preview URL from Vercel, making it easy to review changes before merging to `main`.
+- **Frontend**: Vanilla HTML5, Modern JavaScript (ES6+), Custom CSS3 (Aesthetic-first approach).
+- **Backend & Database**: 
+  - [**Supabase**](https://supabase.com/) (Cloud Database & Auth)
+  - [**Vercel Serverless Functions**](https://vercel.com/features/serverless-functions) (Node.js API Proxies)
+- **AI**: [**Groq SDK**](https://groq.com/) (High-speed LLM inference).
+- **APIs**: TMDB (Metadata), Google Maps & Places (Geospatial).
 
 ---
 
-## Local Testing
+## 🚀 Getting Started
 
-### With Vercel CLI (recommended)
+### Prerequisites
+- Node.js (v18 or higher)
+- Vercel CLI (`npm i -g vercel`)
 
-1. Install the [Vercel CLI](https://vercel.com/docs/cli):
-
+### Local Setup
+1. **Clone the repository**:
    ```bash
-   npm i -g vercel
+   git clone https://github.com/Ctrlm0nster/French-Project.git
+   cd French-Project
    ```
 
-2. Pull environment variables locally:
-
+2. **Install dependencies**:
    ```bash
-   vercel env pull .env.local
+   npm install
    ```
 
-3. Start the local dev server:
+3. **Configure Environment Variables**:
+   Create a `.env.local` file in the root directory:
+   ```bash
+   # Database (Supabase)
+   SUPABASE_URL=https://your-project.supabase.co
+   SUPABASE_ANON_KEY=your-key
 
+   # AI (Groq)
+   GROQ_API_KEY=gsk_your_key
+
+   # External Data (TMDB & Maps)
+   TMDB_API_KEY=your_tmdb_key
+   GOOGLE_MAPS_API_KEY=your_maps_key
+   ```
+
+4. **Run the Development Server**:
    ```bash
    vercel dev
    ```
-
-4. Open `http://localhost:3000`
-
-### Without CLI
-
-1. Copy `website/assets/js/config.example.js` to `website/assets/js/config.local.js` and add your API keys.
-2. `cd website`
-3. `python -m http.server 8000`
-4. Open `http://localhost:8000`
+   Open `http://localhost:3000` to view the project.
 
 ---
 
-## Content Structure
+## 📦 Project Structure
 
-```
-website/              # Editable source files
-website/assets/       # Posters, metadata, and JS config
-website/index.html    # Home page
-website/theater.html  # Theater map page (Google Maps API)
-website/movies.html   # Movies page (Supabase data)
-website/series.html   # Series page (Supabase data)
-.env.local            # Local environment variables (never commit)
-vercel.json           # Vercel configuration (optional)
+```text
+├── api/                # Vercel Serverless Functions (Chat & Proxy)
+├── website/            # Main Source Code
+│   ├── assets/         # Posters, Data (JSON), and Icons
+│   ├── index.html      # Landing Page
+│   ├── movies.html     # Movie Explorer
+│   ├── series.html     # Series Catalog
+│   └── theater.html    # Map-based Theater Finder
+├── docs/               # Production Build (Vercel Output)
+├── build.mjs           # Build & Sync script
+└── vercel.json         # Deployment configuration
 ```
 
 ---
 
-## Adding Series / Movie Posters
+## 🏗️ Deployment
 
-1. Add poster images to `website/assets/posters/`.
-2. Add content metadata in `website/assets/movies/` and `website/assets/series/`.
-3. Update `website/movies.html` or `website/series.html` with relative image paths, or update the Supabase records to reference the new assets.
-4. Push to `main` — Vercel will redeploy automatically.
+This project is optimized for [Vercel](https://vercel.com).
+
+1. **Auto-deploy**: Connect your GitHub repository to Vercel.
+2. **Environment Variables**: Add `GROQ_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `TMDB_API_KEY`, and `GOOGLE_MAPS_API_KEY` to the Vercel dashboard.
+3. **Build Command**: The system automatically runs `npm run build` to sync assets and compile the `/docs` directory.
 
 ---
 
-## API Reference
+## 📜 Credits
 
-| API | Purpose | Docs |
-|-----|---------|------|
-| Supabase REST API | Dynamic movie/series data | [supabase.com/docs](https://supabase.com/docs) |
-| Google Maps JavaScript API | Theater map with markers | [developers.google.com/maps](https://developers.google.com/maps/documentation/javascript) |
-| Google Places API | Theater location details | [developers.google.com/maps/places](https://developers.google.com/maps/documentation/places/web-service) |
+- **Developer**: Parth Sachin Bhardwaj
+- **Data Souces**: [The Movie Database (TMDB)](https://www.themoviedb.org/), [Supabase](https://supabase.com/)
+- **AI Inference**: [Groq](https://groq.com/)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
