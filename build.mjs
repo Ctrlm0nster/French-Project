@@ -39,12 +39,19 @@ function processDirectory(src, dest) {
         } else {
             if (srcPath.endsWith('.html') || srcPath.endsWith('.js')) {
                 let content = fs.readFileSync(srcPath, 'utf8');
-
                 // Replace process.env placeholders with actual values from the environment
                 const openaiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
                 content = content.replace(/(process\.env\.NEXT_PUBLIC_OPENAI_API_KEY|"YOUR_OPENAI_API_KEY")/g, `"${openaiKey}"`);
 
-                const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY || "VOTRE_CLE_API";
+                const supabaseUrl = process.env.PARTH_SUPABASE_URL || process.env.SUPABASE_URL || "VOTRE_SUPABASE_URL";
+                content = content.replace(/VOTRE_SUPABASE_URL/g, supabaseUrl);
+
+                const supabaseAnonKey = process.env.NEXT_PUBLIC_PARTH_SUPABASE_ANON_KEY || process.env.SUPABASE_ANON_KEY || "VOTRE_SUPABASE_ANON_KEY";
+                content = content.replace(/VOTRE_SUPABASE_ANON_KEY/g, supabaseAnonKey);
+
+                const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY || "VOTRE_GOOGLE_MAPS_API_KEY";
+                content = content.replace(/VOTRE_GOOGLE_MAPS_API_KEY/g, googleMapsKey);
+                // Also handle old placeholder if any
                 content = content.replace(/VOTRE_CLE_API/g, googleMapsKey);
 
                 fs.writeFileSync(destPath, content, 'utf8');
