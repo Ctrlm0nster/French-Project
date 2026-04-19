@@ -5,3 +5,4 @@ docs/assets/js/config.local.js
 .env
 .vercel
 .env*.local
+docs/
