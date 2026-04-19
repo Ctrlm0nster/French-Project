@@ -37,22 +37,21 @@ function processDirectory(src, dest) {
         if (entry.isDirectory()) {
             processDirectory(srcPath, destPath);
         } else {
-            let content = fs.readFileSync(srcPath, 'utf8');
-
-            // Replace process.env placeholders with actual values from the environment
             if (srcPath.endsWith('.html') || srcPath.endsWith('.js')) {
+                let content = fs.readFileSync(srcPath, 'utf8');
+
+                // Replace process.env placeholders with actual values from the environment
                 const openaiKey = process.env.NEXT_PUBLIC_OPENAI_API_KEY || "YOUR_OPENAI_API_KEY";
-                
-                // We no longer inject GROQ_API_KEY into the frontend for security reasons.
-                // It is now handled securely via /api/chat.js (Groq SDK).
                 content = content.replace(/(process\.env\.NEXT_PUBLIC_OPENAI_API_KEY|"YOUR_OPENAI_API_KEY")/g, `"${openaiKey}"`);
 
-                // Insert Google Maps API Key
                 const googleMapsKey = process.env.GOOGLE_MAPS_API_KEY || "VOTRE_CLE_API";
                 content = content.replace(/VOTRE_CLE_API/g, googleMapsKey);
-            }
 
-            fs.writeFileSync(destPath, content);
+                fs.writeFileSync(destPath, content, 'utf8');
+            } else {
+                // Copy binary files directly
+                fs.copyFileSync(srcPath, destPath);
+            }
         }
     }
 }
