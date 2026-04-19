@@ -109,17 +109,24 @@
             const years = useMemo(() => ["Toutes les années", ...[...new Set(series.map((s) => String(s.year)))].sort((a, b) => Number(b) - Number(a))], [series]);
 
             useEffect(() => {
-                fetch('assets/data/series.json')
-                    .then((r) => r.json())
-                    .then((data) => {
-                        const arr = Array.isArray(data) ? data : [];
-                        setSeries(SiteCommon.shuffleArray(arr));
-                        setIsLoading(false);
-                    })
-                    .catch(() => {
-                        setSeries([]);
-                        setIsLoading(false);
-                    });
+                if (typeof SupabaseClient !== 'undefined') {
+                    SupabaseClient.fetchSeries()
+                        .then((data) => {
+                            setSeries(SiteCommon.shuffleArray(data));
+                            setIsLoading(false);
+                        })
+                        .catch((err) => {
+                            console.error('Failed to fetch series from Supabase:', err);
+                            setIsLoading(false);
+                        });
+                } else {
+                    fetch('assets/data/series.json')
+                        .then((r) => r.json())
+                        .then((data) => {
+                            setSeries(SiteCommon.shuffleArray(Array.isArray(data) ? data : []));
+                            setIsLoading(false);
+                        });
+                }
             }, []);
 
             const filtered = useMemo(() => series.filter((s) => {

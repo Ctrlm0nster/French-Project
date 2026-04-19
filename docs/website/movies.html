@@ -119,17 +119,25 @@
       const genres = useMemo(() => ["Tous les films", ...new Set(movies.map((m) => m.genre))], [movies]);
 
       useEffect(() => {
-        fetch('assets/data/movies.json')
-          .then((r) => r.json())
-          .then((data) => {
-            const arr = Array.isArray(data) ? data : [];
-            setMovies(SiteCommon.shuffleArray(arr));
-            setIsLoading(false);
-          })
-          .catch(() => {
-            setMovies([]);
-            setIsLoading(false);
-          });
+        if (typeof SupabaseClient !== 'undefined') {
+          SupabaseClient.fetchMovies()
+            .then((data) => {
+              setMovies(SiteCommon.shuffleArray(data));
+              setIsLoading(false);
+            })
+            .catch((err) => {
+              console.error('Failed to fetch from Supabase:', err);
+              setIsLoading(false);
+            });
+        } else {
+          // Fallback if SupabaseClient is not loaded
+          fetch('assets/data/movies.json')
+            .then((r) => r.json())
+            .then((data) => {
+              setMovies(SiteCommon.shuffleArray(data));
+              setIsLoading(false);
+            });
+        }
       }, []);
 
       const filtered = useMemo(() => movies.filter((m) => {

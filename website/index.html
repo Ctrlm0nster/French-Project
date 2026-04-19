@@ -23,6 +23,8 @@
   <link id="cinematheque-translate-css" rel="stylesheet" href="assets/css/google-translate.css" />
   <link rel="stylesheet" href="assets/css/cursor.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
   <script src="assets/js/site-common.js"></script>
   <script src="assets/js/cursor.js"></script>
   <script id="tailwind-config">
@@ -398,12 +400,8 @@
         spotlightNext
       ) {
         Promise.all([
-          fetch("assets/data/movies.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/series.json").then(function (r) {
-            return r.json();
-          }),
+          SupabaseClient.fetchMovies(),
+          SupabaseClient.fetchSeries(),
         ]).then(function (all) {
           var mv = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 3);
           var sr = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 3);
@@ -500,12 +498,8 @@
         });
       }
 
-      var screening = document.getElementById("screening-strip");
       if (screening) {
-        fetch("assets/data/movies.json")
-          .then(function (r) {
-            return r.json();
-          })
+        SupabaseClient.fetchMovies()
           .then(function (movies) {
             var slice = SiteCommon.shuffleArray(Array.isArray(movies) ? movies : []).slice(0, 8);
             screening.innerHTML = slice
@@ -550,15 +544,9 @@
 
       if (grid && tabs.length) {
         Promise.all([
-          fetch("assets/data/movies.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/series.json").then(function (r) {
-            return r.json();
-          }),
-          fetch("assets/data/documentaries.json").then(function (r) {
-            return r.json();
-          }),
+          SupabaseClient.fetchMovies(),
+          SupabaseClient.fetchSeries(),
+          SupabaseClient.fetchDocumentaries(),
         ]).then(function (all) {
           buckets.cinema = SiteCommon.shuffleArray(Array.isArray(all[0]) ? all[0] : []).slice(0, 6);
           buckets.series = SiteCommon.shuffleArray(Array.isArray(all[1]) ? all[1] : []).slice(0, 6);

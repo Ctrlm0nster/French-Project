@@ -79,6 +79,10 @@
     </nav>
 
   <main class="pt-28 pb-20 px-6 md:px-12 max-w-4xl mx-auto">
+    <a id="detail-back" href="movies.html" class="inline-flex items-center gap-2 mb-8 text-on-surface-variant hover:text-primary transition-colors group">
+      <span class="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
+      <span class="text-xs uppercase tracking-widest font-bold">Retour à la liste</span>
+    </a>
     <p id="detail-error" class="text-red-400 hidden glass-card p-6">Fiche introuvable.</p>
     <article id="detail-root" class="hidden pt-6">
       <p id="detail-kind" class="text-xs uppercase tracking-[0.25em] mb-3" style="color:#ec4899"></p>
@@ -100,13 +104,10 @@
             <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
             <span>Bande-annonce</span>
           </a>
-          <a id="detail-back" href="movies.html" class="inline-flex items-center justify-center gap-2 btn btn-glass px-5 py-3 text-xs uppercase tracking-widest">
-            Retour
-          </a>
           </div>
         </div>
 
-        <div class="lg:col-span-8 space-y-6">
+        <div class="lg:col-span-8 space-y-8">
           <section id="player-section" class="hidden detail-panel overflow-hidden p-0 border-0 bg-black">
             <div class="relative w-full" style="padding-top: 56.25%;">
               <iframe id="vidking-player" src="" class="absolute top-0 left-0 w-full h-full" frameborder="0" allowfullscreen allow="autoplay"></iframe>
@@ -136,7 +137,6 @@
     </article>
   </main>
 
-  <!-- Footer -->
   <footer class="footer-modern">
     <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
       <a href="index.html" class="footer-logo">Cinémathèque</a>
@@ -265,7 +265,8 @@
           synopsis: item.synopsis || item.description || "",
           trailerUrl: item.trailerUrl || item.trailer_url || item.trailer || "",
           reviews: Array.isArray(item.reviews) ? item.reviews : [],
-          cast: Array.isArray(item.cast) ? item.cast : []
+          cast: Array.isArray(item.cast) ? item.cast : [],
+          tmdbId: item.tmdbId || ""
         };
       }
 
@@ -290,7 +291,6 @@
           if (type === "person" && item.activeYears) metaParts.push(item.activeYears);
           if (type === "person" && item.nationality) metaParts.push(item.nationality);
           
-          // Added TMDB Rating support
           if (item.rating) {
             metaParts.push("⭐ " + item.rating);
           }
@@ -360,108 +360,67 @@
           document.getElementById("detail-root").classList.remove("hidden");
       }
 
-      fetch(path)
-        .then(function (r) { return r.json(); })
-        .then(function (rows) {
-          var localItem = rows.find(function (row) { return row.title === title; });
-          if (localItem) {
-            // Resolve TMDB by title/year first (fallback to existing tmdbId)
-            if (type === "movie" || type === "series") {
-              var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(type) +
-                "&title=" + encodeURIComponent(localItem.title || title) +
-                "&frenchOnly=1";
-              if (localItem.year) tmdbUrl += "&year=" + encodeURIComponent(localItem.year);
-              if (localItem.tmdbId) tmdbUrl += "&id=" + encodeURIComponent(localItem.tmdbId);
+      // Main Logic
+      if ((type === "movie" || type === "series" || type === "documentary") && window.SupabaseClient) {
+        var remotePromise;
+        if (type === "series") remotePromise = window.SupabaseClient.fetchSeries();
+        else if (type === "documentary") remotePromise = window.SupabaseClient.fetchDocumentaries();
+        else remotePromise = window.SupabaseClient.fetchMovies();
 
-              fetch(tmdbUrl)
-                .then(r => r.ok ? r.json() : null)
-                .then(tmdbInfo => {
-                   if (tmdbInfo) {
-                      // Merge TMDB data into local item
-                      localItem.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
-                      localItem.overview = tmdbInfo.overview;
-                      localItem.synopsis = tmdbInfo.overview;
-                      localItem.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : localItem.rating;
-                      localItem.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : localItem.image;
-                      localItem.vote_average = tmdbInfo.vote_average;
-                      localItem.vote_count = tmdbInfo.vote_count;
-                      localItem.popularity = tmdbInfo.popularity;
-                      localItem.original_language = tmdbInfo.original_language;
-                      localItem.original_title = tmdbInfo.original_title;
-                      
-                      // Extract cast
-                      if (tmdbInfo.credits && tmdbInfo.credits.cast) {
-                        localItem.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
-                      }
-                      
-                      // Extract director
-                      if (tmdbInfo.credits && tmdbInfo.credits.crew) {
-                        const dir = tmdbInfo.credits.crew.find(c => c.job === "Director");
-                        if (dir) localItem.director = dir.name;
-                      }
-                   }
-                   renderItem(localItem);
-                })
-                .catch(() => renderItem(localItem));
-            } else {
-              renderItem(localItem);
-            }
-            return;
-          }
+        remotePromise.then(function (remoteRows) {
+          var remoteItem = Array.isArray(remoteRows)
+            ? remoteRows.find(function (row) { return row && row.title === title; })
+            : null;
+          if (remoteItem) {
+            var normalized = normalizeRemoteDetail(remoteItem);
+            var tmdbType = type === "documentary" ? "movie" : type;
+            var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(tmdbType) +
+              "&title=" + encodeURIComponent(normalized.title || title) +
+              "&frenchOnly=1";
+            if (normalized.year) tmdbUrl += "&year=" + encodeURIComponent(normalized.year);
+            if (normalized.tmdbId) tmdbUrl += "&id=" + encodeURIComponent(normalized.tmdbId);
 
-          if ((type === "movie" || type === "series") && window.SupabaseClient) {
-            var remotePromise = type === "series"
-              ? window.SupabaseClient.fetchSeries()
-              : window.SupabaseClient.fetchMovies();
-            return remotePromise
-              .then(function (remoteRows) {
-                var remoteItem = Array.isArray(remoteRows)
-                  ? remoteRows.find(function (row) { return row && row.title === title; })
-                  : null;
-                if (remoteItem) {
-                  var normalized = normalizeRemoteDetail(remoteItem);
-                  var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(type) +
-                    "&title=" + encodeURIComponent(normalized.title || title) +
-                    "&frenchOnly=1";
-                  if (normalized.year) tmdbUrl += "&year=" + encodeURIComponent(normalized.year);
-                  if (remoteItem.tmdbId || normalized.tmdbId) {
-                    tmdbUrl += "&id=" + encodeURIComponent(remoteItem.tmdbId || normalized.tmdbId);
+            fetch(tmdbUrl)
+              .then(r => r.ok ? r.json() : null)
+              .then(tmdbInfo => {
+                if (tmdbInfo) {
+                  normalized.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
+                  normalized.overview = tmdbInfo.overview;
+                  normalized.synopsis = tmdbInfo.overview || normalized.synopsis;
+                  normalized.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : normalized.rating;
+                  normalized.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : normalized.image;
+                  if (tmdbInfo.credits && tmdbInfo.credits.cast) {
+                    normalized.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
                   }
-
-                  fetch(tmdbUrl)
-                    .then(r => r.ok ? r.json() : null)
-                    .then(tmdbInfo => {
-                      if (tmdbInfo) {
-                        normalized.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
-                        normalized.overview = tmdbInfo.overview;
-                        normalized.synopsis = tmdbInfo.overview || normalized.synopsis;
-                        normalized.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : normalized.rating;
-                        normalized.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : normalized.image;
-                        if (tmdbInfo.credits && tmdbInfo.credits.cast) {
-                          normalized.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
-                        }
-                      }
-                      renderItem(normalized);
-                    })
-                    .catch(function () {
-                      renderItem(normalized);
-                    });
-                } else {
-                  detailError.classList.remove("hidden");
                 }
+                renderItem(normalized);
               })
               .catch(function () {
-                detailError.classList.remove("hidden");
+                renderItem(normalized);
               });
+          } else {
+            // Fallback to local
+            fetch(path)
+              .then(r => r.json())
+              .then(rows => {
+                var local = rows.find(r => r.title === title);
+                if (local) renderItem(local);
+                else detailError.classList.remove("hidden");
+              })
+              .catch(() => detailError.classList.remove("hidden"));
           }
-
-          detailError.classList.remove("hidden");
-        })
-        .catch(function () {
-          detailError.classList.remove("hidden");
-        });
+        }).catch(() => detailError.classList.remove("hidden"));
+      } else {
+        fetch(path)
+          .then(r => r.json())
+          .then(rows => {
+            var localItem = rows.find(function (row) { return row.title === title; });
+            if (localItem) renderItem(localItem);
+            else detailError.classList.remove("hidden");
+          })
+          .catch(() => detailError.classList.remove("hidden"));
+      }
     })();
   </script>
 </body>
 </html>
-

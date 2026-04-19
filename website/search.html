@@ -16,6 +16,8 @@
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
   <script src="assets/js/site-common.js"></script>
   <link rel="stylesheet" href="assets/css/cursor.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -126,31 +128,47 @@
                 setLoading(false);
                 return;
             }
-
-            const fetchJson = async (url) => {
-                try {
-                    const res = await fetch(url);
-                    return await res.json();
-                } catch { return []; }
+            const fetchData = async () => {
+                if (typeof SupabaseClient !== 'undefined') {
+                    try {
+                        const [m, s, d] = await Promise.all([
+                            SupabaseClient.fetchMovies(),
+                            SupabaseClient.fetchSeries(),
+                            SupabaseClient.fetchDocumentaries()
+                        ]);
+                        setMovies(m);
+                        setSeries(s);
+                        setDocs(d);
+                    } catch (e) {
+                        console.error('Failed to fetch data from Supabase:', e);
+                    } finally {
+                        setLoading(false);
+                    }
+                } else {
+                    try {
+                        const [mRes, sRes, dRes] = await Promise.all([
+                            fetch('assets/data/movies.json'),
+                            fetch('assets/data/series.json'),
+                            fetch('assets/data/documentaries.json')
+                        ]);
+                        setMovies(await mRes.json());
+                        setSeries(await sRes.json());
+                        setDocs(await dRes.json());
+                    } catch (e) {
+                        console.error(e);
+                    } finally {
+                        setLoading(false);
+                    }
+                }
             };
-
-            const match = (item) => JSON.stringify(item).toLowerCase().includes(q.toLowerCase());
-
-            Promise.all([
-                fetchJson('assets/data/movies.json'),
-                fetchJson('assets/data/series.json'),
-                fetchJson('assets/data/documentaries.json')
-            ]).then(([m, s, d]) => {
-                setResults({
-                    movies: m.filter(match),
-                    series: s.filter(match),
-                    docs: d.filter(match)
-                });
-                setLoading(false);
-            });
+            fetchData();
         }, []);
 
-        const totalResults = results.movies.length + results.series.length + results.docs.length;
+        const match = (item) => JSON.stringify(item).toLowerCase().includes(query.toLowerCase());
+        const filteredMovies = movies.filter(match);
+        const filteredSeries = series.filter(match);
+        const filteredDocs = docs.filter(match);
+        const totalResults = filteredMovies.length + filteredSeries.length + filteredDocs.length;
 
         if (loading) {
             return (

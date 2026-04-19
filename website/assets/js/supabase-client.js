@@ -131,6 +131,23 @@ const SupabaseClient = (() => {
   }
 
   /**
+   * Fetch documentaries from Supabase with fallback to local JSON.
+   * @returns {Promise<Array>} - Array of documentary objects
+   */
+  async function fetchDocumentaries() {
+    const data = await fetchFromTable('documentaries', { order: 'year.desc' });
+
+    if (data !== null && data.length > 0) {
+      const mapped = data.map(normalizeMovieRow).filter((d) => d && d.title);
+      console.log(`[Supabase] Loaded ${mapped.length} documentaries from Supabase`);
+      return mapped;
+    }
+
+    console.warn('[Supabase] Using local documentaries.json (no rows or not configured)');
+    return fetchLocalJSON('assets/data/documentaries.json');
+  }
+
+  /**
    * Fetch local JSON file as fallback.
    * @param {string} path - Relative path to JSON file
    * @returns {Promise<Array>}
@@ -150,6 +167,7 @@ const SupabaseClient = (() => {
   return {
     fetchMovies,
     fetchSeries,
+    fetchDocumentaries,
     fetchFromTable,
   };
 })();

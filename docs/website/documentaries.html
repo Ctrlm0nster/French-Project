@@ -22,6 +22,8 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
   <script src="assets/js/site-common.js"></script>
   <link rel="stylesheet" href="assets/css/cursor.css" />
   <link rel="stylesheet" href="assets/css/main.css" />
@@ -101,17 +103,24 @@
       const years = useMemo(() => ["Année", ...new Set(docs.map((d) => d.year))].sort((a, b) => b - a), [docs]);
 
       useEffect(() => {
-        fetch("assets/data/documentaries.json")
-          .then((r) => r.json())
-          .then((data) => {
-            const arr = Array.isArray(data) ? data : [];
-            setDocs(SiteCommon.shuffleArray(arr));
-            setIsLoading(false);
-          })
-          .catch(() => {
-            setDocs([]);
-            setIsLoading(false);
-          });
+        if (typeof SupabaseClient !== 'undefined') {
+          SupabaseClient.fetchDocumentaries()
+            .then((data) => {
+              setDocs(SiteCommon.shuffleArray(data));
+              setIsLoading(false);
+            })
+            .catch((err) => {
+              console.error('Failed to fetch documentaries from Supabase:', err);
+              setIsLoading(false);
+            });
+        } else {
+          fetch("assets/data/documentaries.json")
+            .then((r) => r.json())
+            .then((data) => {
+              setDocs(SiteCommon.shuffleArray(Array.isArray(data) ? data : []));
+              setIsLoading(false);
+            });
+        }
       }, []);
 
       const filtered = useMemo(() => docs.filter((d) => {
