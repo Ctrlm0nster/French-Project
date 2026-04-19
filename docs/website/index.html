@@ -349,6 +349,10 @@
       var spotlightIndex = 0;
       var spotlightSlideCount = 0;
       var spotlightTimer = null;
+      var screening = document.getElementById("screening-strip");
+      var grid = document.getElementById("trending-grid");
+      var tabs = document.querySelectorAll("#trending-tabs .trend-tab");
+      var buckets = { cinema: [], series: [], docs: [] };
 
       function spotlightLayout() {
         if (!spotlightViewport || !spotlightTrack) return;
@@ -539,10 +543,6 @@
             animateFreshElements("#screening-strip > *");
           });
       }
-
-      var grid = document.getElementById("trending-grid");
-      var tabs = document.querySelectorAll("#trending-tabs .trend-tab");
-      var buckets = { cinema: [], series: [], docs: [] };
 
       if (grid && tabs.length) {
         Promise.all([
