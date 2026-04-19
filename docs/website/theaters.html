@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cinémathèque | L'Écrin des Projections</title>
+    
+  <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
+  <link rel="icon" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" type="image/png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TPg48xUOAj2porEgw5g9wSh7OKxtqxA&loading=async&libraries=marker" async defer></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="assets/js/site-common.js"></script>
+    <link rel="stylesheet" href="assets/css/cursor.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/js/cursor.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: {
+                colors: {
+                    "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
+                    "surface": "#0f1117", "surface-container": "#141720",
+                    "surface-container-low": "#0d0f14", "surface-container-high": "#1a1d28",
+                    "surface-container-highest": "#22263a",
+                    "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
+                    "on-background": "#f1f5f9", "outline-variant": "rgba(255,255,255,0.08)",
+                    "on-primary": "#ffffff", "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#c084fc", "primary-container": "#3b0764"
+                },
+                fontFamily: { headline: ['Syne','Space Grotesk','sans-serif'], body: ['Space Grotesk','sans-serif'], label: ['Space Grotesk','sans-serif'] },
+                borderRadius: { DEFAULT:'8px', full:'9999px', lg:'20px', xl:'28px' }
+            }}
+        }
+    </script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
+        .font-serif { font-family: 'Syne', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+        .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+        .no-scrollbar::-webkit-scrollbar { display:none; }
+        .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
+        .map-shell { width:100%; height:100%; min-height:500px; filter:contrast(1.2) brightness(1); transition:all 0.5s ease; }
+        .map-shell:hover { filter:contrast(1.3) brightness(1.1); }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+    <div class="bg-orbs" aria-hidden="true"></div>
+    <nav class="nav-modern" id="main-nav">
+        <a href="index.html" class="nav-logo">Cinémathèque</a>
+        <ul class="nav-links hidden md:flex">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="movies.html">Cinéma</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="documentaries.html">Docs</a></li>
+            <li><a href="chatbot.html">Assistant</a></li>
+            <li><a href="theaters.html" class="active">Salles</a></li>
+        </ul>
+        <div class="nav-actions flex items-center gap-4">
+            <form action="search.html" method="get" class="relative hidden sm:block">
+                <input
+                    id="search-input"
+                    name="q"
+                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
+                    placeholder="Rechercher..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+            </form>
+            <button class="btn btn-glass btn-icon">
+                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
+            </button>
+        </div>
+    </nav>
+    <main class="flex-grow pt-24 pb-12 flex flex-col">
+        <header class="px-6 md:px-12 mb-10 mt-8">
+            <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem">
+                <div>
+                    <div class="section-eyebrow">Le Répertoire National</div>
+                    <h1 class="section-title" style="font-size:clamp(2rem,6vw,4.5rem);margin-top:0.5rem">
+                        L'Écrin des <span class="grad-text">Projections</span>
+                    </h1>
+                    <p style="margin-top:0.75rem;max-width:480px;color:var(--text-secondary);font-size:0.88rem;line-height:1.75;font-style:italic">
+                        Découvrez nos salles partenaires — des théâtres historiques aux écrins contemporains.
+                    </p>
+                </div>
+                <div class="filter-group">
+                    <button class="filter-chip active" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Cinéma d'Art</button>
+                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Théâtre de Scène</button>
+                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Grands Festivals</button>
+                </div>
+            </div>
+        </header>
+        <div id="theaters-react-root"></div>
+        <!-- Call to Action / Info Section -->
+        <section class="mt-24 px-12">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-24 items-center">
+                <div class="relative group">
+                    <div
+                        class="absolute -top-12 -left-12 w-64 h-64 border-l border-t border-primary/20 -z-10 group-hover:top-[-40px] group-hover:left-[-40px] transition-all duration-700">
+                    </div>
+                    <img alt="Salle de cinéma"
+                        class="w-full grayscale brightness-75 hover:grayscale-0 transition-all duration-1000"
+                        data-alt="Intérieur dramatique d'un théâtre français classique avec des sièges en velours rouge et des détails dorés ornés, faiblement éclairé avec un seul projecteur sur scène"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5A1WcjH1JEPcoYgtMbRMQNH-5_SmRUmnzxi65W6pcRxeNZJO5ICgqXL5RwjrC5n6Z0eYE1aBVd10Vlmw3_ozdOH_JeHqLaHyoF-jERG_O3g7Hf-cOxD1PhHV4W41XQr0mTppSncU91uBSLZE_cdwt4ic5YPvnZTZj6S-Trk16L1jellbsdKIP20yuiRZWBvqLW0PbwPrVoUOv3k80YGN9gYBrqYSZ-cJFwZSQ4rNcusCtwZH0-4JKmrJ8MrW3h2i8fYCkU5wMjKE" />
+                </div>
+                <div>
+                    <h2 class="text-4xl font-headline mb-8 leading-tight">Préserver l'Art de l'Expérience</h2>
+                    <div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
+                        <p>Le localisateur de la Cinémathèque est plus qu'une simple carte ; c'est une archive curatoriale de l'architecture culturelle française. Chaque repère représente un héritage de narration, de la plus petite salle indépendante aux plus grandes scènes nationales.</p>
+                        <p>Nous soutenons la tradition française de "L'exception culturelle" en mettant en avant les lieux qui privilégient le mérite artistique sur le bruit commercial.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="text/babel">
+        const { useEffect, useMemo, useRef, useState } = React;
+
+        function GoogleMapPanel({ venues, selectedVenue, streetViewMode }) {
+            const mapNodeRef = useRef(null);
+            const mapRef = useRef(null);
+            const markersRef = useRef([]);
+
+            useEffect(() => {
+                // Wait for Google Maps API to load
+                const checkGoogle = setInterval(() => {
+                    if (window.google && window.google.maps) {
+                        clearInterval(checkGoogle);
+                        initOrUpdateMap();
+                    }
+                }, 100);
+
+                function initOrUpdateMap() {
+                    if (!mapNodeRef.current) return;
+
+                    // Initialize map if not exists
+                    if (!mapRef.current) {
+                        mapRef.current = new window.google.maps.Map(mapNodeRef.current, {
+                            center: { lat: 46.6034, lng: 1.8883 },
+                            zoom: 5.5,
+                            mapId: "DEMO_MAP_ID",
+                            disableDefaultUI: true,
+                            zoomControl: true,
+                            styles: [
+                                { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                                { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                                {
+                                    featureType: "water",
+                                    elementType: "geometry",
+                                    stylers: [{ color: "#17263c" }],
+                                }
+                            ]
+                        });
+                    }
+
+                    const map = mapRef.current;
+
+                    // Clear existing markers
+                    markersRef.current.forEach(m => m.setMap(null));
+                    markersRef.current = [];
+
+                    const bounds = new window.google.maps.LatLngBounds();
+
+                    venues.forEach(venue => {
+                        const lat = venue.lat || venue.location?.coordinates?.latitude || 0;
+                        const lng = venue.lng || venue.location?.coordinates?.longitude || 0;
+                        const position = { lat: lat, lng: lng };
+                        const marker = new window.google.maps.marker.AdvancedMarkerElement({
+                            position: position,
+                            map: map,
+                            title: venue.name
+                        });
+                        markersRef.current.push(marker);
+                        bounds.extend(position);
+                    });
+
+                    if (selectedVenue) {
+                        const lat = selectedVenue.lat || selectedVenue.location?.coordinates?.latitude || 0;
+                        const lng = selectedVenue.lng || selectedVenue.location?.coordinates?.longitude || 0;
+                        map.panTo({ lat: lat, lng: lng });
+                        map.setZoom(13);
+                        
+                        // Street View Logic
+                        const panorama = map.getStreetView();
+                        if (streetViewMode) {
+                            panorama.setPosition({ lat: lat, lng: lng });
+                            panorama.setPov({
+                                heading: selectedVenue.street_view_3d?.heading_deg || selectedVenue.location?.street_view_3d?.heading_deg || 0,
+                                pitch: selectedVenue.street_view_3d?.pitch_deg || selectedVenue.location?.street_view_3d?.pitch_deg || 0,
+                            });
+                            panorama.setVisible(true);
+                        } else {
+                            panorama.setVisible(false);
+                        }
+                        
+                    } else if (venues.length > 0) {
+                        map.getStreetView()?.setVisible(false);
+                        map.fitBounds(bounds);
+                    }
+                }
+
+                return () => clearInterval(checkGoogle);
+            }, [venues, selectedVenue, streetViewMode]);
+
+            return <div ref={mapNodeRef} className="map-shell" />;
+        }
+
+
+        function TheatersExplorer() {
+            const [venues, setVenues] = useState([]);
+            const [isLoading, setIsLoading] = useState(true);
+            const [type, setType] = useState("Tous");
+            const [query, setQuery] = useState("");
+            const [selectedVenue, setSelectedVenue] = useState(null);
+            const [isStreetView, setIsStreetView] = useState(false);
+
+            useEffect(() => {
+                setIsStreetView(false);
+            }, [selectedVenue]);
+
+            useEffect(() => {
+                fetch("assets/data/theaters.json")
+                    .then(r => r.json())
+                    .then(data => {
+                        const parsedVenues = Array.isArray(data) ? data : (data.sites || []);
+                        setVenues(parsedVenues);
+                        setSelectedVenue(parsedVenues[0] || null);
+                        setIsLoading(false);
+                    })
+                    .catch(() => setIsLoading(false));
+            }, []);
+
+            const filtered = useMemo(() => venues.filter((v) => {
+                const venueCity = v.city || v.location?.address?.city || "";
+                const venueType = v.type || v.identity?.type || "Cinéma";
+                return (type === "Tous" || venueType.includes(type)) && (v.name.toLowerCase().includes(query.toLowerCase()) || venueCity.toLowerCase().includes(query.toLowerCase()));
+            }), [venues, type, query]);
+            useEffect(() => {
+                if (filtered.length > 0 && (!selectedVenue || !filtered.some((v) => v.name === selectedVenue.name))) {
+                    setSelectedVenue(filtered[0] || null);
+                }
+            }, [filtered, selectedVenue]);
+            return (
+                <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
+                    <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
+                        {isLoading ? <div className="map-fallback">Chargement de la carte...</div> : <GoogleMapPanel venues={filtered} selectedVenue={selectedVenue} streetViewMode={isStreetView} />}
+
+                        <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
+                            {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
+                        </div>
+                    </div>
+                    <div className="lg:col-span-4 bg-surface-container overflow-y-auto no-scrollbar max-h-[700px]">
+                        <div className="p-8 border-b border-outline-variant/20">
+                            <h2 className="font-headline text-xl mb-2">Destinations Phares</h2>
+                            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Trouver un lieu..." className="w-full mt-4 bg-slate-900/50 px-4 py-2 text-sm text-blue-100 placeholder:text-slate-500" />
+                        </div>
+                        {filtered.map((venue) => {
+                            const city = venue.city || venue.location?.address?.city || 'Inconnu';
+                            const venueType = venue.type || venue.identity?.type || 'Cinéma';
+                            const note = venue.note || venue.label || (venue.history ? `Fondé en ${venue.founded}` : '');
+                            const isSelected = selectedVenue && (selectedVenue.name === venue.name);
+
+                            return (
+                                <div key={venue.name} onClick={() => setSelectedVenue(venue)} className={`p-8 hover:bg-surface-container-highest transition-colors border-t border-outline-variant/10 cursor-pointer ${isSelected ? "bg-surface-container-highest" : ""}`}>
+                                    <span className="font-label text-[10px] uppercase tracking-[0.2em] text-primary">{city}</span>
+                                    <h3 className="font-headline text-2xl mt-2 mb-2">{venue.name}</h3>
+                                    <p className="font-body text-sm text-on-surface-variant italic mb-4">{note}</p>
+                                    <div className="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1 inline-block mb-3">{venueType}</div>
+                                    
+                                    {isSelected && (
+                                        <div className="mt-4 pt-4 border-t border-outline-variant/20 text-sm text-on-surface-variant space-y-3">
+                                            {venue.location?.address && (
+                                                <p><strong className="text-on-surface">Adresse :</strong> {venue.location.address.street}, {venue.location.address.postal_code} {venue.location.address.city}</p>
+                                            )}
+                                            {venue.contact && <p><strong className="text-on-surface">Téléphone :</strong> {venue.contact.phone}</p>}
+                                            {venue.identity?.screens && <p><strong className="text-on-surface">Salles :</strong> {venue.identity.screens}</p>}
+                                            {venue.history?.key_milestones && (
+                                                <div className="mt-3">
+                                                    <strong className="text-on-surface block mb-2 uppercase text-[10px] tracking-widest">Chronologie récente :</strong>
+                                                    <ul className="space-y-1 border-l-2 border-primary/30 pl-3 ml-1">
+                                                        {venue.history.key_milestones.slice(-3).map((m, i) => (
+                                                            <li key={i} className="text-xs break-words"><strong>{m.year}</strong> - {m.event}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                            
+                                            <div className="mt-6 pt-2 flex flex-col gap-2">
+                                                <a 
+                                                    href={`theater-detail.html?id=${encodeURIComponent(venue.id || venue.name)}`} 
+                                                    className="w-full bg-primary/20 hover:bg-primary transition-colors duration-300 text-primary hover:text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
+                                                >
+                                                    <span className="material-symbols-outlined text-[16px]">info</span>
+                                                    En Savoir Plus
+                                                </a>
+                                                <button 
+                                                    onClick={(e) => { e.stopPropagation(); setIsStreetView(!isStreetView); }}
+                                                    className="w-full bg-slate-800 hover:bg-white hover:text-slate-900 transition-colors duration-300 text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
+                                                >
+                                                    <span className="material-symbols-outlined text-[16px]">{isStreetView ? 'map' : '3d_rotation'}</span>
+                                                    {isStreetView ? 'Revenir à la carte' : 'Voir en 3D (Street View)'}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById("theaters-react-root")).render(<TheatersExplorer />);
+    </script>
+    <!-- Footer -->
+    <footer class="footer-modern">
+        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+            <a href="index.html" class="footer-logo">Cinémathèque</a>
+            <div style="display:flex;gap:2rem">
+                <a class="footer-link" href="terms.html">Conditions</a>
+                <a class="footer-link" href="privacy.html">Confidentialité</a>
+                <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+            </div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque<br>Créé par Parth Sachin Bhardwaj</div>
+        </div>
+        <div class="footer-bar"></div>
+    </footer>
+    <script>
+        window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>30);});
+    </script>
+</body>
+
+</html>

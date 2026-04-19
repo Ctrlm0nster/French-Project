@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html class="dark" lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Cinémathèque | Détail du Lieu</title>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
+    <link rel="icon" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" type="image/png" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TPg48xUOAj2porEgw5g9wSh7OKxtqxA&loading=async&libraries=marker" async defer></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <script src="assets/js/site-common.js"></script>
+    <link rel="stylesheet" href="assets/css/cursor.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script src="assets/js/cursor.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: { primary: "#c084fc", "on-primary": "#ffffff", "primary-container": "#4c1d95", "on-primary-container": "#e9d5ff", secondary: "#f472b6", "on-secondary": "#ffffff", background: "#080a0f", "on-background": "#f1f5f9", surface: "#12141c", "on-surface": "#f1f5f9", "surface-variant": "#1e2028", "on-surface-variant": "#94a3b8", "outline-variant": "rgba(255,255,255,0.08)" },
+                    fontFamily: { sans: ['"Space Grotesk"', "sans-serif"], serif: ['"Syne"', "sans-serif"] }
+                }
+            }
+        }
+    </script>
+    <style>
+        .map-container { width: 100%; height: 400px; border-radius: 12px; overflow: hidden; }
+        .detail-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+    <div class="bg-orbs" aria-hidden="true"></div>
+    
+    <nav class="nav-modern" id="main-nav">
+        <a href="index.html" class="nav-logo">Cinémathèque</a>
+        <ul class="nav-links hidden md:flex">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="movies.html">Cinéma</a></li>
+            <li><a href="series.html">Séries</a></li>
+            <li><a href="documentaries.html">Docs</a></li>
+            <li><a href="chatbot.html">Assistant</a></li>
+            <li><a href="theaters.html" class="active">Salles</a></li>
+        </ul>
+        <div class="nav-actions flex items-center gap-4">
+            <form action="search.html" method="get" class="relative hidden sm:block">
+                <input
+                    id="search-input"
+                    name="q"
+                    class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
+                    placeholder="Rechercher..." type="text" />
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+            </form>
+            <button class="btn btn-glass btn-icon">
+                <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-24 px-6 md:px-12 w-full max-w-[1200px] mx-auto z-10 relative">
+        <div id="react-root"></div>
+    </main>
+
+    <footer class="footer-modern">
+        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+            <a href="index.html" class="footer-logo">Cinémathèque</a>
+            <div style="display:flex;gap:2rem">
+                <a class="footer-link" href="terms.html">Conditions</a>
+                <a class="footer-link" href="privacy.html">Confidentialité</a>
+                <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
+            </div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque<br>Créé par Parth Sachin Bhardwaj</div>
+        </div>
+        <div class="footer-bar"></div>
+    </footer>
+
+    <script type="text/babel">
+        const { useEffect, useState, useRef } = React;
+
+        function TheaterDetailMap({ venue }) {
+            const mapNodeRef = useRef(null);
+            const mapRef = useRef(null);
+            const [is3D, setIs3D] = useState(false);
+
+            useEffect(() => {
+                const interval = setInterval(() => {
+                    if (window.google && window.google.maps) {
+                        clearInterval(interval);
+                        
+                        const lat = venue.location?.coordinates?.latitude || venue.lat || 0;
+                        const lng = venue.location?.coordinates?.longitude || venue.lng || 0;
+                        
+                        if (!mapRef.current && mapNodeRef.current) {
+                            mapRef.current = new window.google.maps.Map(mapNodeRef.current, {
+                                center: { lat, lng },
+                                zoom: 15,
+                                mapId: "DEMO_MAP_ID",
+                                styles: [
+                                    { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
+                                    { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
+                                    { elementType: "labels.text.fill", stylers: [{ color: "#746855" }] },
+                                    { featureType: "water", elementType: "geometry", stylers: [{ color: "#17263c" }] }
+                                ]
+                            });
+                            
+                            new window.google.maps.marker.AdvancedMarkerElement({
+                                position: { lat, lng },
+                                map: mapRef.current,
+                                title: venue.name
+                            });
+                        }
+                    }
+                }, 100);
+                return () => clearInterval(interval);
+            }, [venue]);
+
+            const toggle3D = () => {
+                if (!mapRef.current) return;
+                const map = mapRef.current;
+                const panorama = map.getStreetView();
+                const next3D = !is3D;
+                
+                if (next3D) {
+                    const lat = venue.location?.coordinates?.latitude || venue.lat || 0;
+                    const lng = venue.location?.coordinates?.longitude || venue.lng || 0;
+                    panorama.setPosition({ lat, lng });
+                    panorama.setPov({
+                        heading: venue.street_view_3d?.heading_deg || venue.location?.street_view_3d?.heading_deg || 0,
+                        pitch: venue.street_view_3d?.pitch_deg || venue.location?.street_view_3d?.pitch_deg || 0,
+                    });
+                    panorama.setVisible(true);
+                } else {
+                    panorama.setVisible(false);
+                }
+                setIs3D(next3D);
+            };
+
+            return (
+                <div style={{ position: 'relative' }}>
+                    <div ref={mapNodeRef} className="map-container"></div>
+                    <button 
+                        onClick={toggle3D}
+                        className="absolute bottom-4 right-4 bg-slate-900 border border-outline-variant hover:border-primary px-4 py-2 text-xs font-bold uppercase tracking-widest flex items-center gap-2 rounded transition-all"
+                    >
+                        <span className="material-symbols-outlined text-[16px]">{is3D ? "map" : "3d_rotation"}</span>
+                        {is3D ? "Revenir à la carte" : "Vue 3D"}
+                    </button>
+                </div>
+            );
+        }
+
+        function TheaterDetailApp() {
+            const [venue, setVenue] = useState(null);
+            const [loading, setLoading] = useState(true);
+            const [error, setError] = useState(false);
+
+            useEffect(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const queryId = urlParams.get('id');
+
+                fetch("assets/data/theaters.json")
+                    .then(res => res.json())
+                    .then(data => {
+                        const arr = Array.isArray(data) ? data : (data.sites || []);
+                        const found = arr.find(v => v.id === queryId || v.name === queryId);
+                        if (found) setVenue(found);
+                        else setError(true);
+                        setLoading(false);
+                    })
+                    .catch(() => {
+                        setError(true);
+                        setLoading(false);
+                    });
+            }, []);
+
+            if (loading) return <div className="text-center py-20 animate-pulse text-primary">Chargement des détails...</div>;
+            if (error || !venue) return (
+                <div className="text-center py-20">
+                    <h1 className="text-3xl font-serif text-red-400 mb-4">Lieu introuvable</h1>
+                    <a href="theaters.html" className="text-primary hover:underline">← Retour à l'explorateur</a>
+                </div>
+            );
+
+            const city = venue.location?.address?.city || venue.city || 'Inconnu';
+            const vType = venue.identity?.type || venue.type || 'Cinéma';
+            const note = venue.label || venue.note || '';
+
+            return (
+                <div className="space-y-12">
+                    <a href="theaters.html" className="inline-flex items-center text-sm text-on-surface-variant hover:text-primary transition-colors">
+                        <span className="material-symbols-outlined mr-1" style={{fontSize: '18px'}}>arrow_back</span>
+                        Retour aux salles
+                    </a>
+
+                    <header>
+                        <div className="flex items-center gap-3 mb-2">
+                            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-primary-container bg-primary px-2 py-1 rounded">{city}</span>
+                            <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-on-surface-variant">{vType}</span>
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-serif tracking-tight text-white mb-4">{venue.name}</h1>
+                        <p className="text-xl text-on-surface-variant font-light italic max-w-2xl">{note}</p>
+                    </header>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="lg:col-span-2 space-y-8">
+                            <div className="detail-card">
+                                <h2 className="text-xl font-bold font-serif mb-4 flex items-center gap-2"><span className="material-symbols-outlined text-primary">location_on</span> Situation</h2>
+                                <TheaterDetailMap venue={venue} />
+                                {venue.location?.address && (
+                                    <p className="mt-4 text-on-surface-variant text-sm">
+                                        {venue.location.address.street}, {venue.location.address.postal_code} {venue.location.address.city}
+                                    </p>
+                                )}
+                            </div>
+
+                            {venue.history && (
+                                <div className="detail-card">
+                                    <h2 className="text-xl font-bold font-serif mb-6 flex items-center gap-2"><span className="material-symbols-outlined text-primary">history_edu</span> Histoire & Héritage</h2>
+                                    {venue.history.founder && (
+                                        <p className="text-sm mb-4">Fondé par : <strong className="text-white">{typeof venue.history.founder === 'object' ? venue.history.founder.name : venue.history.founder}</strong></p>
+                                    )}
+                                    <div className="relative border-l border-primary/20 pl-6 space-y-4 py-2">
+                                        {(venue.history.key_dates || venue.history.key_milestones || []).map((ms, i) => (
+                                            <div key={i} className="relative">
+                                                <div className="absolute -left-[29px] top-1 w-2 h-2 rounded-full bg-primary ring-4 ring-background"></div>
+                                                <div className="text-primary font-bold text-sm">{ms.year}</div>
+                                                <div className="text-on-surface-variant text-sm mt-1">{ms.event}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                    {venue.history.notable_connections && (
+                                        <div className="mt-6 pt-4 border-t border-white/5">
+                                            <p className="text-xs uppercase tracking-widest text-on-surface-variant mb-2">Visiteurs notables</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {venue.history.notable_connections.map((c, i) => (
+                                                    <span key={i} className="bg-white/5 px-3 py-1 rounded text-sm text-white">{c}</span>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="space-y-8">
+                            {(venue.contact || venue.opening_hours) && (
+                                <div className="detail-card">
+                                    <h2 className="text-xl font-bold font-serif mb-4 flex items-center gap-2"><span className="material-symbols-outlined text-primary">info</span> Informations pratiques</h2>
+                                    {venue.contact && (
+                                        <ul className="space-y-3 text-sm mb-6">
+                                            {venue.contact.phone && <li><span className="text-on-surface-variant">Téléphone:</span> <a href={`tel:${venue.contact.phone}`} className="text-white hover:text-primary">{venue.contact.phone}</a></li>}
+                                            {venue.contact.website && <li><span className="text-on-surface-variant">Site web:</span> <a href={venue.contact.website} target="_blank" className="text-white hover:text-primary break-words">{venue.contact.website}</a></li>}
+                                        </ul>
+                                    )}
+                                    {venue.opening_hours && (
+                                        <div>
+                                            <p className="text-xs uppercase tracking-widest text-on-surface-variant mb-3">Horaires d'ouverture</p>
+                                            <ul className="space-y-1 text-sm text-white">
+                                                {Object.entries(venue.opening_hours).map(([day, hours]) => (
+                                                    <li key={day} className="flex justify-between border-b border-white/5 py-1">
+                                                        <span className="capitalize">{day}</span>
+                                                        <span className="text-on-surface-variant font-mono">{hours}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            {venue.programming && (
+                                <div className="detail-card">
+                                    <h2 className="text-xl font-bold font-serif mb-4 flex items-center gap-2"><span className="material-symbols-outlined text-primary">movie</span> Programmation</h2>
+                                    <p className="text-sm italic text-on-surface-variant mb-4">{venue.programming.focus}</p>
+                                    
+                                    {venue.programming.special_events && (
+                                        <ul className="space-y-2 text-sm text-white mt-4">
+                                            {venue.programming.special_events.map((evt, i) => (
+                                                <li key={i} className="flex items-start gap-2">
+                                                    <span className="material-symbols-outlined text-primary text-[14px] mt-0.5">star</span>
+                                                    {evt}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById("react-root")).render(<TheaterDetailApp />);
+    </script>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            var n = document.getElementById('main-nav');
+            if (n) n.classList.toggle('scrolled', window.scrollY > 30);
+        });
+    </script>
+</body>
+</html>
