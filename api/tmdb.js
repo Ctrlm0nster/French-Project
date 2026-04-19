@@ -90,6 +90,7 @@ async function resolveByTitle({ apiKey, tmdbType, title, year, frenchOnly }) {
   const search = await tmdbFetch(searchPath, apiKey, {
     query: title,
     language: "fr-FR",
+    region: "FR",
     include_adult: "false",
     page: 1,
     [yearParam]: year || undefined,
@@ -97,14 +98,22 @@ async function resolveByTitle({ apiKey, tmdbType, title, year, frenchOnly }) {
 
   const list = Array.isArray(search.results) ? search.results : [];
   const filtered = frenchOnly ? list.filter((item) => isFrenchCandidate(item, tmdbType)) : list;
-  const candidates = filtered.length > 0 ? filtered : list;
+  const candidates = filtered;
   if (candidates.length === 0) return null;
 
   const ranked = candidates
     .map((item) => ({ item, score: scoreCandidate(item, tmdbType, title, year) }))
     .sort((a, b) => b.score - a.score);
 
-  return ranked[0]?.item || null;
+  if (ranked.length === 0) return null;
+  
+  const best = ranked[0].item;
+  // Final safeguard: if frenchOnly is true, the best candidate MUST be French
+  if (frenchOnly && !isFrenchCandidate(best, tmdbType)) {
+    return null;
+  }
+
+  return best;
 }
 
 async function fetchDetails(apiKey, tmdbType, id) {
@@ -132,10 +141,24 @@ export default async function handler(req, res) {
   const enforceFrenchOnly = String(frenchOnly || "1") !== "0";
 
   try {
-    let resolvedId = null;
+    let details = null;
     let source = "id";
 
-    if (title) {
+    // 1. Try by ID if provided
+    if (id) {
+      try {
+        const potentialDetails = await fetchDetails(apiKey, tmdbType, id);
+        if (potentialDetails && (!enforceFrenchOnly || isFrenchCandidate(potentialDetails, tmdbType))) {
+          details = potentialDetails;
+          source = "id";
+        }
+      } catch (e) {
+        console.warn("TMDB ID fetch failed, will try title search:", id);
+      }
+    }
+
+    // 2. Try by Title if no details yet or title provided
+    if (!details && title) {
       const match = await resolveByTitle({
         apiKey,
         tmdbType,
@@ -144,21 +167,15 @@ export default async function handler(req, res) {
         frenchOnly: enforceFrenchOnly,
       });
       if (match && match.id) {
-        resolvedId = match.id;
+        details = await fetchDetails(apiKey, tmdbType, match.id);
         source = "title";
       }
     }
 
-    if (!resolvedId && id) {
-      resolvedId = id;
-      source = "id";
+    if (!details) {
+      return res.status(404).json({ error: "No suitable French TMDB match found" });
     }
 
-    if (!resolvedId) {
-      return res.status(404).json({ error: "No TMDB match found" });
-    }
-
-    const details = await fetchDetails(apiKey, tmdbType, resolvedId);
     details._resolvedBy = source;
     return res.status(200).json(details);
   } catch (error) {
