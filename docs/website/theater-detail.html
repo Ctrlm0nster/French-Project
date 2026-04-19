@@ -15,11 +15,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4TPg48xUOAj2porEgw5g9wSh7OKxtqxA&loading=async&libraries=marker" async defer></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/site-common.js"></script>
     <link rel="stylesheet" href="assets/css/cursor.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -95,20 +94,53 @@
 
     <script type="text/babel">
         const { useEffect, useState, useRef } = React;
+        const GOOGLE_MAPS_PLACEHOLDER = "VOTRE_GOOGLE_MAPS_API_KEY";
+
+        function loadGoogleMapsApi() {
+            if (window.google && window.google.maps) {
+                return Promise.resolve();
+            }
+
+            const apiKey = String((window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "").trim();
+            if (!apiKey || apiKey === GOOGLE_MAPS_PLACEHOLDER) {
+                return Promise.reject(new Error("Missing browser-safe GOOGLE_MAPS_API_KEY in assets/js/config.js"));
+            }
+
+            const existingScript = document.querySelector('script[data-google-maps-loader="true"]');
+            if (existingScript) {
+                return new Promise((resolve, reject) => {
+                    existingScript.addEventListener("load", () => resolve(), { once: true });
+                    existingScript.addEventListener("error", () => reject(new Error("Google Maps failed to load")), { once: true });
+                });
+            }
+
+            return new Promise((resolve, reject) => {
+                const script = document.createElement("script");
+                script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&libraries=marker`;
+                script.async = true;
+                script.defer = true;
+                script.dataset.googleMapsLoader = "true";
+                script.onload = () => resolve();
+                script.onerror = () => reject(new Error("Google Maps failed to load"));
+                document.head.appendChild(script);
+            });
+        }
 
         function TheaterDetailMap({ venue }) {
             const mapNodeRef = useRef(null);
             const mapRef = useRef(null);
             const [is3D, setIs3D] = useState(false);
+            const [mapError, setMapError] = useState("");
 
             useEffect(() => {
-                const interval = setInterval(() => {
-                    if (window.google && window.google.maps) {
-                        clearInterval(interval);
-                        
+                let cancelled = false;
+
+                loadGoogleMapsApi()
+                    .then(() => {
+                        if (cancelled) return;
                         const lat = venue.location?.coordinates?.latitude || venue.lat || 0;
                         const lng = venue.location?.coordinates?.longitude || venue.lng || 0;
-                        
+
                         if (!mapRef.current && mapNodeRef.current) {
                             mapRef.current = new window.google.maps.Map(mapNodeRef.current, {
                                 center: { lat, lng },
@@ -128,9 +160,17 @@
                                 title: venue.name
                             });
                         }
-                    }
-                }, 100);
-                return () => clearInterval(interval);
+                        setMapError("");
+                    })
+                    .catch((error) => {
+                        if (cancelled) return;
+                        console.error("[Maps] Failed to load Google Maps:", error);
+                        setMapError("La carte Google Maps n'est pas disponible. Vérifiez APP_CONFIG.GOOGLE_MAPS_API_KEY dans assets/js/config.js.");
+                    });
+
+                return () => {
+                    cancelled = true;
+                };
             }, [venue]);
 
             const toggle3D = () => {
@@ -153,6 +193,10 @@
                 }
                 setIs3D(next3D);
             };
+
+            if (mapError) {
+                return <div className="map-container flex items-center justify-center px-6 text-center text-on-surface-variant bg-surface-variant">{mapError}</div>;
+            }
 
             return (
                 <div style={{ position: 'relative' }}>

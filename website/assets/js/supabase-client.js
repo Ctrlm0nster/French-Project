@@ -8,6 +8,18 @@
  */
 
 const SupabaseClient = (() => {
+  const PLACEHOLDER_VALUES = new Set([
+    '',
+    'VOTRE_SUPABASE_URL',
+    'VOTRE_SUPABASE_ANON_KEY',
+  ]);
+
+  const runtimeStatus = {
+    lastSource: 'unknown',
+    lastTable: null,
+    lastReason: null,
+  };
+
   // Get config from window.APP_CONFIG (loaded from config.js)
   const getConfig = () => {
     const config = window.APP_CONFIG || {};
@@ -16,6 +28,16 @@ const SupabaseClient = (() => {
       anonKey: config.SUPABASE_ANON_KEY || '',
     };
   };
+
+  function hasUsableConfig(value) {
+    return !PLACEHOLDER_VALUES.has(String(value || '').trim());
+  }
+
+  function setRuntimeStatus(source, reason, table) {
+    runtimeStatus.lastSource = source;
+    runtimeStatus.lastReason = reason || null;
+    runtimeStatus.lastTable = table || null;
+  }
 
   /**
    * Fetch data from a Supabase table via REST API.
@@ -55,8 +77,9 @@ const SupabaseClient = (() => {
   async function fetchFromTable(table, options = {}) {
     const { url, anonKey } = getConfig();
 
-    if (!url || !anonKey) {
-      console.warn('[Supabase] Missing URL or Anon Key in APP_CONFIG. Falling back to local data.');
+    if (!hasUsableConfig(url) || !hasUsableConfig(anonKey)) {
+      setRuntimeStatus('fallback', 'missing_public_config', table);
+      console.warn(`[Supabase] Missing public config for ${table}. Set APP_CONFIG.SUPABASE_URL and APP_CONFIG.SUPABASE_ANON_KEY to enable live data.`);
       return null;
     }
 
@@ -84,13 +107,16 @@ const SupabaseClient = (() => {
 
       if (!response.ok) {
         const errorBody = await response.text();
+        setRuntimeStatus('fallback', `http_${response.status}`, table);
         console.error(`[Supabase] Error fetching ${table}:`, response.status, errorBody);
         return null;
       }
 
       const data = await response.json();
+      setRuntimeStatus('supabase', 'ok', table);
       return Array.isArray(data) ? data : [];
     } catch (err) {
+      setRuntimeStatus('fallback', 'network_error', table);
       console.error(`[Supabase] Network error fetching ${table}:`, err);
       return null;
     }
@@ -109,6 +135,7 @@ const SupabaseClient = (() => {
       return mapped;
     }
 
+    setRuntimeStatus('fallback', runtimeStatus.lastReason || 'no_rows', 'movies');
     console.warn('[Supabase] Using local movies.json (no rows or not configured)');
     return fetchLocalJSON('assets/data/movies.json');
   }
@@ -126,6 +153,7 @@ const SupabaseClient = (() => {
       return mapped;
     }
 
+    setRuntimeStatus('fallback', runtimeStatus.lastReason || 'no_rows', 'series');
     console.warn('[Supabase] Using local series.json (no rows or not configured)');
     return fetchLocalJSON('assets/data/series.json');
   }
@@ -143,6 +171,7 @@ const SupabaseClient = (() => {
       return mapped;
     }
 
+    setRuntimeStatus('fallback', runtimeStatus.lastReason || 'no_rows', 'documentaries');
     console.warn('[Supabase] Using local documentaries.json (no rows or not configured)');
     return fetchLocalJSON('assets/data/documentaries.json');
   }
@@ -158,6 +187,7 @@ const SupabaseClient = (() => {
       const data = await response.json();
       return Array.isArray(data) ? data : [];
     } catch (err) {
+      setRuntimeStatus('fallback', 'local_json_error', path);
       console.error(`[Supabase] Failed to load local fallback: ${path}`, err);
       return [];
     }
@@ -169,5 +199,6 @@ const SupabaseClient = (() => {
     fetchSeries,
     fetchDocumentaries,
     fetchFromTable,
+    getRuntimeStatus: () => ({ ...runtimeStatus }),
   };
 })();

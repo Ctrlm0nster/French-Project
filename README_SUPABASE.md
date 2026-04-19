@@ -1,6 +1,6 @@
 # Supabase Integration | Cinémathèque
 
-This project uses **Supabase** as its primary cloud database and backend service to manage the Cinémathèque catalogue dynamically. It follows a "Cloud-First, Local-Fallback" architecture to ensure maximum reliability.
+This project uses **Supabase** as its primary cloud database and backend service to manage the Cinémathèque catalogue dynamically. It follows a "Cloud-First, Local-Fallback" architecture to ensure maximum reliability without baking deployment secrets into the generated `docs/` output.
 
 ## 🏗️ Architecture Overview
 
@@ -29,12 +29,12 @@ node setup-supabase.mjs
 ## 🔐 Database Configuration
 
 ### 1. Connection Keys
-Public keys are managed in `website/assets/js/config.js`. These are intended for frontend use and are safe to be public as long as Row Level Security (RLS) is enabled.
+Public keys are managed in `website/assets/js/config.js`. These are intended for frontend use and are safe to be public as long as Row Level Security (RLS) is enabled. The build copies this file as-is, so keep only browser-safe values there.
 
 ```javascript
 window.APP_CONFIG = {
-  SUPABASE_URL: "https://opcktewzfwgivnlhlezb.supabase.co",
-  SUPABASE_ANON_KEY: "your-anon-key",
+  SUPABASE_URL: "VOTRE_SUPABASE_URL",
+  SUPABASE_ANON_KEY: "VOTRE_SUPABASE_ANON_KEY",
 };
 ```
 
@@ -81,6 +81,8 @@ Then fetch data as follows:
 SupabaseClient.fetchMovies().then(movies => {
   console.log("Loaded movies:", movies);
 });
+
+console.log(SupabaseClient.getRuntimeStatus());
 ```
 
 ---

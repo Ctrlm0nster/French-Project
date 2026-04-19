@@ -1,6 +1,7 @@
 /**
  * Frontend config (single source of truth).
- * Keep only public keys here. Server-only secrets must stay in backend env vars.
+ * Keep only public, browser-safe values here.
+ * Server-only secrets must stay in backend env vars and never be baked into docs/.
  */
 window.APP_CONFIG = {
   SUPABASE_URL: "VOTRE_SUPABASE_URL",
