@@ -4,22 +4,35 @@
 <head>
     <meta charset="utf-8" />
     <title>Cinémathèque | L'Écrin des Projections</title>
-    
-  <link rel="apple-touch-icon" sizes="57x57" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
-  <link rel="apple-touch-icon" sizes="60x60" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
-  <link rel="apple-touch-icon" sizes="72x72" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
-  <link rel="apple-touch-icon" sizes="76x76" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-76x76.png" />
-  <link rel="apple-touch-icon" sizes="114x114" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-114x114.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-120x120.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
-  <link rel="icon" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" type="image/png" />
+
+    <link rel="apple-touch-icon" sizes="57x57"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-180x180.png" />
+    <link rel="icon" href="https://d3njjcbhbojbot.cloudfront.net/web/images/favicons/apple-touch-icon-v2-57x57.png"
+        type="image/png" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -32,32 +45,77 @@
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
-            theme: { extend: {
-                colors: {
-                    "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
-                    "surface": "#0f1117", "surface-container": "#141720",
-                    "surface-container-low": "#0d0f14", "surface-container-high": "#1a1d28",
-                    "surface-container-highest": "#22263a",
-                    "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
-                    "on-background": "#f1f5f9", "outline-variant": "rgba(255,255,255,0.08)",
-                    "on-primary": "#ffffff", "on-secondary": "#ffffff",
-                    "primary-fixed-dim": "#c084fc", "primary-container": "#3b0764"
-                },
-                fontFamily: { headline: ['Syne','Space Grotesk','sans-serif'], body: ['Space Grotesk','sans-serif'], label: ['Space Grotesk','sans-serif'] },
-                borderRadius: { DEFAULT:'8px', full:'9999px', lg:'20px', xl:'28px' }
-            }}
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#7c3aed", "secondary": "#ec4899", "background": "#080a0f",
+                        "surface": "#0f1117", "surface-container": "#141720",
+                        "surface-container-low": "#0d0f14", "surface-container-high": "#1a1d28",
+                        "surface-container-highest": "#22263a",
+                        "on-surface": "#f1f5f9", "on-surface-variant": "#94a3b8",
+                        "on-background": "#f1f5f9", "outline-variant": "rgba(255,255,255,0.08)",
+                        "on-primary": "#ffffff", "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#c084fc", "primary-container": "#3b0764"
+                    },
+                    fontFamily: { headline: ['Syne', 'Space Grotesk', 'sans-serif'], body: ['Space Grotesk', 'sans-serif'], label: ['Space Grotesk', 'sans-serif'] },
+                    borderRadius: { DEFAULT: '8px', full: '9999px', lg: '20px', xl: '28px' }
+                }
+            }
         }
     </script>
     <style>
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
-        .font-serif { font-family: 'Syne', sans-serif; }
-        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-        .no-scrollbar::-webkit-scrollbar { display:none; }
-        .no-scrollbar { -ms-overflow-style:none; scrollbar-width:none; }
-        .map-shell { width:100%; height:100%; min-height:500px; filter:contrast(1.2) brightness(1); transition:all 0.5s ease; }
-        .map-shell:hover { filter:contrast(1.3) brightness(1.1); }
-        .map-fallback { display:flex; align-items:center; justify-content:center; min-height:500px; padding:2rem; text-align:center; color:#94a3b8; background:rgba(20,23,32,0.9); }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #080a0f;
+            color: #f1f5f9;
+        }
+
+        .font-serif {
+            font-family: 'Syne', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .grad-text {
+            background: linear-gradient(135deg, #c084fc 0%, #ec4899 40%, #fb923c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .map-shell {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            filter: contrast(1.2) brightness(1);
+            transition: all 0.5s ease;
+        }
+
+        .map-shell:hover {
+            filter: contrast(1.3) brightness(1.1);
+        }
+
+        .map-fallback {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            padding: 2rem;
+            text-align: center;
+            color: #94a3b8;
+            background: rgba(20, 23, 32, 0.9);
+        }
     </style>
 </head>
 
@@ -75,12 +133,11 @@
         </ul>
         <div class="nav-actions flex items-center gap-4">
             <form action="search.html" method="get" class="relative hidden sm:block">
-                <input
-                    id="search-input"
-                    name="q"
+                <input id="search-input" name="q"
                     class="bg-surface-container bg-opacity-50 border border-outline-variant focus:border-primary focus:ring-0 text-sm py-1.5 pl-10 pr-4 w-48 md:w-64 rounded-full transition-all duration-300 text-white placeholder:text-on-surface-variant focus:bg-surface-container-high"
                     placeholder="Rechercher..." type="text" />
-                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 18px;">search</span>
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+                    style="font-size: 18px;">search</span>
             </form>
             <button class="btn btn-glass btn-icon">
                 <span class="material-symbols-outlined" style="font-size:18px" data-icon="language">language</span>
@@ -89,20 +146,28 @@
     </nav>
     <main class="flex-grow pt-24 pb-12 flex flex-col">
         <header class="px-6 md:px-12 mb-10 mt-8">
-            <div style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem">
+            <div
+                style="max-width:1400px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem">
                 <div>
                     <div class="section-eyebrow">Le Répertoire National</div>
                     <h1 class="section-title" style="font-size:clamp(2rem,6vw,4.5rem);margin-top:0.5rem">
                         L'Écrin des <span class="grad-text">Projections</span>
                     </h1>
-                    <p style="margin-top:0.75rem;max-width:480px;color:var(--text-secondary);font-size:0.88rem;line-height:1.75;font-style:italic">
+                    <p
+                        style="margin-top:0.75rem;max-width:480px;color:var(--text-secondary);font-size:0.88rem;line-height:1.75;font-style:italic">
                         Découvrez nos salles partenaires — des théâtres historiques aux écrins contemporains.
                     </p>
                 </div>
                 <div class="filter-group">
-                    <button class="filter-chip active" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Cinéma d'Art</button>
-                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Théâtre de Scène</button>
-                    <button class="filter-chip" onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">Grands Festivals</button>
+                    <button class="filter-chip active"
+                        onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">CINÉMA
+                        D'ART</button>
+                    <button class="filter-chip"
+                        onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">THÉÂTRE
+                        DE SCÈNE</button>
+                    <button class="filter-chip"
+                        onclick="this.closest('.filter-group').querySelectorAll('.filter-chip').forEach(b=>b.classList.remove('active'));this.classList.add('active')">GRANDS
+                        FESTIVALS</button>
                 </div>
             </div>
         </header>
@@ -122,8 +187,11 @@
                 <div>
                     <h2 class="text-4xl font-headline mb-8 leading-tight">Préserver l'Art de l'Expérience</h2>
                     <div class="space-y-6 text-on-surface-variant font-body leading-relaxed">
-                        <p>Le localisateur de la Cinémathèque est plus qu'une simple carte ; c'est une archive curatoriale de l'architecture culturelle française. Chaque repère représente un héritage de narration, de la plus petite salle indépendante aux plus grandes scènes nationales.</p>
-                        <p>Nous soutenons la tradition française de "L'exception culturelle" en mettant en avant les lieux qui privilégient le mérite artistique sur le bruit commercial.</p>
+                        <p>Le localisateur de la Cinémathèque est plus qu'une simple carte ; c'est une archive
+                            curatoriale de l'architecture culturelle française. Chaque repère représente un héritage de
+                            narration, de la plus petite salle indépendante aux plus grandes scènes nationales.</p>
+                        <p>Nous soutenons la tradition française de "L'exception culturelle" en mettant en avant les
+                            lieux qui privilégient le mérite artistique sur le bruit commercial.</p>
                     </div>
                 </div>
             </div>
@@ -134,34 +202,88 @@
 
         const GOOGLE_MAPS_PLACEHOLDER = "VOTRE_GOOGLE_MAPS_API_KEY";
 
+        function waitForCondition(check, timeoutMs, errorMessage) {
+            return new Promise((resolve, reject) => {
+                const startedAt = Date.now();
+
+                function tick() {
+                    if (check()) {
+                        resolve();
+                        return;
+                    }
+
+                    if (Date.now() - startedAt >= timeoutMs) {
+                        reject(new Error(errorMessage));
+                        return;
+                    }
+
+                    setTimeout(tick, 100);
+                }
+
+                tick();
+            });
+        }
+
+        function getGoogleMapsApiKey() {
+            return String(
+                (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) ||
+                window.GOOGLE_MAPS_API_KEY ||
+                ""
+            ).trim();
+        }
+
+        function waitForGoogleMapsReady() {
+            return waitForCondition(
+                () => Boolean(
+                    window.google &&
+                    window.google.maps &&
+                    window.google.maps.Map &&
+                    window.google.maps.marker &&
+                    window.google.maps.marker.AdvancedMarkerElement
+                ),
+                12000,
+                "La bibliotheque Google Maps n'a pas termine son chargement"
+            );
+        }
+
         function loadGoogleMapsApi() {
-            if (window.google && window.google.maps) {
+            if (window.google && window.google.maps && window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
                 return Promise.resolve();
             }
 
-            const apiKey = String((window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "").trim();
-            if (!apiKey || apiKey === GOOGLE_MAPS_PLACEHOLDER) {
-                return Promise.reject(new Error("Missing browser-safe GOOGLE_MAPS_API_KEY in assets/js/config.js"));
+            if (window.__cinemathequeGoogleMapsPromise) {
+                return window.__cinemathequeGoogleMapsPromise;
             }
 
-            const existingScript = document.querySelector('script[data-google-maps-loader="true"]');
-            if (existingScript) {
-                return new Promise((resolve, reject) => {
-                    existingScript.addEventListener("load", () => resolve(), { once: true });
-                    existingScript.addEventListener("error", () => reject(new Error("Google Maps failed to load")), { once: true });
-                });
-            }
+            window.__cinemathequeGoogleMapsPromise = (async () => {
+                await waitForCondition(() => {
+                    const key = getGoogleMapsApiKey();
+                    return key && key !== GOOGLE_MAPS_PLACEHOLDER;
+                }, 3000, "La cle publique GOOGLE_MAPS_API_KEY est absente de assets/js/config.js");
 
-            return new Promise((resolve, reject) => {
-                const script = document.createElement("script");
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&libraries=marker`;
-                script.async = true;
-                script.defer = true;
-                script.dataset.googleMapsLoader = "true";
-                script.onload = () => resolve();
-                script.onerror = () => reject(new Error("Google Maps failed to load"));
-                document.head.appendChild(script);
+                const apiKey = getGoogleMapsApiKey();
+                const existingScript = document.querySelector('script[data-google-maps-loader="true"]');
+
+                if (!existingScript) {
+                    await new Promise((resolve, reject) => {
+                        const script = document.createElement("script");
+                        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&libraries=marker`;
+                        script.async = true;
+                        script.defer = true;
+                        script.dataset.googleMapsLoader = "true";
+                        script.onload = () => resolve();
+                        script.onerror = () => reject(new Error("Le chargement de Google Maps a echoue"));
+                        document.head.appendChild(script);
+                    });
+                }
+
+                await waitForGoogleMapsReady();
+            })().catch((error) => {
+                window.__cinemathequeGoogleMapsPromise = null;
+                throw error;
             });
+
+            return window.__cinemathequeGoogleMapsPromise;
         }
 
         function GoogleMapPanel({ venues, selectedVenue, streetViewMode }) {
@@ -223,7 +345,7 @@
                         const lng = selectedVenue.lng || selectedVenue.location?.coordinates?.longitude || 0;
                         map.panTo({ lat: lat, lng: lng });
                         map.setZoom(13);
-                        
+
                         // Street View Logic
                         const panorama = map.getStreetView();
                         if (streetViewMode) {
@@ -236,7 +358,7 @@
                         } else {
                             panorama.setVisible(false);
                         }
-                        
+
                     } else if (venues.length > 0) {
                         map.getStreetView()?.setVisible(false);
                         map.fitBounds(bounds);
@@ -271,7 +393,7 @@
         function TheatersExplorer() {
             const [venues, setVenues] = useState([]);
             const [isLoading, setIsLoading] = useState(true);
-            const [type, setType] = useState("Tous");
+            const [type, setType] = useState("TOUS");
             const [query, setQuery] = useState("");
             const [selectedVenue, setSelectedVenue] = useState(null);
             const [isStreetView, setIsStreetView] = useState(false);
@@ -294,21 +416,38 @@
 
             const filtered = useMemo(() => venues.filter((v) => {
                 const venueCity = v.city || v.location?.address?.city || "";
-                const venueType = v.type || v.identity?.type || "Cinéma";
-                return (type === "Tous" || venueType.includes(type)) && (v.name.toLowerCase().includes(query.toLowerCase()) || venueCity.toLowerCase().includes(query.toLowerCase()));
+                const venueCategory = v.category || "";
+
+                let matchesType = true;
+                if (type === "CINÉMA D'ART") matchesType = venueCategory.includes("Cinéma");
+                else if (type === "THÉÂTRE DE SCÈNE") matchesType = venueCategory.includes("Théâtre");
+                else if (type === "GRANDS FESTIVALS") matchesType = venueCategory.includes("Festival");
+
+                const matchesQuery = v.name.toLowerCase().includes(query.toLowerCase()) || venueCity.toLowerCase().includes(query.toLowerCase());
+                return matchesType && matchesQuery;
             }), [venues, type, query]);
+
             useEffect(() => {
                 if (filtered.length > 0 && (!selectedVenue || !filtered.some((v) => v.name === selectedVenue.name))) {
                     setSelectedVenue(filtered[0] || null);
                 }
             }, [filtered, selectedVenue]);
+
             return (
                 <div className="flex-grow grid grid-cols-1 lg:grid-cols-12 gap-0 px-0 lg:px-12 max-w-[1600px] mx-auto w-full min-h-[700px]">
                     <div className="lg:col-span-8 relative h-[500px] lg:h-full bg-surface-container-low overflow-hidden shadow-2xl">
                         {isLoading ? <div className="map-fallback">Chargement de la carte...</div> : <GoogleMapPanel venues={filtered} selectedVenue={selectedVenue} streetViewMode={isStreetView} />}
 
                         <div className="absolute top-8 left-8 right-8 flex gap-3 flex-wrap">
-                            {["Tous", "Cinéma", "Théâtre", "Festival"].map((t) => <button key={t} onClick={() => setType(t)} className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] ${type === t ? "bg-primary text-on-primary" : "bg-surface-container-high text-on-surface-variant"}`}>{t}</button>)}
+                            {["TOUS", "CINÉMA D'ART", "THÉÂTRE DE SCÈNE", "GRANDS FESTIVALS"].map((t) => (
+                                <button
+                                    key={t}
+                                    onClick={() => setType(t)}
+                                    className={`px-4 py-2 text-[10px] uppercase tracking-[0.2em] transition-all duration-300 ${type === t ? "bg-primary text-on-primary shadow-lg shadow-primary/20" : "bg-surface-container-high text-on-surface-variant hover:bg-surface-container-highest"}`}
+                                >
+                                    {t}
+                                </button>
+                            ))}
                         </div>
                     </div>
                     <div className="lg:col-span-4 bg-surface-container overflow-y-auto no-scrollbar max-h-[700px]">
@@ -328,7 +467,7 @@
                                     <h3 className="font-headline text-2xl mt-2 mb-2">{venue.name}</h3>
                                     <p className="font-body text-sm text-on-surface-variant italic mb-4">{note}</p>
                                     <div className="text-[10px] font-label uppercase tracking-widest bg-primary-container/30 text-primary-fixed-dim px-3 py-1 inline-block mb-3">{venueType}</div>
-                                    
+
                                     {isSelected && (
                                         <div className="mt-4 pt-4 border-t border-outline-variant/20 text-sm text-on-surface-variant space-y-3">
                                             {venue.location?.address && (
@@ -346,21 +485,21 @@
                                                     </ul>
                                                 </div>
                                             )}
-                                            
+
                                             <div className="mt-6 pt-2 flex flex-col gap-2">
-                                                <a 
-                                                    href={`theater-detail.html?id=${encodeURIComponent(venue.id || venue.name)}`} 
+                                                <a
+                                                    href={`theater-detail.html?id=${encodeURIComponent(venue.id || venue.name)}`}
                                                     className="w-full bg-primary/20 hover:bg-primary transition-colors duration-300 text-primary hover:text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
                                                 >
                                                     <span className="material-symbols-outlined text-[16px]">info</span>
                                                     En Savoir Plus
                                                 </a>
-                                                <button 
+                                                <button
                                                     onClick={(e) => { e.stopPropagation(); setIsStreetView(!isStreetView); }}
                                                     className="w-full bg-slate-800 hover:bg-white hover:text-slate-900 transition-colors duration-300 text-white flex items-center justify-center gap-2 py-2 rounded uppercase text-xs tracking-widest font-bold"
                                                 >
                                                     <span className="material-symbols-outlined text-[16px]">{isStreetView ? 'map' : '3d_rotation'}</span>
-                                                    {isStreetView ? 'Revenir à la carte' : 'Voir en 3D (Street View)'}
+                                                    {isStreetView ? 'Revenir à la carte' : 'Voir la vue immersive'}
                                                 </button>
                                             </div>
                                         </div>
@@ -376,19 +515,21 @@
     </script>
     <!-- Footer -->
     <footer class="footer-modern">
-        <div style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
+        <div
+            style="max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem">
             <a href="index.html" class="footer-logo">Cinémathèque</a>
             <div style="display:flex;gap:2rem">
                 <a class="footer-link" href="terms.html">Conditions</a>
                 <a class="footer-link" href="privacy.html">Confidentialité</a>
                 <a class="footer-link" href="mailto:parthbhardwaj3045@gmail.com">Contact</a>
             </div>
-            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital Cinémathèque<br>Créé par Parth Sachin Bhardwaj</div>
+            <div style="font-size:0.7rem;letter-spacing:0.08em;color:var(--text-muted)">© 2026 Digital
+                Cinémathèque<br>Créé par Parth Sachin Bhardwaj</div>
         </div>
         <div class="footer-bar"></div>
     </footer>
     <script>
-        window.addEventListener('scroll',function(){var n=document.getElementById('main-nav');if(n)n.classList.toggle('scrolled',window.scrollY>30);});
+        window.addEventListener('scroll', function () { var n = document.getElementById('main-nav'); if (n) n.classList.toggle('scrolled', window.scrollY > 30); });
     </script>
 </body>
 

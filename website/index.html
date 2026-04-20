@@ -73,17 +73,45 @@
     }
   </script>
   <style>
-    body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
-    .font-serif { font-family: 'Syne', sans-serif; }
+    body { font-family: var(--font-body); color: var(--ink); }
     .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .translate-widget-root { min-height:40px; display:flex; align-items:center; }
-    .reveal-on-scroll { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease,transform 0.7s ease; }
-    .reveal-on-scroll.is-visible { opacity:1; transform:translateY(0); }
-    .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-    .genre-gradient-divider { height:1px; background:linear-gradient(90deg,transparent,rgba(124,58,237,0.4),rgba(236,72,153,0.3),transparent); }
     section { position:relative; }
+    .hero-curtain {
+      position:absolute; inset:0; z-index:10;
+      background:
+        linear-gradient(90deg, rgba(9,8,7,0.98) 0%, rgba(9,8,7,0.88) 34%, rgba(9,8,7,0.28) 72%, rgba(9,8,7,0.06) 100%),
+        linear-gradient(180deg, rgba(9,8,7,0.18) 0%, rgba(9,8,7,0.8) 100%);
+    }
+    .hero-panel {
+      position:relative; z-index:20; margin:0 0 8vh 4vw; max-width:48rem;
+      padding:2rem 2.25rem 2rem 0;
+    }
+    .hero-note {
+      max-width:39rem; color:var(--ink-soft); font-size:1.05rem; line-height:1.9;
+      font-weight:500;
+    }
+    .editorial-band {
+      position:absolute; top:6.6rem; right:5vw; z-index:20; display:none;
+      color:var(--gold-soft); writing-mode:vertical-rl; transform:rotate(180deg);
+      font-size:0.7rem; letter-spacing:0.35em; text-transform:uppercase; font-weight:800;
+    }
+    .editorial-band::before {
+      content:''; display:block; width:1px; height:90px; margin:0 auto 1rem; background:var(--grad-divider);
+    }
+    .spotlight-intro {
+      max-width:560px; margin:0 auto; color:var(--ink-soft); font-size:0.96rem; line-height:1.8;
+    }
+    .quote-panel {
+      padding:2.25rem; border:1px solid var(--line); border-radius:var(--r-xl);
+      background:linear-gradient(180deg, rgba(24,19,17,0.96), rgba(12,10,9,0.98));
+      box-shadow:var(--shadow);
+    }
+    @media (min-width: 900px) {
+      .editorial-band { display:flex; align-items:center; }
+    }
   </style>
 </head>
 
@@ -119,26 +147,26 @@
   <!-- Hero Section -->
   <section id="hero-section" class="relative h-screen w-full overflow-hidden flex items-center transition-opacity duration-1000">
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-r from-background via-background/60 to-transparent z-10"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+      <div class="hero-curtain"></div>
       <img id="hero-img" alt="Film à l'affiche" class="w-full h-full object-cover object-center grayscale-[20%] transition-opacity duration-1000"
         src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%2Fid%2FOIP.mS1_LdTRY9erw7pbHJoxpwHaE7%3Fpid%3DApi&f=1&ipt=674bf482b551dda7c43916d5747e5efe90d6b30390fbe64ab39b1b9f5b255d5f&ipo=images" />
     </div>
-    <div class="relative z-20 px-12 md:px-24 max-w-4xl" id="hero-content">
+    <div class="editorial-band">Sélection du soir</div>
+    <div class="hero-panel" id="hero-content">
       <div class="mb-4">
-        <span id="hero-badge" class="label-md uppercase tracking-[0.3em] text-secondary font-bold transition-all duration-500">IMDb 8.5/10</span>
+        <span id="hero-badge" class="label-md transition-all duration-500">IMDb 8.5/10</span>
       </div>
-      <h1 id="hero-title" class="text-7xl md:text-9xl font-sans font-bold text-white tracking-tight leading-tight mb-6 transition-all duration-500">Intouchables <br /><span class="italic font-light text-primary-fixed-dim">2011</span></h1>
+      <h1 id="hero-title" class="hero-title mb-6 transition-all duration-500">Intouchables <br /><span class="italic font-light" style="color:var(--gold-soft)">2011</span></h1>
       <p id="hero-desc"
-        class="text-xl md:text-2xl font-body font-light text-on-surface-variant max-w-2xl mb-12 leading-relaxed italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
+        class="hero-note mb-12 italic transition-all duration-500">"Omar Sy est absolument brillant. Un mélange parfait d'humour et de cœur qui vous fera passer du rire aux larmes en un instant."</p>
       <div class="flex flex-wrap items-center gap-4 md:gap-8">
         <a id="hero-trailer" href="https://www.youtube.com/watch?v=EFGmBOJy8sc" target="_blank" rel="noopener noreferrer"
-          class="bg-primary text-on-primary px-10 py-4 font-label uppercase tracking-widest text-sm font-bold inline-flex items-center gap-3 hover:bg-white transition-colors duration-300 magnetic">
+          class="btn btn-primary">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
           Bande-annonce
         </a>
         <a id="hero-link" href="detail.html?type=movie&title=The%20Intouchables"
-          class="bg-surface-variant text-on-background px-10 py-4 font-label uppercase tracking-widest text-sm font-bold border border-outline-variant/30 inline-flex items-center hover:bg-surface-container-high transition-colors duration-300 magnetic">
+          class="btn btn-glass">
           En savoir plus
         </a>
       </div>
@@ -160,7 +188,7 @@
         <div>
           <div class="section-eyebrow mx-auto justify-center">À la une</div>
           <h2 class="section-title text-center">Lumière sur la <span class="grad-text">Sélection</span></h2>
-          <p style="margin-top:0.6rem;max-width:500px;font-size:0.9rem;color:var(--text-secondary);line-height:1.65;margin-left:auto;margin-right:auto">Une immersion dans notre catalogue — trois films et trois séries emblématiques.</p>
+          <p class="spotlight-intro" style="margin-top:0.8rem">Six œuvres pour prendre le pouls du catalogue, pensées comme une programmation double séance entre écran de répertoire et fièvre contemporaine.</p>
         </div>
         <div id="spotlight-dots" class="flex flex-wrap justify-center items-center gap-2 mt-2"></div>
       </div>
@@ -180,11 +208,11 @@
             </div>
           </div>
         </div>
-        <button type="button" id="spotlight-prev" aria-label="Slide précédent"
+        <button type="button" id="spotlight-prev" aria-label="Diapositive précédente"
           class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
           <span class="material-symbols-outlined text-2xl">chevron_left</span>
         </button>
-        <button type="button" id="spotlight-next" aria-label="Slide suivant"
+        <button type="button" id="spotlight-next" aria-label="Diapositive suivante"
           class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-outline-variant/60 bg-background/90 text-on-surface backdrop-blur-sm transition hover:border-primary hover:text-primary magnetic">
           <span class="material-symbols-outlined text-2xl">chevron_right</span>
         </button>
@@ -212,12 +240,12 @@
   <!-- divider -->
   <div class="genre-gradient-divider"></div>
 
-  <!-- Trending (dynamic tabs) -->
+  <!-- Tendances (onglets dynamiques) -->
   <section style="padding:5rem 1.5rem 5rem;background:rgba(8,10,15,0.7)">
     <div style="max-width:1280px;margin:0 auto">
       <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;gap:1.5rem">
         <div>
-          <div class="section-eyebrow">Trending</div>
+          <div class="section-eyebrow">En vue</div>
           <h2 class="section-title">Tendances <span class="grad-text">du moment</span></h2>
           <p style="color:var(--text-secondary);font-size:0.88rem;margin-top:0.5rem;max-width:460px">Une sélection dynamique des œuvres qui agitent la critique.</p>
         </div>
@@ -253,7 +281,7 @@
       <div style="position:relative">
         <!-- Glow accent -->
         <div style="position:absolute;top:-30px;left:-30px;width:180px;height:180px;background:radial-gradient(circle,rgba(124,58,237,0.2),transparent 70%);z-index:0"></div>
-        <div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)">
+        <div class="quote-panel" style="position:relative;border-radius:20px;overflow:hidden;padding:0">
           <img alt="Note du directeur" style="width:100%;aspect-ratio:16/9;object-fit:cover;display:block;filter:brightness(0.85) saturate(1.1)"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMW8wz42GXaWiGx7ErtgOEoovRzO_45vjZErynAs6VG_q8ve2xqE9sKVg9sSjRoUVz9g1Q4mQuuU-g2N4Neb2mjBjyo8JUX-ke1qUyBJ7EDnbU1x3cZQg8z6giCpOljeQgqOaOJ4bX5TYEK3yO1MfjWZjauvV79mNirbI_IbSqSr6aW8iSdRrA_qgYQaOCReZXZitCAt8DHjPv_gjW1lfJDMeegeUsBTevgKwdMBU7cC29O9HqAzmJqgxGUxuy2DMEW4MRFT8jGGQ" />
           <!-- Quote pill overlay -->
@@ -265,7 +293,7 @@
       <div style="padding-left:0">
         <div class="section-eyebrow">Le regard éditorial</div>
         <h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-family:var(--font-display);font-weight:800;letter-spacing:-0.03em;margin:0.75rem 0 1.5rem;font-style:italic">"Le cinéma est la plus belle <span class="grad-text">escroquerie du monde."</span></h2>
-        <div style="color:var(--text-secondary);line-height:1.8;font-size:0.9rem;display:flex;flex-direction:column;gap:1rem">
+        <div style="color:var(--ink-soft);line-height:1.9;font-size:0.96rem;display:flex;flex-direction:column;gap:1rem">
           <p>La Cinémathèque s'érige comme un sanctuaire de la mémoire visuelle, où chaque archive est une promesse d'émerveillement.</p>
           <p>Plus qu'un catalogue, nous construisons un dialogue entre les époques. Rejoignez-nous pour explorer l'héritage de la Nouvelle Vague.</p>
         </div>
@@ -437,7 +465,7 @@
                 row.trailerUrl
                   ? '<a href="' +
                     String(row.trailerUrl).replace(/"/g, "%22") +
-                    '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-primary/50 bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15"><span class="material-symbols-outlined text-[18px]">play_circle</span>Watch trailer</a>'
+                    '" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-lg border border-primary/50 bg-black/30 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15"><span class="material-symbols-outlined text-[18px]">play_circle</span>Voir la bande-annonce</a>'
                   : "";
               return (
                 '<div class="flex shrink-0 flex-col items-center gap-6 p-6 md:flex-row md:gap-10 md:p-10">' +
@@ -475,7 +503,7 @@
               return (
                 '<button type="button" data-idx="' +
                 idx +
-                '" class="h-2.5 w-2.5 rounded-full border transition-colors" aria-label="Slide ' +
+                '" class="h-2.5 w-2.5 rounded-full border transition-colors" aria-label="Diapositive ' +
                 (idx + 1) +
                 '"></button>'
               );
@@ -515,7 +543,7 @@
                   m.trailerUrl
                     ? '<a href="' +
                       String(m.trailerUrl).replace(/"/g, "%22") +
-                      '" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 rounded border border-primary/40 bg-primary-container/20 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/20 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[16px] leading-none">play_circle</span><span>Watch trailer</span></a>'
+                      '" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 rounded border border-primary/40 bg-primary-container/20 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/20 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[16px] leading-none">play_circle</span><span>Voir la bande-annonce</span></a>'
                     : "";
                 return (
                   '<div class="flex-none w-36 snap-start shrink-0 flex flex-col">' +
@@ -583,7 +611,7 @@
                 var trailerRow = row.trailerUrl
                   ? '<a href="' +
                     String(row.trailerUrl).replace(/"/g, "%22") +
-                    '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex w-fit items-center gap-2 rounded-lg border border-primary/50 bg-black/40 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[18px]">play_circle</span><span>Watch trailer</span></a>'
+                    '" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex w-fit items-center gap-2 rounded-lg border border-primary/50 bg-black/40 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.12em] text-primary hover:bg-primary/15 hover:border-primary transition-colors"><span class="material-symbols-outlined text-[18px]">play_circle</span><span>Voir la bande-annonce</span></a>'
                   : "";
                 return (
                   '<div class="group relative mx-auto flex w-full max-w-[280px] flex-col overflow-hidden bg-surface-container shadow-lg">' +

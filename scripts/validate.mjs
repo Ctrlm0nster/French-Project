@@ -44,8 +44,9 @@ for (const relativePath of removedRouteFiles) {
 }
 
 const buildFile = readFile("build.mjs");
-assert(!buildFile.includes("process.env.NEXT_PUBLIC_OPENAI_API_KEY"), "build.mjs should not inject browser config from env vars.");
-assert(!/content\.replace\(/.test(buildFile), "build.mjs should copy files verbatim instead of rewriting them.");
+assert(buildFile.includes("buildPublicConfig"), "build.mjs should generate a docs config from an allowlisted set of public env vars.");
+assert(buildFile.includes("writeDocsConfig"), "build.mjs should emit docs/website/assets/js/config.js from the build step.");
+assert(!buildFile.includes("NEXT_PUBLIC_OPENAI_API_KEY"), "build.mjs must not expose NEXT_PUBLIC_OPENAI_API_KEY in generated public config.");
 
 const websiteConfig = readFile("website/assets/js/config.js");
 const docsConfigPath = path.join(rootDir, "docs/website/assets/js/config.js");
@@ -57,10 +58,13 @@ assert(websiteConfig.includes('GOOGLE_MAPS_API_KEY: "VOTRE_GOOGLE_MAPS_API_KEY"'
 
 if (docsConfig) {
   const forbiddenSecrets = [
-    /AIza[0-9A-Za-z\-_]{20,}/,
     /gsk_[0-9A-Za-z]+/,
     /sk-[0-9A-Za-z]+/,
+    /sk-svcacct-/,
     /service_role/i,
+    /POSTGRES_PASSWORD/i,
+    /POSTGRES_URL/i,
+    /VERCEL_OIDC_TOKEN/i,
   ];
   forbiddenSecrets.forEach((pattern) => {
     assert(!pattern.test(docsConfig), `docs/website/assets/js/config.js still appears to contain a secret matching ${pattern}.`);

@@ -1,7 +1,7 @@
 /**
  * Frontend config (single source of truth).
- * Keep only public, browser-safe values here.
- * Server-only secrets must stay in backend env vars and never be baked into docs/.
+ * Keep only public placeholders in source control.
+ * The docs build can replace these from .env / .env.local for browser-safe keys only.
  */
 window.APP_CONFIG = {
   SUPABASE_URL: "VOTRE_SUPABASE_URL",

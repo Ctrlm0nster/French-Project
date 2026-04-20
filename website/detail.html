@@ -326,7 +326,7 @@
           const isSeries = type === "series";
           const streamType = isSeries ? "tv" : "movie";
 
-          const resolvedTmdbId = item.resolvedTmdbId ? String(item.resolvedTmdbId) : "";
+          const resolvedTmdbId = item.resolvedTmdbId || item.tmdbId || "";
 
           if (resolvedTmdbId) {
             watchBtn.classList.remove("hidden");
@@ -362,57 +362,76 @@
           document.getElementById("detail-root").classList.remove("hidden");
       }
 
-      // Main Logic
-      if ((type === "movie" || type === "series" || type === "documentary") && window.SupabaseClient) {
-        var remotePromise;
-        if (type === "series") remotePromise = window.SupabaseClient.fetchSeries();
-        else if (type === "documentary") remotePromise = window.SupabaseClient.fetchDocumentaries();
-        else remotePromise = window.SupabaseClient.fetchMovies();
+      function fetchAndRenderTMDB(normalized, title) {
+          var tmdbType = type === "documentary" ? "movie" : type;
+          var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(tmdbType) +
+            "&title=" + encodeURIComponent(normalized.title || title) +
+            "&frenchOnly=1";
+          if (normalized.year) tmdbUrl += "&year=" + encodeURIComponent(normalized.year);
+          if (normalized.tmdbId) tmdbUrl += "&id=" + encodeURIComponent(normalized.tmdbId);
 
-        remotePromise.then(function (remoteRows) {
-          var remoteItem = Array.isArray(remoteRows)
-            ? remoteRows.find(function (row) { return row && row.title === title; })
-            : null;
-          if (remoteItem) {
-            var normalized = normalizeRemoteDetail(remoteItem);
-            var tmdbType = type === "documentary" ? "movie" : type;
-            var tmdbUrl = "/api/tmdb?type=" + encodeURIComponent(tmdbType) +
-              "&title=" + encodeURIComponent(normalized.title || title) +
-              "&frenchOnly=1";
-            if (normalized.year) tmdbUrl += "&year=" + encodeURIComponent(normalized.year);
-            if (normalized.tmdbId) tmdbUrl += "&id=" + encodeURIComponent(normalized.tmdbId);
-
-            fetch(tmdbUrl)
-              .then(r => r.ok ? r.json() : null)
-              .then(tmdbInfo => {
-                if (tmdbInfo) {
-                  normalized.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : "";
-                  normalized.overview = tmdbInfo.overview;
-                  normalized.synopsis = tmdbInfo.overview || normalized.synopsis;
-                  normalized.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : normalized.rating;
-                  normalized.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : normalized.image;
-                  if (tmdbInfo.credits && tmdbInfo.credits.cast) {
-                    normalized.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
-                  }
+          return fetch(tmdbUrl)
+            .then(r => r.ok ? r.json() : null)
+            .then(tmdbInfo => {
+              if (tmdbInfo) {
+                normalized.resolvedTmdbId = tmdbInfo.id ? String(tmdbInfo.id) : (normalized.tmdbId || "");
+                normalized.title = tmdbInfo.title || tmdbInfo.name || normalized.title;
+                normalized.overview = tmdbInfo.overview || normalized.overview;
+                normalized.synopsis = tmdbInfo.overview || normalized.synopsis;
+                normalized.rating = tmdbInfo.vote_average ? tmdbInfo.vote_average.toFixed(1) + "/10" : normalized.rating;
+                normalized.image = tmdbInfo.poster_path ? "https://image.tmdb.org/t/p/w500" + tmdbInfo.poster_path : normalized.image;
+                if (tmdbInfo.credits && tmdbInfo.credits.cast) {
+                  normalized.cast = tmdbInfo.credits.cast.slice(0, 10).map(c => c.name);
                 }
-                renderItem(normalized);
-              })
-              .catch(function () {
-                renderItem(normalized);
-              });
-          } else {
-            // Fallback to local
-            fetch(path)
-              .then(r => r.json())
-              .then(rows => {
-                var local = rows.find(r => r.title === title);
-                if (local) renderItem(local);
-                else detailError.classList.remove("hidden");
-              })
-              .catch(() => detailError.classList.remove("hidden"));
+              }
+              renderItem(normalized);
+            })
+            .catch(function () {
+              renderItem(normalized);
+            });
+      }
+
+      // Main Logic
+      var searchTitle = title;
+      var appType = type;
+
+      if ((appType === "movie" || appType === "series" || appType === "documentary")) {
+        const checkLocalAndSupabase = async () => {
+          let foundItem = null;
+
+          // 1. Try Supabase
+          if (window.SupabaseClient && window.SupabaseClient.isConfigured && window.SupabaseClient.isConfigured()) {
+            try {
+              let remoteRows = [];
+              if (appType === "series") remoteRows = await window.SupabaseClient.fetchSeries();
+              else if (appType === "documentary") remoteRows = await window.SupabaseClient.fetchDocumentaries();
+              else remoteRows = await window.SupabaseClient.fetchMovies();
+              
+              foundItem = Array.isArray(remoteRows) ? remoteRows.find(r => r && r.title === searchTitle) : null;
+            } catch(e) { console.warn("Supabase check failed", e); }
           }
-        }).catch(() => detailError.classList.remove("hidden"));
+
+          // 2. Try Local if not found
+          if (!foundItem) {
+            try {
+              const res = await fetch(path);
+              const localRows = await res.json();
+              foundItem = localRows.find(r => r && r.title === searchTitle);
+            } catch(e) { console.warn("Local data check failed", e); }
+          }
+
+          if (foundItem) {
+            fetchAndRenderTMDB(normalizeRemoteDetail(foundItem), searchTitle);
+          } else {
+            // 3. Dynamic Discovery Fallback: Fetch directly from TMDB if not in our DB
+            console.log("Item not in DB, attempting dynamic discovery via TMDB...");
+            fetchAndRenderTMDB({ title: searchTitle }, searchTitle);
+          }
+        };
+
+        checkLocalAndSupabase().catch(() => detailError.classList.remove("hidden"));
       } else {
+        // Person or unknown
         fetch(path)
           .then(r => r.json())
           .then(rows => {

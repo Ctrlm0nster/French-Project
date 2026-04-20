@@ -96,34 +96,88 @@
         const { useEffect, useState, useRef } = React;
         const GOOGLE_MAPS_PLACEHOLDER = "VOTRE_GOOGLE_MAPS_API_KEY";
 
+        function waitForCondition(check, timeoutMs, errorMessage) {
+            return new Promise((resolve, reject) => {
+                const startedAt = Date.now();
+
+                function tick() {
+                    if (check()) {
+                        resolve();
+                        return;
+                    }
+
+                    if (Date.now() - startedAt >= timeoutMs) {
+                        reject(new Error(errorMessage));
+                        return;
+                    }
+
+                    setTimeout(tick, 100);
+                }
+
+                tick();
+            });
+        }
+
+        function getGoogleMapsApiKey() {
+            return String(
+                (window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) ||
+                window.GOOGLE_MAPS_API_KEY ||
+                ""
+            ).trim();
+        }
+
+        function waitForGoogleMapsReady() {
+            return waitForCondition(
+                () => Boolean(
+                    window.google &&
+                    window.google.maps &&
+                    window.google.maps.Map &&
+                    window.google.maps.marker &&
+                    window.google.maps.marker.AdvancedMarkerElement
+                ),
+                12000,
+                "La bibliotheque Google Maps n'a pas termine son chargement"
+            );
+        }
+
         function loadGoogleMapsApi() {
-            if (window.google && window.google.maps) {
+            if (window.google && window.google.maps && window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
                 return Promise.resolve();
             }
 
-            const apiKey = String((window.APP_CONFIG && window.APP_CONFIG.GOOGLE_MAPS_API_KEY) || "").trim();
-            if (!apiKey || apiKey === GOOGLE_MAPS_PLACEHOLDER) {
-                return Promise.reject(new Error("Missing browser-safe GOOGLE_MAPS_API_KEY in assets/js/config.js"));
+            if (window.__cinemathequeGoogleMapsPromise) {
+                return window.__cinemathequeGoogleMapsPromise;
             }
 
-            const existingScript = document.querySelector('script[data-google-maps-loader="true"]');
-            if (existingScript) {
-                return new Promise((resolve, reject) => {
-                    existingScript.addEventListener("load", () => resolve(), { once: true });
-                    existingScript.addEventListener("error", () => reject(new Error("Google Maps failed to load")), { once: true });
-                });
-            }
+            window.__cinemathequeGoogleMapsPromise = (async () => {
+                await waitForCondition(() => {
+                    const key = getGoogleMapsApiKey();
+                    return key && key !== GOOGLE_MAPS_PLACEHOLDER;
+                }, 3000, "La cle publique GOOGLE_MAPS_API_KEY est absente de assets/js/config.js");
 
-            return new Promise((resolve, reject) => {
-                const script = document.createElement("script");
-                script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&libraries=marker`;
-                script.async = true;
-                script.defer = true;
-                script.dataset.googleMapsLoader = "true";
-                script.onload = () => resolve();
-                script.onerror = () => reject(new Error("Google Maps failed to load"));
-                document.head.appendChild(script);
+                const apiKey = getGoogleMapsApiKey();
+                const existingScript = document.querySelector('script[data-google-maps-loader="true"]');
+
+                if (!existingScript) {
+                    await new Promise((resolve, reject) => {
+                        const script = document.createElement("script");
+                        script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&loading=async&libraries=marker`;
+                        script.async = true;
+                        script.defer = true;
+                        script.dataset.googleMapsLoader = "true";
+                        script.onload = () => resolve();
+                        script.onerror = () => reject(new Error("Le chargement de Google Maps a echoue"));
+                        document.head.appendChild(script);
+                    });
+                }
+
+                await waitForGoogleMapsReady();
+            })().catch((error) => {
+                window.__cinemathequeGoogleMapsPromise = null;
+                throw error;
             });
+
+            return window.__cinemathequeGoogleMapsPromise;
         }
 
         function TheaterDetailMap({ venue }) {

@@ -52,10 +52,8 @@
         }
     </script>
     <style>
-        body { font-family: 'Space Grotesk', sans-serif; background-color: #080a0f; color: #f1f5f9; }
-        .font-serif { font-family: 'Syne', sans-serif; }
+        body { font-family: var(--font-body); color: var(--ink); }
         .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
-        .grad-text { background:linear-gradient(135deg,#c084fc 0%,#ec4899 40%,#fb923c 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
     </style>
 </head>
 
@@ -85,14 +83,14 @@
             </button>
         </div>
     </nav>
-    <main class="pt-28 pb-24 px-6 md:px-12" style="max-width:1600px;margin:0 auto">
-        <header class="mb-14">
-            <div class="section-eyebrow">Archive Numérique</div>
-            <h1 class="section-title" style="font-size:clamp(2.5rem,7vw,5rem);margin-top:0.5rem">
+    <main class="archive-shell">
+        <header class="archive-header">
+            <div class="section-eyebrow">Séries de Répertoire</div>
+            <h1 class="section-title" style="margin-top:0.8rem">
                 Les Séries <span class="grad-text">Contemporaines</span>
             </h1>
-            <p style="max-width:540px;margin-top:1rem;color:var(--text-secondary);font-size:0.92rem;line-height:1.75;font-style:italic">
-                Une collection curatoriale de l'excellence narrative — de la tension du polar noir à la poésie du drame historique.
+            <p class="archive-copy" style="margin-top:1.2rem">
+                Une réserve de fictions choisies pour leur tension, leur architecture narrative et leur pouvoir de hantise, des polars nocturnes aux drames historiques.
             </p>
         </header>
         <div id="series-react-root"></div>
@@ -151,36 +149,44 @@
             }, [page, totalPages]);
 
             return (
-                <div className="flex flex-col lg:flex-row gap-12">
-                    <aside className="w-full lg:w-64 flex-shrink-0 space-y-10">
-                        <div className="space-y-6">
-                            <h3 className="label-md uppercase tracking-[0.2em] text-secondary font-bold">Genre</h3>
-                            <div className="flex flex-wrap lg:flex-col gap-3">
+                <div className="catalogue-layout">
+                    <aside className="catalogue-sidebar">
+                        <div className="catalogue-sidebar-block">
+                            <h3>Genre</h3>
+                            <div className="catalogue-chip-list">
                                 {genres.map((g) => (
-                                    <button key={g} onClick={() => setGenre(g)} className={`text-left py-1 transition-colors pl-4 border-l-2 ${genre === g ? "text-on-surface border-primary" : "text-on-surface-variant hover:text-primary border-transparent"}`}>{g}</button>
+                                    <button key={g} onClick={() => setGenre(g)} className={`catalogue-chip ${genre === g ? "active" : ""}`}>{g}</button>
                                 ))}
                             </div>
                         </div>
-                        <div className="space-y-6">
-                            <h3 className="label-md uppercase tracking-[0.2em] text-secondary font-bold">Recherche</h3>
-                            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Titre ou genre..." className="w-full bg-surface-container-low border-none border-b border-outline-variant text-on-surface py-3 px-0 focus:ring-0 focus:border-primary" />
+                        <div className="catalogue-sidebar-block">
+                            <h3>Recherche</h3>
+                            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Titre ou genre..." />
                         </div>
-                        <div className="space-y-6">
-                            <h3 className="label-md uppercase tracking-[0.2em] text-secondary font-bold">Année</h3>
-                            <select value={year} onChange={(e) => setYear(e.target.value)} className="w-full bg-surface-container-low border-none border-b border-outline-variant text-on-surface py-3 px-0 focus:ring-0 focus:border-primary">
+                        <div className="catalogue-sidebar-block">
+                            <h3>Année</h3>
+                            <select value={year} onChange={(e) => setYear(e.target.value)}>
                                 {years.map((y) => <option key={y} value={y}>{y}</option>)}
                             </select>
                         </div>
                     </aside>
-                    <div className="flex-grow">
-                        {isLoading ? <p className="text-on-surface-variant">Chargement des séries...</p> : null}
-                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-6">
+                    <div className="catalogue-main">
+                        <div className="catalogue-toolbar">
+                            <div>
+                                <div className="catalogue-meta">Séries en collection</div>
+                                <p style={{ color: "var(--ink-soft)", marginTop: "0.45rem", fontSize: "0.96rem", lineHeight: 1.7 }}>
+                                    {filtered.length} série{filtered.length > 1 ? "s" : ""} retenue{filtered.length > 1 ? "s" : ""} dans cette section.
+                                </p>
+                            </div>
+                            {isLoading ? <p style={{ color: "var(--muted)", fontSize: "0.8rem", letterSpacing: "0.16em", textTransform: "uppercase" }}>Chargement des séries</p> : null}
+                        </div>
+                        <div className="catalogue-grid">
                             {pagedItems.map((item) => (
-                                <div key={item.title} className="group mx-auto w-full max-w-[220px]">
-                                    <div className="relative aspect-[2/3] overflow-hidden bg-surface-container mb-4 hover-tilt">
+                                <article key={item.title} className="catalogue-card">
+                                    <div className="catalogue-poster">
                                         <a href={SiteCommon.detailHref("series", item.title)} className="block h-full">
                                             <img
-                                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+                                                className="w-full h-full object-cover"
                                                 src={item.image || "https://placehold.co/440x660/1e2022/e2e2e5?text=Cin%C3%A9math%C3%A8que"}
                                                 alt={item.title}
                                                 onError={(e) => {
@@ -188,35 +194,35 @@
                                                 }}
                                             />
                                         </a>
-                                        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between p-4 gap-2">
-                                            <a href={SiteCommon.detailHref("series", item.title)} className="bg-primary text-on-primary px-4 py-2 text-[10px] uppercase tracking-wider font-bold text-center">Fiche</a>
+                                        <div className="catalogue-actions">
+                                            <a href={SiteCommon.detailHref("series", item.title)} className="catalogue-link primary">Lire la fiche</a>
                                             {item.trailerUrl ? (
-                                                <a href={item.trailerUrl} target="_blank" rel="noopener noreferrer" className="inline-flex flex-col items-center gap-0.5 bg-surface-variant text-on-background px-3 py-2 text-[10px] uppercase tracking-wider font-bold border border-primary/40 hover:border-primary sm:flex-row sm:gap-2">
-                                                    <span className="inline-flex items-center gap-1.5">
-                                                        <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
-                                                        Bande-annonce
-                                                    </span>
-                                                    <span className="text-[9px] font-bold normal-case tracking-[0.15em] text-on-surface-variant">Voir</span>
+                                                <a href={item.trailerUrl} target="_blank" rel="noopener noreferrer" className="catalogue-link secondary">
+                                                    <span className="material-symbols-outlined text-base" style={{ fontVariationSettings: "'FILL' 1" }}>play_circle</span>
+                                                    Bande-annonce
                                                 </a>
                                             ) : null}
                                         </div>
                                     </div>
-                                    <a href={SiteCommon.detailHref("series", item.title)} className="block space-y-1 text-left">
-                                        <div className="flex justify-between items-baseline gap-2">
-                                            <h2 className="text-xl font-serif tracking-tight group-hover:text-primary transition-colors leading-tight">{item.title}</h2>
-                                            <span className="label-md text-secondary shrink-0">{item.year}</span>
+                                    <a href={SiteCommon.detailHref("series", item.title)} className="block text-left">
+                                        <div className="catalogue-caption">
+                                            <h2 className="catalogue-title">{item.title}</h2>
+                                            <span className="catalogue-year">{item.year}</span>
                                         </div>
-                                        <p className="text-[11px] uppercase tracking-widest text-on-surface-variant">{item.genre}{item.episodes ? ` · ${item.episodes} ép.` : ""}</p>
+                                        <p className="catalogue-byline" style={{ marginTop: "0.35rem" }}>{item.genre}{item.episodes ? ` · ${item.episodes} ép.` : ""}</p>
                                     </a>
-                                </div>
+                                </article>
                             ))}
                         </div>
-                        <div className="mt-16 flex justify-center items-center space-x-4">
-                            <button disabled={page === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant magnetic">
+                        {!isLoading && pagedItems.length === 0 ? (
+                            <div className="catalogue-empty">Aucune série ne correspond aux filtres actuels.</div>
+                        ) : null}
+                        <div className="pagination" style={{ marginTop: "3.2rem" }}>
+                            <button disabled={page === 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="page-btn">
                                 <span className="material-symbols-outlined">chevron_left</span>
                             </button>
-                            <span className="label-md text-on-surface mx-4">PAGE {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span>
-                            <button disabled={page === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="w-12 h-12 flex items-center justify-center border border-outline-variant hover:border-primary transition-colors disabled:opacity-40 disabled:hover:border-outline-variant magnetic">
+                            <span className="page-indicator">PAGE {String(page).padStart(2, "0")} / {String(totalPages).padStart(2, "0")}</span>
+                            <button disabled={page === totalPages} onClick={() => setPage((p) => Math.min(totalPages, p + 1))} className="page-btn">
                                 <span className="material-symbols-outlined">chevron_right</span>
                             </button>
                         </div>
