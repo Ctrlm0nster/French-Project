@@ -29,6 +29,23 @@ const SupabaseClient = (() => {
     };
   };
 
+  /** Wait up to 2 seconds for dynamic config if currently placeholders. */
+  async function ensureConfig() {
+    const { url, anonKey } = getConfig();
+    if (hasUsableConfig(url) && hasUsableConfig(anonKey)) return;
+
+    return new Promise((resolve) => {
+      const onReady = () => {
+        window.removeEventListener('configReady', onReady);
+        clearTimeout(timeout);
+        resolve();
+      };
+      const timeout = setTimeout(onReady, 2000);
+      window.addEventListener('configReady', onReady);
+    });
+  }
+
+
   function hasUsableConfig(value) {
     return !PLACEHOLDER_VALUES.has(String(value || '').trim());
   }
@@ -75,6 +92,7 @@ const SupabaseClient = (() => {
   }
 
   async function fetchFromTable(table, options = {}) {
+    await ensureConfig();
     const { url, anonKey } = getConfig();
 
     if (!hasUsableConfig(url) || !hasUsableConfig(anonKey)) {
