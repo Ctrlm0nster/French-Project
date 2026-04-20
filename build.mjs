@@ -42,6 +42,7 @@ function parseEnvFile(filePath) {
 
 function loadEnvConfig() {
     return {
+        ...process.env,
         ...parseEnvFile(path.join(__dirname, '.env')),
         ...parseEnvFile(path.join(__dirname, '.env.local')),
     };
@@ -74,6 +75,8 @@ function buildPublicConfig(env) {
         GOOGLE_MAPS_API_KEY: firstDefined(env, [
             'GOOGLE_MAPS_API_KEY',
             'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY',
+            'NEXT_PUBLIC_PARTH_GOOGLE_MAPS_API_KEY',
+            'PARTH_GOOGLE_MAPS_API_KEY',
         ], 'VOTRE_GOOGLE_MAPS_API_KEY'),
         CHAT_API_URL: firstDefined(env, [
             'NEXT_PUBLIC_CHAT_API_URL',
