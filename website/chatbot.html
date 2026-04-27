@@ -205,7 +205,7 @@
                     </div>
                 </div>
                 <p class="mt-5 text-center text-[10px] uppercase tracking-[0.25em] text-outline">
-                    Propulsé par Groq AI · Intelligence Artificielle Expérimentale
+                    Propulsé par GPT-OSS-120B · Groq LPU™ Reference Model
                 </p>
 
             </div>
@@ -459,7 +459,7 @@
             setLoadingState(true);
             try {
                 const payload = {
-                    model: 'llama-3.3-70b-versatile',
+                    model: 'openai/gpt-oss-120b',
                     messages: [
                         { role: 'system', content: INITIAL_PROMPT },
                         ...history,
